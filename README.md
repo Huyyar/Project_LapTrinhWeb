@@ -22,7 +22,12 @@ git branch <branch-name>
 ```
 
 #### Switching to a Branch
-To switch to an existing branch:
+To switch to an existing branch using the newer syntax (recommended):
+```bash
+git switch <branch-name>
+```
+
+Or using the legacy syntax:
 ```bash
 git checkout <branch-name>
 ```
@@ -95,6 +100,11 @@ git checkout -b hotfix/security-patch
    ```bash
    git branch -d <branch-name>
    ```
+   
+   For unmerged branches, use force delete:
+   ```bash
+   git branch -D <branch-name>
+   ```
 
 7. **Delete a remote branch:**
    ```bash
@@ -113,6 +123,8 @@ Before creating a new branch, make sure you have the latest changes:
 git checkout main
 git pull origin main
 ```
+
+**Note:** Some repositories use `master` as the default branch instead of `main`. Check your repository's default branch name with `git branch` or `git remote show origin`.
 
 ## Contributing
 When contributing to this project, please follow the branch naming conventions and create a new branch for each feature or bug fix.
