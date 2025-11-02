@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnackHub - Menu sản phẩm</title>
+    <link rel="stylesheet" href="../css/product.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a class="logo" href="../index.html" data-link>
+                <span class="logo-icon">🍿</span>
+                <span>SnackHub</span>
+            </a>
+            <nav>
+                <button class="nav-toggle" aria-label="Mở menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html#home" data-link>Trang chủ</a></li>
+                    <li>
+                        <a href="products.html" class="active" data-link>Sản phẩm</a>
+                    </li>
+                    <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="nav-search">
+                        <span class="icon">🔍</span>
+                        <input type="search" id="nav-search" placeholder="Bạn muốn ăn gì hôm nay?" />
+                    </div>
+                    <div class="nav-auth" data-auth-buttons>
+                        <button class="link-button" type="button" data-open-auth="signup">
+                            Đăng ký
+                        </button>
+                        <span class="nav-divider"></span>
+                        <button class="link-button" type="button" data-open-auth="login">
+                            Đăng nhập
+                        </button>
+                    </div>
+                    <button class="cart-button" data-open-cart>
+                        Giỏ hàng (<span data-cart-count>0</span>)
+                    </button>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+</body>
+
+</html>
