@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+}
+.container {
+    width: min(1200px, 90vw);
+    margin: 0 auto;
+}
+.orange{
+    color: #ff5500;
+}
+header{
+    border-bottom: 1px solid #ff5500;
+}
+nav{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 80px;
+}
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+    margin-right: 20px;
+}
+.logo-img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    background:transparent;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-link.active {
+    color: #ff5500;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff7b00;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ff5500;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid #636363;
+    border-radius: 24px;
+    padding: 4px 8px;
+}
+
+.nav-search i {
+    font-size: 18px;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    width: 240px;
+    text-align: center;
+    height: 30px;
+}
+
+.nav-search input::placeholder {
+    color: #c7c7c7;
+}
+
+.nav-search:hover {
+    border-color: #ff5500;
+}
+.cart-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #ffb366;       /* viền cam nhạt */
+    border-radius: 25px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.cart-button i,
+.cart-button span {
+    color: #ff7b00;                  /* màu cam tươi */
+}
+
+.cart-button:hover {
+    background-color: #ff7b00;
+    border-color: #ff7b00;
+}
+
+.cart-button:hover i,
+.cart-button:hover span {
+    color: white;
+}
+
+.cart-button:active {
+    transform: scale(0.95);          /* nhấn xuống nhẹ */
+}
+
