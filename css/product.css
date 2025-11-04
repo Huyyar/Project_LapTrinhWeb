@@ -58,7 +58,9 @@ button {
     margin-bottom: 28px;
 }
 
-
+.content{
+    margin: 100px 0;
+}
 .content .section-title {
     display: grid;
     gap: 8px;
