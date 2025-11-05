@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/slideshow.css" />
+    <link rel="stylesheet" href="css/header.css" />
+  </head>
+  <body>
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
+        </a>
+          <nav>
+            <ul class="nav-links">
+              <li>
+                <a href="index.html#home" class="ative">Trang chủ</a>
+              </li>
+              <li>
+                <a href="pages/product.html">Sản phẩm</a>
+              </li>
+              <li>
+                <a href="pages/contact.html">Liên hệ</a>
+              </li>
+            </ul>
+            <div class="nav-actions">
+              <div class="nav-search">
+                <span class="icon">🔍</span>
+                <input
+                  type="search"
+                  id="nav-search"
+                  placeholder="Bạn muốn ăn gì hôm nay?"
+                />
+              </div>
+              <div class="nav-auth">
+                <a class="link-button" href="pages/register.html">Đăng kí</a>
+                <span class="nav-divider"></span>
+                <a class="link-button" href="pages/login.html">Đăng nhập</a>
+              </div>
+              <button class="cart-button">Giỏ hàng</button>
+            </div>
+          </nav>
+        </a>
+      </div>
+    </header>
+
+    <main>
+     <section class="hero" id="home">
+        <div class="container hero-inner">
+          <div class="hero-meta">
+            <span class="hero-kicker">SnackHub Spotlight</span>
+            <h1>Những sự kiện nổi bật tuần lễ hội Halloween</h1>
+          
+          </div>
+          <div class="hero-slideshow" >
+            <div class="hero-slide is-active" >
+              <img
+                src="assets/images/slideshow_halloween.jpg"
+                alt="Bàn tiệc Halloween "
+              />
+              <div class="hero-slide-content">
+                <span class="hero-slide-chip">Halloween 2025</span>
+                <h3>Đại tiệc snack đêm Halloween</h3>
+                <p>
+                 Cho kẹo hay bị ghẹo - Một đêm Halloween tuyệt vời với nhiều loại kẹo.
+                </p>
+               
+                
+                </div>
+              </div>
+            </div>
+            <div class="hero-slide" data-hero-slide>
+              <img
+                src="assets/images/slideshow_drinks.jpg"
+                alt="Các loại nước uống"
+              />
+              <div class="hero-slide-content">
+                <span class="hero-slide-chip">SnackHub Drinks</span>
+                <h3>Thưởng thức nhiều loại nước uống khác nhau</h3>
+                <p>
+                 Đánh thức vị giác với hương vị đa dạng .
+                </p>
+             
+              </div>
+            </div>
+            <div class="hero-slide" data-hero-slide>
+              <img
+                src="assets/images/mattia-occhi-IWELEWFpufI-unsplash.jpg"
+                alt="Sản phẩm mochi matcha mới của SnackHub"
+              />
+              <div class="hero-slide-content">
+                <span class="hero-slide-chip">Ra mắt tuần này</span>
+                <h3>Mochi lava thơm tan</h3>
+                <p>
+                  Lớp vỏ mềm thủ công ôm lấy nhân matcha Uji tan chảy, giới hạn
+                  cho mùa lễ hội.
+                </p>
+             
+                </div>
+              </div>
+            </div>
+            <button
+              class="hero-slide-nav prev"
+              type="button"
+              data-hero-prev
+              aria-label="Chuyển về slide trước"
+            >
+              &lsaquo;
+            </button>
+            <button
+              class="hero-slide-nav next"
+              type="button"
+              data-hero-next
+              aria-label="Chuyển sang slide tiếp theo"
+            >
+              &rsaquo;
+            </button>
+           
+          </div>
+          <div class="hero-meta-footer">
+          
+          </div>
+        </div>
+      </section>
+
+
+
+    </main>
+  </body>
+</html>
