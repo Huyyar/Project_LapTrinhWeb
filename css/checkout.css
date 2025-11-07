@@ -1,22 +1,26 @@
-.checkout-page-container {
+.checkout-page{
+    background: #fef8f2;
+}
+.checkout-page .container {
     max-width: 1080px;
     margin: 48px auto;
     padding: 0 24px;
+    background: transparent;
 }
 
-.checkout-page-header {
+.checkout-page header {
     margin-bottom: 36px;
     text-align: left;
 }
 
-.checkout-page-header h1 {
-    font-size: 2.25rem;
+.checkout-page header h1 {
+    font-size: 40px;
     margin-bottom: 12px;
 }
 
-.checkout-page-header p {
+.checkout-page header p {
     margin: 0;
-    color: var(--text-muted);
+    color: #52606d;
     max-width: 540px;
 }
 

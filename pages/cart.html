@@ -71,43 +71,54 @@
                 <div class="payment-step">Thông tin giao hàng</div>
                 <div class="payment-step">Hoàn tất</div>
             </div>
-            <div class="content">
-                <button class="select">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <div class="product">
-                    <img src="../assets/images/yogurt.jpg" alt="Yogurt">
-                    <div class="info">
-                        <span class="name">Yogurt</span>
-                        <span class="price">28.000đ</span>
+            <section class="items">
+                <div class="item">
+                    <button class="select" onclick="this.classList.toggle('active')">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    <div class="product">
+                        <img src="../assets/images/yogurt.jpg" alt="Yogurt">
+                        <div class="info">
+                            <span class="name">Yogurt</span>
+                            <span class="price">28.000đ</span>
+                        </div>
                     </div>
-                </div>
-                <div class="quantity">
-                        <button class="reduce">-</button>
-                        <span>1</span>
-                        <button class="increase">+</button>
-                </div>
-            </div>
-            <div class="content">
-                <button class="selected">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <div class="product">
-                    <img src="../assets/images/yogurt.jpg" alt="Yogurt">
-                    <div class="info">
-                        <span class="name">Yogurt</span>
-                        <span class="price">28.000đ</span>
-                    </div>
-                </div>
                     <div class="quantity">
-                        <button class="reduce">-</button>
+                        <button class="reduce"
+                                onclick="let s=this.nextElementSibling;
+                                         if(+s.innerText>1) s.innerText--;">-</button>
                         <span>1</span>
-                        <button class="increase">+</button>
+                        <button class="increase"
+                                onclick="let s=this.previousElementSibling;
+                                s.innerText++;">+</button>
                     </div>
-            </div>
+                </div>
+                <div class="item">
+                    <button class="select" onclick="this.classList.toggle('active')">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    <div class="product">
+                        <img src="../assets/images/yogurt.jpg" alt="Yogurt">
+                        <div class="info">
+                            <span class="name">Yogurt</span>
+                            <span class="price">28.000đ</span>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <button class="reduce"
+                                onclick="let s=this.nextElementSibling;
+                                         if(+s.innerText>1) s.innerText--;">-</button>
+                        <span>1</span>
+                        <button class="increase"
+                                onclick="let s=this.previousElementSibling;
+                                s.innerText++;">+</button>
+                    </div>
+                </div>
+            </section>
             <footer>
                 <span>Thành tiền: 56.000đ</span>
-                <button class="payment" onclick="window.location.href='checkout.html'">Thanh toán</button>
+                <button class="payment-button"
+                        onclick="window.location.href='checkout.html'">Thanh toán</button>
             </footer>
         </div>
     </main>
