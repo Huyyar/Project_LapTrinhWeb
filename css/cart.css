@@ -1,0 +1,15 @@
+.cart-page .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cart-page .header {
+    margin-bottom: 30px;
+}
+
+.cart-page .header .h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
