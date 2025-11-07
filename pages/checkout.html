@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+<header class="navbar" id="navbar">
+    <div class="container nav-inner">
+        <div class="logo">
+            <span class="logo-icon">🍿</span>
+            <span>SnackHub</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html#home" data-link>Trang chủ</a></li>
+                <li><a href="product.html" data-link>Sản phẩm</a></li>
+                <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-search">
+                    <i class="fa-solid fa-magnifying-glass icon" style="color: #74C0FC;"></i>
+                    <input
+                            type="search"
+                            id="nav-search"
+                            placeholder="Bạn muốn ăn gì hôm nay?"
+                    />
+                </div>
+                <div class="nav-auth" data-auth-buttons>
+                    <button class="link-button" type="button" data-open-auth="signup">
+                        Đăng ký
+                    </button>
+                    <span class="nav-divider"></span>
+                    <button class="link-button" type="button" data-open-auth="login">
+                        Đăng nhập
+                    </button>
+                </div>
+                <button class="cart-button" data-open-cart>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Giỏ hàng (<span data-cart-count>0</span>)
+                </button>
+
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="checkout-page">
+    <div class="checkout-page-container">
+        <header class="checkout-page-header">
+            <h1>Thanh toán đơn hàng</h1>
+            <p>
+                Điền thông tin giao hàng và xác nhận đơn để SnackHub chuẩn bị món
+                ngon cho bạn ngay.
+            </p>
+        </header>
+
+        <div class="payment-steps">
+            <div class="payment-step">Giỏ hàng</div>
+            <div class="payment-step active">Thông tin giao hàng</div>
+            <div class="payment-step">Hoàn tất</div>
+        </div>
+
+        <div class="checkout-page-layout">
+            <form class="checkout-form" id="checkout-page-form">
+                <section class="checkout-form-section">
+                    <header class="form-section-header">
+                        <h2>Thông tin khách hàng</h2>
+                        <p>
+                            Cung cấp thông tin liên hệ để chúng tôi cập nhật trạng thái
+                            đơn hàng cho bạn nhanh nhất.
+                        </p>
+                    </header>
+                    <div class="form-grid">
+                        <label class="form-field">
+                            <span>Họ và tên</span>
+                            <input
+                                    type="text"
+                                    name="fullname"
+                                    placeholder="Nguyễn Snack"
+                                    required
+                            />
+                        </label>
+                        <label class="form-field">
+                            <span>Số điện thoại</span>
+                            <input
+                                    type="tel"
+                                    name="phone"
+                                    placeholder="0123456789"
+                                    required
+                            />
+                        </label>
+                        <label class="form-field">
+                            <span>Email</span>
+                            <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="ban@example.com"
+                                    required
+                            />
+                        </label>
+                        <label class="form-field full-width">
+                            <span>Địa chỉ giao hàng</span>
+                            <textarea
+                                    name="address"
+                                    rows="3"
+                                    placeholder="Số nhà, phường/xã, quận/huyện, tỉnh/thành phố"
+                                    required
+                            ></textarea>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="checkout-form-section">
+                    <header class="form-section-header">
+                        <h2>Phương thức giao hàng</h2>
+                        <p>Chọn lựa tốc độ giao phù hợp với lịch trình của bạn.</p>
+                    </header>
+                    <div class="option-list">
+                        <label class="option-card">
+                            <input
+                                    type="radio"
+                                    name="shipping"
+                                    value="standard"
+                                    checked
+                            />
+                            <span class="option-marker" aria-hidden="true"></span>
+                            <div class="option-card-body">
+                                <span class="option-title">Giao tiêu chuẩn</span>
+                                <span class="option-meta">Dự kiến 1-2 ngày • 25.000₫</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="shipping" value="express" />
+                            <span class="option-marker" aria-hidden="true"></span>
+                            <div class="option-card-body">
+                                <span class="option-title">Giao nhanh</span>
+                                <span class="option-meta"
+                                >Trong ngày tại nội thành • 45.000₫</span
+                                >
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="checkout-form-section">
+                    <header class="form-section-header">
+                        <h2>Thanh toán</h2>
+                        <p>SnackHub hỗ trợ nhiều phương thức thanh toán linh hoạt.</p>
+                    </header>
+                    <div class="option-list option-grid">
+                        <label class="option-card">
+                            <input type="radio" name="payment" value="cod" checked />
+                            <span class="option-marker" aria-hidden="true"></span>
+                            <div class="option-card-body">
+                                <span class="option-title">Thanh toán khi nhận hàng</span>
+                                <span class="option-meta"
+                                >Không mất phí, kiểm tra hàng trước khi trả</span
+                                >
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="payment" value="bank" />
+                            <span class="option-marker" aria-hidden="true"></span>
+                            <div class="option-card-body">
+                                <span class="option-title">Chuyển khoản ngân hàng</span>
+                                <span class="option-meta"
+                                >Hỗ trợ hầu hết ngân hàng nội địa</span
+                                >
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="payment" value="ewallet" />
+                            <span class="option-marker" aria-hidden="true"></span>
+                            <div class="option-card-body">
+                                <span class="option-title">Ví điện tử</span>
+                                <span class="option-meta">ZaloPay, Momo, ViettelPay</span>
+                            </div>
+                        </label>
+                    </div>
+                    <label class="form-field full-width">
+                        <span>Ghi chú đơn hàng</span>
+                        <textarea
+                                name="notes"
+                                rows="2"
+                                placeholder="Lưu ý khi giao hàng"
+                        ></textarea>
+                    </label>
+                </section>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Xác nhận đặt hàng
+                    </button>
+                    <p class="form-note">
+                        Bằng cách tiếp tục, bạn đồng ý với điều khoản dịch vụ và chính
+                        sách bảo mật của SnackHub.
+                    </p>
+                </div>
+            </form>
+
+            <aside class="checkout-order-summary" data-checkout-page-summary>
+                <header class="summary-header">
+                    <h2>Tóm tắt đơn hàng</h2>
+                    <p>Kiểm tra nhanh các món bạn đã chọn trước khi xác nhận.</p>
+                </header>
+                <div class="summary-empty" data-summary-empty>
+                    <div class="empty-illustration" aria-hidden="true">🛒</div>
+                    <p>
+                        Giỏ hàng của bạn đang trống. Hãy quay lại trang sản phẩm để thêm
+                        món trước khi thanh toán.
+                    </p>
+                </div>
+                <div class="summary-divider" aria-hidden="true"></div>
+                <dl class="summary-totals">
+                    <div class="checkout-summary-row">
+                        <dt>Tạm tính</dt>
+                        <dd>0₫</dd>
+                    </div>
+                    <div class="checkout-summary-row">
+                        <dt>Phí vận chuyển</dt>
+                        <dd>0₫</dd>
+                    </div>
+                    <div class="checkout-summary-row checkout-summary-total">
+                        <dt>Tổng cộng</dt>
+                        <dd><strong>0₫</strong></dd>
+                    </div>
+                </dl>
+                <div class="summary-actions">
+                    <button
+                            class="btn btn-outline w-100"
+                            type="button"
+                            data-open-products
+                    >
+                        Khám phá sản phẩm
+                    </button>
+                </div>
+                <p class="summary-note">
+                    SnackHub sẽ giữ giỏ hàng của bạn trong 30 phút. Đừng quên đăng
+                    nhập để đồng bộ trên mọi thiết bị.
+                </p>
+            </aside>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <div class="container footer-inner">
+        <div>
+            <div class="logo">
+                <span class="logo-icon">🍿</span>
+                <span>SnackHub</span>
+            </div>
+            <p>
+                Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+                sắm thú vị cho mọi cuộc vui.
+            </p>
+        </div>
+        <div>
+            <h4>Thông tin</h4>
+            <ul class="footer-links">
+                <li><a href="products.html">Menu hôm nay</a></li>
+                <li><a href="../index.html#contact">Liên hệ</a></li>
+                <li>
+                    <button class="link-button" type="button" data-open-history>
+                        Lịch sử đơn
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>Liên hệ</h4>
+            <p>Hotline: 0123 456 789</p>
+            <p>Email: contact@snackhub.vn</p>
+            <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
+        </div>
+        <div>
+            <h4>Kết nối</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-note">
+            © 2025 SnackHub. Made with ❤️ for snack lovers.
+        </p>
+        <button class="link-button" type="button" data-scroll-to="#navbar">
+            Lên đầu trang
+        </button>
+    </div>
+</footer>
+</body>
+</html>
