@@ -66,7 +66,11 @@
                     thanh toán chỉ với vài bước.
                 </p>
             </header>
-
+            <div class="payment-steps">
+                <div class="payment-step active">Giỏ hàng</div>
+                <div class="payment-step">Thông tin giao hàng</div>
+                <div class="payment-step">Hoàn tất</div>
+            </div>
             <div class="content">
                 <button class="select">
                     <i class="fa-solid fa-check"></i>
@@ -103,7 +107,7 @@
             </div>
             <footer>
                 <span>Thành tiền: 56.000đ</span>
-                <button class="payment">Thanh toán</button>
+                <button class="payment" onclick="window.location.href='checkout.html'">Thanh toán</button>
             </footer>
         </div>
     </main>

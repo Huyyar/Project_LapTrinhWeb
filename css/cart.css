@@ -2,11 +2,29 @@
     background: #fef8f2;
 }
 .cart-page .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 20px;
-    height: 400px;
+    max-width: 1080px;
+    margin: 48px auto;
+    padding: 0 24px;
     background: transparent;
+}
+.payment-steps {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.payment-step {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background: var(--border);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.payment-step.active {
+    background: var(--primary);
+    color: white;
 }
 .content {
     display: flex;
