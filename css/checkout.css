@@ -1,5 +1,5 @@
 .checkout-page{
-    background: #fef8f2;
+    background: var(--bg);
 }
 .checkout-page .container {
     max-width: 1080px;
@@ -20,7 +20,7 @@
 
 .checkout-page header p {
     margin: 0;
-    color: #52606d;
+    color: var(--text-muted);
     max-width: 540px;
 }
 

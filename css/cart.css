@@ -1,5 +1,5 @@
 .cart-page{
-    background: #fef8f2;
+    background: var(--bg);
 }
 .cart-page .container {
     max-width: 1080px;
@@ -19,7 +19,7 @@
 
 .cart-page header p {
     margin: 0;
-    color: #52606d;
+    color: var(--text-muted);
     max-width: 540px;
 }
 .payment-steps {
@@ -39,11 +39,11 @@
 
 .payment-step.active {
     background: var(--primary);
-    color: white;
+    color: var(--surface);
 }
 
 .items {
-    background: white;
+    background: var(--surface);
     padding:28px;
     border-radius: 16px;
     display: flex;
@@ -54,10 +54,10 @@
 .item {
     display: flex;
     align-items: center;
-    border: 1px solid #afafaf;
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 12px 16px;
-    background: #ffffff;
+    background: var(--surface);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     margin-bottom: 10px;
@@ -72,9 +72,9 @@
 .select {
     height: 24px;
     width: 24px;
-    background: white;
-    color: #afafaf;
-    border: 2px solid #afafaf;
+    background: var(--surface);
+    color: var(--border);
+    border: 2px solid var(--border);
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.2s;
@@ -84,14 +84,14 @@
     justify-content: center;
 }
 .select:hover {
-    border: 2px solid #ff6b35;
-    color: #ff6b35
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 .select.active {
     height: 24px;
     width: 24px;
-    background: #ff6b35;
-    color: #fff;
+    background: var(--primary);
+    color: var(--surface);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -102,7 +102,7 @@
     justify-content: center;
 }
 .select.active:hover {
-    background: #d94e19;
+    background: var(--primary-dark);
 }
 .product {
     display: flex;
@@ -126,11 +126,11 @@
 .name {
     font-weight: 600;
     font-size: 1rem;
-    color: #333;
+    color: var(--text);
 }
 
 .price {
-    color: #888;
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 .quantity {
@@ -180,7 +180,7 @@ footer span {
 .payment-button {
     margin-right: 10px;
     background: var(--primary);
-    color: white;
+    color: var(--surface);
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
@@ -191,5 +191,5 @@ footer span {
 }
 
 .payment-button:hover {
-    background: #d94e19;
+    background: var(--primary-dark);
 }
