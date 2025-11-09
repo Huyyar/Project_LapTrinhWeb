@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SnackHub - Đăng nhập</title>
+
+    
+    <link rel="stylesheet" href="../css/authorize.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="auth-minimal" data-page="login">
+    <main class="auth-shell">
+      <span class="auth-brand">SnackHub</span>
+      <section class="auth-card" aria-labelledby="login-title">
+        <header>
+          <h1 id="login-title">Đăng nhập</h1>
+        
+        </header>
+        <form class="auth-form" action="#" method="post">
+          <div class="auth-field">
+            <label for="login-email">Email</label>
+            <input
+              id="login-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="ban@example.com"
+              required
+            />
+          </div>
+          <div class="auth-field">
+            <label for="login-password">Mật khẩu</label>
+            <input
+              id="login-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              minlength="6"
+              required
+            />
+          </div>
+          <button type="submit" class="auth-submit">Đăng nhập</button>
+          <div class="auth-meta">
+            <span>Chưa có tài khoản?</span>
+            <a class="auth-link" href="register.html">Tạo tài khoản mới</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
