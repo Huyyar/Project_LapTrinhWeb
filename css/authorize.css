@@ -37,6 +37,7 @@ body.auth-minimal {
 }
 
 .auth-card {
+   position: relative;
   background: var(--auth-surface);
   border-radius: 20px;
   padding: clamp(32px, 5vw, 40px);
@@ -44,6 +45,19 @@ body.auth-minimal {
   display: grid;
   gap: 24px;
   box-shadow: 0 18px 38px rgba(15, 23, 42, 0.08);
+}
+.auth-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: var(--auth-muted);
+  text-decoration: none;
+  font-size: 28px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.auth-close:hover {
+  color: var(--auth-primary);
 }
 
 .auth-card header {
