@@ -92,4 +92,43 @@ body {
     color: var(--text-muted);
     font-size: 0.875rem;
 }
+/* Order Items Table */
+.order-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
 
+.order-items th,
+.order-items td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.order-items th {
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg);
+}
+
+/* Order Summary */
+.order-summary {
+    margin-top: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.summary-item.total {
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top: 2px solid var(--border);
+    margin-top: 8px;
+    padding-top: 16px;
+}
