@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnackHub - Liên hệ</title>
+
+    <!-- Chỉ dùng style chung cho trang liên hệ -->
+
+    <link rel="stylesheet" href="../css/contact.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body data-page="contact">
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <div class="logo">
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html#home" data-link>Trang chủ</a></li>
+            <li><a href="product.html" data-link>Sản phẩm</a></li>
+            <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <i
+                class="fa-solid fa-magnifying-glass icon"
+                style="color: #74c0fc"
+              ></i>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
+            </div>
+            <div class="nav-auth" data-auth-buttons>
+              <button class="link-button" type="button" data-open-auth="signup">
+                Đăng ký
+              </button>
+              <span class="nav-divider"></span>
+              <button class="link-button" type="button" data-open-auth="login">
+                Đăng nhập
+              </button>
+            </div>
+            <button class="cart-button" data-open-cart>
+              <i class="fa-solid fa-cart-shopping"></i>
+              Giỏ hàng (<span data-cart-count>0</span>)
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact" id="contact">
+        <div class="container contact-inner">
+          <div>
+            <h2>Liên hệ SnackHub</h2>
+            <p>
+              Gửi tin nhắn cho chúng tôi, đội ngũ SnackHub sẽ phản hồi nhanh
+              chóng.
+            </p>
+            <div class="contact-info">
+              <div>
+                <span class="icon">📞</span>
+                <div>
+                  <h3>Hotline</h3>
+                  <p>0123 456 789</p>
+                </div>
+              </div>
+              <div>
+                <span class="icon">✉️</span>
+                <div>
+                  <h3>Email</h3>
+                  <p>contact@snackhub.vn</p>
+                </div>
+              </div>
+              <div>
+                <span class="icon">📍</span>
+                <div>
+                  <h3>Địa chỉ</h3>
+                  <p>123 Đường ABC, Quận 1, TP.HCM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <label>
+              Họ và tên
+              <input
+                type="text"
+                name="name"
+                placeholder="Nguyễn Văn A"
+                required
+              />
+            </label>
+            <label>
+              Email
+              <input
+                type="email"
+                name="email"
+                placeholder="ban@example.com"
+                required
+              />
+            </label>
+            <label>
+              Nội dung
+              <textarea
+                name="message"
+                placeholder="Mình muốn đặt hàng..."
+                rows="4"
+                required
+              ></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+
+    <footer class="footer">
+    <div class="container footer-inner">
+        <div>
+            <div class="logo">
+                <span class="logo-icon">🍿</span>
+                <span>SnackHub</span>
+            </div>
+            <p>
+                Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+                sắm thú vị cho mọi cuộc vui.
+            </p>
+        </div>
+        <div>
+            <h4>Thông tin</h4>
+            <ul class="footer-links">
+                <li><a href="products.html">Menu hôm nay</a></li>
+                <li><a href="../index.html#contact">Liên hệ</a></li>
+                <li>
+                    <button class="link-button" type="button" data-open-history>
+                        Lịch sử đơn
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>Liên hệ</h4>
+            <p>Hotline: 0123 456 789</p>
+            <p>Email: contact@snackhub.vn</p>
+            <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
+        </div>
+        <div>
+            <h4>Kết nối</h4>
+            <div class="social">
+                <a href="https://www.facebook.com/" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-note">
+            © 2025 SnackHub. Made with ❤️ for snack lovers.
+        </p>
+        <button class="link-button" type="button" data-scroll-to="#navbar">
+            Lên đầu trang
+        </button>
+    </div>
+</footer>
+
+  </body>
+</html>
