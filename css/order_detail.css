@@ -1,0 +1,95 @@
+:root {
+    --bg: #fef8f2;
+    --surface: #ffffff;
+    --primary: #ff6b35;
+    --text: #1f2933;
+    --text-muted: #52606d;
+    --border: #e5e7eb;
+    --success: #0f9d58;
+    --warning: #fb8c00;
+    --overlay: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Dialog styles */
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog.show {
+    display: flex;
+}
+
+.dialog-content {
+    background: var(--surface);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+.dialog-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* Order Info Styles */
+.info-section {
+    margin-bottom: 32px;
+}
+
+.info-section h3 {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-item label {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
