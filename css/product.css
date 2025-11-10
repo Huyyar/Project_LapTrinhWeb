@@ -147,10 +147,7 @@ nav {
     padding: 0;
 }
 
-.nav-links  #SP{
-    color: var(--primary);
-    font-weight: 700;
-}
+
 
 .nav-links .link-button {
     text-decoration: none;
