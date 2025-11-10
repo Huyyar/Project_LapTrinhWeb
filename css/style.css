@@ -1,0 +1,56 @@
+:root {
+  --bg: #fef8f2;
+  --surface: #ffffff;
+  --primary: #ff6b35;
+  --primary-dark: #d94e19;
+  --accent: #ffb347;
+  --text: #1f2933;
+  --text-muted: #52606d;
+  --border: #e5e7eb;
+  --shadow: 0 20px 45px rgba(31, 41, 51, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 107, 53, 0.4);
+}
+
+.link-button:hover {
+  color: var(--primary);
+}
