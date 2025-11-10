@@ -1,0 +1,94 @@
+.order-complete-page {
+    background: var(--bg);
+}
+
+.order-complete-page .container {
+    max-width: 1080px;
+    margin: 48px auto;
+    padding: 0 24px;
+    background: transparent;
+}
+
+.order-complete-page header h1 {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.order-complete-page header p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+.payment-steps {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.payment-step {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background: var(--border);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.payment-step.active {
+    background: var(--primary);
+    color: white;
+}
+.order-complete-card {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 48px 32px;
+    box-shadow: 0 18px 36px rgba(31, 41, 51, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.order-status-icon {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.order-complete-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.order-complete-card p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.order-complete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+}
+
+.button {
+    width:240px;
+    background: var(--primary);
+    color: var(--surface);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.button:hover {
+    background: var(--primary-dark);
+}
+
+.order-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 12px;
+}
