@@ -1,7 +1,7 @@
 /* Hero  */
 .hero {
   position: relative;
-  padding: 4.5rem 0 5.5rem;
+  padding: 4.5rem 0 0;
   background: linear-gradient(
     180deg,
     rgba(255, 107, 53, 0.15),
@@ -15,8 +15,8 @@
 }
 
 .hero-inner {
-  max-width: 960px;
-  width: 90%;   
+  width: min(1200px, 92vw);
+  margin: 0 auto;
   display: grid;
   gap: 2.5rem;
 }
