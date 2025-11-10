@@ -142,12 +142,3 @@
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.hero-slide-dot.is-active {
-  background: #fff;
-  transform: scale(1.2);
-}
-
-.hero-slide-dot:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
