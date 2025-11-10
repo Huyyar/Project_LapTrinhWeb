@@ -1,0 +1,44 @@
+/* Hero  */
+.hero {
+ 
+  position: relative;
+  padding: 2.5rem 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 107, 53, 0.15),
+    rgba(255, 107, 53, 0.02)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+}
+
+.hero-inner {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.hero-meta {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 560px;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
