@@ -19,45 +19,47 @@
     <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
-<header class="navbar" id="navbar">
-    <div class="container nav-inner">
-        <div class="logo">
+  <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+          <a class="logo" href="../index.html">
             <span class="logo-icon">🍿</span>
             <span>SnackHub</span>
-        </div>
-        <nav>
+          </a>
+          <nav>
             <ul class="nav-links">
-                <li><a href="../index.html#home" data-link>Trang chủ</a></li>
-                <li><a href="product.html" data-link>Sản phẩm</a></li>
-                <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+              <li>
+                <a href="../index.html#home">Trang chủ</a>
+              </li>
+              <li>
+                <a href="product.html" >Sản phẩm</a>
+              </li>
+              <li>
+                <a href="contact.html">Liên hệ</a>
+              </li>
             </ul>
             <div class="nav-actions">
-                <div class="nav-search">
-                    <i class="fa-solid fa-magnifying-glass icon" style="color: #74C0FC;"></i>
-                    <input
-                            type="search"
-                            id="nav-search"
-                            placeholder="Bạn muốn ăn gì hôm nay?"
-                    />
-                </div>
-                <div class="nav-auth" data-auth-buttons>
-                    <button class="link-button" type="button" data-open-auth="signup">
-                        Đăng ký
-                    </button>
-                    <span class="nav-divider"></span>
-                    <button class="link-button" type="button" data-open-auth="login">
-                        Đăng nhập
-                    </button>
-                </div>
-                <button class="cart-button" data-open-cart>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Giỏ hàng (<span data-cart-count>0</span>)
-                </button>
-
+              <div class="nav-search">
+                <span class="icon">🔍</span>
+                <input
+                  type="search"
+                  id="nav-search"
+                  placeholder="Bạn muốn ăn gì hôm nay?"
+                />
+              </div>
+              <div class="nav-auth">
+                <a class="link-button" href="register.html">Đăng kí</a>
+                <span class="nav-divider"></span>
+                <a class="link-button" href="login.html">Đăng nhập</a>
+              </div>
+             <button class="cart-button">
+              <a href="cart.html">Giỏ Hàng</a>
+            </button>
             </div>
-        </nav>
-    </div>
-</header>
+          </nav>
+        </div>
+      </header>
+
+
 <main class="checkout-page">
     <div class="container">
         <header>
@@ -295,5 +297,6 @@
         </button>
       </div>
     </footer>
+    <script src="js/auth.js"></script>
 </body>
 </html>
