@@ -1,180 +1,137 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Giỏ hàng</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/cart.css">
-
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+  </head>
+  <body>
     <header class="navbar" id="navbar">
-    <div class="container nav-inner">
+      <div class="container nav-inner">
         <div class="logo">
-            <span class="logo-icon">🍿</span>
-            <span>SnackHub</span>
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
         </div>
         <nav>
-            <ul class="nav-links">
-                <li><a href="../index.html#home" data-link>Trang chủ</a></li>
-                <li><a href="product.html" data-link>Sản phẩm</a></li>
-                <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
-            </ul>
-            <div class="nav-actions">
-                <div class="nav-search">
-                    <i class="fa-solid fa-magnifying-glass icon" style="color: #74C0FC;"></i>
-                    <input
-                            type="search"
-                            id="nav-search"
-                            placeholder="Bạn muốn ăn gì hôm nay?"
-                    />
-                </div>
-                <div class="nav-auth" data-auth-buttons>
-                    <button class="link-button" type="button" data-open-auth="signup">
-                        Đăng ký
-                    </button>
-                    <span class="nav-divider"></span>
-                    <button class="link-button" type="button" data-open-auth="login">
-                        Đăng nhập
-                    </button>
-                </div>
-                <button class="cart-button" data-open-cart>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Giỏ hàng (<span data-cart-count>0</span>)
-                </button>
-
+          <ul class="nav-links">
+            <li><a href="../index.html#home" data-link>Trang chủ</a></li>
+            <li><a href="product.html" data-link>Sản phẩm</a></li>
+            <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <i
+                class="fa-solid fa-magnifying-glass icon"
+                style="color: #74c0fc"
+              ></i>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
             </div>
-        </nav>
-    </div>
-</header>
-    <main class="cart-page">
-        <div class="container">
-            <header>
-                <h1>Giỏ hàng của bạn</h1>
-                <p>
-                    Kiểm tra lại các món snack đã chọn, điều chỉnh số lượng và tiến hành
-                    thanh toán chỉ với vài bước.
-                </p>
-            </header>
-            <div class="payment-steps">
-                <div class="payment-step active">Giỏ hàng</div>
-                <div class="payment-step">Thông tin giao hàng</div>
-                <div class="payment-step">Hoàn tất</div>
+            <div class="nav-auth" data-auth-buttons>
+              <button class="link-button" type="button" data-open-auth="signup">
+                Đăng ký
+              </button>
+              <span class="nav-divider"></span>
+              <button class="link-button" type="button" data-open-auth="login">
+                Đăng nhập
+              </button>
             </div>
-            <section class="items">
-                <div class="item">
-                    <button class="select" onclick="this.classList.toggle('active')">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                    <div class="product">
-                        <img src="../assets/images/yogurt.jpg" alt="Yogurt">
-                        <div class="info">
-                            <span class="name">Yogurt</span>
-                            <span class="price">28.000đ</span>
-                        </div>
-                    </div>
-                    <div class="quantity">
-                        <button class="reduce"
-                                onclick="let s=this.nextElementSibling;
-                                         if(+s.innerText>1) s.innerText--;">-</button>
-                        <span>1</span>
-                        <button class="increase"
-                                onclick="let s=this.previousElementSibling;
-                                s.innerText++;">+</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <button class="select" onclick="this.classList.toggle('active')">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                    <div class="product">
-                        <img src="../assets/images/yogurt.jpg" alt="Yogurt">
-                        <div class="info">
-                            <span class="name">Yogurt</span>
-                            <span class="price">28.000đ</span>
-                        </div>
-                    </div>
-                    <div class="quantity">
-                        <button class="reduce"
-                                onclick="let s=this.nextElementSibling;
-                                         if(+s.innerText>1) s.innerText--;">-</button>
-                        <span>1</span>
-                        <button class="increase"
-                                onclick="let s=this.previousElementSibling;
-                                s.innerText++;">+</button>
-                    </div>
-                </div>
-            </section>
-            <footer>
-                <span>Thành tiền: 56.000đ</span>
-                <button class="payment-button"
-                        onclick="window.location.href='checkout.html'">Thanh toán</button>
-            </footer>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div>
-                <div class="logo">
-                    <span class="logo-icon">🍿</span>
-                    <span>SnackHub</span>
-                </div>
-                <p>
-                    Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
-                    sắm thú vị cho mọi cuộc vui.
-                </p>
-            </div>
-            <div>
-                <h4>Thông tin</h4>
-                <ul class="footer-links">
-                    <li><a href="products.html">Menu hôm nay</a></li>
-                    <li><a href="../index.html#contact">Liên hệ</a></li>
-                    <li>
-                        <button class="link-button" type="button" data-open-history>
-                            Lịch sử đơn
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h4>Liên hệ</h4>
-                <p>Hotline: 0123 456 789</p>
-                <p>Email: contact@snackhub.vn</p>
-                <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
-            </div>
-            <div>
-                <h4>Kết nối</h4>
-                <div class="social">
-                    <a href="https://www.facebook.com/" aria-label="Facebook">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/" aria-label="TikTok">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p class="footer-note">
-                © 2025 SnackHub. Made with ❤️ for snack lovers.
-            </p>
-            <button class="link-button" type="button" data-scroll-to="#navbar">
-                Lên đầu trang
+            <button class="cart-button" data-open-cart>
+              <i class="fa-solid fa-cart-shopping"></i>
+              Giỏ hàng (<span data-cart-count>0</span>)
             </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="cart-page">
+      <div class="container">
+        <header>
+          <h1>Giỏ hàng của bạn</h1>
+          <p>
+            Kiểm tra lại các món snack đã chọn, điều chỉnh số lượng và tiến hành
+            thanh toán chỉ với vài bước.
+          </p>
+        </header>
+        <div class="payment-steps">
+          <div class="payment-step active">Giỏ hàng</div>
+          <div class="payment-step">Thông tin giao hàng</div>
+          <div class="payment-step">Hoàn tất</div>
         </div>
-    </footer>
-</body>
+        <section class="items">
+          <div class="item">
+            <button class="select" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <div class="product">
+              <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+              <div class="info">
+                <span class="name">Yogurt</span>
+                <span class="price">28.000đ</span>
+              </div>
+            </div>
+            <div class="quantity">
+              <input
+                class="quantity-input"
+                type="number"
+                min="1"
+                value="1"
+                aria-label="Số lượng Yogurt"
+              />
+            </div>
+          </div>
+          <div class="item">
+            <button class="select" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <div class="product">
+              <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+              <div class="info">
+                <span class="name">Yogurt</span>
+                <span class="price">28.000đ</span>
+              </div>
+            </div>
+            <div class="quantity">
+              <input
+                class="quantity-input"
+                type="number"
+                min="1"
+                value="1"
+                aria-label="Số lượng Yogurt"
+              />
+            </div>
+          </div>
+        </section>
+        <footer>
+          <span>Thành tiền: 56.000đ</span>
+          <button
+            class="payment-button"
+            onclick="window.location.href='checkout.html'"
+          >
+            Thanh toán
+          </button>
+        </footer>
+      </div>
+    </main>
+  </body>
 </html>
