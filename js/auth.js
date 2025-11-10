@@ -1,24 +1,23 @@
 const ADMIN_EMAIL = "admin@snackhub.vn";
-// Dùng lưu trạng thái đăng nhập 
+const KEY_IS_LOGGED_IN = "isLoggedIn";
+const KEY_USER = "user";
+const KEY_IS_ADMIN = "isAdmin";
+// Dùng lưu trạng thái đăng nhập
 function getLoginState() {
-  return sessionStorage.getItem("isLoggedIn") === "true";
+  return sessionStorage.getItem(KEY_IS_LOGGED_IN) === "true";
 }
 
-function setLoginState(
-  isLoggedIn,
-  userData = null,
-  redirectPath = "../index.html"
-) {
-  sessionStorage.setItem("isLoggedIn", isLoggedIn);
+function setLoginState(isLoggedIn, userData = null, redirectPath = null) {
+  sessionStorage.setItem(KEY_IS_LOGGED_IN, isLoggedIn);
   if (isLoggedIn && userData) {
-    sessionStorage.setItem("user", JSON.stringify(userData));
+    sessionStorage.setItem(KEY_USER, JSON.stringify(userData));
     sessionStorage.setItem(
-      "isAdmin",
+      KEY_IS_ADMIN,
       userData.role === "admin" ? "true" : "false"
     );
   } else {
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("isAdmin");
+    sessionStorage.removeItem(KEY_USER);
+    sessionStorage.removeItem(KEY_IS_ADMIN);
   }
 
   if (redirectPath) {
@@ -43,7 +42,7 @@ function updateNavUI() {
   }
 
   if (isLoggedIn) {
-    // Ẩn nút Đăng nhập , đăng kí 
+    // Ẩn nút Đăng nhập , đăng kí
     if (navAuth) navAuth.style.display = "none";
 
     // Tạo và chèn icon người dùng vào thanh nav
@@ -73,11 +72,9 @@ function updateNavUI() {
     const logoutBtn = document.getElementById("logout-btn");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        sessionStorage.removeItem("isLoggedIn");
-        sessionStorage.removeItem("user");
-        sessionStorage.removeItem("isAdmin");
-        updateNavUI(); // Cập nhật lại UI 
-        window.location.reload(); // Tải lại trang để xóa trạng thái hoàn toàn
+        setLoginState(false); 
+        updateNavUI(); 
+        window.location.reload(); 
       });
     }
   } else {
@@ -135,7 +132,7 @@ function handleAuthForms() {
 
 // Chạy các hàm cần thiết khi trang đã tải xong
 document.addEventListener("DOMContentLoaded", () => {
-  // Chỉ chạy handleAuthForms trên trang login và register
+ 
   if (
     document.body.dataset.page === "login" ||
     document.body.dataset.page === "signup"
