@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SnackHub - Liên hệ</title>
 
-    <!-- Chỉ dùng style chung cho trang liên hệ -->
-
     <link rel="stylesheet" href="../css/contact.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/footer.css" />
@@ -29,41 +27,37 @@
   <body data-page="contact">
     <header class="navbar" id="navbar">
       <div class="container nav-inner">
-        <div class="logo">
+        <a class="logo" href="../index.html">
           <span class="logo-icon">🍿</span>
           <span>SnackHub</span>
-        </div>
+        </a>
         <nav>
           <ul class="nav-links">
-            <li><a href="../index.html#home" data-link>Trang chủ</a></li>
-            <li><a href="product.html" data-link>Sản phẩm</a></li>
-            <li><a href="../index.html#contact" data-link>Liên hệ</a></li>
+            <li>
+              <a href="../index.html#home">Trang chủ</a>
+            </li>
+            <li>
+              <a href="product.html">Sản phẩm</a>
+            </li>
+            <li>
+              <a href="contact.html" class="active">Liên hệ</a>
+            </li>
           </ul>
           <div class="nav-actions">
             <div class="nav-search">
-              <i
-                class="fa-solid fa-magnifying-glass icon"
-                style="color: #74c0fc"
-              ></i>
+              <span class="icon">🔍</span>
               <input
                 type="search"
                 id="nav-search"
                 placeholder="Bạn muốn ăn gì hôm nay?"
               />
             </div>
-            <div class="nav-auth" data-auth-buttons>
-              <button class="link-button" type="button" data-open-auth="signup">
-                Đăng ký
-              </button>
+            <div class="nav-auth">
+              <a class="link-button" href="register.html">Đăng kí</a>
               <span class="nav-divider"></span>
-              <button class="link-button" type="button" data-open-auth="login">
-                Đăng nhập
-              </button>
+              <a class="link-button" href="login.html">Đăng nhập</a>
             </div>
-            <button class="cart-button" data-open-cart>
-              <i class="fa-solid fa-cart-shopping"></i>
-              Giỏ hàng (<span data-cart-count>0</span>)
-            </button>
+            <button class="cart-button">Giỏ hàng</button>
           </div>
         </nav>
       </div>
@@ -136,61 +130,60 @@
       </section>
     </main>
 
-
     <footer class="footer">
-    <div class="container footer-inner">
+      <div class="container footer-inner">
         <div>
-            <div class="logo">
-                <span class="logo-icon">🍿</span>
-                <span>SnackHub</span>
-            </div>
-            <p>
-                Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
-                sắm thú vị cho mọi cuộc vui.
-            </p>
+          <div class="logo">
+            <span class="logo-icon">🍿</span>
+            <span>SnackHub</span>
+          </div>
+          <p>
+            Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+            sắm thú vị cho mọi cuộc vui.
+          </p>
         </div>
         <div>
-            <h4>Thông tin</h4>
-            <ul class="footer-links">
-                <li><a href="products.html">Menu hôm nay</a></li>
-                <li><a href="../index.html#contact">Liên hệ</a></li>
-                <li>
-                    <button class="link-button" type="button" data-open-history>
-                        Lịch sử đơn
-                    </button>
-                </li>
-            </ul>
+          <h4>Thông tin</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">Menu hôm nay</a></li>
+            <li><a href="../index.html#contact">Liên hệ</a></li>
+            <li>
+              <button class="link-button" type="button" data-open-history>
+                Lịch sử đơn
+              </button>
+            </li>
+          </ul>
         </div>
         <div>
-            <h4>Liên hệ</h4>
-            <p>Hotline: 0123 456 789</p>
-            <p>Email: contact@snackhub.vn</p>
-            <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
+          <h4>Liên hệ</h4>
+          <p>Hotline: 0123 456 789</p>
+          <p>Email: contact@snackhub.vn</p>
+          <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
         </div>
         <div>
-            <h4>Kết nối</h4>
-            <div class="social">
-                <a href="https://www.facebook.com/" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/" aria-label="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </div>
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="https://www.facebook.com/" aria-label="Facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
         </div>
-    </div>
-    <div class="footer-bottom">
+      </div>
+      <div class="footer-bottom">
         <p class="footer-note">
-            © 2025 SnackHub. Made with ❤️ for snack lovers.
+          © 2025 SnackHub. Made with ❤️ for snack lovers.
         </p>
         <button class="link-button" type="button" data-scroll-to="#navbar">
-            Lên đầu trang
+          Lên đầu trang
         </button>
-    </div>
-</footer>
-
+      </div>
+    </footer>
+    <script src="../js/auth.js"></script>
   </body>
 </html>
