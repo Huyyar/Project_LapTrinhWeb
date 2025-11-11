@@ -42,7 +42,7 @@
   color: var(--surface);
 }
 
-.items {
+.content {
   background: var(--surface);
   padding: 28px;
   border-radius: 16px;
@@ -136,7 +136,9 @@
 .quantity {
   margin-left: auto;
 }
-
+.quantity:hover {
+    color: var(--primary);
+}
 .quantity-input {
   width: 76px;
   padding: 8px 10px;
@@ -162,7 +164,7 @@
   -moz-appearance: textfield;
 }
 
-footer {
+.cart-page footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -170,7 +172,7 @@ footer {
   padding-top: 16px;
 }
 
-footer span {
+.cart-page footer span {
   margin-left: 10px;
   font-size: 18px;
   font-weight: 600;
