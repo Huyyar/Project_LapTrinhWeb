@@ -11,7 +11,7 @@
 .logo-icon {
   font-size: 1.6rem;
 }
-.footer .link-button {
+.link-button {
   background: none;
   border: none;
   color: var(--text);
@@ -24,7 +24,7 @@
   text-decoration-color: rgba(255, 107, 53, 0.4);
 }
 
-.footer .link-button:hover {
+.link-button:hover {
   color: var(--primary);
 }
 .footer {
