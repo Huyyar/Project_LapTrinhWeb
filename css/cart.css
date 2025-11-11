@@ -178,7 +178,8 @@ footer span {
 }
 
 .payment-button {
-  margin-right: 10px;
+  width:240px;
+  margin-right: 20px;
   background: var(--primary);
   color: var(--surface);
   border: none;
