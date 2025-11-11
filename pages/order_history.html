@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đặt hàng thành công</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Order History</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
             href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/order_complete.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/order_history.css">
 </head>
 <body>
 <header class="navbar" id="navbar">
@@ -58,42 +61,50 @@
         </nav>
     </div>
 </header>
-<main class="order-complete-page">
+<main class="order-history-page">
     <div class="container">
-
         <header>
-            <h1>Đặt hàng thành công</h1>
-            <p>Cảm ơn bạn đã tin tưởng SnackHub. Chúng tôi đang chuẩn bị món ngon cho bạn.</p>
+            <h1>Đơn hàng của bạn</h1>
+            <p>
+                Tất cả đơn hàng của bạn sẽ ở đây.
+            </p>
+            <section class="content">
+                <div class="panel">
+                    <div class="panel-header">Danh sách đơn hàng</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                            <tr><th>Mã đơn</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày đặt</th><th>Hành động</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>SH20241101</td>
+                                <td>207.400₫</td>
+                                <td><span class="badge pending">Đang xử lý</span></td>
+                                <td>2/11/2024</td>
+                                <td><button class="btn">Chi tiết</button></td>
+                            </tr>
+                            <tr>
+                                <td>SH20241102</td>
+                                <td>219.800₫</td>
+                                <td><span class="badge confirmed">Đã giao</span></td>
+                                <td>1/11/2024</td><td><button class="btn">Chi tiết</button></td>
+                            </tr>
+                            <tr>
+                                <td>SH20241103</td>
+                                <td>256.170₫</td>
+                                <td><span class="badge shipping">Đã hủy</span></td>
+                                <td>31/10/2024</td>
+                                <td><button class="btn">Chi tiết</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         </header>
 
-        <div class="payment-steps">
-            <div class="payment-step">Giỏ hàng</div>
-            <div class="payment-step">Thông tin giao hàng</div>
-            <div class="payment-step active">Hoàn tất</div>
-        </div>
-
-        <section class="order-complete-card">
-            <div class="order-status-icon">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-
-            <h2>Đơn hàng của bạn đã được xác nhận!</h2>
-            <p>Mã đơn hàng: <strong>#SNK12345</strong></p>
-            <p>Tổng thanh toán: <strong>215.000₫</strong></p>
-
-            <div class="order-complete-actions">
-                <a href="product.html" class="button">Tiếp tục mua hàng</a>
-                <a href="order_history.html" class="button">Xem đơn hàng của tôi</a>
-            </div>
-
-            <p class="order-note">
-                SnackHub sẽ gửi thông báo qua email và SMS khi đơn hàng được giao cho đơn vị vận chuyển.
-            </p>
-        </section>
     </div>
-</main>
-
-
 </main>
 <footer class="footer">
     <div class="container footer-inner">
@@ -146,11 +157,9 @@
         <p class="footer-note">
             © 2025 SnackHub. Made with ❤️ for snack lovers.
         </p>
-        <button class="link-button" type="button" >
-            Lên đầu trang
-        </button>
+        <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
- <script src="../js/auth.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>
