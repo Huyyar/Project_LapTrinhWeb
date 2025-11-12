@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="../css/product-detail.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết sản phẩm </title>
-    <link rel="stylesheet" href="../css/product-detail.css">
-    <link rel="stylesheet" href="../css/header.css">
-</head>
-
-<body>
+  <body>
     <!-- thanh nav -->
-       <header class="navbar" id="navbar">
+    <header class="navbar" id="navbar">
       <div class="container nav-inner">
         <a class="logo" href="index.html">
           <span class="logo-icon">🍿</span>
@@ -20,10 +19,10 @@
         <nav>
           <ul class="nav-links">
             <li>
-              <a href="index.html#home"  class="active">Trang chủ</a>
+              <a href="index.html#home" class="active">Trang chủ</a>
             </li>
             <li>
-              <a href="product.html" > Sản phẩm</a>
+              <a href="product.html"> Sản phẩm</a>
             </li>
             <li>
               <a href="contact.html">Liên hệ</a>
@@ -52,38 +51,41 @@
     </header>
 
     <div class="product-detail-page">
-        <div class="product-detail-container">
-            <div class="product-detail-grid">
-                <div class="product-detail-images">
-                    <img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong Biển">
-                </div>
-                <div class="product-detail-info">
-                    <span class="product-tag">Đồ mặn</span>
-                    <h1>Rong biển cay giòn</h1>
-          <div class="product-detail-price">
-            35.700₫
+      <div class="product-detail-container">
+        <div class="product-detail-grid">
+          <div class="product-detail-images">
+            <img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong Biển" />
           </div>
-                    <p class="product-detail-description">Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
-                        tan nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.</p>
-                    <div>
-                        <h3>Đặc điểm nổi bật</h3>
-                        <ul class="modal-highlights">
-                            <li>Rong biển nướng thủ công</li>
-                            <li>Gia vị cay nhẹ vừa ăn</li>
-                            <li>Ít dầu và không chất bảo quản</li>
-                        </ul>
-                    </div>
-                    <div class="product-detail-actions">
-                        <button class="btn btn-primary" onclick="alert('Đã thêm vào giỏ hàng!')">
-                            Thêm vào giỏ hàng
-                        </button>
-                        <a href="../pages/product.html">Quay lại </a>
-                    </div>
-                </div>
+          <div class="product-detail-info">
+            <span class="product-tag">Đồ mặn</span>
+            <h1>Rong biển cay giòn</h1>
+            <p class="product-name-en">Spicy Crispy Seaweed</p>
+            <div class="product-detail-price">35.700₫</div>
+            <p class="product-detail-description">
+              Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn tan
+              nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.
+            </p>
+            <div>
+              <h3>Đặc điểm nổi bật</h3>
+              <ul class="modal-highlights">
+                <li>Rong biển nướng thủ công</li>
+                <li>Gia vị cay nhẹ vừa ăn</li>
+                <li>Ít dầu và không chất bảo quản</li>
+              </ul>
             </div>
+            <div class="product-detail-actions">
+              <button
+                class="btn btn-primary"
+                onclick="alert('Đã thêm vào giỏ hàng!')"
+              >
+                Thêm vào giỏ hàng
+              </button>
+              <a href="../pages/product.html">Quay lại </a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-     <script src="../js/auth.js"></script>
-</body>
-
+    <script src="../js/auth.js"></script>
+  </body>
 </html>

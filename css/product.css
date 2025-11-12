@@ -229,6 +229,12 @@ img {
   font-size: 1.1rem;
 }
 
+.content .container .product-grid .product-name-en {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .content .container .product-grid .product-content .product-meta {
   color: var(--text-muted);
   font-size: 0.9rem;

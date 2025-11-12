@@ -48,6 +48,12 @@ img {
   margin-bottom: 12px;
 }
 
+.product-detail-page .product-detail-info .product-name-en {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
 .product-detail-page .product-detail-info .product-detail-price {
   font-size: 1.8rem;
   font-weight: 700;
