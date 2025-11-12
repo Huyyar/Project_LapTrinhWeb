@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Products - Admin</title>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    rel="stylesheet" />
   <link rel="stylesheet" href="../css/admin_product.css" />
 </head>
+
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
@@ -17,20 +19,24 @@
       </div>
       <nav class="nav-menu">
         <a href="./admin_dashboard.html" class="nav-link">
-   
+
           <span>Dashboard</span>
         </a>
         <a href="./admin_product.html" class="nav-link active">
-     
+
           <span>Sản phẩm</span>
         </a>
         <a href="./admin_orders.html" class="nav-link">
-         
+
           <span>Đơn hàng</span>
         </a>
         <a href="./admin_users.html" class="nav-link">
-         
+
           <span>Người dùng</span>
+        </a>
+        <a href="/Project_LapTrinhWeb/index.html" class="nav-link" onclick="alert('Xác nhận thoát')">
+
+          <span>Đăng xuất</span>
         </a>
       </nav>
     </aside>
@@ -49,84 +55,107 @@
 
       <section class="content">
         <div class="panel">
-          <div class="panel-header"><h2>Danh sách sản phẩm</h2></div>
+          <div class="panel-header">
+            <h2>Danh sách sản phẩm</h2>
+          </div>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>Ảnh</th><th>Tên sản phẩm</th><th>Danh mục</th><th>Giá</th><th>Trạng thái</th><th>Hành động</th></tr>
+                <tr>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Danh mục</th>
+                  <th>Giá</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong biển cay giòn" class="product-image"/></td>
+                  <td><img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong biển cay giòn" class="product-image" />
+                  </td>
                   <td>Rong biển cay giòn<br><small>Spicy Crispy Seaweed</small></td>
                   <td>Đồ mặn</td>
                   <td><small class="original-price">42.000₫</small><br>35.700₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/Image_Bap_Rang.jpg" alt="Bắp rang caramel" class="product-image"/></td>
+                  <td><img src="../assets/images/Image_Bap_Rang.jpg" alt="Bắp rang caramel" class="product-image" />
+                  </td>
                   <td>Bắp rang caramel<br><small>Caramel Popcorn</small></td>
                   <td>Đồ ngọt</td>
                   <td>55.000₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/banh-xoan.jpg" alt="Bánh xoắn phô mai" class="product-image"/></td>
+                  <td><img src="../assets/images/banh-xoan.jpg" alt="Bánh xoắn phô mai" class="product-image" /></td>
                   <td>Bánh xoắn phô mai<br><small>Cheese Twist Snack</small></td>
                   <td>Đồ mặn</td>
                   <td><small class="original-price">48.000₫</small><br>43.200₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/banh_mochi.jpg" alt="Bánh mochi matcha" class="product-image"/></td>
+                  <td><img src="../assets/images/banh_mochi.jpg" alt="Bánh mochi matcha" class="product-image" /></td>
                   <td>Bánh mochi matcha<br><small>Matcha Mochi</small></td>
                   <td>Đồ ngọt</td>
                   <td><small class="original-price">62.000₫</small><br>58.900₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/soda nho.jpg" alt="Nước nho soda" class="product-image"/></td>
+                  <td><img src="../assets/images/soda nho.jpg" alt="Nước nho soda" class="product-image" /></td>
                   <td>Nước nho soda<br><small>Grape Soda</small></td>
                   <td>Đồ uống</td>
                   <td>29.000₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ" class="product-image"/></td>
+                  <td><img src="../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ"
+                      class="product-image" /></td>
                   <td>Khoai tây mật ong bơ<br><small>Honey Butter Chips</small></td>
                   <td>Đồ mặn</td>
                   <td><small class="original-price">52.000₫</small><br>45.760₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/da-ca-trung-muoi.jpg" alt="Da cá trứng muối" class="product-image"/></td>
+                  <td><img src="../assets/images/da-ca-trung-muoi.jpg" alt="Da cá trứng muối" class="product-image" />
+                  </td>
                   <td>Da cá trứng muối<br><small>Salted Egg Fish Skin</small></td>
                   <td>Đồ mặn</td>
                   <td><small class="original-price">75.000₫</small><br>69.000₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/nuoc-ep-yuzu.jpg" alt="Nước yuzu sủi mát" class="product-image"/></td>
+                  <td><img src="../assets/images/nuoc-ep-yuzu.jpg" alt="Nước yuzu sủi mát" class="product-image" /></td>
                   <td>Nước yuzu sủi mát<br><small>Sparkling Yuzu Drink</small></td>
                   <td>Đồ uống</td>
                   <td>33.000₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
                 <tr>
-                  <td><img src="../assets/images/bap rang nam.webp" alt="Bắp rang nấm truffle" class="product-image"/></td>
+                  <td><img src="../assets/images/bap rang nam.webp" alt="Bắp rang nấm truffle" class="product-image" />
+                  </td>
                   <td>Bắp rang nấm truffle<br><small>Truffle Popcorn</small></td>
                   <td>Đồ ngọt</td>
                   <td><small class="original-price">89.000₫</small><br>75.650₫</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button></td>
+                  <td><button class="btn">Xem</button> <button class="btn">Sửa</button> <button class="btn">Xóa</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -136,4 +165,5 @@
     </main>
   </div>
 </body>
+
 </html>
