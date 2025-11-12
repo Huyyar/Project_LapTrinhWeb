@@ -61,6 +61,11 @@ img {
   margin: 20px 0;
 }
 
+.product-detail-page .product-detail-info .product-detail-price .product-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .product-detail-page .product-detail-info .product-detail-description {
   line-height: 1.8;
   margin-bottom: 24px;
@@ -114,7 +119,119 @@ img {
 }
 
 .product-detail-page .product-detail-info .product-detail-actions a:hover {
-  border-color: rgba(255, 107, 53, 0.5);
-  color: var(--primary);
-  background: rgba(255, 107, 53, 0.04);
+    border-color: rgba(255, 107, 53, 0.5);
+    color: var(--primary);
+    background: rgba(255, 107, 53, 0.04);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+}
+.link-button {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-weight: 600;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 107, 53, 0.4);
+}
+
+.link-button:hover {
+    color: var(--primary);
+}
+.footer {
+    padding: 48px 0 24px;
+    background: #101820;
+    color: #f8fafc;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.footer h4 {
+    margin-bottom: 12px;
+}
+
+.social {
+    display: flex;
+    gap: 12px;
+}
+
+.social a {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid white;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.social a:hover {
+    color: #101820;
+    background-color: #f8fafc;
+}
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: rgba(248, 250, 252, 0.8);
+}
+
+.footer-links .link-button {
+    color: rgba(248, 250, 252, 0.8);
+    justify-content: flex-start;
+    text-decoration: none;
+    padding: 0;
+}
+
+.footer-links .link-button:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(248, 250, 252, 0.15);
+    padding-top: 18px;
+}
+
+.footer-bottom .link-button {
+    color: rgba(248, 250, 252, 0.85);
+    text-decoration-color: rgba(248, 250, 252, 0.4);
+}
+
+.footer-bottom .link-button:hover {
+    color: var(--accent);
+}
+
+.footer-note {
+    text-align: center;
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(248, 250, 252, 0.7);
 }

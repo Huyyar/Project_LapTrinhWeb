@@ -22,6 +22,461 @@
 
   <body>
     <div class="product">
+        <header class="navbar" id="navbar">
+            <div class="container nav-inner">
+                <div class="logo">
+                    <span class="logo-icon">🍿</span>
+                    <span>SnackHub</span>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html#home" >Trang chủ</a></li>
+                        <li><a href="product.html" id ="SP">Sản phẩm</a></li>
+                        <li><a href="../index.html#contact" >Liên hệ</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <div class="nav-search">
+                            <i class="fa-solid fa-magnifying-glass icon" style="color: #74C0FC;"></i>
+                            <input type="search" id="nav-search" placeholder="Bạn muốn ăn gì hôm nay?" />
+                        </div>
+                        <div class="nav-auth" data-auth-buttons>
+                            <button class="link-button" type="button" data-open-auth="signup">
+                                Đăng ký
+                            </button>
+                            <span class="nav-divider"></span>
+                            <button class="link-button" type="button" data-open-auth="login">
+                                Đăng nhập
+                            </button>
+                        </div>
+                        <button class="cart-button" data-open-cart>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Giỏ hàng (<span data-cart-count>0</span>)
+                        </button>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="section-header stack">
+                    <div class="section-title">
+                        <h2>Danh mục sản phẩm</h2>
+                        <p class="section-subtitle">
+                            Lọc theo khẩu vị, tìm kiếm món yêu thích và săn ưu đãi đang diễn
+                            ra.
+                        </p>
+                    </div>
+                    <div class="search-bar">
+                        <span class="icon">🔍</span>
+                        <input type="search" id="search" placeholder="Tìm kiếm ...">
+                    </div>
+                </div>
+
+                <div class="product-controls">
+                    <div class="filter-chips" data-category-group=""><button type="button" class="chip">
+                            <span class="chip-icon">✨</span>Tất cả</button><button type="button" class="chip"><span
+                                class="chip-icon">🍗</span>Đồ mặn</button><button type="button" class="chip"><span
+                                class="chip-icon">🍰</span>Đồ ngọt</button><button type="button" class="chip"><span
+                                class="chip-icon">🥤</span>Đồ uống</button><button type="button" class="chip"><span
+                                class="chip-icon">🧧</span>Phiên bản giới hạn</button></div>
+                    <div class="product-actions">
+                        <label class="sort-select">
+                            <span>Sắp xếp</span>
+                            <select id="sort-select">
+                                <option value="featured">Nổi bật</option>
+                                <option value="price-asc">Giá tăng dần</option>
+                                <option value="price-desc">Giá giảm dần</option>
+                                <option value="discount">Đang khuyến mãi</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                
+
+                <div class="product-grid" data-product-grid="">
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Bán chạy</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+
+                        <div class="product-image">
+                            <img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong biển cay giòn" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-15%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Rong biển cay giòn</h3>
+                            <p class="product-meta">Gia vị cay nhẹ, giòn rụm</p>
+                            <p class="product-description">Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
+                                tan nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">35.700₫</span>
+                                <span class="product-price-original">42.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Mới</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/Image_Bap_Rang.jpg" alt="Bắp rang caramel" loading="lazy">
+                            <span class="product-tag">Đồ ngọt</span>
+
+                        </div>
+                        <div class="product-content">
+                            <h3>Bắp rang caramel</h3>
+                            <p class="product-meta">Ngọt dịu, giòn lâu</p>
+                            <p class="product-description">Hạt bắp nổ bằng máy khí nóng, phủ caramel béo nhẹ với vị bơ
+                                mặn để cân bằng độ ngọt – hoàn hảo cho buổi xem phim.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">55.000₫</span>
+
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Ưu đãi</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/banh-xoan.jpg" alt="Bánh xoắn phô mai" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-10%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Bánh xoắn phô mai</h3>
+                            <p class="product-meta">Đậm vị cheddar</p>
+                            <p class="product-description">Bánh quy xoắn phủ bột phô mai cheddar mặn mà, hạt nướng giòn
+                                giúp giữ độ xốp đến 6 giờ sau khi mở gói.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">43.200₫</span>
+                                <span class="product-price-original">48.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Giới hạn</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/banh_mochi.jpg" alt="Bánh mochi matcha" loading="lazy">
+                            <span class="product-tag">Đồ ngọt</span>
+                            <span class="product-discount">-5%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Bánh mochi matcha</h3>
+                            <p class="product-meta">Kem matcha tan chảy</p>
+                            <p class="product-description">Vỏ mochi dẻo mịn ôm trọn nhân kem matcha béo nhẹ, hương trà
+                                đậm nhưng không đắng. Thưởng thức ngon nhất khi để lạnh 10 phút.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">58.900₫</span>
+                                <span class="product-price-original">62.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Combo</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/soda nho.jpg" alt="Nước nho soda" loading="lazy">
+                            <span class="product-tag">Đồ uống</span>
+
+                        </div>
+                        <div class="product-content">
+                            <h3>Nước nho soda</h3>
+                            <p class="product-meta">Nho tím có gas</p>
+                            <p class="product-description">Thức uống nho tím có gas vị thanh, ít đường. Uống lạnh giúp
+                                cân bằng các món snack mặn và cay.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">29.000₫</span>
+
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Bán chạy</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-12%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Khoai tây mật ong bơ</h3>
+                            <p class="product-meta">Béo ngọt cân bằng</p>
+                            <p class="product-description">Khoai tây cắt lát mỏng chiên chân không, phủ mật ong và bơ
+                                tạo cảm giác béo mà không ngấy – món quốc dân của giới trẻ Hàn Quốc.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">45.760₫</span>
+                                <span class="product-price-original">52.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Signature</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/da-ca-trung-muoi.jpg" alt="Da cá trứng muối" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-8%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Da cá trứng muối</h3>
+                            <p class="product-meta">Giòn rụm, béo bùi</p>
+                            <p class="product-description">Lát da cá hồi tẩm trứng muối nướng giòn, vị đậm đà nhưng
+                                không quá mặn, ăn kèm bia hoặc soda đều hợp.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">69.000₫</span>
+                                <span class="product-price-original">75.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Freeship</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/nuoc-ep-yuzu.jpg" alt="Nước yuzu sủi mát" loading="lazy">
+                            <span class="product-tag">Đồ uống</span>
+
+                        </div>
+                        <div class="product-content">
+                            <h3>Nước yuzu sủi mát</h3>
+                            <p class="product-meta">Chanh yuzu giải nhiệt</p>
+                            <p class="product-description">Nước yuzu Nhật kết hợp chút chanh vàng và soda lạnh, vị thanh
+                                nhẹ giúp cân bằng các món snack đậm đà.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">33.000₫</span>
+
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Luxury</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/bap rang nam.webp" alt="Bắp rang nấm truffle" loading="lazy">
+                            <span class="product-tag">Đồ ngọt</span>
+                            <span class="product-discount">-15%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Bắp rang nấm truffle</h3>
+                            <p class="product-meta">Thơm bơ, quyện nấm</p>
+                            <p class="product-description">Bắp rang phủ bơ, parmesan và dầu nấm truffle Ý, tạo vị umami
+                                sang trọng cho buổi tiệc nhẹ.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">75.650₫</span>
+                                <span class="product-price-original">89.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Bán chạy</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-12%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Khoai tây mật ong bơ</h3>
+                            <p class="product-meta">Béo ngọt cân bằng</p>
+                            <p class="product-description">Khoai tây cắt lát mỏng chiên chân không, phủ mật ong và bơ
+                                tạo cảm giác béo mà không ngấy – món quốc dân của giới trẻ Hàn Quốc.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">45.760₫</span>
+                                <span class="product-price-original">52.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html?">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Bán chạy</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+
+                        <div class="product-image">
+                            <img src="../assets/images/Image_Rong_Bien.jpeg" alt="Rong biển cay giòn" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-15%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Rong biển cay giòn</h3>
+                            <p class="product-meta">Gia vị cay nhẹ, giòn rụm</p>
+                            <p class="product-description">Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
+                                tan nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">35.700₫</span>
+                                <span class="product-price-original">42.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html?">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                     <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Combo</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/soda nho.jpg" alt="Nước nho soda" loading="lazy">
+                            <span class="product-tag">Đồ uống</span>
+
+                        </div>
+                        <div class="product-content">
+                            <h3>Nước nho soda</h3>
+                            <p class="product-meta">Nho tím có gas</p>
+                            <p class="product-description">Thức uống nho tím có gas vị thanh, ít đường. Uống lạnh giúp
+                                cân bằng các món snack mặn và cay.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">29.000₫</span>
+
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Freeship</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/nuoc-ep-yuzu.jpg" alt="Nước yuzu sủi mát" loading="lazy">
+                            <span class="product-tag">Đồ uống</span>
+
+                        </div>
+                        <div class="product-content">
+                            <h3>Nước yuzu sủi mát</h3>
+                            <p class="product-meta">Chanh yuzu giải nhiệt</p>
+                            <p class="product-description">Nước yuzu Nhật kết hợp chút chanh vàng và soda lạnh, vị thanh
+                                nhẹ giúp cân bằng các món snack đậm đà.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">33.000₫</span>
+
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Luxury</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/bap rang nam.webp" alt="Bắp rang nấm truffle" loading="lazy">
+                            <span class="product-tag">Đồ ngọt</span>
+                            <span class="product-discount">-15%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Bắp rang nấm truffle</h3>
+                            <p class="product-meta">Thơm bơ, quyện nấm</p>
+                            <p class="product-description">Bắp rang phủ bơ, parmesan và dầu nấm truffle Ý, tạo vị umami
+                                sang trọng cho buổi tiệc nhẹ.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">75.650₫</span>
+                                <span class="product-price-original">89.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-head">
+                            <span class="product-badge">Bán chạy</span>
+                            <button type="button" class="favorite-button" aria-label="Đánh dấu yêu thích">❤</button>
+                        </div>
+                        <div class="product-image">
+                            <img src="../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ" loading="lazy">
+                            <span class="product-tag">Đồ mặn</span>
+                            <span class="product-discount">-12%</span>
+                        </div>
+                        <div class="product-content">
+                            <h3>Khoai tây mật ong bơ</h3>
+                            <p class="product-meta">Béo ngọt cân bằng</p>
+                            <p class="product-description">Khoai tây cắt lát mỏng chiên chân không, phủ mật ong và bơ
+                                tạo cảm giác béo mà không ngấy – món quốc dân của giới trẻ Hàn Quốc.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">45.760₫</span>
+                                <span class="product-price-original">52.000₫</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn-outline" href="product-detail.html">Xem chi tiết</a>
+                            <button class="btn btn-primary" type="button" onclick="alert('Đã thêm vào giỏ hàng!')">Thêm vào giỏ</button>
+                        </div>
+                    </article>
+                </div>
+              
       <header class="navbar" id="navbar">
         <div class="container nav-inner">
           <a class="logo" href="../index.html">
