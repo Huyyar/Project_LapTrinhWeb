@@ -1,0 +1,136 @@
+:root {
+    --bg: #fef8f2;
+    --surface: #ffffff;
+    --primary: #ff6b35;
+    --text: #1f2933;
+    --text-muted: #52606d;
+    --border: #e5e7eb;
+    --success: #0f9d58;
+    --warning: #fb8c00;
+    --overlay: rgba(0, 0, 0, 0.5);
+}
+.order-history-page {
+    background: var(--bg);
+}
+.order-history-page .container {
+    max-width: 1080px;
+    margin: 48px auto;
+    padding: 0 24px;
+    background: transparent;
+}
+.order-history-page header {
+    margin-bottom: 36px;
+    text-align: left;
+}
+
+.order-history-page header h1 {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.order-history-page header p {
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 540px;
+}
+.content {
+    background: var(--surface);
+    padding: 28px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    box-shadow: 0 18px 36px rgba(31, 41, 51, 0.08);
+}
+/* Panel & Table */
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.panel-header {
+    padding: 12px 20px;
+    color:white;
+    background: var(--primary);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    font-size:20px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 20px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+}
+th {
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg);
+}
+
+tr:hover {
+    background: color-mix(in srgb, var(--bg) 50%, transparent);
+}
+
+small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge.pending {
+    background: color-mix(in srgb, var(--warning) 15%, transparent);
+    color: var(--warning);
+}
+
+.badge.confirmed {
+    background: color-mix(in srgb, var(--success) 15%, transparent);
+    color: var(--success);
+}
+
+.badge.shipping {
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    min-width: 80px;
+}
+
+.btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}

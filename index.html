@@ -10,7 +10,13 @@
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/slideshow.css" />
     <link rel="stylesheet" href="css/header.css" />
@@ -30,7 +36,7 @@
               <a href="index.html#home" class="active">Trang chủ</a>
             </li>
             <li>
-              <a href="pages/product.html">Sản phẩm</a>
+              <a href="pages/product.html"> Sản phẩm</a>
             </li>
             <li>
               <a href="pages/contact.html">Liên hệ</a>
@@ -50,7 +56,9 @@
               <span class="nav-divider"></span>
               <a class="link-button" href="pages/login.html">Đăng nhập</a>
             </div>
-            <button class="cart-button">Giỏ hàng</button>
+            <button class="cart-button">
+              <a href="pages/cart.html">Giỏ Hàng</a>
+            </button>
           </div>
         </nav>
       </div>
@@ -62,10 +70,6 @@
           <div class="hero-meta">
             <span class="hero-kicker">SnackHub Spotlight</span>
             <h1>Những sự kiện nổi bật tuần lễ hội Halloween</h1>
-            <p>
-              Cùng khám phá những khung hình ngập tràn năng lượng từ lễ hội
-              snack, combo party và món mới vừa ra mắt.Lướt qua từng slide để cập nhật thông tin mới nhất.
-            </p>
           </div>
           <div class="hero-slideshow">
             <div class="hero-slide is-active">
@@ -97,7 +101,7 @@
 
             <div class="hero-slide" data-hero-slide>
               <img
-                src="assets/images/mattia-occhi-IWELEWFpufI-unsplash.jpg"
+                src="assets/images/slideshow_mochi.jpg"
                 alt="Sản phẩm mochi matcha mới của SnackHub"
               />
               <div class="hero-slide-content">
@@ -127,7 +131,6 @@
               &rsaquo;
             </button>
           </div>
-          <div class="hero-meta-footer"></div>
         </div>
       </section>
 
@@ -139,10 +142,6 @@
               <p class="section-subtitle">
                 Cùng khám các ưu đãi và món mới hấp dẫn.
               </p>
-            </div>
-            <div class="search-bar">
-              <span class="icon">🔍</span>
-              <input type="search" id="search" placeholder="Tìm kiếm ..." />
             </div>
           </div>
 
@@ -181,7 +180,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=1"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -224,7 +223,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=2"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -269,7 +268,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=3"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -315,7 +314,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=4"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -358,7 +357,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=5"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -404,7 +403,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=6"
+                <a class="btn btn-outline" href="pages/product-detail.html"
                   >Xem chi tiết</a
                 >
                 <button
@@ -434,22 +433,24 @@
           </p>
         </div>
         <div>
-          <h4>Thông tin</h4>
+          <h4>Hỗ trợ khách hàng</h4>
           <ul class="footer-links">
-            <li><a href="products.html">Menu hôm nay</a></li>
-            <li><a href="../index.html#contact">Liên hệ</a></li>
+            <li><a href="tel:0123456789">Hotline: 0123 456 789</a></li>
             <li>
-              <button class="link-button" type="button" data-open-history>
-                Lịch sử đơn
-              </button>
+              <a href="mailto:contact@snackhub.vn"
+                >Email: contact@snackhub.vn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=123+%C4%90%C6%B0%E1%BB%9Dng+ABC,+Qu%E1%BA%ADn+1,+TP.HCM"
+                target="_blank"
+                rel="noopener"
+              >
+                Store: 123 Đường ABC, Quận 1, TP.HCM
+              </a>
             </li>
           </ul>
-        </div>
-        <div>
-          <h4>Liên hệ</h4>
-          <p>Hotline: 0123 456 789</p>
-          <p>Email: contact@snackhub.vn</p>
-          <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
         </div>
         <div>
           <h4>Kết nối</h4>
@@ -470,10 +471,11 @@
         <p class="footer-note">
           © 2025 SnackHub. Made with ❤️ for snack lovers.
         </p>
-        <button class="link-button" type="button" data-scroll-to="#navbar">
-          Lên đầu trang
-        </button>
+        <button class="link-button" type="button">Lên đầu trang</button>
       </div>
     </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/slideshow.js"></script>
   </body>
 </html>

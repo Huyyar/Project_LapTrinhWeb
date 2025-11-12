@@ -11,6 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 
 <body>
@@ -50,6 +51,46 @@
             </nav>
         </div>
     </header>
+       <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html#home"  class="active">Trang chủ</a>
+            </li>
+            <li>
+              <a href="product.html" > Sản phẩm</a>
+            </li>
+            <li>
+              <a href="contact.html">Liên hệ</a>
+            </li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <span class="icon">🔍</span>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
+            </div>
+            <div class="nav-auth">
+              <a class="link-button" href="register.html">Đăng kí</a>
+              <span class="nav-divider"></span>
+              <a class="link-button" href="login.html">Đăng nhập</a>
+            </div>
+            <button class="cart-button">
+              <a href="cart.html">Giỏ Hàng</a>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
     <div class="product-detail-page">
         <div class="product-detail-container">
             <div class="product-detail-grid">
@@ -137,6 +178,7 @@
             </button>
         </div>
     </footer>
+     <script src="../js/auth.js"></script>
 </body>
 
 </html>

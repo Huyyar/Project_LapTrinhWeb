@@ -1,11 +1,11 @@
 
 .hero-slideshow {
   position: relative;
-  width: min(100%, 980px);
+  width: min(100%, 1120px);
   margin: 0 auto;
   border-radius: 38px;
   overflow: hidden;
-  min-height: clamp(420px, 70vh, 640px);
+  min-height: clamp(500px, 70vh, 640px);
   box-shadow: 0 38px 72px rgba(17, 23, 30, 0.28);
   background: rgba(16, 24, 32, 0.08);
   backdrop-filter: blur(18px);
@@ -142,12 +142,3 @@
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.hero-slide-dot.is-active {
-  background: #fff;
-  transform: scale(1.2);
-}
-
-.hero-slide-dot:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}

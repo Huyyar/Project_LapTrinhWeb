@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Users - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/users.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="logo">🍿</div>
+            <span class="brand-text">SnackHub Admin</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="./admin.html" class="nav-link">
+
+                <span>Dashboard</span>
+            </a>
+            <a href="./admin_product.html" class="nav-link">
+
+                <span>Sản phẩm</span>
+            </a>
+            <a href="./orders.html" class="nav-link">
+
+                <span>Đơn hàng</span>
+            </a>
+            <a href="./users.html" class="nav-link active">
+
+                <span>Người dùng</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="left-item">
+                <h1>Quản Lý Người Dùng</h1>
+            </div>
+            <div class="right-item">
+                <input placeholder="Tìm kiếm theo tên, email..." />
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="panel" style="width:100%">
+                <div class="panel-header"><h2>Danh sách người dùng</h2></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr><th>Tên</th><th>Email</th><th>Vai trò</th><th>Hành động</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>nguyenvana@email.com</td>
+                            <td>Người dùng</td>
+                            <td><button class="btn">Khoá
+                                <i class="fa-solid fa-user-lock"></i>
+                            </button></td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>tranthib@email.com</td>
+                            <td>Người dùng</td>
+                            <td><button class="btn">Khoá
+                                <i class="fa-solid fa-user-lock"></i>
+                            </button></td>
+                        </tr>
+                        <tr>
+                            <td>Admin User</td>
+                            <td>admin@snackhub.vn</td>
+                            <td>Admin</td>
+                            <td><button class="btn">Khoá
+                                <i class="fa-solid fa-user-lock"></i>
+                            </button>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
