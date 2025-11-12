@@ -229,7 +229,3 @@ img {
     font-size: 0.85rem;
     color: rgba(248, 250, 252, 0.7);
 }
-  border-color: rgba(255, 107, 53, 0.5);
-  color: var(--primary);
-  background: rgba(255, 107, 53, 0.04);
-}

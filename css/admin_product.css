@@ -28,12 +28,6 @@
     object-fit: cover;
 }
 
-/* Original price styles */
-.original-price {
-    text-decoration: line-through;
-    color: var(--text-muted);
-}
-
 * {
     box-sizing: border-box;
 }
@@ -203,11 +197,6 @@ body {
     display: block;
     color: var(--text-muted);
     font-size: 0.875rem;
-}
-
-.main .content .panel .table-wrap table td .original-price {
-    text-decoration: line-through;
-    color: var(--text-muted);
 }
 
 /* Buttons */
