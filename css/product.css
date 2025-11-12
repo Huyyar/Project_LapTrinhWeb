@@ -219,18 +219,6 @@ img {
   font-size: 0.8rem;
 }
 
-.content .container .product-grid .product-discount {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--primary);
-  color: white;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
 .content .container .product-grid .product-content {
   display: grid;
   gap: 10px;
@@ -257,13 +245,6 @@ img {
   align-items: baseline;
   gap: 10px;
   font-weight: 600;
-}
-
-.content .container .product-grid .product-price .product-price-original {
-  font-weight: 500;
-  color: var(--text-muted);
-  text-decoration: line-through;
-  font-size: 0.9rem;
 }
 
 .content .container .product-grid .card-actions {
