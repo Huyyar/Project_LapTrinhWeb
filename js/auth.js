@@ -58,7 +58,6 @@ function updateNavUI() {
       </button>
       <div class="user-dropdown">
         <a href="${profilePath}">Profile</a>
-        <a href="#">Sản phẩm yêu thích</a>
         <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
         <button id="logout-btn">Đăng xuất</button>
       </div>

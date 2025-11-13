@@ -163,7 +163,7 @@ img {
 .content .container .product-grid .product-card .product-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .content .container .product-grid .product-card .product-head .product-badge {
@@ -173,29 +173,6 @@ img {
   font-weight: 700;
   padding: 6px 12px;
   border-radius: 999px;
-}
-
-.content .container .product-grid .product-card .product-head .favorite-button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(31, 41, 51, 0.12);
-  background: var(--surface);
-  color: var(--text-muted);
-  font-size: 1rem;
-  display: grid;
-  place-items: center;
-  transition: all 0.2s ease;
-}
-
-.content
-  .container
-  .product-grid
-  .product-card
-  .product-head
-  .favorite-button:hover {
-  color: var(--primary);
-  border-color: rgba(255, 107, 53, 0.35);
 }
 
 .content .container .product-image {
