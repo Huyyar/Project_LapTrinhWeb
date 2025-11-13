@@ -1,165 +1,233 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Order History</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/order_history.css">
-</head>
-<body>
-<header class="navbar" id="navbar">
-    <div class="container nav-inner">
+    <link rel="stylesheet" href="../css/order_history.css" />
+  </head>
+  <body>
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
         <a class="logo" href="../index.html">
-            <span class="logo-icon">🍿</span>
-            <span>SnackHub</span>
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
         </a>
         <nav>
-            <ul class="nav-links">
-                <li>
-                    <a href="../index.html#home">Trang chủ</a>
-                </li>
-                <li>
-                    <a href="product.html" >Sản phẩm</a>
-                </li>
-                <li>
-                    <a href="contact.html">Liên hệ</a>
-                </li>
-            </ul>
-            <div class="nav-actions">
-                <div class="nav-search">
-                    <span class="icon">🔍</span>
-                    <input
-                            type="search"
-                            id="nav-search"
-                            placeholder="Bạn muốn ăn gì hôm nay?"
-                    />
-                </div>
-                <div class="nav-auth">
-                    <a class="link-button" href="register.html">Đăng kí</a>
-                    <span class="nav-divider"></span>
-                    <a class="link-button" href="login.html">Đăng nhập</a>
-                </div>
-                <button class="cart-button">
-                    <a href="cart.html">Giỏ Hàng</a>
-                </button>
+          <ul class="nav-links">
+            <li>
+              <a href="../index.html#home">Trang chủ</a>
+            </li>
+            <li>
+              <a href="product.html">Sản phẩm</a>
+            </li>
+            <li>
+              <a href="contact.html">Liên hệ</a>
+            </li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <span class="icon">🔍</span>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
             </div>
+            <div class="nav-auth">
+              <a class="link-button" href="register.html">Đăng kí</a>
+              <span class="nav-divider"></span>
+              <a class="link-button" href="login.html">Đăng nhập</a>
+            </div>
+            <button class="cart-button">
+              <a href="cart.html">Giỏ Hàng</a>
+            </button>
+          </div>
         </nav>
-    </div>
-</header>
-<main class="order-history-page">
-    <div class="container">
-        <header>
-            <h1>Đơn hàng của bạn</h1>
-            <p>
-                Tất cả đơn hàng của bạn sẽ ở đây.
-            </p>
-            <section class="content">
-                <div class="panel">
-                    <div class="panel-header">Danh sách đơn hàng</div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                            <tr><th>Mã đơn</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày đặt</th><th>Hành động</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>SH20241101</td>
-                                <td>207.400₫</td>
-                                <td><span class="badge pending">Đang xử lý</span></td>
-                                <td>2/11/2024</td>
-                                <td><button class="btn">Chi tiết</button></td>
-                            </tr>
-                            <tr>
-                                <td>SH20241102</td>
-                                <td>219.800₫</td>
-                                <td><span class="badge confirmed">Đã giao</span></td>
-                                <td>1/11/2024</td><td><button class="btn">Chi tiết</button></td>
-                            </tr>
-                            <tr>
-                                <td>SH20241103</td>
-                                <td>256.170₫</td>
-                                <td><span class="badge shipping">Đã hủy</span></td>
-                                <td>31/10/2024</td>
-                                <td><button class="btn">Chi tiết</button></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
+      </div>
+    </header>
+    <main class="order-history-page">
+      <div class="container">
+        <header class="page-intro">
+          <h1>Đơn hàng của bạn</h1>
+          <p>Cùng xem lại những món snack đã đồng hành với bạn gần đây nhé.</p>
         </header>
 
-    </div>
-</main>
-<footer class="footer">
-    <div class="container footer-inner">
-        <div>
-            <div class="logo">
-                <span class="logo-icon">🍿</span>
-                <span>SnackHub</span>
-            </div>
-            <p>
-                Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
-                sắm thú vị cho mọi cuộc vui.
-            </p>
+        <div class="order-filters" aria-label="Lọc trạng thái đơn hàng">
+          <button type="button" class="filter-btn is-active">Tất cả</button>
+          <button type="button" class="filter-btn">Đang xử lý</button>
+          <button type="button" class="filter-btn">Đang giao</button>
+          <button type="button" class="filter-btn">Đã giao</button>
+          <button type="button" class="filter-btn">Đã hủy</button>
         </div>
-        <div>
-            <h4>Hỗ trợ khách hàng</h4>
-            <ul class="footer-links">
-                <li><a href="tel:0123456789">Hotline: 0123 456 789</a></li>
-                <li>
-                    <a href="mailto:contact@snackhub.vn"
-                    >Email: contact@snackhub.vn</a
-                    >
-                </li>
-                <li>
-                    <a
-                            href="https://maps.google.com/?q=123+%C4%90%C6%B0%E1%BB%9Dng+ABC,+Qu%E1%BA%ADn+1,+TP.HCM"
-                            target="_blank"
-                            rel="noopener"
-                    >
-                        Store: 123 Đường ABC, Quận 1, TP.HCM
-                    </a>
-                </li>
+
+        <section class="order-list" aria-label="Danh sách đơn hàng">
+          <article class="order-card">
+            <header class="order-card-header">
+              <div>
+                <span class="order-code">Mã đơn #SH20241101</span>
+                <time datetime="2024-11-02">Đặt ngày 02/11/2024</time>
+              </div>
+              <span class="order-status status-pending">Đang xử lý</span>
+            </header>
+            <ul class="order-summary">
+              <li>
+                <span class="item-name">Bắp rang bơ caramel</span>
+                <span class="item-qty">x2</span>
+                <span class="item-price">72.000₫</span>
+              </li>
+              <li>
+                <span class="item-name">Khoai tây lát vị phô mai</span>
+                <span class="item-qty">x1</span>
+                <span class="item-price">65.000₫</span>
+              </li>
+              <li>
+                <span class="item-name">Sữa hạt óc chó</span>
+                <span class="item-qty">x3</span>
+                <span class="item-price">70.400₫</span>
+              </li>
             </ul>
+            <footer class="order-card-footer">
+              <div class="order-total">
+                <span>Tổng thanh toán</span>
+                <strong>207.400₫</strong>
+              </div>
+              <div class="order-actions">
+                <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
+                <button type="button" class="btn-reorder">Mua lại</button>
+              </div>
+            </footer>
+          </article>
+
+          <article class="order-card">
+            <header class="order-card-header">
+              <div>
+                <span class="order-code">Mã đơn #SH20241102</span>
+                <time datetime="2024-11-01">Đặt ngày 01/11/2024</time>
+              </div>
+              <span class="order-status status-done">Đã giao</span>
+            </header>
+            <ul class="order-summary">
+              <li>
+                <span class="item-name">Snack rong biển cuộn</span>
+                <span class="item-qty">x4</span>
+                <span class="item-price">109.800₫</span>
+              </li>
+              <li>
+                <span class="item-name">Nước ép xoài Passion</span>
+                <span class="item-qty">x2</span>
+                <span class="item-price">110.000₫</span>
+              </li>
+            </ul>
+            <footer class="order-card-footer">
+              <div class="order-total">
+                <span>Tổng thanh toán</span>
+                <strong>219.800₫</strong>
+              </div>
+              <div class="order-actions">
+                <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
+                <button type="button" class="btn-reorder">Mua lại</button>
+              </div>
+            </footer>
+          </article>
+
+          <article class="order-card">
+            <header class="order-card-header">
+              <div>
+                <span class="order-code">Mã đơn #SH20241103</span>
+                <time datetime="2024-10-31">Đặt ngày 31/10/2024</time>
+              </div>
+              <span class="order-status status-cancel">Đã hủy</span>
+            </header>
+            <p class="order-note">
+              Bạn đã hủy đơn vào 01/11/2024. Đừng quên thử lại combo mới vào dịp
+              cuối tuần nhé!
+            </p>
+            <footer class="order-card-footer is-single">
+              <div class="order-total">
+                <span>Tổng tạm tính</span>
+                <strong>256.170₫</strong>
+              </div>
+              <div class="order-actions">
+                <button type="button" class="btn-reorder">
+                  Đặt lại đơn này
+                </button>
+              </div>
+            </footer>
+          </article>
+        </section>
+
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="logo">
+            <span class="logo-icon">🍿</span>
+            <span>SnackHub</span>
+          </div>
+          <p>
+            Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+            sắm thú vị cho mọi cuộc vui.
+          </p>
         </div>
         <div>
-            <h4>Kết nối</h4>
-            <div class="social">
-                <a href="https://www.facebook.com/" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.tiktok.com/" aria-label="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </div>
+          <h4>Hỗ trợ khách hàng</h4>
+          <ul class="footer-links">
+            <li><a href="tel:0123456789">Hotline: 0123 456 789</a></li>
+            <li>
+              <a href="mailto:contact@snackhub.vn"
+                >Email: contact@snackhub.vn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=123+%C4%90%C6%B0%E1%BB%9Dng+ABC,+Qu%E1%BA%ADn+1,+TP.HCM"
+                target="_blank"
+                rel="noopener"
+              >
+                Store: 123 Đường ABC, Quận 1, TP.HCM
+              </a>
+            </li>
+          </ul>
         </div>
-    </div>
-    <div class="footer-bottom">
+        <div>
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="https://www.facebook.com/" aria-label="Facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
         <p class="footer-note">
-            © 2025 SnackHub. Made with ❤️ for snack lovers.
+          © 2025 SnackHub. Made with ❤️ for snack lovers.
         </p>
         <button class="link-button" type="button">Lên đầu trang</button>
-    </div>
-</footer>
-<script src="js/auth.js"></script>
-</body>
+      </div>
+    </footer>
+    <script src="../js/auth.js"></script>
+  </body>
 </html>
