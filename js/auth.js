@@ -37,6 +37,7 @@ function updateNavUI() {
   const orderHistoryPath = isSubPage
     ? "order_history.html"
     : "pages/order_history.html";
+  const profilePath = isSubPage ? "profile.html" : "pages/profile.html";
 
   // Xóa icon  cũ mỗi lần đăng nhập  để tránh trùng lặp
   const oldUserProfile = document.querySelector(".user-profile");
@@ -56,7 +57,7 @@ function updateNavUI() {
         <img src="${avatarPath}" alt="User Avatar" class="user-avatar">
       </button>
       <div class="user-dropdown">
-        <a href="#">Profile</a>
+        <a href="${profilePath}">Profile</a>
         <a href="#">Sản phẩm yêu thích</a>
         <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
         <button id="logout-btn">Đăng xuất</button>
