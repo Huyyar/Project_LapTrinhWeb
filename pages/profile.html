@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hồ sơ cá nhân</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
+  </head>
+  <body data-page="profile">
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a class="logo" href="../index.html">
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html#home">Trang chủ</a></li>
+            <li><a href="product.html">Sản phẩm</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <span class="icon">🔍</span>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
+            </div>
+            <div class="nav-auth">
+              <a class="link-button" href="register.html">Đăng kí</a>
+              <span class="nav-divider"></span>
+              <a class="link-button" href="login.html">Đăng nhập</a>
+            </div>
+            <button class="cart-button">
+              <a href="cart.html">Giỏ Hàng</a>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="profile-page">
+      <div class="container">
+        <div class="profile-layout">
+          <aside class="profile-sidebar">
+            <div class="profile-card">
+              <div class="avatar-wrap">
+                <img src="../assets/icons/icon_user.png" alt="Ảnh đại diện" />
+                <button type="button">Đổi ảnh</button>
+              </div>
+              <h1>Xin chào, Nguyễn!</h1>
+            </div>
+            <nav class="profile-menu" aria-label="Tùy chọn hồ sơ">
+              <button
+                type="button"
+                class="menu-item is-active"
+                data-target="personal"
+              >
+                <i class="fa-solid fa-user"></i> Thông tin cá nhân
+              </button>
+              <button type="button" class="menu-item" data-target="address">
+                <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
+              </button>
+            </nav>
+          </aside>
+          <section class="profile-content" aria-label="Chi tiết hồ sơ">
+            <section
+              class="panel profile-section is-active"
+              data-section="personal"
+            >
+              <header class="panel-header">
+                <h2>Thông tin cá nhân</h2>
+              </header>
+              <form class="panel-body form-grid">
+                <label>
+                  Họ và tên
+                  <input type="text" placeholder="Nguyễn Văn A" />
+                </label>
+                <label>
+                  Email
+                  <input type="email" placeholder="Nguyen@example.com" />
+                </label>
+                <label>
+                  Số điện thoại
+                  <input type="tel" placeholder="0123 456 789" />
+                </label>
+                <label>
+                  Ngày sinh
+                  <input type="date" />
+                </label>
+                <label>
+                  Giới tính
+                  <select>
+                    <option value="">-- Chọn --</option>
+                    <option value="female">Nữ</option>
+                    <option value="male">Nam</option>
+                    <option value="other">Khác</option>
+                  </select>
+                </label>
+                <div class="form-actions">
+                  <button type="reset" class="btn-secondary">Hủy</button>
+                  <button type="submit" class="btn-primary">
+                    Lưu thay đổi
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel profile-section" data-section="address">
+              <header class="panel-header">
+                <h2>Địa chỉ giao hàng</h2>
+                <p>Lưu nhiều địa chỉ để điền nhanh mỗi lần checkout.</p>
+              </header>
+              <div class="panel-body address-list">
+                <article class="address-card is-default">
+                  <div>
+                    <h3>Nhà riêng</h3>
+                    <p>123 Đường ABC, Phường 7, Quận 3, TP.HCM</p>
+                    <span class="badge">Mặc định</span>
+                  </div>
+                  <div class="address-actions">
+                    <button type="button" class="link">Sửa</button>
+                    <button type="button" class="link">Xóa</button>
+                  </div>
+                </article>
+                <article class="address-card">
+                  <div>
+                    <h3>Văn phòng</h3>
+                    <p>Tầng 5, Tòa nhà XYZ, Quận 1, TP.HCM</p>
+                  </div>
+                  <div class="address-actions">
+                    <button type="button" class="link">Đặt làm mặc định</button>
+                    <button type="button" class="link">Xóa</button>
+                  </div>
+                </article>
+                <button type="button" class="btn-outline">
+                  + Thêm địa chỉ mới
+                </button>
+              </div>
+            </section>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="logo">
+            <span class="logo-icon">🍿</span>
+            <span>SnackHub</span>
+          </div>
+          <p>
+            Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+            sắm thú vị cho mọi cuộc vui.
+          </p>
+        </div>
+        <div>
+          <h4>Hỗ trợ khách hàng</h4>
+          <ul class="footer-links">
+            <li><a href="tel:0123456789">Hotline: 0123 456 789</a></li>
+            <li>
+              <a href="mailto:contact@snackhub.vn"
+                >Email: contact@snackhub.vn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=123+%C4%90%C6%B0%E1%BB%9Dng+ABC,+Qu%E1%BA%ADn+1,+TP.HCM"
+                target="_blank"
+                rel="noopener"
+              >
+                Store: 123 Đường ABC, Quận 1, TP.HCM
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="https://www.facebook.com/" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="https://www.tiktok.com/" aria-label="TikTok"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-note">
+          © 2025 SnackHub. Made with ❤️ for snack lovers.
+        </p>
+        <button class="link-button" type="button">Lên đầu trang</button>
+      </div>
+    </footer>
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+  </body>
+</html>
