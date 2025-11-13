@@ -34,6 +34,9 @@ function updateNavUI() {
   const avatarPath = isSubPage
     ? "../assets/icons/icon_user.png"
     : "assets/icons/icon_user.png";
+  const orderHistoryPath = isSubPage
+    ? "order_history.html"
+    : "pages/order_history.html";
 
   // Xóa icon  cũ mỗi lần đăng nhập  để tránh trùng lặp
   const oldUserProfile = document.querySelector(".user-profile");
@@ -55,7 +58,7 @@ function updateNavUI() {
       <div class="user-dropdown">
         <a href="#">Profile</a>
         <a href="#">Sản phẩm yêu thích</a>
-        <a href="#">Lịch sử mua hàng</a>
+        <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
         <button id="logout-btn">Đăng xuất</button>
       </div>
     `;
@@ -72,9 +75,9 @@ function updateNavUI() {
     const logoutBtn = document.getElementById("logout-btn");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        setLoginState(false); 
-        updateNavUI(); 
-        window.location.reload(); 
+        setLoginState(false);
+        updateNavUI();
+        window.location.reload();
       });
     }
   } else {
@@ -132,7 +135,6 @@ function handleAuthForms() {
 
 // Chạy các hàm cần thiết khi trang đã tải xong
 document.addEventListener("DOMContentLoaded", () => {
- 
   if (
     document.body.dataset.page === "login" ||
     document.body.dataset.page === "signup"
