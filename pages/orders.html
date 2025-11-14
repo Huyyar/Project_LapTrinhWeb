@@ -1,109 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Orders - Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/orders.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Orders - Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="../css/orders.css">
-</head>
-
-<body>
-  <div class="app">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="logo">🍿</div>
-        <span class="brand-text">SnackHub Admin</span>
-      </div>
-      <nav class="nav-menu">
-        <a href="./admin.html" class="nav-link">
-
-          <span>Dashboard</span>
-        </a>
-        <a href="./admin_product.html" class="nav-link">
-
-          <span>Sản phẩm</span>
-        </a>
-        <a href="./orders.html" class="nav-link active">
-
-          <span>Đơn hàng</span>
-        </a>
-        <a href="./users.html" class="nav-link">
-
-          <span>Người dùng</span>
-        </a>
-        <a href="../index.html" class="nav-link" onclick="alert('Xác nhận thoát')">
-
-          <span>Đăng xuất</span>
-        </a>
-      </nav>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div class="left-item">
-          <h1>Quản Lý Đơn Hàng</h1>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="logo">🍿</div>
+          <span class="brand-text">SnackHub Admin</span>
         </div>
-        <div class="right-item">
-          <input placeholder="Tìm kiếm đơn hàng..." />
-        </div>
-      </header>
+        <nav class="nav-menu">
+          <a href="./admin.html" class="nav-link">
+            <span>Dashboard</span>
+          </a>
+          <a href="./admin_product.html" class="nav-link">
+            <span>Sản phẩm</span>
+          </a>
+          <a href="./orders.html" class="nav-link active">
+            <span>Đơn hàng</span>
+          </a>
+          <a href="./users.html" class="nav-link">
+            <span>Người dùng</span>
+          </a>
+          <a href="../index.html" class="nav-link" id="logout-btn">
+            <span>Đăng xuất</span>
+          </a>
+        </nav>
+      </aside>
 
-      <section class="content">
-        <div class="panel" style="width:100%">
-          <div class="panel-header">
-            <h2>Danh sách đơn hàng</h2>
+      <main class="main">
+        <header class="topbar">
+          <div class="left-item">
+            <h1>Quản Lý Đơn Hàng</h1>
           </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Mã đơn</th>
-                  <th>Khách hàng</th>
-                  <th>Tổng tiền</th>
-                  <th>Trạng thái</th>
-                  <th>Ngày đặt</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>SH20241101</td>
-                  <td>Nguyễn Văn A
-                    <br><small>0901234567</small>
-                  </td>
-                  <td>207.400₫</td>
-                  <td><span class="badge pending">Chờ xử lý</span></td>
-                  <td>2/11/2024</td>
-                  <td><button class="btn">Chi tiết</button></td>
-                </tr>
-                <tr>
-                  <td>SH20241102</td>
-                  <td>Trần Thị B
-                    <br><small>0912345678</small>
-                  </td>
-                  <td>219.800₫</td>
-                  <td><span class="badge confirmed">Đã xác nhận</span></td>
-                  <td>1/11/2024</td>
-                  <td><button class="btn">Chi tiết</button></td>
-                </tr>
-                <tr>
-                  <td>SH20241103</td>
-                  <td>Lê Văn C<br><small>0923456789</small></td>
-                  <td>256.170₫</td>
-                  <td><span class="badge shipping">Đang giao</span></td>
-                  <td>31/10/2024</td>
-                  <td><button class="btn">Chi tiết</button></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="right-item">
+            <input placeholder="Tìm kiếm đơn hàng..." />
           </div>
-        </div>
-      </section>
-    </main>
-  </div>
-</body>
+        </header>
 
+        <section class="content">
+          <div class="panel" style="width: 100%">
+            <div class="panel-header">
+              <h2>Danh sách đơn hàng</h2>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mã đơn</th>
+                    <th>Khách hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày đặt</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>SH20241101</td>
+                    <td>Nguyễn Văn A <br /><small>0901234567</small></td>
+                    <td>207.400₫</td>
+                    <td><span class="badge pending">Chờ xử lý</span></td>
+                    <td>2/11/2024</td>
+                    <td><button class="btn">Chi tiết</button></td>
+                  </tr>
+                  <tr>
+                    <td>SH20241102</td>
+                    <td>Trần Thị B <br /><small>0912345678</small></td>
+                    <td>219.800₫</td>
+                    <td><span class="badge confirmed">Đã xác nhận</span></td>
+                    <td>1/11/2024</td>
+                    <td><button class="btn">Chi tiết</button></td>
+                  </tr>
+                  <tr>
+                    <td>SH20241103</td>
+                    <td>Lê Văn C<br /><small>0923456789</small></td>
+                    <td>256.170₫</td>
+                    <td><span class="badge shipping">Đang giao</span></td>
+                    <td>31/10/2024</td>
+                    <td><button class="btn">Chi tiết</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="../js/auth.js"></script>
+  </body>
 </html>
