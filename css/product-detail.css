@@ -58,7 +58,56 @@ img {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--primary);
-  margin: 20px 0;
+  margin: 20px 0 12px;
+}
+
+.product-detail-page .product-stock-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(39, 174, 96, 0.12);
+  color: #1f6f43;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.product-detail-page .product-stock-status .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27ae60;
+  display: inline-block;
+}
+
+.product-detail-page .product-stock-status.in-stock {
+  background: rgba(39, 174, 96, 0.12);
+  color: #1f6f43;
+}
+
+.product-detail-page .product-production-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  background: var(--surface-alt, #fff8f4);
+  margin-bottom: 20px;
+}
+
+.product-detail-page .product-production-info .label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.product-detail-page .product-production-info strong {
+  font-size: 1.05rem;
 }
 
 .product-detail-page .product-detail-info .product-detail-price .product-meta {
@@ -79,6 +128,50 @@ img {
   display: grid;
   gap: 6px;
   color: var(--text-muted);
+}
+
+.product-detail-page .product-quantity {
+  margin-top: 24px;
+}
+
+.product-detail-page .product-quantity label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.quantity-input {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.quantity-input input[type="number"] {
+  width: 60px;
+  text-align: center;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.quantity-input .qty-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.quantity-input .qty-btn:hover {
+  background: rgba(255, 107, 53, 0.08);
+  color: var(--primary);
 }
 
 .product-detail-page .product-detail-info .product-detail-actions {

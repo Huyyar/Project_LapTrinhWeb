@@ -6,17 +6,23 @@
     <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" href="../css/product-detail.css" />
     <link rel="stylesheet" href="../css/header.css" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <!-- thanh nav -->
 
-       <header class="navbar" id="navbar">
+    <header class="navbar" id="navbar">
       <div class="container nav-inner">
         <a class="logo" href="index.html">
           <span class="logo-icon">🍿</span>
@@ -67,6 +73,20 @@
             <h1>Rong biển cay giòn</h1>
             <p class="product-name-en">Spicy Crispy Seaweed</p>
             <div class="product-detail-price">35.700₫</div>
+            <div class="product-stock-status in-stock">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Tình trạng: Còn hàng</span>
+            </div>
+            <div class="product-production-info" aria-live="polite">
+              <div>
+                <span class="label">Ngày sản xuất</span>
+                <strong>12/09/2025</strong>
+              </div>
+              <div>
+                <span class="label">Hạn sử dụng</span>
+                <strong>12/03/2026</strong>
+              </div>
+            </div>
             <p class="product-detail-description">
               Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn tan
               nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.
@@ -78,6 +98,32 @@
                 <li>Gia vị cay nhẹ vừa ăn</li>
                 <li>Ít dầu và không chất bảo quản</li>
               </ul>
+            </div>
+            <div class="product-quantity">
+              <label for="product-quantity-input">Số lượng</label>
+              <div class="quantity-input">
+                <button
+                  class="qty-btn"
+                  type="button"
+                  aria-label="Giảm số lượng"
+                >
+                  −
+                </button>
+                <input
+                  id="product-quantity-input"
+                  type="number"
+                  min="1"
+                  value="1"
+                  inputmode="numeric"
+                />
+                <button
+                  class="qty-btn"
+                  type="button"
+                  aria-label="Tăng số lượng"
+                >
+                  +
+                </button>
+              </div>
             </div>
             <div class="product-detail-actions">
               <button
@@ -93,58 +139,58 @@
       </div>
     </div>
     <footer class="footer">
-        <div class="container footer-inner">
-            <div>
-                <div class="logo">
-                    <span class="logo-icon">🍿</span>
-                    <span>SnackHub</span>
-                </div>
-                <p>
-                    Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
-                    sắm thú vị cho mọi cuộc vui.
-                </p>
-            </div>
-            <div>
-                <h4>Thông tin</h4>
-                <ul class="footer-links">
-                    <li><a href="products.html">Menu hôm nay</a></li>
-                    <li><a href="../index.html#contact">Liên hệ</a></li>
-                    <li>
-                        <button class="link-button" type="button" data-open-history>
-                            Lịch sử đơn
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h4>Liên hệ</h4>
-                <p>Hotline: 0123 456 789</p>
-                <p>Email: contact@snackhub.vn</p>
-                <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
-            </div>
-            <div>
-                <h4>Kết nối</h4>
-                <div class="social">
-                    <a href="https://www.facebook.com/" aria-label="Facebook">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/" aria-label="TikTok">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </a>
-                </div>
-            </div>
+      <div class="container footer-inner">
+        <div>
+          <div class="logo">
+            <span class="logo-icon">🍿</span>
+            <span>SnackHub</span>
+          </div>
+          <p>
+            Tụ điểm snack boutique chuẩn vị quốc tế, mang tới trải nghiệm mua
+            sắm thú vị cho mọi cuộc vui.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p class="footer-note">
-                © 2025 SnackHub. Made with ❤️ for snack lovers.
-            </p>
-            <button class="link-button" type="button" data-scroll-to="#navbar">
-                Lên đầu trang
-            </button>
+        <div>
+          <h4>Thông tin</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">Menu hôm nay</a></li>
+            <li><a href="../index.html#contact">Liên hệ</a></li>
+            <li>
+              <button class="link-button" type="button" data-open-history>
+                Lịch sử đơn
+              </button>
+            </li>
+          </ul>
         </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <p>Hotline: 0123 456 789</p>
+          <p>Email: contact@snackhub.vn</p>
+          <p>Store: 123 Đường ABC, Quận 1, TP.HCM</p>
+        </div>
+        <div>
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="https://www.facebook.com/" aria-label="Facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-note">
+          © 2025 SnackHub. Made with ❤️ for snack lovers.
+        </p>
+        <button class="link-button" type="button" data-scroll-to="#navbar">
+          Lên đầu trang
+        </button>
+      </div>
     </footer>
     <script src="../js/auth.js"></script>
   </body>
