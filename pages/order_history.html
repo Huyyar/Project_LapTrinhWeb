@@ -63,9 +63,9 @@
     </header>
     <main class="order-history-page">
       <div class="container">
-        <header class="page-intro">
-          <h1>Đơn hàng của bạn</h1>
-
+        <header>
+            <h1>Đơn hàng của bạn</h1>
+            <p>Cảm ơn bạn đã tin tưởng SnackHub. Chúng tôi đang chuẩn bị món ngon cho bạn.</p>
         </header>
 
         <div class="order-filters" aria-label="Lọc trạng thái đơn hàng">
@@ -75,6 +75,7 @@
           <button type="button" class="filter-btn">Đã giao</button>
           <button type="button" class="filter-btn">Đã hủy</button>
         </div>
+
 
         <section class="order-list" aria-label="Danh sách đơn hàng">
           <article class="order-card">
@@ -109,7 +110,7 @@
               </div>
               <div class="order-actions">
                 <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
-                <button type="button" class="btn-reorder">Mua lại</button>
+                <button type="button" class="btn-reorder">Hủy đơn hàng</button>
               </div>
             </footer>
           </article>
@@ -151,18 +152,32 @@
               <div>
                 <span class="order-code">Mã đơn #SH20241103</span>
                 <time datetime="2024-10-31">Đặt ngày 31/10/2024</time>
+                  <p class="order-note">
+                      Bạn đã hủy đơn vào 01/11/2024.
+                  </p>
               </div>
               <span class="order-status status-cancel">Đã hủy</span>
+
             </header>
-            <p class="order-note">
-              Bạn đã hủy đơn vào 01/11/2024.
-            </p>
+              <ul class="order-summary">
+                  <li>
+                      <span class="item-name">Snack rong biển cuộn</span>
+                      <span class="item-qty">x4</span>
+                      <span class="item-price">109.800₫</span>
+                  </li>
+                  <li>
+                      <span class="item-name">Nước ép xoài Passion</span>
+                      <span class="item-qty">x2</span>
+                      <span class="item-price">110.000₫</span>
+                  </li>
+              </ul>
             <footer class="order-card-footer is-single">
               <div class="order-total">
                 <span>Tổng tạm tính</span>
                 <strong>256.170₫</strong>
               </div>
               <div class="order-actions">
+                  <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
                 <button type="button" class="btn-reorder">
                   Đặt lại đơn này
                 </button>
