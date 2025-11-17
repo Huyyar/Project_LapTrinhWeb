@@ -63,9 +63,9 @@
     </header>
     <main class="order-history-page">
       <div class="container">
-        <header class="page-intro">
-          <h1>Đơn hàng của bạn</h1>
-
+        <header>
+            <h1>Đơn hàng của bạn</h1>
+            <p>Cảm ơn bạn đã tin tưởng SnackHub. Chúng tôi đang chuẩn bị món ngon cho bạn.</p>
         </header>
 
         <div class="order-filters" aria-label="Lọc trạng thái đơn hàng">
@@ -75,6 +75,7 @@
           <button type="button" class="filter-btn">Đã giao</button>
           <button type="button" class="filter-btn">Đã hủy</button>
         </div>
+
 
         <section class="order-list" aria-label="Danh sách đơn hàng">
           <article class="order-card">
@@ -87,57 +88,117 @@
             </header>
             <ul class="order-summary">
               <li>
-                <span class="item-name">Bắp rang bơ caramel</span>
-                <span class="item-qty">x2</span>
-                <span class="item-price">72.000₫</span>
+                  <div class="left">
+                      <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                      <span class="item-name">Yogurt</span>
+                  </div>
+                  <div class="right">
+                      <span class="item-qty">x2</span>
+                      <span class="item-price">28.000₫</span>
+                  </div>
               </li>
-              <li>
-                <span class="item-name">Khoai tây lát vị phô mai</span>
-                <span class="item-qty">x1</span>
-                <span class="item-price">65.000₫</span>
-              </li>
-              <li>
-                <span class="item-name">Sữa hạt óc chó</span>
-                <span class="item-qty">x3</span>
-                <span class="item-price">70.400₫</span>
-              </li>
+                <li>
+                    <div class="left">
+                        <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                        <span class="item-name">Yogurt</span>
+                    </div>
+                    <div class="right">
+                        <span class="item-qty">x2</span>
+                        <span class="item-price">28.000₫</span>
+                    </div>
+                </li>
             </ul>
             <footer class="order-card-footer">
               <div class="order-total">
                 <span>Tổng thanh toán</span>
-                <strong>207.400₫</strong>
+                <strong>117.000₫</strong>
               </div>
               <div class="order-actions">
                 <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
-                <button type="button" class="btn-reorder">Mua lại</button>
+                <button type="button" class="btn-reorder">Hủy đơn hàng</button>
               </div>
             </footer>
           </article>
+
+            <article class="order-card">
+                <header class="order-card-header">
+                    <div>
+                        <span class="order-code">Mã đơn #SH20241101</span>
+                        <time datetime="2024-11-02">Đặt ngày 02/11/2024</time>
+                    </div>
+                    <span class="order-status status-pending">Đang giao hàng</span>
+                </header>
+                <ul class="order-summary">
+                    <li>
+                        <div class="left">
+                            <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                            <span class="item-name">Yogurt</span>
+                        </div>
+                        <div class="right">
+                            <span class="item-qty">x2</span>
+                            <span class="item-price">28.000₫</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left">
+                            <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                            <span class="item-name">Yogurt</span>
+                        </div>
+                        <div class="right">
+                            <span class="item-qty">x2</span>
+                            <span class="item-price">28.000₫</span>
+                        </div>
+                    </li>
+                </ul>
+                <footer class="order-card-footer">
+                    <div class="order-total">
+                        <span>Tổng thanh toán</span>
+                        <strong>117.000₫</strong>
+                    </div>
+                    <div class="order-actions">
+                        <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
+                        <button type="button" class="btn-reorder">Hủy đơn hàng</button>
+                    </div>
+                </footer>
+            </article>
 
           <article class="order-card">
             <header class="order-card-header">
               <div>
                 <span class="order-code">Mã đơn #SH20241102</span>
                 <time datetime="2024-11-01">Đặt ngày 01/11/2024</time>
+                  <p class="order-note">
+                      Đã giao hành thành công vào 01/11/2024.
+                  </p>
               </div>
               <span class="order-status status-done">Đã giao</span>
             </header>
-            <ul class="order-summary">
-              <li>
-                <span class="item-name">Snack rong biển cuộn</span>
-                <span class="item-qty">x4</span>
-                <span class="item-price">109.800₫</span>
-              </li>
-              <li>
-                <span class="item-name">Nước ép xoài Passion</span>
-                <span class="item-qty">x2</span>
-                <span class="item-price">110.000₫</span>
-              </li>
-            </ul>
+              <ul class="order-summary">
+                  <li>
+                      <div class="left">
+                          <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                          <span class="item-name">Yogurt</span>
+                      </div>
+                      <div class="right">
+                          <span class="item-qty">x2</span>
+                          <span class="item-price">28.000₫</span>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="left">
+                          <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                          <span class="item-name">Yogurt</span>
+                      </div>
+                      <div class="right">
+                          <span class="item-qty">x2</span>
+                          <span class="item-price">28.000₫</span>
+                      </div>
+                  </li>
+              </ul>
             <footer class="order-card-footer">
               <div class="order-total">
                 <span>Tổng thanh toán</span>
-                <strong>219.800₫</strong>
+                <strong>117.000₫</strong>
               </div>
               <div class="order-actions">
                 <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
@@ -151,18 +212,42 @@
               <div>
                 <span class="order-code">Mã đơn #SH20241103</span>
                 <time datetime="2024-10-31">Đặt ngày 31/10/2024</time>
+                  <p class="order-note">
+                      Bạn đã hủy đơn vào 01/11/2024.
+                  </p>
               </div>
               <span class="order-status status-cancel">Đã hủy</span>
+
             </header>
-            <p class="order-note">
-              Bạn đã hủy đơn vào 01/11/2024.
-            </p>
+              <ul class="order-summary">
+                  <li>
+                      <div class="left">
+                          <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                          <span class="item-name">Yogurt</span>
+                      </div>
+                      <div class="right">
+                          <span class="item-qty">x2</span>
+                          <span class="item-price">28.000₫</span>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="left">
+                          <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                          <span class="item-name">Yogurt</span>
+                      </div>
+                      <div class="right">
+                          <span class="item-qty">x2</span>
+                          <span class="item-price">28.000₫</span>
+                      </div>
+                  </li>
+              </ul>
             <footer class="order-card-footer is-single">
               <div class="order-total">
                 <span>Tổng tạm tính</span>
-                <strong>256.170₫</strong>
+                <strong>117.000₫</strong>
               </div>
               <div class="order-actions">
+                  <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
                 <button type="button" class="btn-reorder">
                   Đặt lại đơn này
                 </button>

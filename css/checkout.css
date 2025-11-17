@@ -206,20 +206,17 @@
 
 .checkout-page footer {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
     border-top: 1px solid black;
-    padding: 16px;
-    margin-left:10px;   
+    padding:20px;
+    justify-content: space-between;
 }
-.payment-button {
+.btn {
     width:240px;
     background: var(--primary);
     color: var(--surface);
     border: none;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -227,7 +224,7 @@
     text-align: center;
 }
 
-.payment-button:hover {
+.btn:hover {
     background: var(--primary-dark);
 }
 
@@ -235,7 +232,7 @@
 .checkout-order-summary {
     background: var(--surface);
     border-radius: 18px;
-    padding: 28px;
+    padding: 20px;
     position: sticky;
     top: 96px;
     box-shadow: 0 18px 36px rgba(31, 41, 51, 0.08);
@@ -253,19 +250,66 @@
     color: var(--text-muted);
 }
 
-.summary-empty {
-    text-align: center;
+.summary-main {
     background: rgba(255, 107, 53, 0.05);
     border-radius: 14px;
-    padding: 32px 24px;
+    padding: 14px;
+}
+.empty{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    gap:10px;
+    padding:20px;
+}
+.empty p{
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 16px;
+    margin:0;
+}
+.empty i{
+    font-size: 20px;
+}
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+    background: var(--surface);
+    padding:10px;
+    border-radius: 16px;
+    border: 2px solid var(--border);
+}
+.item .left{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.item img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+.item .name{
+    font-size: 14px;
+}
+.item .quantity{
+    font-size: 12px;
     color: var(--text-muted);
 }
-
-.empty-illustration {
-    font-size: 2rem;
-    margin-bottom: 12px;
+.item .price{
+    font-size: 14px;
 }
-
 .summary-divider {
     height: 1px;
     background: var(--border);

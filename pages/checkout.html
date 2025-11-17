@@ -198,7 +198,10 @@
                     </label>
                 </section>
                 <footer >
-                    <a href="./order_complete.html" class="payment-button">
+                    <a href="./cart.html" class="btn">
+                        Thay đổi sản phẩm
+                    </a>
+                    <a href="./order_complete.html" class="btn">
                         Xác nhận đặt hàng
                     </a>
                    
@@ -210,28 +213,50 @@
                     <h2>Tóm tắt đơn hàng</h2>
                     <p>Kiểm tra nhanh các món bạn đã chọn trước khi xác nhận.</p>
                 </header>
-                <div class="summary-empty" >
-                    <div class="empty-illustration" aria-hidden="true">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
+                <div class="summary-main empty" style="display:none;">
                     <p>
-                        Giỏ hàng của bạn đang trống. Hãy quay lại trang sản phẩm để thêm
-                        món trước khi thanh toán.
+                        Giỏ hàng của bạn đang trống. Hãy quay lại trang giỏ hàng
+                        để chọn sản phầm trước khi thanh toán.
                     </p>
+                    <a href="cart.html" class="btn"><i class="fa-solid fa-cart-shopping"></i>
+                        Quay lại giỏ hàng.
+                    </a>
+                </div>
+                <div class="summary-main items">
+                    <div class="item">
+                        <div class="left">
+                            <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                            <span class="name">Yogurt</span>
+                        </div>
+                        <div class="right">
+                            <span class="quantity">x2</span>
+                            <span class="price">28.000đ</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="../assets/images/yogurt.jpg" alt="Yogurt" />
+                            <span class="name">Yogurt</span>
+                        </div>
+                        <div class="right">
+                            <span class="quantity">x2</span>
+                            <span class="price">28.000đ</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="summary-divider" aria-hidden="true"></div>
                 <dl class="summary-totals">
                     <div class="checkout-summary-row">
                         <dt>Tạm tính</dt>
-                        <dd>0₫</dd>
+                        <dd>56.000₫</dd>
                     </div>
                     <div class="checkout-summary-row">
                         <dt>Phí vận chuyển</dt>
-                        <dd>0₫</dd>
+                        <dd>15.000₫</dd>
                     </div>
                     <div class="checkout-summary-row checkout-summary-total">
                         <dt>Tổng cộng</dt>
-                        <dd><strong>0₫</strong></dd>
+                        <dd><strong>71.000₫</strong></dd>
                     </div>
                 </dl>
             </aside>
