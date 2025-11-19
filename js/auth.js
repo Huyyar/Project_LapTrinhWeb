@@ -2,7 +2,7 @@ const ADMIN_EMAIL = "admin@snackhub.vn";
 const KEY_IS_LOGGED_IN = "isLoggedIn";
 const KEY_USER = "user";
 const KEY_IS_ADMIN = "isAdmin";
-// Dùng lưu trạng thái đăng nhập
+
 function getLoginState() {
   return sessionStorage.getItem(KEY_IS_LOGGED_IN) === "true";
 }
@@ -25,7 +25,7 @@ function setLoginState(isLoggedIn, userData = null, redirectPath = null) {
   }
 }
 
-// chỉnh lại thanh điều hướng kkhi đăng nhập
+
 function updateNavUI() {
   const isLoggedIn = getLoginState();
   const navAuth = document.querySelector(".nav-auth");
@@ -39,17 +39,17 @@ function updateNavUI() {
     : "pages/order_history.html";
   const profilePath = isSubPage ? "profile.html" : "pages/profile.html";
 
-  // Xóa icon  cũ mỗi lần đăng nhập  để tránh trùng lặp
+  
   const oldUserProfile = document.querySelector(".user-profile");
   if (oldUserProfile) {
     oldUserProfile.remove();
   }
 
   if (isLoggedIn) {
-    // Ẩn nút Đăng nhập , đăng kí
+  
     if (navAuth) navAuth.style.display = "none";
 
-    // Tạo và chèn icon người dùng vào thanh nav
+
     const userProfile = document.createElement("div");
     userProfile.className = "user-profile";
     userProfile.innerHTML = `
@@ -63,7 +63,7 @@ function updateNavUI() {
       </div>
     `;
 
-    // Chèn icon vào trước nút giỏ hàng
+  
     if (navActions) {
       navActions.insertBefore(
         userProfile,
@@ -71,7 +71,7 @@ function updateNavUI() {
       );
     }
 
-    // Thêm sự kiện cho nút đăng xuất
+  
     const logoutBtn = document.getElementById("logout-btn");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
@@ -81,21 +81,21 @@ function updateNavUI() {
       });
     }
   } else {
-    // Hiển thị lại các nút "Đăng nhập" / "Đăng kí"
+    
     if (navAuth) navAuth.style.display = "flex";
   }
 }
 
-// Gắn sự kiện submit cho các form
+
 function handleAuthForms() {
-  // Tìm form trên trang hiện tại
+
   const authForm = document.querySelector(".auth-form");
   if (!authForm) {
     return;
   }
 
   authForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // Ngăn form gửi đi
+    event.preventDefault(); 
 
     const pageType = document.body.dataset.page;
 
@@ -133,7 +133,7 @@ function handleAuthForms() {
   });
 }
 
-// Chạy các hàm cần thiết khi trang đã tải xong
+
 document.addEventListener("DOMContentLoaded", () => {
   if (
     document.body.dataset.page === "login" ||
@@ -141,6 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     handleAuthForms();
   }
-  // updateNavUI chạy trên mọi trang
+
   updateNavUI();
 });
