@@ -72,17 +72,27 @@
 
 .order-card-header {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   gap: 16px;
 }
-
+.order-card-header .order-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 .order-card-header time {
   display: block;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
-
+.order-card-header .order-note {
+    margin: 0;
+    padding:0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
 .order-code {
   font-weight: 600;
   color: var(--text);
@@ -93,6 +103,8 @@
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.9rem;
+    width: 160px;
+    text-align: center;
 }
 
 .status-pending {
@@ -112,7 +124,7 @@
 
 .order-summary {
   list-style: none;
-  margin: 20px 0 0;
+  margin: 0;
   padding: 18px 0 18px;
   border-top: 2px dashed var(--border);
   border-bottom: 2px dashed var(--border);
@@ -150,13 +162,6 @@
 .order-summary .item-price {
     font-size: 16px;
   font-weight: lighter;
-}
-
-.order-note {
-  margin: 18px 0 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  padding-right: 12px;
 }
 
 .order-card-footer {
@@ -227,35 +232,4 @@
 
 .link-detail:hover::after {
   opacity: 0;
-}
-
-
-
-@media (max-width: 768px) {
-  .order-card {
-    padding: 20px;
-  }
-
-  .order-card-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .order-summary li {
-    grid-template-columns: 1fr auto;
-    gap: 8px;
-  }
-
-  .item-price {
-    justify-self: end;
-  }
-
-  .order-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .order-filters {
-    gap: 8px;
-  }
 }
