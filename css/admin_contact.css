@@ -1,0 +1,67 @@
+@import url("./admin.css");
+.email-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.email-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+
+.badge.pending {
+    background: #fff4e5;
+    color: #b76e00;
+}
+
+.badge.confirmed {
+    background: #e6f9f0;
+    color: #0f9d58;
+}
+
+
+.action-buttons-group {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+.btn-view {
+    color: #2563eb; 
+    border-color: #e5e7eb;
+    background: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-view:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+}
+
+
+.btn-delete {
+    color: #ef4444;
+    border-color: #e5e7eb;
+    background: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
