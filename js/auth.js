@@ -37,7 +37,7 @@ function updateNavUI() {
   const orderHistoryPath = isSubPage
     ? "order_history.html"
     : "pages/order_history.html";
-  const profilePath = isSubPage ? "profile.html" : "pages/profile.html";
+  const profilePath = isSubPage ? "user_profile.html" : "pages/user_profile.html";
 
   
   const oldUserProfile = document.querySelector(".user-profile");

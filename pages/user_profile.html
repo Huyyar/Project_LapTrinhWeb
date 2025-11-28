@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Địa chỉ giao hàng</title>
+    <title>Hồ sơ cá nhân</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,14 +13,16 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/profile.css" />
+    <link rel="stylesheet" href="../css/user_profile.css" />
+      <link rel="stylesheet" href="../css/userPage.css">
   </head>
-  <body data-page="address">
+  <body data-page="profile">
     <header class="navbar" id="navbar">
       <div class="container nav-inner">
         <a class="logo" href="../index.html">
@@ -54,31 +56,73 @@
         </nav>
       </div>
     </header>
-    <main class="profile-page">
+    <main class="user-page">
       <div class="container">
-        <div class="profile-layout">
-          <aside class="profile-sidebar">
-            <div class="profile-card">
+        <div class="layout">
+          <aside class="sidebar">
+            <div class="card">
               <div class="avatar-wrap">
                 <img src="../assets/icons/icon_user.png" alt="Ảnh đại diện" />
                 <button type="button">Đổi ảnh</button>
               </div>
               <h1>Xin chào, Nguyễn!</h1>
             </div>
-            <nav class="profile-menu" aria-label="Tùy chọn hồ sơ">
-              <a href="profile.html" class="menu-item">
-                <i class="fa-solid fa-user"></i> Thông tin cá nhân
-              </a>
-              <a href="address.html" class="menu-item is-active">
-                <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
-              </a>
+            <nav class="menu" aria-label="Tùy chọn hồ sơ">
+                <a href="user_profile.html" class="menu-item is-active">
+                    <i class="fa-solid fa-user"></i> Thông tin cá nhân
+                </a>
+                <a href="user_address.html" class="menu-item">
+                    <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
+                </a>
+                <a href="user_changePassword.html" class="menu-item">
+                    <i class="fa-solid fa-key"></i> Đổi mật khẩu
+                </a>
             </nav>
           </aside>
-          <section class="profile-content" aria-label="Địa chỉ giao hàng">
+          <section class="profile-content" aria-label="Chi tiết hồ sơ">
             <section
               class="panel profile-section is-active"
-              data-section="address"
+              data-section="personal"
             >
+              <header class="panel-header">
+                <h2>Thông tin cá nhân</h2>
+              </header>
+              <form class="panel-body form-grid">
+                <label>
+                  Họ và tên
+                  <input type="text" placeholder="Nguyễn Văn A" />
+                </label>
+                <label>
+                  Email
+                  <input type="email" placeholder="Nguyen@example.com" />
+                </label>
+                <label>
+                  Số điện thoại
+                  <input type="tel" placeholder="0123 456 789" />
+                </label>
+                <label>
+                  Ngày sinh
+                  <input type="date" />
+                </label>
+                <label>
+                  Giới tính
+                  <select>
+                    <option value="">-- Chọn --</option>
+                    <option value="female">Nữ</option>
+                    <option value="male">Nam</option>
+                    <option value="other">Khác</option>
+                  </select>
+                </label>
+                <div class="form-actions">
+                  <button type="reset" class="btn-secondary">Hủy</button>
+                  <button type="submit" class="btn-primary">
+                    Lưu thay đổi
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel profile-section" data-section="address">
               <header class="panel-header">
                 <h2>Địa chỉ giao hàng</h2>
                 <p>Lưu nhiều địa chỉ để điền nhanh mỗi lần checkout.</p>
