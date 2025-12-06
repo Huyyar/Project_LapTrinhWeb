@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SnackHub">
+    <output-path>$PROJECT_DIR$/out/artifacts/SnackHub</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Project_LapTrinhWeb" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Project_LapTrinhWeb/web/Web" />
+    </root>
+  </artifact>
+</component>
