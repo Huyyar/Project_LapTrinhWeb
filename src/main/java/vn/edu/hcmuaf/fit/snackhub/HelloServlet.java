@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.demo;
+package vn.edu.hcmuaf.fit.snackhub;
 
 import java.io.*;
 
