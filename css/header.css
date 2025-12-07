@@ -6,6 +6,28 @@
   position: relative;
 }
 
+.nav-inner,
+.nav-actions {
+  align-items: center;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-links a.active,
+.nav-links a[aria-current="page"],
+.nav-links a[href*="product"].active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .user-icon-btn {
   background: none;
   border: none;

@@ -242,7 +242,15 @@ body {
 
 /* Action buttons group */
 .main .content .panel .table-wrap table td .btn {
-  margin-right: 4px;
+  margin-right: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.main .content .panel .table-wrap table td .btn:hover {
+  background: rgba(255, 107, 53, 0.08);
+  border-color: rgba(255, 107, 53, 0.4);
+  color: var(--primary);
 }
 
 .main .content .panel .table-wrap table td .btn:last-child {
@@ -254,7 +262,7 @@ body {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
   z-index: 90;
 }
 
@@ -275,12 +283,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding: 18px 24px;
   border-bottom: 1px solid var(--border);
 }
 
 .modal-body {
-  padding: 16px;
+  padding: 24px;
 }
 
 .icon-btn {
@@ -296,13 +304,14 @@ body {
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px 14px;
 }
 
 .form-grid label {
   display: grid;
   gap: 6px;
   font-size: 0.9rem;
+  margin-bottom: 16px;
 }
 
 .form-grid label.full {
@@ -312,7 +321,7 @@ body {
 .form-grid input,
 .form-grid select,
 .form-grid textarea {
-  padding: 10px 12px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
@@ -322,7 +331,25 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  padding: 8px 16px 16px 16px;
+  padding: 12px 24px 20px 24px;
+}
+
+/* Modal buttons */
+.modal-actions .btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.modal-actions .btn.primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.modal-actions .btn.primary:hover {
+  background: color-mix(in srgb, var(--primary) 90%, black);
+  border-color: color-mix(in srgb, var(--primary) 90%, black);
 }
 
 /* Utilities for showing/hiding */
