@@ -16,7 +16,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/admin.css" />
-    <link rel="stylesheet" href="../css/contact_admin.css" />
+    <link rel="stylesheet" href="../css/admin_contact.css" />
   </head>
 
   <body>
@@ -28,21 +28,32 @@
         </div>
         <nav class="nav-menu">
           <a href="./admin.html" class="nav-link">
+            <i class="fa-solid fa-chart-pie"></i>
             <span>Dashboard</span>
           </a>
           <a href="./admin_product.html" class="nav-link">
+            <i class="fa-solid fa-box-open"></i>
             <span>Sản phẩm</span>
           </a>
           <a href="./orders.html" class="nav-link">
+            <i class="fa-solid fa-clipboard-list"></i>
             <span>Đơn hàng</span>
           </a>
           <a href="./users.html" class="nav-link">
+            <i class="fa-solid fa-users"></i>
             <span>Người dùng</span>
           </a>
           <a href="./admin_contact.html" class="nav-link active">
+            <i class="fa-solid fa-envelope"></i>
             <span>Liên Hệ</span>
           </a>
-          <a href="../index.html" class="nav-link" id="logout-btn">
+          <a
+            href="../index.html"
+            class="nav-link"
+            id="logout-btn"
+            style="margin-top: auto; color: var(--danger)"
+          >
+            <i class="fa-solid fa-right-from-bracket"></i>
             <span>Đăng xuất</span>
           </a>
         </nav>
@@ -50,103 +61,52 @@
 
       <main class="main">
         <header class="topbar">
-          <div class="header-group">
-            <h1>Quản Lý Liên Hệ</h1>
-          </div>
-          <div class="top-actions">
-            <input placeholder="Tìm theo tên hoặc email..." />
+          <div class="header-group column-mobile">
+            <div>
+              <p class="eyebrow">Quản Lý Liên Hệ</p>
+              <h1 class="page-title">Quản Lý Liên Hệ</h1>
+            </div>
+            <div class="count-pill" id="messageCount">0 tin nhắn</div>
           </div>
         </header>
 
         <section class="content">
-          <div class="panel">
-            <div class="panel-header">
-              <h2>Danh sách tin nhắn</h2>
+          <div class="filters-card">
+            <div class="filter-grid">
+              <div class="input-group icon-left">
+                <span class="input-icon">🔍</span>
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Tìm kiếm theo tên, email, tiêu đề..."
+                />
+              </div>
+              <div class="input-group">
+                <select id="statusFilter">
+                  <option value="all">Lọc theo trạng thái</option>
+                  <option value="new">Mới</option>
+                  <option value="read">Đã đọc</option>
+                  <option value="replied">Đã trả lời</option>
+                </select>
+              </div>
             </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header"><h2>Danh sách tin nhắn</h2></div>
             <div class="table-wrap">
               <table>
                 <thead>
-                  <!-- Đã cập nhật lại header theo yêu cầu: Bỏ ID, Nội dung -> Email -->
                   <tr>
-                    <th width="20%">Người gửi</th>
-                    <th width="30%">Email</th>
-                    <th width="20%">Ngày gửi</th>
-                    <th width="15%">Trạng thái</th>
-                    <th width="15%" style="text-align: center">Hành động</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th class="subject-col">Tiêu đề</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                    <th class="text-right">Hành động</th>
                   </tr>
                 </thead>
-                <tbody id="contact-table-body">
-                  <tr>
-                    <td>Nguyễn Văn A</td>
-                    <td>nguyenvana@email.com</td>
-                    <td>2025-11-20</td>
-                    <td>Chưa xử lý</td>
-                    <td style="text-align: center">
-                      <button class="btn-view" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
-                      </button>
-                      <button class="btn-delete" title="Xóa">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Trần Thị B</td>
-                    <td>tranthib@email.com</td>
-                    <td>2025-11-21</td>
-                    <td>Đã xử lý</td>
-                    <td style="text-align: center">
-                      <button class="btn-view" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
-                      </button>
-                      <button class="btn-delete" title="Xóa">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Lê Văn C</td>
-                    <td>levanc@email.com</td>
-                    <td>2025-11-22</td>
-                    <td>Chưa xử lý</td>
-                    <td style="text-align: center">
-                      <button class="btn-view" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
-                      </button>
-                      <button class="btn-delete" title="Xóa">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Phạm Thị D</td>
-                    <td>phamthid@email.com</td>
-                    <td>2025-11-23</td>
-                    <td>Đã xử lý</td>
-                    <td style="text-align: center">
-                      <button class="btn-view" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
-                      </button>
-                      <button class="btn-delete" title="Xóa">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ngô Văn E</td>
-                    <td>ngovane@email.com</td>
-                    <td>2025-11-24</td>
-                    <td>Chưa xử lý</td>
-                    <td style="text-align: center">
-                      <button class="btn-view" title="Xem chi tiết">
-                        <i class="fa-solid fa-eye"></i>
-                      </button>
-                      <button class="btn-delete" title="Xóa">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody id="contactTable"></tbody>
               </table>
             </div>
           </div>
@@ -155,6 +115,6 @@
     </div>
 
     <script src="../js/auth.js"></script>
-   
+    <script src="../js/admin_contact.js" defer></script>
   </body>
 </html>

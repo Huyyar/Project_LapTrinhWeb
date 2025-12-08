@@ -13,38 +13,36 @@
 
 <body>
   <div class="app">
-    <aside class="sidebar" id="sidebar">
+     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="logo">🍿</div>
         <span class="brand-text">SnackHub Admin</span>
       </div>
       <nav class="nav-menu">
-
         <a href="./admin.html" class="nav-link">
-   
+          <i class="fa-solid fa-chart-pie"></i>
           <span>Dashboard</span>
         </a>
         <a href="./admin_product.html" class="nav-link active">
-
+          <i class="fa-solid fa-box-open"></i>
           <span>Sản phẩm</span>
         </a>
-     
-
         <a href="./orders.html" class="nav-link">
-         
+          <i class="fa-solid fa-clipboard-list"></i>
           <span>Đơn hàng</span>
         </a>
         <a href="./users.html" class="nav-link">
-         
+          <i class="fa-solid fa-users"></i>
           <span>Người dùng</span>
         </a>
-         <a href="./admin_contact.html" class="nav-link">
-            <span>Liên Hệ</span>
-          </a>
-          <a href="../index.html" class="nav-link" id="logout-btn">
-
-                    <span>Đăng xuất</span>
-                </a>
+        <a href="./admin_contact.html" class="nav-link">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Liên Hệ</span>
+        </a>
+        <a href="../index.html" class="nav-link" id="logout-btn" style="margin-top: auto; color: var(--danger);">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Đăng xuất</span>
+        </a>
       </nav>
     </aside>
 
@@ -98,7 +96,9 @@
                   <td>55.000₫</td>
                   <td>95</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                  <td><button class="btn"><i class="fa-solid fa-eye"></i>
+                  </button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                   <button class="btn"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr>
@@ -181,7 +181,106 @@
       </section>
     </main>
   </div>
-  <script src="../js/auth.js"></script>
+  <!-- Modals: Add Product & Edit Product (UI only) -->
+  <div class="modal-overlay" id="modalOverlay" hidden></div>
+  
+  <div class="modal" id="addProductModal" hidden aria-hidden="true" role="dialog" aria-labelledby="addProductTitle">
+    <div class="modal-header">
+      <h3 id="addProductTitle">Thêm sản phẩm</h3>
+      <button class="icon-btn" data-close-modal aria-label="Đóng">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="addProductForm" onsubmit="return false">
+        <div class="form-grid">
+          <label>
+            Tên sản phẩm
+            <input type="text" placeholder="Nhập tên sản phẩm" />
+          </label>
+          <label>
+            Danh mục
+            <select>
+              <option>Đồ mặn</option>
+              <option>Đồ ngọt</option>
+              <option>Đồ uống</option>
+            </select>
+          </label>
+          <label>
+            Giá (₫)
+            <input type="number" placeholder="Ví dụ: 45000" />
+          </label>
+          <label>
+            Tồn kho
+            <input type="number" placeholder="Ví dụ: 100" />
+          </label>
+          <label class="full">
+            Mô tả
+            <textarea rows="3" placeholder="Mô tả ngắn"></textarea>
+          </label>
+          <label class="full">
+            URL ảnh sản phẩm
+            <input type="url" placeholder="https://example.com/image.jpg" />
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close-modal>Hủy</button>
+          <button class="btn primary" type="button">Lưu (giả lập)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="editProductModal" hidden aria-hidden="true" role="dialog" aria-labelledby="editProductTitle">
+    <div class="modal-header">
+      <h3 id="editProductTitle">Chỉnh sửa sản phẩm</h3>
+      <button class="icon-btn" data-close-modal aria-label="Đóng">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="editProductForm" onsubmit="return false">
+        <div class="form-grid">
+          <label>
+            Tên sản phẩm
+            <input type="text" value="Rong biển cay giòn" />
+          </label>
+          <label>
+            Danh mục
+            <select>
+              <option selected>Đồ mặn</option>
+              <option>Đồ ngọt</option>
+              <option>Đồ uống</option>
+            </select>
+          </label>
+          <label>
+            Giá (₫)
+            <input type="number" value="35700" />
+          </label>
+          <label>
+            Tồn kho
+            <input type="number" value="180" />
+          </label>
+          <label class="full">
+            Trạng thái
+            <select>
+              <option selected>Hiện</option>
+              <option>Ẩn</option>
+            </select>
+          </label>
+          <label class="full">
+            URL ảnh sản phẩm
+            <input type="url" placeholder="https://example.com/image.jpg" />
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close-modal>Hủy</button>
+          <button class="btn primary" type="button">Cập nhật (giả lập)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts at the end to ensure DOM is ready -->
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/admin_product.js" defer></script>
+  
 </body>
 
 </html>
