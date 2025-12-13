@@ -85,7 +85,7 @@
                   <td>35.700₫</td>
                   <td>180</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                  <td><button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr>
@@ -96,9 +96,7 @@
                   <td>55.000₫</td>
                   <td>95</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i>
-                  </button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                   <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                  <td><button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr>
@@ -217,16 +215,17 @@
             <textarea rows="3" placeholder="Mô tả ngắn"></textarea>
           </label>
           
-          <!-- Multi Image Upload Section -->
+          <!-- Image URL Input Section -->
           <label class="full">
-            <span>Hình ảnh sản phẩm</span>
-            <div class="modal-image-upload">
-              <div class="upload-trigger-modal" onclick="document.getElementById('addProductImages').click()">
-                <input type="file" id="addProductImages" accept="image/*" multiple />
-                <i class="fa-solid fa-images"></i>
-                <span>Chọn nhiều ảnh</span>
-                <small>Tối đa 10 ảnh</small>
+            <span>URL Hình ảnh sản phẩm</span>
+            <div class="image-url-section">
+              <div class="url-input-group">
+                <input type="url" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
+                <button type="button" class="btn-add-url" onclick="addImageFromUrl('addImageUrl', 'addImagesPreview', 'addMainThumbnail')">
+                  <i class="fa-solid fa-plus"></i> Thêm
+                </button>
               </div>
+              <small class="hint-text">Nhập URL ảnh và nhấn "Thêm". Bạn có thể thêm nhiều ảnh (tối đa 10)</small>
               <div id="addImagesPreview" class="modal-images-preview"></div>
             </div>
           </label>
@@ -275,16 +274,17 @@
             </select>
           </label>
           
-          <!-- Multi Image Upload Section -->
+          <!-- Image URL Input Section -->
           <label class="full">
-            <span>Hình ảnh sản phẩm</span>
-            <div class="modal-image-upload">
-              <div class="upload-trigger-modal" onclick="document.getElementById('editProductImages').click()">
-                <input type="file" id="editProductImages" accept="image/*" multiple />
-                <i class="fa-solid fa-images"></i>
-                <span>Chọn nhiều ảnh</span>
-                <small>Tối đa 10 ảnh</small>
+            <span>URL Hình ảnh sản phẩm</span>
+            <div class="image-url-section">
+              <div class="url-input-group">
+                <input type="url" id="editImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
+                <button type="button" class="btn-add-url" onclick="addImageFromUrl('editImageUrl', 'editImagesPreview', 'editMainThumbnail')">
+                  <i class="fa-solid fa-plus"></i> Thêm
+                </button>
               </div>
+              <small class="hint-text">Nhập URL ảnh và nhấn "Thêm". Bạn có thể thêm nhiều ảnh (tối đa 10)</small>
               <div id="editImagesPreview" class="modal-images-preview">
                 <!-- Sample existing image -->
                 <div class="modal-image-item" data-image-id="existing-1">
