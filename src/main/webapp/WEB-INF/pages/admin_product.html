@@ -194,11 +194,11 @@
         <div class="form-grid">
           <label>
             Tên sản phẩm
-            <input type="text" placeholder="Nhập tên sản phẩm" />
+            <input type="text" placeholder="Nhập tên sản phẩm" required />
           </label>
           <label>
             Danh mục
-            <select>
+            <select required>
               <option>Đồ mặn</option>
               <option>Đồ ngọt</option>
               <option>Đồ uống</option>
@@ -206,24 +206,34 @@
           </label>
           <label>
             Giá (₫)
-            <input type="number" placeholder="Ví dụ: 45000" />
+            <input type="number" placeholder="Ví dụ: 45000" required />
           </label>
           <label>
             Tồn kho
-            <input type="number" placeholder="Ví dụ: 100" />
+            <input type="number" placeholder="Ví dụ: 100" required />
           </label>
           <label class="full">
             Mô tả
             <textarea rows="3" placeholder="Mô tả ngắn"></textarea>
           </label>
+          
+          <!-- Multi Image Upload Section -->
           <label class="full">
-            URL ảnh sản phẩm
-            <input type="url" placeholder="https://example.com/image.jpg" />
+            <span>Hình ảnh sản phẩm</span>
+            <div class="modal-image-upload">
+              <div class="upload-trigger-modal" onclick="document.getElementById('addProductImages').click()">
+                <input type="file" id="addProductImages" accept="image/*" multiple />
+                <i class="fa-solid fa-images"></i>
+                <span>Chọn nhiều ảnh</span>
+                <small>Tối đa 10 ảnh</small>
+              </div>
+              <div id="addImagesPreview" class="modal-images-preview"></div>
+            </div>
           </label>
         </div>
         <div class="modal-actions">
-          <button class="btn" data-close-modal>Hủy</button>
-          <button class="btn primary" type="button">Lưu (giả lập)</button>
+          <button class="btn" data-close-modal type="button">Hủy</button>
+          <button class="btn primary" type="submit">Lưu sản phẩm</button>
         </div>
       </form>
     </div>
@@ -239,11 +249,11 @@
         <div class="form-grid">
           <label>
             Tên sản phẩm
-            <input type="text" value="Rong biển cay giòn" />
+            <input type="text" value="Rong biển cay giòn" required />
           </label>
           <label>
             Danh mục
-            <select>
+            <select required>
               <option selected>Đồ mặn</option>
               <option>Đồ ngọt</option>
               <option>Đồ uống</option>
@@ -251,27 +261,47 @@
           </label>
           <label>
             Giá (₫)
-            <input type="number" value="35700" />
+            <input type="number" value="35700" required />
           </label>
           <label>
             Tồn kho
-            <input type="number" value="180" />
+            <input type="number" value="180" required />
           </label>
           <label class="full">
             Trạng thái
-            <select>
+            <select required>
               <option selected>Hiện</option>
               <option>Ẩn</option>
             </select>
           </label>
+          
+          <!-- Multi Image Upload Section -->
           <label class="full">
-            URL ảnh sản phẩm
-            <input type="url" placeholder="https://example.com/image.jpg" />
+            <span>Hình ảnh sản phẩm</span>
+            <div class="modal-image-upload">
+              <div class="upload-trigger-modal" onclick="document.getElementById('editProductImages').click()">
+                <input type="file" id="editProductImages" accept="image/*" multiple />
+                <i class="fa-solid fa-images"></i>
+                <span>Chọn nhiều ảnh</span>
+                <small>Tối đa 10 ảnh</small>
+              </div>
+              <div id="editImagesPreview" class="modal-images-preview">
+                <!-- Sample existing image -->
+                <div class="modal-image-item" data-image-id="existing-1">
+                  <img src="../../assets/images/Image_Rong_Bien.jpeg" alt="Rong Biển" />
+                  <button type="button" class="modal-btn-remove"><i class="fa-solid fa-xmark"></i></button>
+                  <label class="modal-thumbnail-badge">
+                    <input type="radio" name="editMainThumbnail" value="existing-1" checked />
+                    <i class="fa-solid fa-star"></i>
+                  </label>
+                </div>
+              </div>
+            </div>
           </label>
         </div>
         <div class="modal-actions">
-          <button class="btn" data-close-modal>Hủy</button>
-          <button class="btn primary" type="button">Cập nhật (giả lập)</button>
+          <button class="btn" data-close-modal type="button">Hủy</button>
+          <button class="btn primary" type="submit">Cập nhật sản phẩm</button>
         </div>
       </form>
     </div>

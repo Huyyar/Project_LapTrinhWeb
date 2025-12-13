@@ -111,26 +111,57 @@ Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
 
                 <div class="card">
                   <h3>Hình ảnh sản phẩm</h3>
-                  <div
-                    class="image-upload-area"
-                    onclick="document.getElementById('productImage').click()"
-                  >
-                    <input
-                      type="file"
-                      id="productImage"
-                      accept="image/*"
-                      onchange="previewImage(event)"
-                    />
-                    <img
-                      id="preview"
-                      src="../../assets/images/Image_Rong_Bien.jpeg"
-                      alt="Preview"
-                      class="image-preview"
-                    />
-                    <div class="upload-icon">
-                      <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                  <!-- Multiple Image Upload Area -->
+                  <div class="multi-image-upload-section">
+                    <div
+                      class="upload-trigger"
+                      onclick="document.getElementById('productImages').click()"
+                    >
+                      <input
+                        type="file"
+                        id="productImages"
+                        accept="image/*"
+                        multiple
+                      />
+                      <div class="upload-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                      </div>
+                      <span class="upload-text">Chọn nhiều ảnh sản phẩm</span>
+                      <small class="upload-hint"
+                        >Hỗ trợ: JPG, PNG, WEBP (Tối đa 10 ảnh)</small
+                      >
                     </div>
-                    <span class="upload-text">Nhấn để thay đổi ảnh</span>
+
+                    <!-- Images Preview Grid -->
+                    <div id="imagesPreviewGrid" class="images-preview-grid">
+                      <!-- Sample existing image -->
+                      <div class="image-preview-item" data-image-id="1">
+                        <img
+                          src="../../assets/images/Image_Rong_Bien.jpeg"
+                          alt="Product Image 1"
+                        />
+                        <button
+                          type="button"
+                          class="btn-remove-image"
+                          title="Xóa ảnh"
+                        >
+                          <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <label class="thumbnail-badge">
+                          <input
+                            type="radio"
+                            name="mainThumbnail"
+                            value="1"
+                            checked
+                          />
+                          <span class="badge-icon">
+                            <i class="fa-solid fa-star"></i>
+                          </span>
+                          <span class="badge-text">Ảnh đại diện</span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,5 +183,6 @@ Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
         </section>
       </main>
     </div>
+    <script src="../../assets/js/admin_product_edit.js"></script>
   </body>
 </html>
