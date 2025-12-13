@@ -6,6 +6,7 @@
     <title>SnackHub - Menu sản phẩm</title>
     <link rel="stylesheet" href="../../assets/css/product.css" />
     <link rel="stylesheet" href="../../assets/css/header.css" />
+    <link rel="stylesheet" href="../../assets/css/cart-drawer.css" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
@@ -54,8 +55,14 @@
                 <span class="nav-divider"></span>
                 <a class="link-button" href="login.html">Đăng nhập</a>
               </div>
-              <button class="cart-button">
-                <a href="cart.html">Giỏ Hàng</a>
+              <button
+                class="cart-button"
+                id="cartButton"
+                onclick="toggleCartDrawer()"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Giỏ Hàng</span>
+                <span class="cart-count" id="cartCount">0</span>
               </button>
             </div>
           </nav>
@@ -505,6 +512,63 @@
         </div>
       </footer>
     </div>
+
+    <!-- Cart Drawer -->
+    <div
+      class="cart-overlay"
+      id="cartOverlay"
+      onclick="toggleCartDrawer()"
+    ></div>
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
+        <h3>Giỏ Hàng (<span id="cartItemCount">0</span>)</h3>
+        <button class="btn-close-drawer" onclick="toggleCartDrawer()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-drawer-body" id="cartDrawerBody">
+        <!-- Empty State -->
+        <div class="cart-empty" id="cartEmpty">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <p>Giỏ hàng trống</p>
+          <button class="btn-continue-shopping" onclick="toggleCartDrawer()">
+            Tiếp tục mua sắm
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="cart-items" id="cartItems" style="display: none">
+          <!-- Items will be rendered here by JS -->
+        </div>
+      </div>
+
+      <div class="cart-drawer-footer" id="cartFooter" style="display: none">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Tạm tính:</span>
+            <strong id="cartSubtotal">0₫</strong>
+          </div>
+          <div class="summary-row">
+            <span>Phí ship:</span>
+            <strong id="cartShipping">30.000₫</strong>
+          </div>
+          <div class="summary-row total">
+            <span>Tổng cộng:</span>
+            <strong id="cartTotal">0₫</strong>
+          </div>
+        </div>
+        <button
+          class="btn-checkout"
+          onclick="window.location.href='checkout.html'"
+        >
+          <i class="fa-solid fa-credit-card"></i>
+          Thanh Toán
+        </button>
+      </div>
+    </div>
+
     <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/cart-drawer.js"></script>
   </body>
 </html>

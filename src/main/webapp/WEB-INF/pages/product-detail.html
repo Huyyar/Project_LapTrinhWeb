@@ -6,6 +6,7 @@
     <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" href="../../assets/css/product-detail.css" />
     <link rel="stylesheet" href="../../assets/css/header.css" />
+    <link rel="stylesheet" href="../../assets/css/cart-drawer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -54,8 +55,14 @@
               <span class="nav-divider"></span>
               <a class="link-button" href="login.html">Đăng nhập</a>
             </div>
-            <button class="cart-button">
-              <a href="cart.html">Giỏ Hàng</a>
+            <button
+              class="cart-button"
+              id="cartButton"
+              onclick="toggleCartDrawer()"
+            >
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>Giỏ Hàng</span>
+              <span class="cart-count" id="cartCount">0</span>
             </button>
           </div>
         </nav>
@@ -66,42 +73,64 @@
       <div class="product-detail-container">
         <div class="product-detail-grid">
           <div class="product-detail-images">
-            <img
-              src="../../assets/images/Image_Rong_Bien.jpeg"
-              alt="Rong Biển"
-            />
+            <div class="main-image-container">
+              <img
+                id="mainImage"
+                src="../../assets/images/Image_Rong_Bien.jpeg"
+                alt="Rong Biển"
+              />
+            </div>
+            <div class="thumbnails-container">
+              <div
+                class="thumbnail active"
+                data-image="../../assets/images/Image_Rong_Bien.jpeg"
+              >
+                <img
+                  src="../../assets/images/Image_Rong_Bien.jpeg"
+                  alt="Rong Biển - Ảnh 1"
+                />
+              </div>
+              <div
+                class="thumbnail"
+                data-image="../../assets/images/Image_Rong_Bien.jpeg"
+              >
+                <img
+                  src="../../assets/images/Image_Rong_Bien.jpeg"
+                  alt="Rong Biển - Ảnh 2"
+                />
+              </div>
+              <div
+                class="thumbnail"
+                data-image="../../assets/images/Image_Rong_Bien.jpeg"
+              >
+                <img
+                  src="../../assets/images/Image_Rong_Bien.jpeg"
+                  alt="Rong Biển - Ảnh 3"
+                />
+              </div>
+              <div
+                class="thumbnail"
+                data-image="../../assets/images/Image_Rong_Bien.jpeg"
+              >
+                <img
+                  src="../../assets/images/Image_Rong_Bien.jpeg"
+                  alt="Rong Biển - Ảnh 4"
+                />
+              </div>
+            </div>
           </div>
           <div class="product-detail-info">
             <span class="product-tag">Đồ mặn</span>
             <h1>Rong biển cay giòn</h1>
-            <p class="product-name-en">Spicy Crispy Seaweed</p>
             <div class="product-detail-price">35.700₫</div>
             <div class="product-stock-status in-stock">
               <span class="status-dot" aria-hidden="true"></span>
               <span>Tình trạng: Còn hàng</span>
             </div>
-            <div class="product-production-info" aria-live="polite">
-              <div>
-                <span class="label">Ngày sản xuất</span>
-                <strong>12/09/2025</strong>
-              </div>
-              <div>
-                <span class="label">Hạn sử dụng</span>
-                <strong>12/03/2026</strong>
-              </div>
-            </div>
             <p class="product-detail-description">
               Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn tan
               nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.
             </p>
-            <div>
-              <h3>Đặc điểm nổi bật</h3>
-              <ul class="modal-highlights">
-                <li>Rong biển nướng thủ công</li>
-                <li>Gia vị cay nhẹ vừa ăn</li>
-                <li>Ít dầu và không chất bảo quản</li>
-              </ul>
-            </div>
             <div class="product-quantity">
               <label for="product-quantity-input">Số lượng</label>
               <div class="quantity-input">
@@ -195,6 +224,64 @@
         </button>
       </div>
     </footer>
+
+    <!-- Cart Drawer -->
+    <div
+      class="cart-overlay"
+      id="cartOverlay"
+      onclick="toggleCartDrawer()"
+    ></div>
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
+        <h3>Giỏ Hàng (<span id="cartItemCount">0</span>)</h3>
+        <button class="btn-close-drawer" onclick="toggleCartDrawer()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-drawer-body" id="cartDrawerBody">
+        <!-- Empty State -->
+        <div class="cart-empty" id="cartEmpty">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <p>Giỏ hàng trống</p>
+          <button class="btn-continue-shopping" onclick="toggleCartDrawer()">
+            Tiếp tục mua sắm
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="cart-items" id="cartItems" style="display: none">
+          <!-- Items will be rendered here by JS -->
+        </div>
+      </div>
+
+      <div class="cart-drawer-footer" id="cartFooter" style="display: none">
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Tạm tính:</span>
+            <strong id="cartSubtotal">0₫</strong>
+          </div>
+          <div class="summary-row">
+            <span>Phí ship:</span>
+            <strong id="cartShipping">30.000₫</strong>
+          </div>
+          <div class="summary-row total">
+            <span>Tổng cộng:</span>
+            <strong id="cartTotal">0₫</strong>
+          </div>
+        </div>
+        <button
+          class="btn-checkout"
+          onclick="window.location.href='checkout.html'"
+        >
+          <i class="fa-solid fa-credit-card"></i>
+          Thanh Toán
+        </button>
+      </div>
+    </div>
+
     <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/product-detail.js"></script>
+    <script src="../../assets/js/cart-drawer.js"></script>
   </body>
 </html>
