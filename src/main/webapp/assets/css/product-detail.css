@@ -230,43 +230,97 @@ img {
   display: flex;
   gap: 12px;
   margin-top: 24px;
+  margin-bottom: 16px;
 }
 
 .btn {
   border: none;
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 14px 24px;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
 .btn-primary {
   background: var(--primary);
   color: white;
+  flex: 1;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
 }
 
-.product-detail-page .product-detail-info .product-detail-actions a {
-  align-self: center;
-  color: var(--text);
-  background-color: var(--surface);
-  border-radius: 12px;
-  padding: 12px 20px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  border: 1px solid var(--border);
-}
-
-.product-detail-page .product-detail-info .product-detail-actions a:hover {
-  border-color: rgba(255, 107, 53, 0.5);
+.btn-wishlist {
+  background: rgba(255, 107, 53, 0.1);
   color: var(--primary);
-  background: rgba(255, 107, 53, 0.04);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  padding: 14px 20px;
+  position: relative;
+}
+
+.btn-wishlist i {
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-wishlist i.fa-regular {
+  display: inline;
+}
+
+.btn-wishlist i.fa-solid {
+  display: none;
+}
+
+.btn-wishlist.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-wishlist.active i.fa-regular {
+  display: none;
+}
+
+.btn-wishlist.active i.fa-solid {
+  display: inline;
+}
+
+.btn-wishlist:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.btn-wishlist.active:hover {
+  background: var(--primary-dark);
+}
+
+.product-detail-links {
+  margin-top: 16px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--primary);
+  gap: 12px;
 }
 .logo {
   display: flex;
