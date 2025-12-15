@@ -67,7 +67,9 @@
 
 .user-dropdown a,
 .user-dropdown button {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   text-align: left;
   padding: 12px 16px;
@@ -78,6 +80,15 @@
   font-size: 0.95rem;
   border-radius: 8px;
   transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.user-dropdown a i,
+.user-dropdown button i {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  color: var(--primary);
 }
 
 .user-dropdown a:hover,
@@ -91,4 +102,14 @@
   color: #e53e3e;
   font-weight: 600;
   margin-top: 4px;
+}
+
+#logout-btn i {
+  color: #e53e3e;
+}
+
+.user-dropdown .divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
 }
