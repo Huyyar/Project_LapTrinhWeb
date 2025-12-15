@@ -162,9 +162,25 @@
                 class="btn btn-primary"
                 onclick="alert('Đã thêm vào giỏ hàng!')"
               >
+                <i class="fa-solid fa-cart-plus"></i>
                 Thêm vào giỏ hàng
               </button>
-              <a href="product.html">Quay lại </a>
+              <button
+                class="btn btn-wishlist"
+                id="wishlistBtn"
+                onclick="toggleDetailWishlist()"
+                title="Thêm vào yêu thích"
+              >
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-solid fa-heart"></i>
+                <span id="wishlistBtnText">Yêu thích</span>
+              </button>
+            </div>
+            <div class="product-detail-links">
+              <a href="product.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Quay lại
+              </a>
             </div>
           </div>
         </div>
@@ -280,8 +296,53 @@
       </div>
     </div>
 
+    <script src="../../assets/js/wishlist.js"></script>
     <script src="../../assets/js/auth.js"></script>
     <script src="../../assets/js/product-detail.js"></script>
     <script src="../../assets/js/cart-drawer.js"></script>
+    <script>
+      // Current product data
+      const currentProduct = {
+        id: 1,
+        name: "Rong biển cay giòn",
+        nameEn: "Spicy Crispy Seaweed",
+        description: "Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc",
+        price: 35700,
+        image: "../../assets/images/Image_Rong_Bien.jpeg",
+        category: "Đồ mặn",
+      };
+
+      // Toggle wishlist for current product
+      function toggleDetailWishlist() {
+        const isAdded = toggleWishlist(currentProduct);
+        updateWishlistButton(isAdded);
+      }
+
+      // Update wishlist button appearance
+      function updateWishlistButton(isInWishlist) {
+        const wishlistBtn = document.getElementById("wishlistBtn");
+        const wishlistBtnText = document.getElementById("wishlistBtnText");
+
+        if (wishlistBtn) {
+          if (isInWishlist) {
+            wishlistBtn.classList.add("active");
+            if (wishlistBtnText) {
+              wishlistBtnText.textContent = "Đã thích";
+            }
+          } else {
+            wishlistBtn.classList.remove("active");
+            if (wishlistBtnText) {
+              wishlistBtnText.textContent = "Yêu thích";
+            }
+          }
+        }
+      }
+
+      // Initialize wishlist button on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const isInWishlistStatus = isInWishlist(currentProduct.id);
+        updateWishlistButton(isInWishlistStatus);
+      });
+    </script>
   </body>
 </html>
