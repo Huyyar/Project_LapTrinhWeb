@@ -120,7 +120,7 @@ function handleAuthForms() {
         return;
       }
 
-      setLoginState(true, { email, role: "user" }, "../index.html");
+      setLoginState(true, { email, role: "user" }, "../index.jsp");
     } else if (pageType === "signup") {
       const emailInput = document.getElementById("signup-email");
       if (!emailInput) {
@@ -128,7 +128,7 @@ function handleAuthForms() {
       }
 
       const email = emailInput.value.trim();
-      setLoginState(true, { email, role: "user" }, "../index.html");
+      setLoginState(true, { email, role: "user" }, "../index.jsp");
     }
   });
 }

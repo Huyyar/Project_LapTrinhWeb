@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.disabled = false;
 
         // Redirect (Demo)
-        // window.location.href = './admin_product.html';
+        // window.location.href = './products.jsp';
       }, 1000);
     });
   }

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="vi">
 
@@ -8,7 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../../assets/css/admin_product.css" />
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/css/admin_product.css">
 </head>
 
 <body>
@@ -39,7 +41,7 @@
           <i class="fa-solid fa-envelope"></i>
           <span>Liên Hệ</span>
         </a>
-        <a href="../../index.html" class="nav-link" id="logout-btn" style="margin-top: auto; color: var(--danger);">
+        <a href="../../index.jsp" class="nav-link" id="logout-btn" style="margin-top: auto; color: var(--danger);">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span>Đăng xuất</span>
         </a>
@@ -54,7 +56,7 @@
         </div>
         <div class="top-actions">
           <input placeholder="Tìm kiếm sản phẩm..." />
-          <button class="btn primary">Thêm sản phẩm</button>
+          <button class="btn primary" id="add-product-btn">Thêm sản phẩm</button>
         </div>
       </header>
 
@@ -78,38 +80,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="../../assets/images/Image_Rong_Bien.jpeg" alt="Rong biển cay giòn" class="product-image" />
-                  </td>
-                  <td>Rong biển cay giòn<br><small>Spicy Crispy Seaweed</small></td>
-                  <td>Đồ mặn</td>
-                  <td>35.700₫</td>
-                  <td>180</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/Image_Bap_Rang.jpg" alt="Bắp rang caramel" class="product-image" />
-                  </td>
-                  <td>Bắp rang caramel<br><small>Caramel Popcorn</small></td>
-                  <td>Đồ ngọt</td>
-                  <td>55.000₫</td>
-                  <td>95</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/banh-xoan.jpg" alt="Bánh xoắn phô mai" class="product-image" /></td>
-                  <td>Bánh xoắn phô mai<br><small>Cheese Twist Snack</small></td>
-                  <td>Đồ mặn</td>
-                  <td>43.200₫</td>
-                  <td>60</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
                   <td><img src="../../assets/images/banh_mochi.jpg" alt="Bánh mochi matcha" class="product-image" /></td>
                   <td>Bánh mochi matcha<br><small>Matcha Mochi</small></td>
                   <td>Đồ ngọt</td>
@@ -119,60 +89,6 @@
                   <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
-                <tr>
-                  <td><img src="../../assets/images/soda nho.jpg" alt="Nước nho soda" class="product-image" /></td>
-                  <td>Nước nho soda<br><small>Grape Soda</small></td>
-                  <td>Đồ uống</td>
-                  <td>29.000₫</td>
-                  <td>120</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/khoai tay mat ong.jpg" alt="Khoai tây mật ong bơ"
-                      class="product-image" /></td>
-                  <td>Khoai tây mật ong bơ<br><small>Honey Butter Chips</small></td>
-                  <td>Đồ mặn</td>
-                  <td>45.760₫</td>
-                  <td>75</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/da-ca-trung-muoi.jpg" alt="Da cá trứng muối" class="product-image" />
-                  </td>
-                  <td>Da cá trứng muối<br><small>Salted Egg Fish Skin</small></td>
-                  <td>Đồ mặn</td>
-                  <td>69.000₫</td>
-                  <td>50</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/nuoc-ep-yuzu.jpg" alt="Nước yuzu sủi mát" class="product-image" /></td>
-                  <td>Nước yuzu sủi mát<br><small>Sparkling Yuzu Drink</small></td>
-                  <td>Đồ uống</td>
-                  <td>33.000₫</td>
-                  <td>110</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img src="../../assets/images/bap rang nam.webp" alt="Bắp rang nấm truffle" class="product-image" />
-                  </td>
-                  <td>Bắp rang nấm truffle<br><small>Truffle Popcorn</small></td>
-                  <td>Đồ ngọt</td>
-                  <td>75.650₫</td>
-                  <td>85</td>
-                  <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
-                  </td>
-                </tr>
-              </body>
             </table>
           </div>
         </div>
@@ -181,22 +97,22 @@
   </div>
   <!-- Modals: Add Product & Edit Product (UI only) -->
   <div class="modal-overlay" id="modalOverlay" hidden></div>
-  
+
   <div class="modal" id="addProductModal" hidden aria-hidden="true" role="dialog" aria-labelledby="addProductTitle">
     <div class="modal-header">
       <h3 id="addProductTitle">Thêm sản phẩm</h3>
       <button class="icon-btn" data-close-modal aria-label="Đóng">✕</button>
     </div>
     <div class="modal-body">
-      <form id="addProductForm" onsubmit="return false">
+      <form id="addProductForm" action="product" method="post">
         <div class="form-grid">
           <label>
             Tên sản phẩm
-            <input type="text" placeholder="Nhập tên sản phẩm" required />
+            <input type="text" name="name" placeholder="Nhập tên sản phẩm" required />
           </label>
           <label>
             Danh mục
-            <select required>
+            <select required name="category">
               <option>Đồ mặn</option>
               <option>Đồ ngọt</option>
               <option>Đồ uống</option>
@@ -204,23 +120,23 @@
           </label>
           <label>
             Giá (₫)
-            <input type="number" placeholder="Ví dụ: 45000" required />
+            <input type="number" name="price" placeholder="Ví dụ: 45000" required />
           </label>
           <label>
             Tồn kho
-            <input type="number" placeholder="Ví dụ: 100" required />
+            <input type="number" name="quantity" placeholder="Ví dụ: 100" required />
           </label>
           <label class="full">
             Mô tả
-            <textarea rows="3" placeholder="Mô tả ngắn"></textarea>
+            <textarea rows="3" name="description" placeholder="Mô tả ngắn"></textarea>
           </label>
-          
+
           <!-- Image URL Input Section -->
           <label class="full">
             <span>URL Hình ảnh sản phẩm</span>
             <div class="image-url-section">
               <div class="url-input-group">
-                <input type="url" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
+                <input type="url" name="img" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
                 <button type="button" class="btn-add-url" onclick="addImageFromUrl('addImageUrl', 'addImagesPreview', 'addMainThumbnail')">
                   <i class="fa-solid fa-plus"></i> Thêm
                 </button>
@@ -273,7 +189,7 @@
               <option>Ẩn</option>
             </select>
           </label>
-          
+
           <!-- Image URL Input Section -->
           <label class="full">
             <span>URL Hình ảnh sản phẩm</span>
@@ -307,10 +223,8 @@
     </div>
   </div>
 
-  <!-- Scripts at the end to ensure DOM is ready -->
-  <script src="../../assets/js/auth.js" defer></script>
-  <script src="../../assets/js/admin_product.js" defer></script>
-  
+  <script src="${pageContext.request.contextPath}/assets/js/admin_product.js" defer></script>
+
 </body>
 
 </html>
