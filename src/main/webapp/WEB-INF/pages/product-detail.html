@@ -170,6 +170,64 @@
         </div>
       </div>
     </div>
+    <!-- Comments Section -->
+    <section class="product-comments">
+      <div class="container comments-inner">
+        <h3 class="comments-title">Bình luận</h3>
+
+     
+
+          <article class="comment">
+            <div class="comment-avatar">KN</div>
+            <div class="comment-body">
+              <div class="comment-meta">
+                <span class="comment-author">Lê Minh</span>
+                <span class="comment-date">· 1 tuần trước</span>
+              </div>
+              <p class="comment-text">Chất lượng tốt, sẽ ủng hộ tiếp.</p>
+            </div>
+          </article>
+          
+          <article class="comment">
+            <div class="comment-avatar">TN</div>
+            <div class="comment-body">
+              <div class="comment-meta">
+                <span class="comment-author">Trương Ngọc</span>
+                <span class="comment-date">· 4 tuần trước</span>
+              </div>
+              <p class="comment-text">Thích vị này, phù hợp làm quà tặng nhỏ.</p>
+            </div>
+          </article>
+
+          <article class="comment">
+            <div class="comment-avatar">DK</div>
+            <div class="comment-body">
+              <div class="comment-meta">
+                <span class="comment-author">Đặng Khánh</span>
+                <span class="comment-date">· Tháng trước</span>
+              </div>
+              <p class="comment-text">Giao hàng cẩn thận, sản phẩm đúng mô tả.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Comment input (avatar + textarea + send) placed below existing comments -->
+        <form id="commentForm" class="comment-form">
+          <div class="form-row">
+            <div class="comment-avatar" id="currentUserAvatar">
+              <img src="../../assets/images/default-avatar.png" alt="avatar" onerror="this.style.display='none'" />
+              <span class="avatar-initials">KH</span>
+            </div>
+            <textarea id="commentInput" class="fb-comment-input" rows="3" placeholder="Viết bình luận của bạn..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" id="sendCommentBtn" class="btn btn-primary">Gửi</button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="container footer-inner">
         <div>
