@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="vi">
 
@@ -79,16 +80,30 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><img src="../../assets/images/banh_mochi.jpg" alt="Bánh mochi matcha" class="product-image" /></td>
-                  <td>Bánh mochi matcha<br><small>Matcha Mochi</small></td>
-                  <td>Đồ ngọt</td>
-                  <td>58.900₫</td>
-                  <td>40</td>
+              <c:choose>
+              <c:when test="${not empty products}">
+              <c:forEach var="p" items="${products}">
+              <tr>
+                  <td><img src="${p.img}" alt="${p.name}" class="product-image" /></td>
+                  <td>${p.name}<br><small>${p.description}</small></td>
+                  <td>${p.category}</td>
+                  <td>${p.price}₫</td>
+                  <td>${p.quantity}</td>
                   <td><span class="badge confirmed">Hiện</span></td>
-                  <td><button class="btn"><i class="fa-solid fa-eye"></i></button> <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                  <td>
+                      <button class="btn"><i class="fa-solid fa-eye"></i></button>
+                      <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn"><i class="fa-solid fa-trash"></i></button>
                   </td>
-                </tr>
+              </tr>
+              </c:forEach>
+              </c:when>
+              <c:otherwise>
+              <tr>
+                  <td colspan="7">Không có sản phẩm</td>
+              </tr>
+              </c:otherwise>
+              </c:choose>
             </table>
           </div>
         </div>
@@ -104,7 +119,7 @@
       <button class="icon-btn" data-close-modal aria-label="Đóng">✕</button>
     </div>
     <div class="modal-body">
-      <form id="addProductForm" action="product" method="post">
+      <form id="addProductForm" action="add-product" method="post">
         <div class="form-grid">
           <label>
             Tên sản phẩm
