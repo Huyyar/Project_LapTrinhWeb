@@ -15,13 +15,14 @@ public class ProductDao {
              ResultSet rs = ps.executeQuery()){
             while (rs.next()) {
                 Product product = new Product();
-                product.setId(rs.getInt("id"));
+                product.setCategory_id(rs.getInt("category_id"));
                 product.setName(rs.getString("name"));
-                product.setCategory(rs.getString("category"));
-                product.setPrice(rs.getDouble("price"));
-                product.setQuantity(rs.getInt("quantity"));
                 product.setDescription(rs.getString("description"));
-                product.setImg(rs.getString("img"));
+                product.setPrice(rs.getDouble("price"));
+                product.setImage_url(rs.getString("image_url"));
+                product.setInventory_qty(rs.getInt("inventory_qty"));
+                CategoryDao  categoryDao = new CategoryDao();
+                product.setCategory(categoryDao.getCategory(product.getCategory_id()));
                 products.add(product);
             }
 
@@ -31,16 +32,16 @@ public class ProductDao {
         return  products;
     }
     public void addProduct(Product product) {
-        String sql = "INSERT INTO products(name, category, price, quantity, description, img) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getCategory());
-            ps.setDouble(3, product.getPrice());
-            ps.setInt(4, product.getQuantity());
-            ps.setString(5, product.getDescription());
-            ps.setString(6, product.getImg());
+            ps.setInt(1, product.getCategory_id());
+            ps.setString(2, product.getName());
+            ps.setString(3, product.getDescription());
+            ps.setDouble(4, product.getPrice());
+            ps.setString(5,product.getImage_url());
+            ps.setInt(6, product.getInventory_qty());
 
             ps.executeUpdate();
 

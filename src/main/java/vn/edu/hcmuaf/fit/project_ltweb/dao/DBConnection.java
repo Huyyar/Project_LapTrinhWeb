@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://caboose.proxy.rlwy.net:45861/railway?useSSL=true&allowPublicKeyRetrieval=true";
+    private static final String URL = "jdbc:mysql://metro.proxy.rlwy.net:36986/railway?useSSL=true&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
-    private static final String PASS = "yvjvUYIqFPLxeEDsKJktPPVDcRllKQsj";
+    private static final String PASS = "LVFgolNhniwnCWMBGbZpjNjkWBktnfxm";
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");  // Load driver

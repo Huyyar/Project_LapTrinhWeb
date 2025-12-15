@@ -17,7 +17,6 @@ public class ListProductController extends HttpServlet {
     private ProductService service =  new ProductService();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = service.getProducts();
-        System.out.println("Số sản phẩm lấy được: " + products.size());
         request.setAttribute("products", products);
         request.getRequestDispatcher("/WEB-INF/pages/admin/products.jsp").forward(request, response);
     }

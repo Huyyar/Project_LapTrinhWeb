@@ -84,11 +84,11 @@
               <c:when test="${not empty products}">
               <c:forEach var="p" items="${products}">
               <tr>
-                  <td><img src="${p.img}" alt="${p.name}" class="product-image" /></td>
+                  <td><img src="${p.image_url}" alt="${p.name}" class="product-image" /></td>
                   <td>${p.name}<br><small>${p.description}</small></td>
                   <td>${p.category}</td>
                   <td>${p.price}₫</td>
-                  <td>${p.quantity}</td>
+                  <td>${p.inventory_qty}</td>
                   <td><span class="badge confirmed">Hiện</span></td>
                   <td>
                       <button class="btn"><i class="fa-solid fa-eye"></i></button>
@@ -127,11 +127,18 @@
           </label>
           <label>
             Danh mục
-            <select required name="category">
-              <option>Đồ mặn</option>
-              <option>Đồ ngọt</option>
-              <option>Đồ uống</option>
-            </select>
+              <select required name="category">
+                  <option value="1">Bánh tráng</option>
+                  <option value="2">Trái cây sấy</option>
+                  <option value="3">Bánh</option>
+                  <option value="4">Nước</option>
+                  <option value="5">Khô các loại</option>
+                  <option value="6">Mứt</option>
+                  <option value="7">Kẹo</option>
+                  <option value="8">Đậu-hạt dinh dưỡng</option>
+                  <option value="9">Trà-nước giải nhiệt</option>
+              </select>
+
           </label>
           <label>
             Giá (₫)
@@ -139,7 +146,7 @@
           </label>
           <label>
             Tồn kho
-            <input type="number" name="quantity" placeholder="Ví dụ: 100" required />
+            <input type="number" name="inventory_qty" placeholder="Ví dụ: 100" required />
           </label>
           <label class="full">
             Mô tả
@@ -151,7 +158,7 @@
             <span>URL Hình ảnh sản phẩm</span>
             <div class="image-url-section">
               <div class="url-input-group">
-                <input type="url" name="img" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
+                <input type="url" name="image_url" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
                 <button type="button" class="btn-add-url" onclick="addImageFromUrl('addImageUrl', 'addImagesPreview', 'addMainThumbnail')">
                   <i class="fa-solid fa-plus"></i> Thêm
                 </button>
