@@ -1,26 +1,29 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Giỏ hàng</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="../../assets/css/header.css" />
-    <link rel="stylesheet" href="../../assets/css/footer.css" />
-    <link rel="stylesheet" href="../../assets/css/cart.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+              href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+              rel="stylesheet"
+      />
+      <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+              integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"
+      />
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/cart.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
+
   </head>
   <body>
     <header class="navbar" id="navbar">
@@ -78,15 +81,17 @@
         </div>
         <section class="content">
           <div class="items">
+              <c:forEach items="${sessionScope.cart.items}" var="ci">
+
             <div class="item">
               <button class="select" onclick="this.classList.toggle('active')">
                 <i class="fa-solid fa-check"></i>
               </button>
               <div class="product">
-                <img src="../../assets/images/yogurt.jpg" alt="Yogurt" />
+                <img src="${ci.product.image_url}" alt="Yogurt" />
                 <div class="info">
-                  <span class="name">Yogurt</span>
-                  <span class="price">28.000đ</span>
+                  <span class="name">${ci.product.name}</span>
+                  <span class="price">${ci.product.price}</span>
                 </div>
               </div>
               <div class="quantity">
@@ -94,7 +99,7 @@
                   class="quantity-input"
                   type="number"
                   min="1"
-                  value="1"
+                  value="${ci.qty}"
                   aria-label="Số lượng Yogurt"
                 />
                 <button class="delete">
@@ -102,30 +107,7 @@
                 </button>
               </div>
             </div>
-            <div class="item">
-              <button class="select" onclick="this.classList.toggle('active')">
-                <i class="fa-solid fa-check"></i>
-              </button>
-              <div class="product">
-                <img src="../../assets/images/yogurt.jpg" alt="Yogurt" />
-                <div class="info">
-                  <span class="name">Yogurt</span>
-                  <span class="price">28.000đ</span>
-                </div>
-              </div>
-              <div class="quantity">
-                <input
-                  class="quantity-input"
-                  type="number"
-                  min="1"
-                  value="1"
-                  aria-label="Số lượng Yogurt"
-                />
-                <button class="delete">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </div>
-            </div>
+              </c:forEach>
           </div>
           <div class="empty" style="display: none">
             <p>Giỏ hàng của bạn chưa có sản phẩm nào!</p>
@@ -136,7 +118,7 @@
           </div>
 
           <footer>
-            <span>Thành tiền: 56.000đ</span>
+            <span>Thành tiền: ${sessionScope.cart.totalPrice}đ</span>
             <a class="btn" href="checkout.html"> Thanh toán </a>
           </footer>
         </section>

@@ -94,6 +94,11 @@
                       <button class="btn"><i class="fa-solid fa-eye"></i></button>
                       <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
                       <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                      <button class="btn add-image-btn"
+                              data-product-id="${p.id}"
+                              data-product-name="${p.name}">
+                          Thêm ảnh
+                      </button>
                   </td>
               </tr>
               </c:forEach>
@@ -159,12 +164,7 @@
             <div class="image-url-section">
               <div class="url-input-group">
                 <input type="url" name="image_url" id="addImageUrl" placeholder="https://example.com/image.jpg" class="form-control" />
-                <button type="button" class="btn-add-url" onclick="addImageFromUrl('addImageUrl', 'addImagesPreview', 'addMainThumbnail')">
-                  <i class="fa-solid fa-plus"></i> Thêm
-                </button>
               </div>
-              <small class="hint-text">Nhập URL ảnh và nhấn "Thêm". Bạn có thể thêm nhiều ảnh (tối đa 10)</small>
-              <div id="addImagesPreview" class="modal-images-preview"></div>
             </div>
           </label>
         </div>
@@ -245,6 +245,35 @@
     </div>
   </div>
 
+  <div class="modal" id="addProductImageModal" hidden aria-hidden="true" role="dialog">
+      <div class="modal-header">
+          <h3>Thêm hình ảnh sản phẩm</h3>
+          <button class="icon-btn" data-close-modal>✕</button>
+      </div>
+
+      <div class="modal-body">
+          <form id="addProductImageForm" action="add-product-image" method="post">
+              <div class="form-grid">
+                  <label>
+                      <span id="productNameInModal"></span>
+                      <input type="hidden" name="product_id" id="productIdInput">
+                  </label>
+
+                  <label class="full">
+                      <span>URL Hình ảnh sản phẩm</span>
+                      <input type="url" name="image_url" id="addImageUrl" required>
+                  </label>
+
+              </div>
+
+              <div class="modal-actions">
+                  <button class="btn" data-close-modal type="button">Hủy</button>
+                  <button class="btn primary" type="submit">Thêm hình ảnh sản phẩm</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  <script src="${pageContext.request.contextPath}/assets/js/admin/add_product_image.js" defer></script>
   <script src="${pageContext.request.contextPath}/assets/js/admin_product.js" defer></script>
 
 </body>
