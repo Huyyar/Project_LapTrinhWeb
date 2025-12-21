@@ -130,6 +130,13 @@
             Tên sản phẩm
             <input type="text" name="name" placeholder="Nhập tên sản phẩm" required />
           </label>
+            <label>
+                Trạng thái
+                <select required name="is_active">
+                    <option value="true">Đang bán</option>
+                    <option value="false">Tạm dừng</option>
+                </select>
+            </label>
           <label>
             Danh mục
               <select required name="category">
@@ -145,10 +152,20 @@
               </select>
 
           </label>
-          <label>
-            Giá (₫)
-            <input type="number" name="price" placeholder="Ví dụ: 45000" required />
-          </label>
+            <label>
+                Featured
+                <select required name="featured">
+                    <option>Bán chạy</option>
+                    <option>Mới</option>
+                    <option>Giới hạn</option>
+                    <option>Combo</option>
+                </select>
+
+            </label>
+            <label>
+                Giá (₫)
+                <input type="number" name="price" placeholder="Ví dụ: 45000" required />
+            </label>
           <label>
             Tồn kho
             <input type="number" name="inventory_qty" placeholder="Ví dụ: 100" required />

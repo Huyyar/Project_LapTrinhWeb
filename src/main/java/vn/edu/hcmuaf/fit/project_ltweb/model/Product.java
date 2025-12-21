@@ -9,16 +9,20 @@ public class Product {
     private String image_url;
     private int inventory_qty;
     private String category;
+    private String featured;
+    private boolean is_active;
     public Product() {
     }
 
-    public Product(int category_id, String name, String description, double price, String image_url, int inventory_qty) {
+    public Product(int category_id, String name, String description, double price, String image_url, int inventory_qty, String featured, boolean is_active) {
         this.category_id = category_id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.image_url = image_url;
         this.inventory_qty = inventory_qty;
+        this.featured =  featured;
+        this.is_active = is_active;
     }
 
     public int getId() {
@@ -83,5 +87,21 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(String featured) {
+        this.featured = featured;
+    }
+
+    public boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
     }
 }

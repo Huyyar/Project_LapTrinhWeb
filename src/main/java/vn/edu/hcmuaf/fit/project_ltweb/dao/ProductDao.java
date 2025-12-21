@@ -24,6 +24,8 @@ public class ProductDao {
                 product.setInventory_qty(rs.getInt("inventory_qty"));
                 CategoryDao  categoryDao = new CategoryDao();
                 product.setCategory(categoryDao.getCategory(product.getCategory_id()));
+                product.setFeatured(rs.getString("featured"));
+                product.setIs_active(rs.getBoolean("is_active"));
                 products.add(product);
             }
 
@@ -33,7 +35,7 @@ public class ProductDao {
         return  products;
     }
     public int addProduct(Product product) {
-        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty, featured, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -43,6 +45,8 @@ public class ProductDao {
             ps.setDouble(4, product.getPrice());
             ps.setString(5,product.getImage_url());
             ps.setInt(6, product.getInventory_qty());
+            ps.setString(7, product.getFeatured());
+            ps.setBoolean(8, product.getIs_active());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -73,6 +77,8 @@ public class ProductDao {
                 product.setInventory_qty(rs.getInt("inventory_qty"));
                 CategoryDao  categoryDao = new CategoryDao();
                 product.setCategory(categoryDao.getCategory(product.getCategory_id()));
+                product.setFeatured(rs.getString("featured"));
+                product.setIs_active(rs.getBoolean("is_active"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
