@@ -23,7 +23,6 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/cart.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
-
   </head>
   <body>
     <header class="navbar" id="navbar">

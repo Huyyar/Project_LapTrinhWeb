@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.project_ltweb.controller;
+package vn.edu.hcmuaf.fit.project_ltweb.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +9,6 @@ import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin/products")

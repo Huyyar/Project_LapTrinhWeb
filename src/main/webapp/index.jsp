@@ -147,292 +147,52 @@
           </div>
 
           <div class="product-grid" data-product-grid="">
-            <article class="product-card" data-product-id="1">
-              <div class="product-head">
-                <span class="product-badge">Bán chạy</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(1)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
+<c:choose>
+    <c:when test="${not empty products}">
+        <c:forEach var="p" items="${products}">
+            <article class="product-card" data-product-id=${p.id}>
+                <div class="product-head">
+                    <span class="product-badge">${p.featured}</span>
+                    <button
+                            class="wishlist-icon"
+                            onclick="toggleProductWishlist(1)"
+                            title="Thêm vào yêu thích"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
 
-              <div class="product-image">
-                <img
-                  src="assets/images/Image_Rong_Bien.jpeg"
-                  alt="Rong biển cay giòn"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ mặn</span>
-              </div>
-              <div class="product-content">
-                <h3>Rong biển cay giòn</h3>
-                <p class="product-name-en">Spicy Crispy Seaweed</p>
-                <p class="product-meta">Gia vị cay nhẹ, giòn rụm</p>
-                <p class="product-description">
-                  Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn
-                  tan nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">35.700₫</span>
+                <div class="product-image">
+                    <img
+                            src="${p.image_url}"
+                            alt="Rong biển cay giòn"
+                            loading="lazy"
+                    />
+                    <span class="product-tag">Đồ mặn</span>
                 </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-<%--                <button--%>
-<%--                  class="btn btn-primary"--%>
-<%--                  type="button"--%>
-<%--                  onclick="alert('Đã thêm vào giỏ hàng!')"--%>
-<%--                >--%>
-<%--                  Thêm vào giỏ--%>
-<%--                </button>--%>
-                  <a href="add-cart?id=2&qty=1" class="btn btn-primary">Thêm vào giỏ</a>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="2">
-              <div class="product-head">
-                <span class="product-badge">Mới</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(2)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
-              <div class="product-image">
-                <img
-                  src="assets/images/Image_Bap_Rang.jpg"
-                  alt="Bắp rang caramel"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ ngọt</span>
-              </div>
-              <div class="product-content">
-                <h3>Bắp rang caramel</h3>
-                <p class="product-name-en">Caramel Popcorn</p>
-                <p class="product-meta">Ngọt dịu, giòn lâu</p>
-                <p class="product-description">
-                  Hạt bắp nổ bằng máy khí nóng, phủ caramel béo nhẹ với vị bơ
-                  mặn để cân bằng độ ngọt – hoàn hảo cho buổi xem phim.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">55.000₫</span>
+                <div class="product-content">
+                    <h3>${p.name}</h3>
+                    <p class="product-description">${p.description}</p>
+                    <div class="product-price">
+                        <span class="product-price-current">${p.price}₫</span>
+                    </div>
                 </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="3">
-              <div class="product-head">
-                <span class="product-badge">Bán chạy</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(3)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
-              <div class="product-image">
-                <img
-                  src="assets/images/banh-xoan.jpg"
-                  alt="Bánh xoắn phô mai"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ mặn</span>
-              </div>
-              <div class="product-content">
-                <h3>Bánh xoắn phô mai</h3>
-                <p class="product-name-en">Cheese Twist Snack</p>
-                <p class="product-meta">Đậm vị cheddar</p>
-                <p class="product-description">
-                  Bánh quy xoắn phủ bột phô mai cheddar mặn mà, hạt nướng giòn
-                  giúp giữ độ xốp đến 6 giờ sau khi mở gói.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">43.200₫</span>
+                <div class="card-actions">
+                    <a
+                            class="btn btn-outline"
+                            href="WEB-INF/pages/product-detail.html"
+                    >Xem chi tiết</a
+                    >
+                    <a href="add-cart?id=${p.id}&qty=1" class="btn btn-primary">Thêm vào giỏ</a>
                 </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
-              </div>
             </article>
-            <article class="product-card" data-product-id="4">
-              <div class="product-head">
-                <span class="product-badge">Giới hạn</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(4)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
-              <div class="product-image">
-                <img
-                  src="assets/images/banh_mochi.jpg"
-                  alt="Bánh mochi matcha"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ ngọt</span>
-              </div>
-              <div class="product-content">
-                <h3>Bánh mochi matcha</h3>
-                <p class="product-name-en">Matcha Mochi</p>
-                <p class="product-meta">Kem matcha tan chảy</p>
-                <p class="product-description">
-                  Vỏ mochi dẻo mịn ôm trọn nhân kem matcha béo nhẹ, hương trà
-                  đậm nhưng không đắng. Thưởng thức ngon nhất khi để lạnh 10
-                  phút.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">58.900₫</span>
-                </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="5">
-              <div class="product-head">
-                <span class="product-badge">Combo</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(5)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
-              <div class="product-image">
-                <img
-                  src="assets/images/soda nho.jpg"
-                  alt="Nước nho soda"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ uống</span>
-              </div>
-              <div class="product-content">
-                <h3>Nước nho soda</h3>
-                <p class="product-name-en">Grape Soda</p>
-                <p class="product-meta">Nho tím có gas</p>
-                <p class="product-description">
-                  Thức uống nho tím có gas vị thanh, ít đường. Uống lạnh giúp
-                  cân bằng các món snack mặn và cay.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">29.000₫</span>
-                </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="6">
-              <div class="product-head">
-                <span class="product-badge">Bán chạy</span>
-                <button
-                  class="wishlist-icon"
-                  onclick="toggleProductWishlist(6)"
-                  title="Thêm vào yêu thích"
-                >
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-              </div>
-              <div class="product-image">
-                <img
-                  src="assets/images/khoai tay mat ong.jpg"
-                  alt="Khoai tây mật ong bơ"
-                  loading="lazy"
-                />
-                <span class="product-tag">Đồ mặn</span>
-              </div>
-              <div class="product-content">
-                <h3>Khoai tây mật ong bơ</h3>
-                <p class="product-name-en">Honey Butter Chips</p>
-                <p class="product-meta">Béo ngọt cân bằng</p>
-                <p class="product-description">
-                  Khoai tây cắt lát mỏng chiên chân không, phủ mật ong và bơ tạo
-                  cảm giác béo mà không ngấy - món quốc dân của giới trẻ Hàn
-                  Quốc.
-                </p>
-                <div class="product-price">
-                  <span class="product-price-current">45.760₫</span>
-                </div>
-              </div>
-              <div class="card-actions">
-                <a
-                  class="btn btn-outline"
-                  href="WEB-INF/pages/product-detail.html"
-                  >Xem chi tiết</a
-                >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
-              </div>
-            </article>
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <span>Không có sản phẩm</span>
+    </c:otherwise>
+</c:choose>
           </div>
         </div>
       </div>
