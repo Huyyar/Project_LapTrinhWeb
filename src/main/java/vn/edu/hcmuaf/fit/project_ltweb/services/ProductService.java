@@ -11,7 +11,11 @@ public class ProductService {
     public List<Product> getProducts() {
         return dao.getProducts();
     }
-    public void addProduct(Product product){
-        dao.addProduct(product);
+    public int addProduct(Product product){
+        return dao.addProduct(product);
+    }
+
+    public Product getProduct(int id) {
+        return dao.getProduct(id);
     }
 }

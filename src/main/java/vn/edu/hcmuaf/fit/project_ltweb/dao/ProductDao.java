@@ -15,6 +15,7 @@ public class ProductDao {
              ResultSet rs = ps.executeQuery()){
             while (rs.next()) {
                 Product product = new Product();
+                product.setId(rs.getInt("id"));
                 product.setCategory_id(rs.getInt("category_id"));
                 product.setName(rs.getString("name"));
                 product.setDescription(rs.getString("description"));
@@ -23,6 +24,8 @@ public class ProductDao {
                 product.setInventory_qty(rs.getInt("inventory_qty"));
                 CategoryDao  categoryDao = new CategoryDao();
                 product.setCategory(categoryDao.getCategory(product.getCategory_id()));
+                product.setFeatured(rs.getString("featured"));
+                product.setIs_active(rs.getBoolean("is_active"));
                 products.add(product);
             }
 
@@ -31,10 +34,10 @@ public class ProductDao {
         }
         return  products;
     }
-    public void addProduct(Product product) {
-        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty) VALUES (?, ?, ?, ?, ?, ?)";
+    public int addProduct(Product product) {
+        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty, featured, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, product.getCategory_id());
             ps.setString(2, product.getName());
@@ -42,11 +45,44 @@ public class ProductDao {
             ps.setDouble(4, product.getPrice());
             ps.setString(5,product.getImage_url());
             ps.setInt(6, product.getInventory_qty());
+            ps.setString(7, product.getFeatured());
+            ps.setBoolean(8, product.getIs_active());
 
             ps.executeUpdate();
-
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1); // product_id
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -1;
+    }
+    public Product  getProduct(int id) {
+        Product product = new Product();
+        String sql = "select * from products where id = ?";
+        try (
+                Connection con = DBConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql);
+                ){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                product.setId(rs.getInt("id"));
+                product.setCategory_id(rs.getInt("category_id"));
+                product.setName(rs.getString("name"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getDouble("price"));
+                product.setImage_url(rs.getString("image_url"));
+                product.setInventory_qty(rs.getInt("inventory_qty"));
+                CategoryDao  categoryDao = new CategoryDao();
+                product.setCategory(categoryDao.getCategory(product.getCategory_id()));
+                product.setFeatured(rs.getString("featured"));
+                product.setIs_active(rs.getBoolean("is_active"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
     }
 }

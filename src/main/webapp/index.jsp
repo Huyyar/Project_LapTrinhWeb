@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,7 +63,8 @@
               >
             </div>
             <button class="cart-button">
-              <a href="WEB-INF/pages/cart.html">Giỏ Hàng</a>
+                <i class="fa-solid fa-cart-shopping"></i>
+              <a href="cart">Giỏ Hàng(${sessionScope.cart.totalQty})</a>
             </button>
           </div>
         </nav>
@@ -184,13 +186,14 @@
                   href="WEB-INF/pages/product-detail.html"
                   >Xem chi tiết</a
                 >
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  onclick="alert('Đã thêm vào giỏ hàng!')"
-                >
-                  Thêm vào giỏ
-                </button>
+<%--                <button--%>
+<%--                  class="btn btn-primary"--%>
+<%--                  type="button"--%>
+<%--                  onclick="alert('Đã thêm vào giỏ hàng!')"--%>
+<%--                >--%>
+<%--                  Thêm vào giỏ--%>
+<%--                </button>--%>
+                  <a href="add-cart?id=2&qty=1" class="btn btn-primary">Thêm vào giỏ</a>
               </div>
             </article>
             <article class="product-card" data-product-id="2">
