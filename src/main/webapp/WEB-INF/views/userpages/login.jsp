@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -5,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SnackHub - Đăng nhập</title>
 
-    <link rel="stylesheet" href="../../assets/css/authorize.css" />
+    <link rel="stylesheet" href="assets/css/authorize.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
     />
   </head>
   <body class="auth-minimal" data-page="login">
@@ -51,7 +52,7 @@
           <button type="submit" class="auth-submit">Đăng nhập</button>
           <div class="auth-meta">
             <span>Chưa có tài khoản?</span>
-            <a class="auth-link" href="register.jsp">Tạo tài khoản mới</a>
+            <a class="auth-link" href="${pageContext.request.contextPath}/register">Tạo tài khoản mới</a>
           </div>
         </form>
       </section>
