@@ -81,7 +81,6 @@
                         <c:forEach var="p" items="${products}">
                             <article class="product-card" data-product-id=${p.id}>
                                 <div class="product-head">
-                                    <span class="product-badge">${p.featured}</span>
                                     <button
                                             class="wishlist-icon"
                                             onclick="toggleProductWishlist(1)"

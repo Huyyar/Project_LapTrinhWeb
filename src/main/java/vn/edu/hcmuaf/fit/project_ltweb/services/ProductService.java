@@ -18,4 +18,8 @@ public class ProductService {
     public Product getProduct(int id) {
         return dao.getProduct(id);
     }
+
+    public List<Product> getFeaturedProducts() {
+        return dao.getFeaturedProducts();
+    }
 }
