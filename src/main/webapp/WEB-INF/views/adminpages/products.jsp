@@ -155,10 +155,8 @@
             <label>
                 Featured
                 <select required name="featured">
-                    <option>Bán chạy</option>
-                    <option>Mới</option>
-                    <option>Giới hạn</option>
-                    <option>Combo</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
                 </select>
 
             </label>

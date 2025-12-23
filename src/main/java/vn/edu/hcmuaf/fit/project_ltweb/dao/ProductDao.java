@@ -24,7 +24,7 @@ public class ProductDao {
                 product.setInventory_qty(rs.getInt("inventory_qty"));
                 CategoryDao  categoryDao = new CategoryDao();
                 product.setCategory(categoryDao.getCategory(product.getCategory_id()));
-                product.setFeatured(rs.getString("featured"));
+                product.setFeatured(rs.getBoolean("featured"));
                 product.setIs_active(rs.getBoolean("is_active"));
                 products.add(product);
             }
@@ -45,7 +45,7 @@ public class ProductDao {
             ps.setDouble(4, product.getPrice());
             ps.setString(5,product.getImage_url());
             ps.setInt(6, product.getInventory_qty());
-            ps.setString(7, product.getFeatured());
+            ps.setBoolean(7, product.getFeatured());
             ps.setBoolean(8, product.getIs_active());
 
             ps.executeUpdate();
@@ -77,7 +77,7 @@ public class ProductDao {
                 product.setInventory_qty(rs.getInt("inventory_qty"));
                 CategoryDao  categoryDao = new CategoryDao();
                 product.setCategory(categoryDao.getCategory(product.getCategory_id()));
-                product.setFeatured(rs.getString("featured"));
+                product.setFeatured(rs.getBoolean("featured"));
                 product.setIs_active(rs.getBoolean("is_active"));
             }
         } catch (SQLException e) {

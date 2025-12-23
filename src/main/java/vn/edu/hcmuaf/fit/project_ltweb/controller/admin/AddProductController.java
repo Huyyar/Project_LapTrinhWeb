@@ -23,7 +23,7 @@ public class AddProductController extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         String image_url = request.getParameter("image_url");
         int inventory_qty = Integer.parseInt(request.getParameter("inventory_qty"));
-        String featured = request.getParameter("featured");
+        boolean featured = Boolean.parseBoolean(request.getParameter("featured"));
         boolean is_active =  Boolean.parseBoolean(request.getParameter("is_active"));
         Product product = new Product(category_id, name, description, price, image_url, inventory_qty, featured, is_active);
         int product_id = service.addProduct(product);

@@ -9,12 +9,12 @@ public class Product {
     private String image_url;
     private int inventory_qty;
     private String category;
-    private String featured;
+    private boolean featured;
     private boolean is_active;
     public Product() {
     }
 
-    public Product(int category_id, String name, String description, double price, String image_url, int inventory_qty, String featured, boolean is_active) {
+    public Product(int category_id, String name, String description, double price, String image_url, int inventory_qty, boolean featured, boolean is_active) {
         this.category_id = category_id;
         this.name = name;
         this.description = description;
@@ -89,11 +89,11 @@ public class Product {
         this.category = category;
     }
 
-    public String getFeatured() {
+    public boolean getFeatured() {
         return featured;
     }
 
-    public void setFeatured(String featured) {
+    public void setFeatured(boolean featured) {
         this.featured = featured;
     }
 

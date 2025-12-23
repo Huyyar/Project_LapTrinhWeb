@@ -19,7 +19,7 @@ public class AdminProductsServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Product> products = service.getProducts();
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/pages/admin/products.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/adminpages/products.jsp").forward(request, response);
 
     }
 }
