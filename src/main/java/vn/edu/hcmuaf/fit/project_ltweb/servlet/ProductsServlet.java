@@ -9,7 +9,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductsServlet", value = "/products")
+@WebServlet(name = "ProductsServlet", value = "/product")
 public class ProductsServlet extends HttpServlet {
     private ProductService service =  new ProductService();
     @Override
