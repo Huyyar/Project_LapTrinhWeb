@@ -35,7 +35,7 @@
         <nav>
             <ul class="nav-links">
                 <li>
-                    <a href="index.html#home" class="active">Trang chủ</a>
+                    <a href="home.jsp#home" class="active">Trang chủ</a>
                 </li>
                 <li>
                     <a href="WEB-INF/pages/product.html"> Sản phẩm</a>
@@ -54,11 +54,11 @@
                     />
                 </div>
                 <div class="nav-auth">
-                    <a class="link-button" href="WEB-INF/pages/register.html"
+                    <a class="link-button" href="${pageContext.request.contextPath}/register"
                     >Đăng kí</a
                     >
                     <span class="nav-divider"></span>
-                    <a class="link-button" href="WEB-INF/pages/login.html"
+                    <a class="link-button" href="${pageContext.request.contextPath}/login"
                     >Đăng nhập</a
                     >
                 </div>
