@@ -53,9 +53,9 @@
                 />
               </div>
               <div class="nav-auth">
-                <a class="link-button" href="../../pages/user/register.html">Đăng kí</a>
+                <a class="link-button" href="register.jsp">Đăng kí</a>
                 <span class="nav-divider"></span>
-                <a class="link-button" href="../../pages/user/login.html">Đăng nhập</a>
+                <a class="link-button" href="login.jsp">Đăng nhập</a>
               </div>
               <button
                 class="cart-button"

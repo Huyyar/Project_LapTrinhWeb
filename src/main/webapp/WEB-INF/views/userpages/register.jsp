@@ -18,7 +18,7 @@
     <main class="auth-shell">
       <span class="auth-brand">SnackHub</span>
       <section class="auth-card" aria-labelledby="signup-title">
-        <a href="../../index.jsp" class="auth-close" aria-label="Đóng"
+        <a href="home.jsp" class="auth-close" aria-label="Đóng"
           >&times;</a
         >
         <header>
@@ -73,11 +73,11 @@
           <button type="submit" class="auth-submit">Đăng ký</button>
           <div class="auth-meta">
             <span>Đã có tài khoản?</span>
-            <a class="auth-link" href="login.html">Đăng nhập</a>
+            <a class="auth-link" href="login.jsp">Đăng nhập</a>
           </div>
         </form>
       </section>
     </main>
-    <script src="../../assets/js/auth.js"></script>
+
   </body>
 </html>

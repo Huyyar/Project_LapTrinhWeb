@@ -35,7 +35,7 @@
         <nav>
             <ul class="nav-links">
                 <li>
-                    <a href="index.html#home" class="active">Trang chủ</a>
+                    <a href="home.jsp#home" class="active">Trang chủ</a>
                 </li>
                 <li>
                     <a href="WEB-INF/pages/product.html"> Sản phẩm</a>

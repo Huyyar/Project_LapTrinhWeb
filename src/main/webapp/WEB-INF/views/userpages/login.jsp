@@ -18,13 +18,13 @@
     <main class="auth-shell">
       <span class="auth-brand">SnackHub</span>
       <section class="auth-card" aria-labelledby="login-title">
-        <a href="../../index.jsp" class="auth-close" aria-label="Đóng"
+        <a href="home.jsp" class="auth-close" aria-label="Đóng"
           >&times;</a
         >
         <header>
           <h1 id="login-title">Đăng nhập</h1>
         </header>
-        <form class="auth-form" action="#" method="post">
+        <form class="auth-form" action="login" method="POST">
           <div class="auth-field">
             <label for="login-email">Email</label>
             <input
@@ -51,11 +51,11 @@
           <button type="submit" class="auth-submit">Đăng nhập</button>
           <div class="auth-meta">
             <span>Chưa có tài khoản?</span>
-            <a class="auth-link" href="register.html">Tạo tài khoản mới</a>
+            <a class="auth-link" href="register.jsp">Tạo tài khoản mới</a>
           </div>
         </form>
       </section>
     </main>
-    <script src="../../assets/js/auth.js"></script>
+
   </body>
 </html>
