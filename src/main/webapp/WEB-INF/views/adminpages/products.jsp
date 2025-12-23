@@ -22,7 +22,7 @@
         <span class="brand-text">SnackHub Admin</span>
       </div>
       <nav class="nav-menu">
-        <a href="./admin.html" class="nav-link">
+        <a href="../../pages/admin/admin.html" class="nav-link">
           <i class="fa-solid fa-chart-pie"></i>
           <span>Dashboard</span>
         </a>
@@ -30,15 +30,15 @@
           <i class="fa-solid fa-box-open"></i>
           <span>Sản phẩm</span>
         </a>
-        <a href="./orders.html" class="nav-link">
+        <a href="../../pages/admin/orders.html" class="nav-link">
           <i class="fa-solid fa-clipboard-list"></i>
           <span>Đơn hàng</span>
         </a>
-        <a href="./users.html" class="nav-link">
+        <a href="../../pages/admin/users.html" class="nav-link">
           <i class="fa-solid fa-users"></i>
           <span>Người dùng</span>
         </a>
-        <a href="./admin_contact.html" class="nav-link">
+        <a href="../../pages/admin/admin_contact.html" class="nav-link">
           <i class="fa-solid fa-envelope"></i>
           <span>Liên Hệ</span>
         </a>
@@ -85,7 +85,7 @@
               <c:forEach var="p" items="${products}">
               <tr>
                   <td><img src="${p.image_url}" alt="${p.name}" class="product-image" /></td>
-                  <td>${p.name}<br><small>${p.description}</small></td>
+                  <td>${p.name}</td>
                   <td>${p.category}</td>
                   <td>${p.price}₫</td>
                   <td>${p.inventory_qty}</td>
