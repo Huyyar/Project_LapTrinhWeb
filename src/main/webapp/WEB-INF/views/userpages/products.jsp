@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +40,7 @@
                 <a href="product.html" class="active">Sản phẩm</a>
               </li>
               <li>
-                <a href="contact.html">Liên hệ</a>
+                <a href="../../pages/user/contact.html">Liên hệ</a>
               </li>
             </ul>
             <div class="nav-actions">
@@ -51,9 +53,9 @@
                 />
               </div>
               <div class="nav-auth">
-                <a class="link-button" href="register.html">Đăng kí</a>
+                <a class="link-button" href="../../pages/user/register.html">Đăng kí</a>
                 <span class="nav-divider"></span>
-                <a class="link-button" href="login.html">Đăng nhập</a>
+                <a class="link-button" href="../../pages/user/login.html">Đăng nhập</a>
               </div>
               <button
                 class="cart-button"
@@ -147,7 +149,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=1"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=1"
                   >Xem chi tiết</a
                 >
                 <button
@@ -192,7 +194,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=2"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=2"
                   >Xem chi tiết</a
                 >
                 <button
@@ -237,7 +239,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=3"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=3"
                   >Xem chi tiết</a
                 >
                 <button
@@ -283,7 +285,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=4"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=4"
                   >Xem chi tiết</a
                 >
                 <button
@@ -328,7 +330,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=5"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=5"
                   >Xem chi tiết</a
                 >
                 <button
@@ -374,7 +376,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=6"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=6"
                   >Xem chi tiết</a
                 >
                 <button
@@ -419,7 +421,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=7"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=7"
                   >Xem chi tiết</a
                 >
                 <button
@@ -464,7 +466,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=8"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=8"
                   >Xem chi tiết</a
                 >
                 <button
@@ -509,7 +511,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <a class="btn btn-outline" href="product-detail.html?id=9"
+                <a class="btn btn-outline" href="../../pages/user/product-detail.html?id=9"
                   >Xem chi tiết</a
                 >
                 <button
