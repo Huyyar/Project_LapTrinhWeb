@@ -17,7 +17,6 @@ public class ProductsServlet extends HttpServlet {
         request.setAttribute("pageTitle", "Trang sản phẩm");
         request.setAttribute("contentPage", "/WEB-INF/views/userpages/products.jsp");
         request.setAttribute("pageCss", new String[]{
-
                 "assets/css/product.css",
                 "assets/css/cart-drawer.css"
         });
@@ -27,6 +26,8 @@ public class ProductsServlet extends HttpServlet {
                 "assets/js/wishlist.js",
 
         });
+        List<Product> products = service.getProducts();
+        request.setAttribute("products", products);
         request.getRequestDispatcher("/WEB-INF/views/layout/layout.jsp")
                 .forward(request, response);
 }
