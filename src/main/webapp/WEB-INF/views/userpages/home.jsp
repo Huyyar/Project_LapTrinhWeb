@@ -93,7 +93,7 @@
 
                                 <div class="product-image">
                                     <img
-                                            src="${p.image_url}"
+                                            src="${pageContext.request.contextPath}/${p.image_url}"
                                             alt="${p.name}"
                                             loading="lazy"
                                     />
