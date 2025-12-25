@@ -1,62 +1,5 @@
-<!DOCTYPE html>
-<html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Admin Dashboard - Snack Food</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="../../assets/css/admin.css" />
-  </head>
-
-  <body>
-    <div class="app">
-      <aside class="sidebar" id="sidebar">
-        <div class="brand">
-          <div class="logo">🍿</div>
-          <span class="brand-text">SnackHub Admin</span>
-        </div>
-        <nav class="nav-menu">
-          <a href="./admin.html" class="nav-link active">
-            <i class="fa-solid fa-chart-pie"></i>
-            <span>Dashboard</span>
-          </a>
-          <a href="admin/products.jsp" class="nav-link">
-            <i class="fa-solid fa-box-open"></i>
-            <span>Sản phẩm</span>
-          </a>
-          <a href="./orders.html" class="nav-link">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>Đơn hàng</span>
-          </a>
-          <a href="./users.html" class="nav-link">
-            <i class="fa-solid fa-users"></i>
-            <span>Người dùng</span>
-          </a>
-          <a href="./admin_contact.html" class="nav-link">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Liên Hệ</span>
-          </a>
-          <a
-            href="../../index.jsp"
-            class="nav-link"
-            id="logout-btn"
-            style="margin-top: auto; color: var(--danger)"
-          >
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Đăng xuất</span>
-          </a>
-        </nav>
-      </aside>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
       <main class="main">
         <header class="topbar">
@@ -161,7 +104,3 @@
           </div>
         </section>
       </main>
-    </div>
-    <script src="../../assets/js/auth.js"></script>
-  </body>
-</html>
