@@ -76,5 +76,7 @@
     </div>
     <div class="modal-body">
         <div id="uppy-dashboard"></div>
+        <jsp:include page="/WEB-INF/views/partials/uploaded_list.jsp"/>
     </div>
+
 </div>

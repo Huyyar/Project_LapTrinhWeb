@@ -1,45 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const { Dashboard, XHRUpload } = Uppy;
+    const targetNode = document.querySelector('#uppy-dashboard');
+    if (!targetNode) return;
+
+    // Chỉ xóa 1 lần trước khi mount
+    targetNode.innerHTML = '';
 
     const uppy = new Uppy.Uppy({
         id: 'imageUploader',
-        autoProceed: false, // Để người dùng nhấn nút Upload mới chạy
+        autoProceed: false,
         debug: true,
         restrictions: {
-            maxFileSize: 2000000, // 2MB
+            maxFileSize: 2 * 1024 * 1024,
             maxNumberOfFiles: 10,
             allowedFileTypes: ['image/*']
         },
-        locale: Uppy.locales.vi_VN // Chuyển sang tiếng Việt
     });
 
-    // Sử dụng giao diện Dashboard
-    uppy.use(Dashboard, {
-        target: '#uppy-dashboard',
-        inline: true, // Hiển thị trực tiếp trên trang
+    uppy.use(Uppy.Dashboard, {
+        target: targetNode,
+        inline: true,
         showProgressDetails: true,
         height: 350,
         width: '100%',
-        note: 'Chỉ chấp nhận file ảnh dưới 2MB, tối đa 10 ảnh',
         proudlyDisplayPoweredByUppy: false,
-        metaFields: [
-            { id: 'name', name: 'Tên File', placeholder: 'Nhập tên file mới' }
-        ]
+        metaFields: [{ id: 'name', name: 'Tên File', placeholder: 'Nhập tên file mới' }]
     });
 
-    // Cấu hình gửi file về Servlet
-    uppy.use(XHRUpload, {
-        endpoint: 'upload-handler', // URL Servlet của bạn
+    uppy.use(Uppy.XHRUpload, {
+        endpoint: 'upload-multi',
         formData: true,
-        fieldName: 'file', // Tương đương name="file" trong form truyền thống
+        fieldName: 'file',
+        bundle: false,
     });
 
-    // Xử lý sau khi upload xong
-    uppy.on('complete', (result) => {
-        console.log('Upload thành công:', result.successful);
-        if (result.successful.length > 0) {
-            // Tự động load lại trang hoặc gọi Ajax lấy danh sách ảnh mới
-            // location.reload();
-        }
+    uppy.on('complete', result => {
+        if (!result.successful.length) return;
+
+        // Tạo mảng chứa tất cả tên file
+        const formData = new FormData();
+        result.successful.forEach(file => {
+            const name = file.response.body; // server trả về ["file1.jpg"] (chuỗi JSON)
+            console.log("Server trả về:", name); // in ra từng response
+            formData.append("names", name);
+        });
+        fetch('ajax/uploaded-images', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (!response.ok) throw new Error("Lỗi Server");
+            return response.text();
+        }).then(html => {
+            const listUl = document.getElementById('uploaded-list');
+            if (listUl) {
+                listUl.innerHTML = html;
+            }
+        }).catch(err => console.error(err));
     });
+
 });

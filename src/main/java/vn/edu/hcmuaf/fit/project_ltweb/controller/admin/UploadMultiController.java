@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.project_ltweb.controller.admin;
 
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,49 +12,40 @@ import vn.edu.hcmuaf.fit.project_ltweb.services.ImageManagerService;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "UploadImageController", value = "/admin/upload-handler")
+@WebServlet(name = "UploadMultiController", value = "/admin/upload-multi")
 // Cấu hình để nhận dữ liệu multipart (file upload)
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-        maxFileSize = 1024 * 1024 * 10,      // 10MB
+        maxFileSize = 1024 * 1024 * 20,      // 20MB
         maxRequestSize = 1024 * 1024 * 50    // 50MB
 )
-public class UploadImageController extends HttpServlet {
+public class UploadMultiController extends HttpServlet {
     private ImageManagerService service;
     private String deploymentPath;
 
     @Override
     public void init() throws ServletException {
-        // Đây mới là nơi an toàn để lấy RealPath
         String root = getServletContext().getRealPath("/");
         this.service = new ImageManagerService(root);
         this.deploymentPath = getServletContext().getRealPath("/assets/images");
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // 1. Lấy file từ Uppy gửi lên (fieldName: 'file')
-            Part filePart = request.getPart("file");
-            if (filePart == null) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Không tìm thấy file");
-                return;
-            }
+            Part part = request.getPart("file");
             String name = request.getParameter("name");
+            part.write(service.getUploadPath() + File.separator + name);
+            part.write(deploymentPath + File.separator + name);
 
-            String uploadPath = service.getUploadPath();
-
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdirs();
-
-            // 5. Ghi file xuống ổ cứng
-            filePart.write(uploadPath + File.separator + name);
-            filePart.write(deploymentPath + File.separator + name);
-
-            // 6. Phản hồi cho Uppy (200 OK)
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Thành công: " + name);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            String json = new Gson().toJson(new String[]{name});
+            response.getWriter().write(json);
 
         } catch (Exception e) {
             e.printStackTrace();

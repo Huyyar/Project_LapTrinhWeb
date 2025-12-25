@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AdminImageManagerServlet", value = "/admin/image-manager")
@@ -35,7 +36,8 @@ public class AdminImageManageServlet extends HttpServlet {
         info.setContent("/WEB-INF/views/admin_pages/image_manager.jsp");
         info.setCss(new String[]{
                 "admin/admin.css",
-                "admin/pagination.css"
+                "admin/pagination.css",
+                "admin/image_manager.css"
         });
         info.setJs(new String[]{
                 "admin/upload.js",
@@ -69,7 +71,6 @@ public class AdminImageManageServlet extends HttpServlet {
 
         List<ImageFile> images = service.getImages(offset,PAGE_SIZE);
         request.setAttribute("images", images);
-
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
                 .forward(request, response);
     }

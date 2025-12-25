@@ -43,4 +43,18 @@ public class ImageManagerService {
         return files == null ? 0 : files.length;
     }
 
+    public ImageFile getImage(String name) {
+        ImageFile image = new  ImageFile();
+        File dir = new File(uploadPath);
+        File[] files = dir.listFiles();
+        for(File file : files){
+            if(file.getName().equals(name)){
+                image.setName(file.getName());
+                image.setUrl("/assets/images/" + file.getName());
+                image.setSize(file.length());
+                return image;
+            }
+        }
+        return null;
+    }
 }
