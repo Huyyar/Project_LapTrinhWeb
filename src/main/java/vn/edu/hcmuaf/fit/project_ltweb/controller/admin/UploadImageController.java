@@ -22,12 +22,14 @@ import java.nio.file.Paths;
 )
 public class UploadImageController extends HttpServlet {
     private ImageManagerService service;
+    private String deploymentPath;
 
     @Override
     public void init() throws ServletException {
         // Đây mới là nơi an toàn để lấy RealPath
         String root = getServletContext().getRealPath("/");
         this.service = new ImageManagerService(root);
+        this.deploymentPath = getServletContext().getRealPath("/assets/images");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +49,7 @@ public class UploadImageController extends HttpServlet {
 
             // 5. Ghi file xuống ổ cứng
             filePart.write(uploadPath + File.separator + name);
+            filePart.write(deploymentPath + File.separator + name);
 
             // 6. Phản hồi cho Uppy (200 OK)
             response.setStatus(HttpServletResponse.SC_OK);

@@ -13,23 +13,34 @@ public class ImageManagerService {
     public ImageManagerService(String root) {
         this.uploadPath = FileUtil.getUploadPath(root);
     }
-    public List<ImageFile> getImages() {
-        List<ImageFile> images = new ArrayList<>();
-        File dir = new File(uploadPath);
-        File[] files = dir.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                ImageFile image = new  ImageFile();
-                image.setName(f.getName());
-                image.setUrl("/assets/images/" + f.getName());
-                image.setSize(f.length());
-                images.add(image);
-            }
-        }
-        return images;
-    }
-
     public String getUploadPath() {
         return uploadPath;
     }
+    public List<ImageFile> getImages(int offset, int pageSize) {
+        List<ImageFile> images = new ArrayList<>();
+        File dir = new File(uploadPath);
+        File[] files = dir.listFiles();
+
+        if (files == null || files.length == 0) {
+            return images;
+        }
+        int end = Math.min(offset + pageSize, files.length);
+        for (int i = offset; i < end; i++) {
+            File f = files[i];
+
+            ImageFile image = new ImageFile();
+            image.setName(f.getName());
+            image.setUrl("/assets/images/" + f.getName());
+            image.setSize(f.length());
+
+            images.add(image);
+        }
+        return images;
+    }
+    public int totalImages() {
+        File dir = new File(uploadPath);
+        File[] files = dir.listFiles();
+        return files == null ? 0 : files.length;
+    }
+
 }

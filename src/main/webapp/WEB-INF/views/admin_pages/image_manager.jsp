@@ -55,6 +55,16 @@
                     </c:otherwise>
                     </c:choose>
                 </table>
+                <ul class="pagination">
+                    <c:forEach var="p" begin="1" end="${totalPage}">
+                        <li class="${p == currentPage ? 'active' : ''}">
+                            <a href="${pageContext.request.contextPath}/admin/image-manager?page=${p}">
+                                    ${p}
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul>
+
             </div>
         </div>
     </section>
