@@ -19,13 +19,13 @@
     <main class="auth-shell">
       <span class="auth-brand">SnackHub</span>
       <section class="auth-card" aria-labelledby="signup-title">
-        <a href="home.jsp" class="auth-close" aria-label="Đóng"
+        <a href="${pageContext.request.contextPath}/home" class="auth-close" aria-label="Đóng"
           >&times;</a
         >
         <header>
           <h1 id="signup-title">Tạo tài khoản</h1>
         </header>
-        <form class="auth-form" action="#" method="post">
+        <form class="auth-form" action="register" method="post">
           <div class="auth-field">
             <label for="signup-name">Họ và tên</label>
             <input
