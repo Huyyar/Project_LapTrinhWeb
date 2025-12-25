@@ -57,4 +57,7 @@ public class ImageManagerService {
         }
         return null;
     }
+    public void deleteImage(String name){
+        FileUtil.deleteImage(uploadPath +"/"+ name);
+    }
 }

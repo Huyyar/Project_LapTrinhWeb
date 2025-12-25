@@ -38,7 +38,12 @@
                         <td>${i.size} kb</td>
                         <td>
                             <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn"><i class="fa-solid fa-trash"></i></button>
+                            <form action="delete-image" method="POST" style="display: inline;">
+                                <input type="hidden" name="name" value="${i.name}">
+                                <button type="submit" class="btn text-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                             <button class="btn btn-copy"
                                     onclick="copyUrl('${i.url}', this)"
                                     title="Copy link ảnh">
