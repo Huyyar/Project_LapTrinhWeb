@@ -116,7 +116,7 @@ function handleAuthForms() {
       }
 
       if (email === ADMIN_EMAIL) {
-        setLoginState(true, { email, role: "admin" }, "admin.html");
+        setLoginState(true, { email, role: "admin" }, "dashboard.jsp");
         return;
       }
 

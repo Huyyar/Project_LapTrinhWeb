@@ -106,7 +106,8 @@ public class User {
         this.role = role;
     }
 
-    public boolean isIs_active() {
+    public boolean isIs_active(){
+
         return is_active;
     }
 

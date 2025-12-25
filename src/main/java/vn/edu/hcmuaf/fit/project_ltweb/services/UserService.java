@@ -24,5 +24,21 @@ public class UserService {
     public User getUserByEmail(String email){
         return dao.getUserByEmail(email);
     }
+    public User login(String email , String password){
+        String hashedPassword = hashUtil.passwordHash(password);
+        User user = dao.getUserByEmail(email);
+        if(user.isIs_active() == true){
+
+        if(user != null && user.getPassword().equals(hashedPassword)){
+            return user;
+        }else {
+            System.out.println("Login failed for email: " + email);
+            return null;
+        }
+        }else {
+            System.out.println("Account is deactivated for email: " + email);
+            return null;
+        }
+    }
 
 }
