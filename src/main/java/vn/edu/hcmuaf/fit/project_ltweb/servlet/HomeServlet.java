@@ -27,9 +27,9 @@ public class HomeServlet extends HttpServlet {
                 "assets/js/slideshow.js",
                 "assets/js/wishlist.js"
         });
-        List<Product> products = service.getProducts();
+        List<Product> products = service.getFeaturedProducts();
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/views/layout/layout.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }
 

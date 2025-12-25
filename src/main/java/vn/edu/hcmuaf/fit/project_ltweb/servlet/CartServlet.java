@@ -22,7 +22,7 @@ public class CartServlet extends HttpServlet {
 
         request.setAttribute("pageJs", new String[]{
         });
-        request.getRequestDispatcher("/WEB-INF/views/layout/layout.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }
 

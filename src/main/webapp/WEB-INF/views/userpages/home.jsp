@@ -81,7 +81,6 @@
                         <c:forEach var="p" items="${products}">
                             <article class="product-card" data-product-id=${p.id}>
                                 <div class="product-head">
-                                    <span class="product-badge">${p.featured}</span>
                                     <button
                                             class="wishlist-icon"
                                             onclick="toggleProductWishlist(1)"
@@ -94,7 +93,7 @@
 
                                 <div class="product-image">
                                     <img
-                                            src="${p.image_url}"
+                                            src="${pageContext.request.contextPath}/${p.image_url}"
                                             alt="${p.name}"
                                             loading="lazy"
                                     />
