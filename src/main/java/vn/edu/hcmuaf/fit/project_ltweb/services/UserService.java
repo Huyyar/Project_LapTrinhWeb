@@ -7,12 +7,13 @@ import vn.edu.hcmuaf.fit.project_ltweb.untils.HashUtil;
 public class UserService {
     UserDao dao = new UserDao();
     HashUtil hashUtil = new HashUtil();
-    public boolean registerUser(String email, String password,String avatar_url) {
-        if(dao.isUserExists(email)) {
+    public boolean registerUser(User u) {
+        if(dao.isUserExists(u.getEmail())) {
             return false;
         }
-        String hashedPassword = hashUtil.passwordHash(password);
-        int res = dao.insertUser(email, hashedPassword,avatar_url);
+        String hashedPassword = hashUtil.passwordHash(u.getPassword());
+        u.setPassword(hashedPassword);
+        int res = dao.insertUser(u);
 
         if(res>0){
             return true;

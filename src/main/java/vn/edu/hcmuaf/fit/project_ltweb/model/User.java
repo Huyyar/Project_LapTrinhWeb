@@ -16,7 +16,14 @@ public class User {
 
     public User() {}
 
-    public User(int id, String email, String password, String fullname,String avatar_url, String role, boolean is_active, Timestamp created_at) {
+    public User(String email, String password, String fullname, String avatar_url) {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.avatar_url = avatar_url;
+    }
+
+    public User(int id, String email, String password, String fullname, String avatar_url, String role, boolean is_active, Timestamp created_at) {
         this.id = id;
         this.email = email;
         this.password = password;

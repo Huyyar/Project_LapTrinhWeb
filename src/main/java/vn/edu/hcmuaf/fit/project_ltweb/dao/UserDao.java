@@ -21,10 +21,10 @@ public class UserDao {
         return false;
     }
 
-    public int insertUser(String email, String password,String avatar_url) {
+    public int insertUser(User u) {
 
-        String query = "INSERT INTO users(email, password, avatar_url,role, is_active, created_at) " +
-                "VALUES(?, ?, ?,'user', true, CURRENT_TIMESTAMP())";
+        String query = "INSERT INTO users(email, password,fullname, avatar_url,role, is_active, created_at) " +
+                "VALUES(?, ?, ?,?,'user', true, CURRENT_TIMESTAMP())";
 
 
         try (Connection conn = DBConnection.getConnection();
@@ -32,10 +32,10 @@ public class UserDao {
              PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
 
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ps.setString(3,avatar_url);
-
+            ps.setString(1, u.getEmail());
+            ps.setString(2, u.getPassword());
+            ps.setString(3,u.getFullname());
+            ps.setString(4,u.getAvatar_url());
 
             int affectedRows = ps.executeUpdate();
 
