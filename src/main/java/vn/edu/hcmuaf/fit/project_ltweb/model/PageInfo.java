@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
-public abstract class PageInfo {
+public class PageInfo {
     String name, title, content;
     String[] css, js;
 

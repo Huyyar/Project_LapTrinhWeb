@@ -122,6 +122,15 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+            <ul class="pagination">
+                <c:forEach var="p" begin="1" end="${totalPage}">
+                    <li class="${p == currentPage ? 'active' : ''}">
+                        <a href="${pageContext.request.contextPath}/home?page=${p}">
+                                ${p}
+                        </a>
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </main>

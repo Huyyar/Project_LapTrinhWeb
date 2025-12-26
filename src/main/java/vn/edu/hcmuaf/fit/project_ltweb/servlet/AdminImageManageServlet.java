@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ImageFile;
+import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ImageManagerService;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
@@ -29,12 +30,12 @@ public class AdminImageManageServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminPageInfo info = new AdminPageInfo();
+        PageInfo info = new PageInfo();
         info.setName("image-manager");
         info.setTitle("Admin - Image Manager");
         info.setContent("/WEB-INF/views/admin_pages/image_manager.jsp");
         info.setCss(new String[]{
-                "admin/pagination.css",
+                "pagination.css",
                 "admin/image_manager.css",
         });
         info.setJs(new String[]{
@@ -46,64 +47,31 @@ public class AdminImageManageServlet extends HttpServlet {
 
         int totalImage, totalPage;
         String search = request.getParameter("search");
-
         if(search == null){
-            totalImage = service.totalImages();
-            totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
-            request.setAttribute("totalPage", totalPage);
-            int currentPage = 1;
-            String pageParam = request.getParameter("page");
-
-            if (pageParam != null) {
-                try {
-                    currentPage = Integer.parseInt(pageParam);
-                } catch (NumberFormatException e) {
-                    currentPage = 1;
-                }
-            }
-            if (currentPage > totalPage && totalPage > 0) {
-                currentPage = totalPage;
-            }
-            if (currentPage < 1) {
-                currentPage = 1;
-            }
-
-            request.setAttribute("currentPage", currentPage);
-
-            int offset = (currentPage - 1) * PAGE_SIZE;
-
-            List<ImageFile> images = service.getPagedImages(offset,PAGE_SIZE);
-            request.setAttribute("images", images);
-        }else{
-            totalImage = service.totalSearchImages(search);
-            totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
-            request.setAttribute("totalPage", totalPage);
-            int currentPage = 1;
-            String pageParam = request.getParameter("page");
-
-            if (pageParam != null) {
-                try {
-                    currentPage = Integer.parseInt(pageParam);
-                } catch (NumberFormatException e) {
-                    currentPage = 1;
-                }
-            }
-            if (currentPage > totalPage && totalPage > 0) {
-                currentPage = totalPage;
-            }
-            if (currentPage < 1) {
-                currentPage = 1;
-            }
-
-            request.setAttribute("currentPage", currentPage);
-
-            int offset = (currentPage - 1) * PAGE_SIZE;
-
-            List<ImageFile> images = service.getPagedSearchImages(offset,PAGE_SIZE, search);
-            request.setAttribute("images", images);
-            request.setAttribute("search", search);
+            search = "";
         }
+        request.setAttribute("search", search);
+        totalImage = service.totalSearchImages(search);
         request.setAttribute("totalImage",  totalImage);
+        totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
+        request.setAttribute("totalPage", totalPage);
+        int currentPage = 1;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
+        if (currentPage > totalPage || currentPage < 1) {
+            currentPage = 1;
+        }
+        request.setAttribute("currentPage", currentPage);
+        int offset = (currentPage - 1) * PAGE_SIZE;
+        List<ImageFile> images = service.getPagedSearchImages(offset,PAGE_SIZE, search);
+        request.setAttribute("images", images);
+
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
                 .forward(request, response);
     }

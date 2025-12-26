@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${pageTitle}</title>
+    <title>${info.title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="assets/css/header.css" />
     <link rel="stylesheet" href="assets/css/footer.css" />
     <link rel="stylesheet" href="assets/css/authorize.css" />
-    <c:forEach items="${pageCss}" var="css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/${css}">
+    <c:forEach items="${info.css}" var="css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/${css}">
     </c:forEach>
 </head>
 <body>
@@ -37,10 +37,10 @@
         <nav>
             <ul class="nav-links">
                 <li>
-                    <a href="home.jsp#home" class="active">Trang chủ</a>
+                    <a href="home" class="${info.name == 'home'? 'active' : ''}">Trang chủ</a>
                 </li>
                 <li>
-                    <a href="WEB-INF/pages/product.html"> Sản phẩm</a>
+                    <a href="product"> Sản phẩm</a>
                 </li>
                 <li>
                     <a href="WEB-INF/pages/contact.html">Liên hệ</a>
@@ -90,7 +90,7 @@
         </nav>
     </div>
 </header>
-    <jsp:include page="${contentPage}" />
+    <jsp:include page="${info.content}" />
 <footer class="footer">
     <div class="container footer-inner">
         <div>
@@ -145,9 +145,9 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
-<%--<script src="assets/js/auth.js"></script>--%>
-<%--<c:forEach items="${pageJs}" var="js">--%>
-<%--    <script src="${js}"></script>--%>
-<%--</c:forEach>--%>
+<script src="assets/js/auth.js"></script>
+<c:forEach items="${info.js}" var="js">
+    <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
+</c:forEach>
 </body>
 </html>

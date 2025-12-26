@@ -18,9 +18,10 @@ public class ProductService {
     public Product getProduct(int id) {
         return dao.getProduct(id);
     }
+    public int getTotalFeaturedProduct(){return dao.getTotalFeaturedProducts();};
+    public List<Product> getFeaturedProducts(int offset, int pageSize) {
 
-    public List<Product> getFeaturedProducts() {
-        return dao.getFeaturedProducts();
+        return dao.getFeaturedProducts(offset, pageSize);
     }
     public int getTotalProducts(){
         return dao.getTotalProducts();

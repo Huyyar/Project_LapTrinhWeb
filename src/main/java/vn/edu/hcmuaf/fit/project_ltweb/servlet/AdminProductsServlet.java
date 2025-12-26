@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
+import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
@@ -14,17 +15,17 @@ import java.util.List;
 
 @WebServlet("/admin/products")
 public class AdminProductsServlet extends HttpServlet {
-    ProductService service =  new ProductService();
-    int PAGE_SIZE = 5;
+    private ProductService service =  new ProductService();
+    private int PAGE_SIZE = 5;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdminPageInfo info = new  AdminPageInfo();
+        PageInfo info = new  PageInfo();
         info.setName("products");
         info.setTitle("Admin - Products");
         info.setContent("/WEB-INF/views/admin_pages/products.jsp");
         info.setCss(new String[]{
-                "admin/pagination.css",
+                "pagination.css",
                 "admin/admin_product.css"
         });
         info.setJs(new String[]{

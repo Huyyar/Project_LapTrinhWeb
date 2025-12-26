@@ -91,29 +91,45 @@ public class ProductDao {
         return product;
     }
 
-    public List<Product> getFeaturedProducts() {
+    public int getTotalFeaturedProducts(){
+        String sql = "SELECT COUNT(*) FROM products WHERE featured = 1";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()
+        ) {
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public List<Product> getFeaturedProducts(int offset, int pageSize) {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT p.*, c.name AS category_name FROM products p " +
                 "LEFT JOIN categories c ON p.category_id = c.id " +
-                "WHERE featured = 1";
+                "WHERE featured = 1 LIMIT ? OFFSET ?";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setCategory_id(rs.getInt("category_id"));
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                product.setImage_url(rs.getString("image_url"));
-                product.setInventory_qty(rs.getInt("inventory_qty"));
-                product.setFeatured(rs.getBoolean("featured"));
-                product.setIs_active(rs.getBoolean("is_active"));
-                product.setCategory(rs.getString("category_name"));
-                products.add(product);
-            }
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setInt(1, pageSize);
+            ps.setInt(2, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setCategory_id(rs.getInt("category_id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setImage_url(rs.getString("image_url"));
+                    product.setInventory_qty(rs.getInt("inventory_qty"));
+                    product.setFeatured(rs.getBoolean("featured"));
+                    product.setIs_active(rs.getBoolean("is_active"));
+                    product.setCategory(rs.getString("category_name"));
+                    products.add(product);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
