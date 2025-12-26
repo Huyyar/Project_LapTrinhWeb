@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -19,7 +20,7 @@
     <main class="auth-shell">
       <span class="auth-brand">SnackHub</span>
       <section class="auth-card" aria-labelledby="login-title">
-        <a href="home.jsp" class="auth-close" aria-label="Đóng"
+        <a href="${pageContext.request.contextPath}/home" class="auth-close" aria-label="Đóng"
           >&times;</a
         >
         <header>

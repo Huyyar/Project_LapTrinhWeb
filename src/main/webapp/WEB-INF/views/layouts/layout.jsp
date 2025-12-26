@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,7 @@
     />
     <link rel="stylesheet" href="assets/css/header.css" />
     <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="assets/css/authorize.css" />
     <c:forEach items="${pageCss}" var="css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/${css}">
     </c:forEach>
@@ -53,6 +55,7 @@
                             placeholder="Bạn muốn ăn gì hôm nay?"
                     />
                 </div>
+                <c:if test="${ empty sessionScope.auth}">
                 <div class="nav-auth">
                     <a class="link-button" href="${pageContext.request.contextPath}/register"
                     >Đăng kí</a
@@ -62,6 +65,23 @@
                     >Đăng nhập</a
                     >
                 </div>
+                </c:if>
+                <c:if test="${ not empty sessionScope.auth}">
+
+                    <div class="user-profile">
+                        <button class="user-icon-btn" aria-label="Tài khoản người dùng">
+                            <img src="${pageContext.request.contextPath}/${auth.avatar_url}" alt="User Avatar" class="user-avatar">
+
+                        </button>
+
+                        <div class="user-dropdown">
+                            <a href="${profilePath}">Profile</a>
+                            <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
+                            <button id="logout-btn">Đăng xuất</button>
+                        </div>
+
+                    </div>
+                </c:if>
                 <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <a href="cart">Giỏ Hàng(${sessionScope.cart.totalQty})</a>
@@ -125,9 +145,9 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
-<script src="assets/js/auth.js"></script>
-<c:forEach items="${pageJs}" var="js">
-    <script src="${js}"></script>
-</c:forEach>
+<%--<script src="assets/js/auth.js"></script>--%>
+<%--<c:forEach items="${pageJs}" var="js">--%>
+<%--    <script src="${js}"></script>--%>
+<%--</c:forEach>--%>
 </body>
 </html>
