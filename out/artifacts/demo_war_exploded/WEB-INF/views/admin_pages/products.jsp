@@ -7,7 +7,12 @@
             <h1>Quản Lý Sản Phẩm</h1>
         </div>
         <div class="top-actions">
-            <input placeholder="Tìm kiếm sản phẩm..."/>
+            <form action="products" style="display: flex; gap: 5px;">
+                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="${param.search}"/>
+                <button type="submit" class="btn primary">
+                    <i class="fa-solid fa-magnifying-glass"></i> Tìm
+                </button>
+            </form>
             <button class="btn primary"
                     onClick="openModal('addProductModal')">Thêm sản phẩm</button>
         </div>
@@ -16,7 +21,7 @@
     <section class="content">
         <div class="panel">
             <div class="panel-header">
-                <h2>Danh sách sản phẩm</h2>
+                <h2>Danh sách sản phẩm(${not empty totalProduct? totalProduct : 0})</h2>
             </div>
             <div class="table-wrap">
                 <table>
@@ -63,6 +68,15 @@
                     </c:otherwise>
                     </c:choose>
                 </table>
+                <ul class="pagination">
+                    <c:forEach var="p" begin="1" end="${totalPage}">
+                        <li class="${p == currentPage ? 'active' : ''}">
+                            <a href="${pageContext.request.contextPath}/admin/products?page=${p}&search=${search}">
+                                    ${p}
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul>
             </div>
         </div>
     </section>

@@ -103,6 +103,7 @@ public class AdminImageManageServlet extends HttpServlet {
             request.setAttribute("images", images);
             request.setAttribute("search", search);
         }
+        request.setAttribute("totalImage",  totalImage);
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
                 .forward(request, response);
     }

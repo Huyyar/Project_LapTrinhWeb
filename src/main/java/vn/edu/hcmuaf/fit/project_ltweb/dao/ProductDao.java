@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.project_ltweb.dao;
 
+import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 
 import java.sql.*;
@@ -7,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao {
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
-        String sql = "select * from products";
+        String sql = "SELECT p.*, c.name AS category_name FROM products p " +
+                "LEFT JOIN categories c ON p.category_id = c.id ";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()){
+             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
@@ -22,20 +24,21 @@ public class ProductDao {
                 product.setPrice(rs.getDouble("price"));
                 product.setImage_url(rs.getString("image_url"));
                 product.setInventory_qty(rs.getInt("inventory_qty"));
-                CategoryDao  categoryDao = new CategoryDao();
-                product.setCategory(categoryDao.getCategory(product.getCategory_id()));
                 product.setFeatured(rs.getBoolean("featured"));
                 product.setIs_active(rs.getBoolean("is_active"));
+                product.setCategory(rs.getString("category_name"));
                 products.add(product);
             }
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  products;
+        return products;
     }
+
     public int addProduct(Product product) {
-        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty, featured, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products(category_id, name, description, price, image_url, inventory_qty, featured, is_active) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -43,7 +46,7 @@ public class ProductDao {
             ps.setString(2, product.getName());
             ps.setString(3, product.getDescription());
             ps.setDouble(4, product.getPrice());
-            ps.setString(5,product.getImage_url());
+            ps.setString(5, product.getImage_url());
             ps.setInt(6, product.getInventory_qty());
             ps.setBoolean(7, product.getFeatured());
             ps.setBoolean(8, product.getIs_active());
@@ -58,16 +61,19 @@ public class ProductDao {
         }
         return -1;
     }
-    public Product  getProduct(int id) {
+
+    public Product getProduct(int id) {
         Product product = new Product();
-        String sql = "select * from products where id = ?";
+        String sql = "SELECT p.*, c.name AS category_name FROM products p " +
+                "LEFT JOIN categories c ON p.category_id = c.id " +
+                "WHERE id = ?";
         try (
                 Connection con = DBConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql);
-                ){
+        ) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 product.setId(rs.getInt("id"));
                 product.setCategory_id(rs.getInt("category_id"));
                 product.setName(rs.getString("name"));
@@ -75,10 +81,9 @@ public class ProductDao {
                 product.setPrice(rs.getDouble("price"));
                 product.setImage_url(rs.getString("image_url"));
                 product.setInventory_qty(rs.getInt("inventory_qty"));
-                CategoryDao  categoryDao = new CategoryDao();
-                product.setCategory(categoryDao.getCategory(product.getCategory_id()));
                 product.setFeatured(rs.getBoolean("featured"));
                 product.setIs_active(rs.getBoolean("is_active"));
+                product.setCategory(rs.getString("category_name"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -88,10 +93,12 @@ public class ProductDao {
 
     public List<Product> getFeaturedProducts() {
         List<Product> products = new ArrayList<>();
-        String sql = "select * from products where featured=1";
+        String sql = "SELECT p.*, c.name AS category_name FROM products p " +
+                "LEFT JOIN categories c ON p.category_id = c.id " +
+                "WHERE featured = 1";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()){
+             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
@@ -101,14 +108,108 @@ public class ProductDao {
                 product.setPrice(rs.getDouble("price"));
                 product.setImage_url(rs.getString("image_url"));
                 product.setInventory_qty(rs.getInt("inventory_qty"));
-                CategoryDao  categoryDao = new CategoryDao();
-                product.setCategory(categoryDao.getCategory(product.getCategory_id()));
                 product.setFeatured(rs.getBoolean("featured"));
                 product.setIs_active(rs.getBoolean("is_active"));
+                product.setCategory(rs.getString("category_name"));
                 products.add(product);
             }
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public int getTotalProducts() {
+        String sql = "SELECT COUNT(*) FROM products";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()
+        ) {
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getTotalSearchProducts(String search) {
+        String sql = "SELECT COUNT(*) FROM products WHERE name LIKE ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setString(1, "%" + search + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Product> getPagedProducts(int offset, int pageSize) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.*, c.name AS category_name FROM products p " +
+                "LEFT JOIN categories c ON p.category_id = c.id " +
+                "WHERE LIMIT ? OFFSET ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, pageSize);
+            ps.setInt(2, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setCategory_id(rs.getInt("category_id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setImage_url(rs.getString("image_url"));
+                    product.setInventory_qty(rs.getInt("inventory_qty"));
+                    product.setFeatured(rs.getBoolean("featured"));
+                    product.setIs_active(rs.getBoolean("is_active"));
+                    product.setCategory(rs.getString("category_name"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public List<Product> getPagedSearchProducts(int offset, int pageSize, String search
+    ) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.*, c.name AS category_name FROM products p " +
+                "LEFT JOIN categories c ON p.category_id = c.id " +
+                "WHERE p.name LIKE ? LIMIT ? OFFSET ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + search + "%");
+            ps.setInt(2, pageSize);
+            ps.setInt(3, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setCategory_id(rs.getInt("category_id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setImage_url(rs.getString("image_url"));
+                    product.setInventory_qty(rs.getInt("inventory_qty"));
+                    product.setFeatured(rs.getBoolean("featured"));
+                    product.setIs_active(rs.getBoolean("is_active"));
+                    product.setCategory(rs.getString("category_name"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return products;

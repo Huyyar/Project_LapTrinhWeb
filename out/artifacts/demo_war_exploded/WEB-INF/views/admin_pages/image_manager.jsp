@@ -21,7 +21,7 @@
     <section class="content">
         <div class="panel">
             <div class="panel-header">
-                <h2>Danh sách hình ảnh</h2>
+                <h2>Danh sách hình ảnh(${not empty totalImage? totalImage : 0})</h2>
             </div>
             <div class="table-wrap">
                 <table>

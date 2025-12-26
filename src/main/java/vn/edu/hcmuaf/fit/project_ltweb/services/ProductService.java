@@ -22,4 +22,16 @@ public class ProductService {
     public List<Product> getFeaturedProducts() {
         return dao.getFeaturedProducts();
     }
+    public int getTotalProducts(){
+        return dao.getTotalProducts();
+    }
+    public int getTotalSearchProducts(String search){
+        return dao.getTotalSearchProducts(search);
+    }
+    public List<Product> getPagedProducts(int offset, int pageSize){
+        return dao.getPagedProducts(offset, pageSize);
+    }
+    public List<Product> getPagedSearchProducts(int offset,  int pageSize, String search){
+        return dao.getPagedSearchProducts(offset, pageSize, search);
+    }
 }
