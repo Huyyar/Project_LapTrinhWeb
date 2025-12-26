@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Quản lý Liên hệ - Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      xintegrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../assets/css/admin.css" />
+    <link rel="stylesheet" href="../../assets/css/admin_contact.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="logo">🍿</div>
+          <span class="brand-text">SnackHub Admin</span>
+        </div>
+        <nav class="nav-menu">
+          <a href="./admin.html" class="nav-link">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="admin/products.jsp" class="nav-link">
+            <i class="fa-solid fa-box-open"></i>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="./orders.html" class="nav-link">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="./users.html" class="nav-link">
+            <i class="fa-solid fa-users"></i>
+            <span>Người dùng</span>
+          </a>
+          <a href="./admin_contact.html" class="nav-link active">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Liên Hệ</span>
+          </a>
+          <a
+            href="../../index.jsp"
+            class="nav-link"
+            id="logout-btn"
+            style="margin-top: auto; color: var(--danger)"
+          >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Đăng xuất</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="header-group column-mobile">
+            <div>
+              <p class="eyebrow">Quản Lý Liên Hệ</p>
+              <h1 class="page-title">Quản Lý Liên Hệ</h1>
+            </div>
+            <div class="count-pill" id="messageCount">0 tin nhắn</div>
+          </div>
+        </header>
+
+        <section class="content">
+          <div class="filters-card">
+            <div class="filter-grid">
+              <div class="input-group icon-left">
+                <span class="input-icon">🔍</span>
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Tìm kiếm theo tên, email, tiêu đề..."
+                />
+              </div>
+              <div class="input-group">
+                <select id="statusFilter">
+                  <option value="all">Lọc theo trạng thái</option>
+                  <option value="new">Mới</option>
+                  <option value="read">Đã đọc</option>
+                  <option value="replied">Đã trả lời</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header"><h2>Danh sách tin nhắn</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th class="subject-col">Tiêu đề</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                    <th class="text-right">Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="contactTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/admin_contact.js" defer></script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.project_ltweb.services;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ImageFile;
 import vn.edu.hcmuaf.fit.project_ltweb.utils.FileUtil;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,48 +17,67 @@ public class ImageManagerService {
     public String getUploadPath() {
         return uploadPath;
     }
-    public List<ImageFile> getImages(int offset, int pageSize) {
-        List<ImageFile> images = new ArrayList<>();
-        File dir = new File(uploadPath);
-        File[] files = dir.listFiles();
 
-        if (files == null || files.length == 0) {
+    public int totalImages() {
+        return FileUtil.totalFiles(uploadPath);
+    }
+
+    public List<ImageFile> getPagedImages(int offset, int pageSize) {
+        List<ImageFile> images = new ArrayList<>();
+        List<File> files = FileUtil.getPagedFiles(uploadPath, offset, pageSize);
+        if (files == null) {
             return images;
         }
-        int end = Math.min(offset + pageSize, files.length);
-        for (int i = offset; i < end; i++) {
-            File f = files[i];
-
+        for(File file : files){
             ImageFile image = new ImageFile();
-            image.setName(f.getName());
-            image.setUrl("/assets/images/" + f.getName());
-            image.setSize(f.length());
+            image.setName(file.getName());
+            image.setUrl("/assets/images/" + file.getName());
+            image.setSize(file.length());
 
             images.add(image);
         }
+
         return images;
     }
-    public int totalImages() {
-        File dir = new File(uploadPath);
-        File[] files = dir.listFiles();
-        return files == null ? 0 : files.length;
-    }
-
-    public ImageFile getImage(String name) {
-        ImageFile image = new  ImageFile();
-        File dir = new File(uploadPath);
-        File[] files = dir.listFiles();
+    public List<ImageFile> getPagedSearchImages(int offset, int pageSize, String search) {
+        List<ImageFile> images = new ArrayList<>();
+        List<File> files = FileUtil.getPagedSearchFiles(uploadPath, offset, pageSize, search);
+        if (files == null) {
+            return images;
+        }
         for(File file : files){
-            if(file.getName().equals(name)){
-                image.setName(file.getName());
-                image.setUrl("/assets/images/" + file.getName());
-                image.setSize(file.length());
-                return image;
-            }
+            ImageFile image = new ImageFile();
+            image.setName(file.getName());
+            image.setUrl("/assets/images/" + file.getName());
+            image.setSize(file.length());
+
+            images.add(image);
+        }
+        return  images;
+    }
+    public int totalSearchImages(String search){
+        return FileUtil.totalSearchFiles(uploadPath, search);
+    }
+    public ImageFile getImage(String name) {
+        ImageFile image = new ImageFile();
+        File f = FileUtil.getFile(uploadPath, name);
+        if(f.exists()){
+            image.setName(f.getName());
+            image.setUrl("/assets/images/" + f.getName());
+            image.setSize(f.length());
+            return image;
         }
         return null;
     }
-    public void deleteImage(String name){
-        FileUtil.deleteImage(uploadPath +"/"+ name);
+    public int totalImagesSearch(String search){
+        return FileUtil.totalSearchFiles(uploadPath, search);
     }
+
+    public void deleteImage(String name){
+        FileUtil.deleteFile(uploadPath +"/"+ name);
+    }
+    public void renameImage(String name, String newName){
+        FileUtil.renameFile(uploadPath +"/"+ name, newName);
+    }
+
 }

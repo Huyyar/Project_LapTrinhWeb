@@ -24,7 +24,6 @@ public class AdminImageManageServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // Đây mới là nơi an toàn để lấy RealPath
         String root = getServletContext().getRealPath("/");
         this.service = new ImageManagerService(root);
     }
@@ -35,42 +34,75 @@ public class AdminImageManageServlet extends HttpServlet {
         info.setTitle("Admin - Image Manager");
         info.setContent("/WEB-INF/views/admin_pages/image_manager.jsp");
         info.setCss(new String[]{
-                "admin/admin.css",
                 "admin/pagination.css",
-                "admin/image_manager.css"
+                "admin/image_manager.css",
         });
         info.setJs(new String[]{
-                "admin/upload.js",
-                "admin/upload_multi.js"
+                "admin/image_manager.js",
+                "admin/upload_image.js",
+                "admin/copy_url.js"
         });
         request.setAttribute("info", info);
 
-        int totalPage = (int) Math.ceil((double) service.totalImages() / PAGE_SIZE);
-        request.setAttribute("totalPage", totalPage);
+        int totalImage, totalPage;
+        String search = request.getParameter("search");
 
-        int currentPage = 1;
-        String pageParam = request.getParameter("page");
+        if(search == null){
+            totalImage = service.totalImages();
+            totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
+            request.setAttribute("totalPage", totalPage);
+            int currentPage = 1;
+            String pageParam = request.getParameter("page");
 
-        if (pageParam != null) {
-            try {
-                currentPage = Integer.parseInt(pageParam);
-            } catch (NumberFormatException e) {
+            if (pageParam != null) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
+            }
+            if (currentPage > totalPage && totalPage > 0) {
+                currentPage = totalPage;
+            }
+            if (currentPage < 1) {
                 currentPage = 1;
             }
-        }
-        if (currentPage > totalPage && totalPage > 0) {
-            currentPage = totalPage;
-        }
-        if (currentPage < 1) {
-            currentPage = 1;
-        }
 
-        request.setAttribute("currentPage", currentPage);
+            request.setAttribute("currentPage", currentPage);
 
-        int offset = (currentPage - 1) * PAGE_SIZE;
+            int offset = (currentPage - 1) * PAGE_SIZE;
 
-        List<ImageFile> images = service.getImages(offset,PAGE_SIZE);
-        request.setAttribute("images", images);
+            List<ImageFile> images = service.getPagedImages(offset,PAGE_SIZE);
+            request.setAttribute("images", images);
+        }else{
+            totalImage = service.totalSearchImages(search);
+            totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
+            request.setAttribute("totalPage", totalPage);
+            int currentPage = 1;
+            String pageParam = request.getParameter("page");
+
+            if (pageParam != null) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
+            }
+            if (currentPage > totalPage && totalPage > 0) {
+                currentPage = totalPage;
+            }
+            if (currentPage < 1) {
+                currentPage = 1;
+            }
+
+            request.setAttribute("currentPage", currentPage);
+
+            int offset = (currentPage - 1) * PAGE_SIZE;
+
+            List<ImageFile> images = service.getPagedSearchImages(offset,PAGE_SIZE, search);
+            request.setAttribute("images", images);
+            request.setAttribute("search", search);
+        }
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
                 .forward(request, response);
     }

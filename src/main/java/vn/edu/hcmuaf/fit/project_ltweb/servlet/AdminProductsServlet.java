@@ -23,11 +23,10 @@ public class AdminProductsServlet extends HttpServlet {
         info.setTitle("Admin - Products");
         info.setContent("/WEB-INF/views/admin_pages/products.jsp");
         info.setCss(new String[]{
-                "admin_product.css"
+                "admin/admin_product.css"
         });
         info.setJs(new String[]{
-                "admin_product.js",
-                "admin/add_product_image.js"
+                "admin/products.js"
         });
         request.setAttribute("info",info);
 
