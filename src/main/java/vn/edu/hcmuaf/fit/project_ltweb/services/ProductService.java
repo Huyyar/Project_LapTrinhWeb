@@ -35,4 +35,10 @@ public class ProductService {
     public List<Product> getPagedSearchProducts(int offset,  int pageSize, String search){
         return dao.getPagedSearchProducts(offset, pageSize, search);
     }
+    public void  deleteProduct(int id){
+        dao.deleteProduct(id);
+    }
+    public void updateProduct(Product product){
+        dao.updateProduct(product);
+    }
 }

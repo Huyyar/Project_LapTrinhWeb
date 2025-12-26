@@ -84,7 +84,7 @@
                 </c:if>
                 <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <a href="cart">Giỏ Hàng(${sessionScope.cart.totalQty})</a>
+                    <a href="cart">Giỏ Hàng(${not empty sessionScope.cart.totalQty? sessionScope.cart.totalQty : 0})</a>
                 </button>
             </div>
         </nav>

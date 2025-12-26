@@ -66,7 +66,7 @@ public class ProductDao {
         Product product = new Product();
         String sql = "SELECT p.*, c.name AS category_name FROM products p " +
                 "LEFT JOIN categories c ON p.category_id = c.id " +
-                "WHERE id = ?";
+                "WHERE p.id = ?";
         try (
                 Connection con = DBConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql);
@@ -107,7 +107,7 @@ public class ProductDao {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT p.*, c.name AS category_name FROM products p " +
                 "LEFT JOIN categories c ON p.category_id = c.id " +
-                "WHERE featured = 1 LIMIT ? OFFSET ?";
+                "WHERE p.featured = 1 LIMIT ? OFFSET ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -229,5 +229,39 @@ public class ProductDao {
             e.printStackTrace();
         }
         return products;
+    }
+    public void deleteProduct(int id){
+        String sql = "DELETE FROM products WHERE id = ?";
+        try(Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateProduct(Product product) {
+        String sql = "UPDATE products SET name = ?, description = ?, price = ?, " +
+                "image_url = ?, inventory_qty = ?, category_id = ?, " +
+                "featured = ?, is_active = ? WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getDescription());
+            ps.setDouble(3, product.getPrice());
+            ps.setString(4, product.getImage_url());
+            ps.setInt(5, product.getInventory_qty());
+            ps.setInt(6, product.getCategory_id());
+            ps.setBoolean(7, product.getFeatured());
+            ps.setBoolean(8, product.getIs_active());
+
+            ps.setInt(9, product.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

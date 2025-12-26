@@ -47,7 +47,8 @@
                                     data-name="${i.name}"
                                     onClick="openRenameImageModal(this)">
                                 <i class="fa-solid fa-pen-to-square"></i></button>
-                            <form action="delete-image" method="POST" style="display: inline;">
+                            <form action="delete-image" method="POST" style="display: inline;"
+                                  onsubmit="return confirm('Bạn có chắc chắn muốn xóa ảnh ${i.name} không?');">
                                 <input type="hidden" name="name" value="${i.name}">
                                 <button type="submit" class="btn text-danger">
                                     <i class="fa-solid fa-trash"></i>
