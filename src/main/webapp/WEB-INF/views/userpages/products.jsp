@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <div class="product">
       <div class="content">
         <div class="container">
@@ -73,15 +74,18 @@
                                   <h3>${p.name}</h3>
                                   <p class="product-description">${p.description}</p>
                                   <div class="product-price">
-                                      <span class="product-price-current">${p.price}₫</span>
+                                      <span class="product-price-current">
+                                               <fmt:formatNumber value="${p.price}" type="number" /> ₫
+                                      </span>
                                   </div>
                               </div>
                               <div class="card-actions">
-                                  <a
-                                          class="btn btn-outline"
-                                          href="WEB-INF/pages/product-detail.html"
-                                  >Xem chi tiết</a
-                                  >
+                                  <a class="btn btn-outline"
+                                     href="${pageContext.request.contextPath}/product-detail?id=${p.id}">
+                                      Xem chi tiết
+                                  </a>
+
+
                                   <a href="add-cart?id=${p.id}&qty=1" class="btn btn-primary">Thêm vào giỏ</a>
                               </div>
                           </article>
