@@ -12,18 +12,18 @@
         </div>
         <section class="content">
             <div class="cart-actions">
-                <button class="select ${sessionScope.cart.isChoseAll? "active" : ""}"
-                        onClick="handleChoseAllItem()"
+                <button class="select ${sessionScope.cart.isChooseAll? "active" : ""}"
+                        onClick="handleChooseAllItem()"
                 ><i class="fa-solid fa-check"></i></button>
-                <button onClick="handleDeleteAllItem()"><i class="fa-regular fa-trash-can"></i></button>
+                <button onClick="handleDeleteChosenItems()"><i class="fa-regular fa-trash-can"></i></button>
             </div>
             <div class="items">
                 <c:choose>
                     <c:when test="${not empty sessionScope.cart.items}">
                         <c:forEach items="${sessionScope.cart.items}" var="ci">
                             <div class="item">
-                                <button class="select ${ci.isChose? "active" : ""}"
-                                        onclick="handleChoseItem(${ci.product.id})"><i
+                                <button class="select ${ci.isChoose? "active" : ""}"
+                                        onclick="handleChooseItem(${ci.product.id})"><i
                                         class="fa-solid fa-check"></i>
                                 </button>
                                 <div class="product"><img

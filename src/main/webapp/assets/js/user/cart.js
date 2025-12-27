@@ -16,8 +16,8 @@ function handleDeleteItem(id){
         })
         .catch(e => console.log(e));
 }
-function handleChoseItem(id){
-    fetch(`chose-item?id=${id}`)
+function handleChooseItem(id){
+    fetch(`choose-item?id=${id}`)
         .then(response =>{
             if(response.ok){
                 location.reload();
@@ -25,8 +25,8 @@ function handleChoseItem(id){
         })
         .catch(e => console.log(e));
 }
-function handleDeleteAllItem(){
-    fetch('delete-all-item')
+function handleDeleteChosenItems(){
+    fetch('delete-chosen-items')
         .then(response =>{
             if(response.ok){
                 location.reload();
@@ -34,8 +34,8 @@ function handleDeleteAllItem(){
         })
         .catch(e => console.log(e));
 }
-function handleChoseAllItem(){
-    fetch('chose-all-item')
+function handleChooseAllItem(){
+    fetch('choose-all-item')
         .then(response =>{
             if(response.ok){
                 location.reload();

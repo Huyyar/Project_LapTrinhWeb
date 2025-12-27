@@ -4,21 +4,26 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.cart.Cart;
+import vn.edu.hcmuaf.fit.project_ltweb.cart.CartItem;
 
 import java.io.IOException;
 
-@WebServlet(name = "DeleteAllItem", value = "/delete-all-item")
-public class DeleteAllItem extends HttpServlet {
+@WebServlet(name = "ChooseItem", value = "/choose-item")
+public class ChooseItem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id =  Integer.parseInt(request.getParameter("id"));
         HttpSession session =  request.getSession();
-        Cart cart =  (Cart) session.getAttribute("cart");
-        if(cart == null){
+        Cart cart = (Cart) session.getAttribute("cart");
+        if(cart==null){
             cart = new Cart();
-        }else{
-            cart.delAll();
         }
-        session.setAttribute("cart",cart);
+        CartItem ci = cart.getItem(id);
+        if(ci != null){
+            ci.setIsChoose(!ci.isIsChoose());
+            cart.checkIsChooseAll();
+        }
+        request.setAttribute("cart", cart);
     }
 
     @Override

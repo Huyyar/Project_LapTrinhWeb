@@ -7,8 +7,8 @@ import vn.edu.hcmuaf.fit.project_ltweb.cart.Cart;
 
 import java.io.IOException;
 
-@WebServlet(name = "ChoseAllItem", value = "/chose-all-item")
-public class ChoseAllItem extends HttpServlet {
+@WebServlet(name = "ChooseAllItem", value = "/choose-all-item")
+public class ChooseAllItem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session =  request.getSession();
@@ -16,7 +16,7 @@ public class ChoseAllItem extends HttpServlet {
         if(cart == null){
             cart = new Cart();
         }else{
-            cart.choseAllItem();
+            cart.chooseAllItem();
         }
         session.setAttribute("cart",cart);
     }

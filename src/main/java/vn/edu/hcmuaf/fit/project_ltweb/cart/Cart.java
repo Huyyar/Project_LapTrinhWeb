@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Cart implements Serializable {
     Map<Integer, CartItem> data;
-    private boolean isChoseAll = false;
+    private boolean isChooseAll = false;
     public Cart(){
         this.data  = new HashMap<Integer, CartItem>();
     }
@@ -30,10 +30,8 @@ public class Cart implements Serializable {
     public CartItem delItem(int id){
         return data.remove(id);
     }
-    public List<CartItem> delAll(){
-        List<CartItem> items = new ArrayList<CartItem>(data.values());
-        data.clear();
-        return items;
+    public void delChosenItems(){
+        data.values().removeIf(CartItem::isIsChoose);
     }
     public List<CartItem> getItems(){
         return new ArrayList<>(data.values());
@@ -48,7 +46,7 @@ public class Cart implements Serializable {
     public double getTotalPrice(){
         double total = 0;
         for(CartItem item : data.values()){
-            if(item.isIsChose()){
+            if(item.isIsChoose()){
                 total += item.getPrice() * item.getQty();
             }
         }
@@ -60,22 +58,31 @@ public class Cart implements Serializable {
         }
         return null;
     }
-    public void choseAllItem(){
+    public void chooseAllItem(){
         for(CartItem item : data.values()){
-            item.setIsChose(!isIsChoseAll());
+            item.setIsChoose(!isIsChooseAll());
         }
-        this.isChoseAll = !isIsChoseAll();
+        this.isChooseAll = !isIsChooseAll();
     }
-    public boolean isIsChoseAll(){
-        return this.isChoseAll;
+    public boolean isIsChooseAll(){
+        return this.isChooseAll;
     }
-    public void checkIsChoseAll(){
+    public void checkIsChooseAll(){
         for(CartItem item : data.values()){
-            if(!item.isIsChose()){
-                this.isChoseAll = false;
-            }else{
-                this.isChoseAll = true;
+            if(!item.isIsChoose()){
+                this.isChooseAll = false;
+                return;
             }
         }
+        this.isChooseAll = true;
+    }
+    public List<CartItem> getChosenItems(){
+        List<CartItem> items = new ArrayList<>();
+        for(CartItem item : data.values()){
+            if(item.isIsChoose()){
+                items.add(item);
+            }
+        }
+        return items;
     }
 }
