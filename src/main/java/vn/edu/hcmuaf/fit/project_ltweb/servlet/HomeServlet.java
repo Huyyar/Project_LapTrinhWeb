@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
         info.setName("home");
         info.setContent("/WEB-INF/views/userpages/home.jsp");
         info.setCss(new String[]{
-                "home.css",
+                "user/home.css",
                 "product.css",
                 "slideshow.css",
                 "pagination.css"
