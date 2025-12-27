@@ -147,7 +147,7 @@
         </div>
         <button
           class="btn-checkout"
-          onclick="window.location.href='checkout.html'"
+          onclick="window.location.href='checkout.jsp'"
         >
           <i class="fa-solid fa-credit-card"></i>
           Thanh Toán

@@ -11,22 +11,35 @@
             <div class="payment-step">Hoàn tất</div>
         </div>
         <section class="content">
+            <div class="cart-actions">
+                <button class="select ${sessionScope.cart.isChoseAll? "active" : ""}"
+                        onClick="handleChoseAllItem()"
+                ><i class="fa-solid fa-check"></i></button>
+                <button onClick="handleDeleteAllItem()"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
             <div class="items">
                 <c:choose>
                     <c:when test="${not empty sessionScope.cart.items}">
                         <c:forEach items="${sessionScope.cart.items}" var="ci">
                             <div class="item">
-                                <button class="select" onclick="this.classList.toggle('active')"><i
+                                <button class="select ${ci.isChose? "active" : ""}"
+                                        onclick="handleChoseItem(${ci.product.id})"><i
                                         class="fa-solid fa-check"></i>
                                 </button>
-                                <div class="product"><img src="${pageContext.request.contextPath}/${ci.product.image_url}" alt="Yogurt"/>
+                                <div class="product"><img
+                                        src="${pageContext.request.contextPath}/${ci.product.image_url}" alt="Yogurt"/>
                                     <div class="info"><span class="name">${ci.product.name}</span> <span
                                             class="price">${ci.product.price}</span></div>
                                 </div>
-                                <div class="quantity"><input class="quantity-input" type="number" min="1"
-                                                             value="${ci.qty}"
-                                                             aria-label="Số lượng Yogurt"/>
-                                    <button class="delete"><i class="fa-regular fa-trash-can"></i></button>
+                                <div class="quantity">
+                                    <div class="quantity-container">
+                                        <button class="btn" onClick="handleUpQty(${ci.product.id}, -1)">-</button>
+                                        <span>${ci.qty}</span>
+                                        <button class="btn" onClick="handleUpQty(${ci.product.id}, 1)">+</button>
+                                    </div>
+                                    <button class="delete"
+                                            onClick="handleDeleteItem(${ci.product.id})"
+                                    ><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </div>
                         </c:forEach>
@@ -41,19 +54,11 @@
             </div>
             <footer>
                 <span>
-    Thành tiền:
-    <c:choose>
-        <c:when test="${empty sessionScope.cart or empty sessionScope.cart.totalPrice}">
-            0đ
-        </c:when>
-        <c:otherwise>
-            ${sessionScope.cart.totalPrice}đ
-        </c:otherwise>
-    </c:choose>
-</span>
-
-                <a class="btn" href="checkout.html"> Thanh
-                    toán </a></footer>
+                    Thành tiền: ${not empty sessionScope.cart.totalPrice? sessionScope.cart.totalPrice : 0}đ
+                </span>
+                <a class="btn" href="checkout"> Thanh
+                    toán </a>
+            </footer>
         </section>
     </div>
 </main>

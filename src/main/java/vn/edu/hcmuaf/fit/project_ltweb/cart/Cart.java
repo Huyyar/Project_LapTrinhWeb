@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class Cart implements Serializable {
     Map<Integer, CartItem> data;
+    private boolean isChoseAll = false;
     public Cart(){
         this.data  = new HashMap<Integer, CartItem>();
     }
@@ -18,7 +19,7 @@ public class Cart implements Serializable {
             qty = 1;
         }
         if(!data.containsKey(product.getId())){
-            data.put(product.getId(), new CartItem(product, qty, product.getPrice()));
+            data.put(product.getId(), new CartItem(product, qty, product.getPrice(), false));
         }else{
             data.get(product.getId()).upQty(qty);
         }
@@ -47,8 +48,34 @@ public class Cart implements Serializable {
     public double getTotalPrice(){
         double total = 0;
         for(CartItem item : data.values()){
-            total += item.getPrice() * item.getQty();
+            if(item.isIsChose()){
+                total += item.getPrice() * item.getQty();
+            }
         }
         return  total;
+    }
+    public CartItem getItem(int id){
+        if(data.containsKey(id)){
+            return data.get(id);
+        }
+        return null;
+    }
+    public void choseAllItem(){
+        for(CartItem item : data.values()){
+            item.setIsChose(!isIsChoseAll());
+        }
+        this.isChoseAll = !isIsChoseAll();
+    }
+    public boolean isIsChoseAll(){
+        return this.isChoseAll;
+    }
+    public void checkIsChoseAll(){
+        for(CartItem item : data.values()){
+            if(!item.isIsChose()){
+                this.isChoseAll = false;
+            }else{
+                this.isChoseAll = true;
+            }
+        }
     }
 }

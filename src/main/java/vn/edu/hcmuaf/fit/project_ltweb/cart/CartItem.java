@@ -6,11 +6,13 @@ public class CartItem {
     private Product product;
     private int qty;
     private double price;
+    private boolean isChose;
 
-    public CartItem(Product product, int qty, double price) {
+    public CartItem(Product product, int qty, double price, boolean isChose) {
         this.product = product;
         this.qty = qty;
         this.price = price;
+        this.isChose = isChose;
     }
 
     public CartItem() {
@@ -40,7 +42,13 @@ public class CartItem {
         this.price = price;
     }
 
-    public void upQty(int qty) {
-        this.qty += qty;
+    public int upQty(int qty) {
+        return this.qty += qty;
+    }
+    public void setIsChose(boolean isChose) {
+        this.isChose = isChose;
+    }
+    public boolean isIsChose(){
+        return isChose;
     }
 }
