@@ -4,28 +4,31 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductsServlet", value = "/product")
+@WebServlet(name = "ProductsServlet", value = "/products")
 public class ProductsServlet extends HttpServlet {
     private ProductService service =  new ProductService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("pageTitle", "Trang sản phẩm");
-        request.setAttribute("contentPage", "/WEB-INF/views/userpages/products.jsp");
-        request.setAttribute("pageCss", new String[]{
-                "assets/css/product.css",
-                "assets/css/cart-drawer.css"
+        UserPageInfo info =  new UserPageInfo();
+        info.setTitle("Trang sản phẩm");
+        info.setName("products");
+        info.setContent("/WEB-INF/views/userpages/products.jsp");
+        info.setCss(new String[]{
+                "product.css",
+                "cart-drawer.css",
+                "pagination.css"
         });
-
-        request.setAttribute("pageJs", new String[]{
-                "assets/js/cart-drawer.js",
-                "assets/js/wishlist.js",
-
+        info.setJs(new String[]{
+                "cart-drawer.js",
+                "wishlist.js"
         });
+        request.setAttribute("info",info);
         List<Product> products = service.getProducts();
         request.setAttribute("products", products);
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")

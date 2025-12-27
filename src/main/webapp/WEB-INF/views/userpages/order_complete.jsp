@@ -31,7 +31,7 @@
 
           <div class="order-complete-actions">
             <a href="home" class="button">Tiếp tục mua hàng</a>
-            <a href="order_history.html" class="button">Xem đơn hàng của tôi</a>
+            <a href="order-history" class="button">Xem đơn hàng của tôi</a>
           </div>
         </section>
       </div>

@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
 
 import java.io.IOException;
 
-@WebServlet(name = "DashBoardServlet", value = "/dashboard")
+@WebServlet(name = "DashBoardServlet", value = "/admin/dashboard")
 public class DashBoardServlet extends HttpServlet {
 
     @Override
