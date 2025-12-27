@@ -20,9 +20,10 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="assets/css/header.css" />
-    <link rel="stylesheet" href="assets/css/footer.css" />
-    <link rel="stylesheet" href="assets/css/authorize.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/authorize.css" />
+
     <c:forEach items="${pageCss}" var="css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/${css}">
     </c:forEach>
@@ -37,13 +38,13 @@
         <nav>
             <ul class="nav-links">
                 <li>
-                    <a href="home.jsp#home" class="active">Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a>
                 </li>
                 <li>
-                    <a href="WEB-INF/pages/product.html"> Sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/product">Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="WEB-INF/pages/contact.html">Liên hệ</a>
+                    <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
                 </li>
             </ul>
             <div class="nav-actions">
