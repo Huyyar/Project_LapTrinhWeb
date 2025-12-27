@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${pageTitle}</title>
+    <title>${info.title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -85,13 +85,13 @@
                 </c:if>
                 <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <a href="cart">Giỏ Hàng(${sessionScope.cart.totalQty})</a>
+                    <a href="cart">Giỏ Hàng(${not empty sessionScope.cart.totalQty? sessionScope.cart.totalQty : 0})</a>
                 </button>
             </div>
         </nav>
     </div>
 </header>
-    <jsp:include page="${contentPage}" />
+    <jsp:include page="${info.content}" />
 <footer class="footer">
     <div class="container footer-inner">
         <div>
@@ -146,9 +146,9 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
-<%--<script src="assets/js/auth.js"></script>--%>
-<%--<c:forEach items="${pageJs}" var="js">--%>
-<%--    <script src="${js}"></script>--%>
-<%--</c:forEach>--%>
+<script src="assets/js/auth.js"></script>
+<c:forEach items="${info.js}" var="js">
+    <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
+</c:forEach>
 </body>
 </html>

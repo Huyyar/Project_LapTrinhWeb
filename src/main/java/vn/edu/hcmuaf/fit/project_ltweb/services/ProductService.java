@@ -18,8 +18,27 @@ public class ProductService {
     public Product getProduct(int id) {
         return dao.getProduct(id);
     }
+    public int getTotalFeaturedProduct(){return dao.getTotalFeaturedProducts();};
+    public List<Product> getFeaturedProducts(int offset, int pageSize) {
 
-    public List<Product> getFeaturedProducts() {
-        return dao.getFeaturedProducts();
+        return dao.getFeaturedProducts(offset, pageSize);
+    }
+    public int getTotalProducts(){
+        return dao.getTotalProducts();
+    }
+    public int getTotalSearchProducts(String search){
+        return dao.getTotalSearchProducts(search);
+    }
+    public List<Product> getPagedProducts(int offset, int pageSize){
+        return dao.getPagedProducts(offset, pageSize);
+    }
+    public List<Product> getPagedSearchProducts(int offset,  int pageSize, String search){
+        return dao.getPagedSearchProducts(offset, pageSize, search);
+    }
+    public void  deleteProduct(int id){
+        dao.deleteProduct(id);
+    }
+    public void updateProduct(Product product){
+        dao.updateProduct(product);
     }
 }

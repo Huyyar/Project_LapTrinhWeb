@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ImageFile;
+import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ImageManagerService;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
@@ -14,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AdminImageManagerServlet", value = "/admin/image-manager")
@@ -23,32 +25,38 @@ public class AdminImageManageServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // Đây mới là nơi an toàn để lấy RealPath
         String root = getServletContext().getRealPath("/");
         this.service = new ImageManagerService(root);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminPageInfo info = new AdminPageInfo();
+        PageInfo info = new PageInfo();
         info.setName("image-manager");
         info.setTitle("Admin - Image Manager");
         info.setContent("/WEB-INF/views/admin_pages/image_manager.jsp");
         info.setCss(new String[]{
-                "admin/admin.css",
-                "admin/pagination.css"
+                "pagination.css",
+                "admin/image_manager.css",
         });
         info.setJs(new String[]{
-                "admin/upload.js",
-                "admin/upload_multi.js"
+                "admin/image_manager.js",
+                "admin/upload_image.js",
+                "admin/copy_url.js"
         });
         request.setAttribute("info", info);
 
-        int totalPage = (int) Math.ceil((double) service.totalImages() / PAGE_SIZE);
+        int totalImage, totalPage;
+        String search = request.getParameter("search");
+        if(search == null){
+            search = "";
+        }
+        request.setAttribute("search", search);
+        totalImage = service.totalSearchImages(search);
+        request.setAttribute("totalImage",  totalImage);
+        totalPage = (int) Math.ceil((double) totalImage / PAGE_SIZE);
         request.setAttribute("totalPage", totalPage);
-
         int currentPage = 1;
         String pageParam = request.getParameter("page");
-
         if (pageParam != null) {
             try {
                 currentPage = Integer.parseInt(pageParam);
@@ -56,18 +64,12 @@ public class AdminImageManageServlet extends HttpServlet {
                 currentPage = 1;
             }
         }
-        if (currentPage > totalPage && totalPage > 0) {
-            currentPage = totalPage;
-        }
-        if (currentPage < 1) {
+        if (currentPage > totalPage || currentPage < 1) {
             currentPage = 1;
         }
-
         request.setAttribute("currentPage", currentPage);
-
         int offset = (currentPage - 1) * PAGE_SIZE;
-
-        List<ImageFile> images = service.getImages(offset,PAGE_SIZE);
+        List<ImageFile> images = service.getPagedSearchImages(offset,PAGE_SIZE, search);
         request.setAttribute("images", images);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
