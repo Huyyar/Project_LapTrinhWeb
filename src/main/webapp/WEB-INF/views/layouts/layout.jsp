@@ -44,7 +44,11 @@
                     <a href="${pageContext.request.contextPath}/products" class="${info.name == "products"? "active" : ""}">Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
+                    <a href="${pageContext.request.contextPath}/contact"
+                       class="${info.name == 'contact' ? 'active' : ''}">
+                        Liên hệ
+                    </a>
+
                 </li>
             </ul>
             <div class="nav-actions">
