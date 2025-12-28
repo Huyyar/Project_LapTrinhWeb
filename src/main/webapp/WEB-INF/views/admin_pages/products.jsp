@@ -54,7 +54,12 @@
                             </span>
                         </td>
                         <td>
-                            <button class="btn"><i class="fa-solid fa-eye"></i></button>
+                            <form action="${pageContext.request.contextPath}/product-detail" method="get" target="_blank" style="display: inline;">
+                                <input type="hidden" name="id" value="${p.id}">
+                                <button class="btn" type="submit"><i class="fa-solid fa-eye"></i></button>
+                            </form>
+
+
                             <button class="btn"
                                     data-id="${p.id}"
                                     data-name="${p.name}"
@@ -67,6 +72,7 @@
                                     data-inventoryQty="${p.inventory_qty}"
                                     onClick="openEditProductModal(this)"
                             ><i class="fa-solid fa-pen-to-square"></i></button>
+
                             <form action="delete-product" method="POST" style="display: inline;"
                                   onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm ${p.name} không?');">
                                 <input type="hidden" name="productId" value="${p.id}">
@@ -74,6 +80,7 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
+
                             <button class="btn"
                                     data-id="${p.id}"
                                     data-name="${p.name}"

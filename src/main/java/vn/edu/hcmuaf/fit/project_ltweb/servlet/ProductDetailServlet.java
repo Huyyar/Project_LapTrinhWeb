@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
@@ -36,13 +37,15 @@ public class ProductDetailServlet extends HttpServlet {
         }
         request.setAttribute("product", product);
 
-        request.setAttribute("pageTitle", product.getName());
-        request.setAttribute("contentPage",
-                "/WEB-INF/views/userpages/product-detail.jsp");
-
-        request.setAttribute("pageCss", new String[]{
-                "assets/css/product-detail.css"
+        UserPageInfo info =  new UserPageInfo();
+        info.setTitle(product.getName());
+        info.setName("products");
+        info.setContent("/WEB-INF/views/userpages/product-detail.jsp");
+        info.setCss(new String[]{
+                "product-detail.css"
         });
+        request.setAttribute("info",info);
+
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }

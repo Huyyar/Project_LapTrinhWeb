@@ -35,8 +35,8 @@ function updateNavUI() {
     ? "../assets/icons/icon_user.png"
     : "assets/icons/icon_user.png";
   const orderHistoryPath = isSubPage
-    ? "order_history.html"
-    : "pages/order_history.html";
+    ? "order_history.jsp"
+    : "pages/order_history.jsp";
   const profilePath = isSubPage ? "user_profile.html" : "pages/user_profile.html";
 
   

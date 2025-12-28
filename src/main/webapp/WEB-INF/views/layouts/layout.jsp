@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/authorize.css" />
 
-    <c:forEach items="${pageCss}" var="css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/${css}">
+    <c:forEach items="${info.css}" var="css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/${css}">
     </c:forEach>
 </head>
 <body>
@@ -38,10 +38,10 @@
         <nav>
             <ul class="nav-links">
                 <li>
-                    <a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/home" class="${info.name == "home"? "active" : ""}">Trang chủ</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/product">Sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/products" class="${info.name == "products"? "active" : ""}">Sản phẩm</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
@@ -85,7 +85,7 @@
                 </c:if>
                 <button class="cart-button">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <a href="cart">Giỏ Hàng(${not empty sessionScope.cart.totalQty? sessionScope.cart.totalQty : 0})</a>
+                    <a href="cart" target="_blank">Giỏ Hàng(${not empty sessionScope.cart.totalQty? sessionScope.cart.totalQty : 0})</a>
                 </button>
             </div>
         </nav>

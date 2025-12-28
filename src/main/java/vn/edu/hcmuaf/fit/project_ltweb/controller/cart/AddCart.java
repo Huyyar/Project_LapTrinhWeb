@@ -28,7 +28,8 @@ public class AddCart extends HttpServlet {
         }
         cart.addItem(product,qty);
         session.setAttribute("cart",cart);
-        response.sendRedirect("home");
+        String page = request.getParameter("page");
+        response.sendRedirect(page);
     }
 
     @Override

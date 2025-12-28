@@ -109,10 +109,11 @@
                                 <div class="card-actions">
                                     <a
                                             class="btn btn-outline"
-                                            href="WEB-INF/pages/product-detail.html"
+                                            href="product-detail?id=${p.id}"
+                                            target="_blank"
                                     >Xem chi tiết</a
                                     >
-                                    <a href="add-cart?id=${p.id}&qty=1" class="btn btn-primary">Thêm vào giỏ</a>
+                                    <a href="add-cart?id=${p.id}&qty=1&page=home" class="btn btn-primary">Thêm vào giỏ</a>
                                 </div>
                             </article>
                         </c:forEach>
