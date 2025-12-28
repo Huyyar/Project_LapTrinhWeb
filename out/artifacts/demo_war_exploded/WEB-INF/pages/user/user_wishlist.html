@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sản phẩm yêu thích - SnackHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../assets/css/header.css" />
+    <link rel="stylesheet" href="../../assets/css/footer.css" />
+    <link rel="stylesheet" href="../../assets/css/user_wishlist.css" />
+    <link rel="stylesheet" href="../../assets/css/userPage.css" />
+  </head>
+  <body data-page="wishlist">
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <a class="logo" href="../../index.html">
+          <span class="logo-icon">🍿</span>
+          <span>SnackHub</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../../index.html#home">Trang chủ</a></li>
+            <li><a href="../../views/userpages/products.jsp">Sản phẩm</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search">
+              <span class="icon">🔍</span>
+              <input
+                type="search"
+                id="nav-search"
+                placeholder="Bạn muốn ăn gì hôm nay?"
+              />
+            </div>
+            <div class="nav-auth">
+              <a class="link-button" href="../../views/userpages/register.jsp">Đăng kí</a>
+              <span class="nav-divider"></span>
+              <a class="link-button" href="../../views/userpages/login.jsp">Đăng nhập</a>
+            </div>
+            <button class="cart-button">
+              <a href="cart.jsp">Giỏ Hàng</a>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="user-page">
+      <div class="container">
+        <div class="layout">
+          <aside class="sidebar">
+            <div class="card">
+              <div class="avatar-wrap">
+                <img
+                  src="../../assets/icons/icon_user.png"
+                  alt="Ảnh đại diện"
+                />
+                <button type="button">Đổi ảnh</button>
+              </div>
+              <h1>Xin chào, Nguyễn!</h1>
+            </div>
+            <nav class="menu" aria-label="Tùy chọn hồ sơ">
+              <a href="user_profile.html" class="menu-item">
+                <i class="fa-solid fa-user"></i> Thông tin cá nhân
+              </a>
+              <a href="user_address.html" class="menu-item">
+                <i class="fa-solid fa-location-dot"></i> Địa chỉ giao hàng
+              </a>
+              <a href="user_changePassword.html" class="menu-item">
+                <i class="fa-solid fa-key"></i> Đổi mật khẩu
+              </a>
+              <a href="user_wishlist.html" class="menu-item is-active">
+                <i class="fa-solid fa-heart"></i> Sản phẩm yêu thích
+              </a>
+            </nav>
+          </aside>
+          <section class="wishlist-content" aria-label="Sản phẩm yêu thích">
+            <div class="panel wishlist-section">
+              <header class="panel-header">
+                <h2>Sản phẩm yêu thích</h2>
+                <p>Danh sách các sản phẩm bạn đã thêm vào mục yêu thích</p>
+              </header>
+              <div class="panel-body">
+                <div class="wishlist-stats">
+                  <div class="stat-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="stat-number" id="wishlistCount">0</span>
+                    <span class="stat-label">Sản phẩm</span>
+                  </div>
+                  <div class="stat-item">
+                    <i class="fa-solid fa-tag"></i>
+                    <span class="stat-number" id="totalValue">0₫</span>
+                    <span class="stat-label">Tổng giá trị</span>
+                  </div>
+                </div>
+
+                <div class="wishlist-actions-top">
+                  <button class="btn-secondary" onclick="addAllToCart()">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Thêm tất cả vào giỏ hàng
+                  </button>
+                  <button class="btn-outline" onclick="clearWishlist()">
+                    <i class="fa-solid fa-trash"></i>
+                    Xóa tất cả
+                  </button>
+                </div>
+
+                <div class="wishlist-grid" id="wishlistGrid">
+                  <!-- Empty state -->
+                  <div class="empty-state" id="emptyState">
+                    <i class="fa-regular fa-heart"></i>
+                    <h3>Chưa có sản phẩm yêu thích</h3>
+                    <p>
+                      Hãy thêm những món ăn bạn thích vào danh sách này để dễ
+                      dàng tìm lại sau!
+                    </p>
+                    <a href="../../views/userpages/products.jsp" class="btn-primary">
+                      <i class="fa-solid fa-utensils"></i>
+                      Khám phá sản phẩm
+                    </a>
+                  </div>
+                  <!-- Products will be added here dynamically -->
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo-icon">🍿</span>
+              <span>SnackHub</span>
+            </div>
+            <p>
+              Điểm đến lý tưởng dành cho người yêu thích snack! Khám phá đa dạng
+              món ăn vặt từ Á sang Âu, nội địa đến ngoại nhập – mọi khẩu vị đều
+              có.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h3>Liên kết</h3>
+            <ul>
+              <li><a href="../../index.html">Trang chủ</a></li>
+              <li><a href="../../views/userpages/products.jsp">Sản phẩm</a></li>
+              <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h3>Liên hệ</h3>
+            <ul>
+              <li><i class="fa fa-phone"></i> 028 1234 5678</li>
+              <li><i class="fa fa-envelope"></i> contact@snackhub.vn</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 SnackHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="../../assets/js/wishlist.js"></script>
+  </body>
+</html>

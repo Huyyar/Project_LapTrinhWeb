@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Chỉnh sửa sản phẩm - SnackHub Admin</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/admin_product_edit.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <main class="main">
+        <header class="topbar">
+          <div class="header-group">
+            <a href="admin/products.jsp" class="btn-back">
+              <i class="fa-solid fa-arrow-left"></i> Quay lại
+            </a>
+          </div>
+          <h1>Chỉnh Sửa Sản Phẩm</h1>
+          <div style="width: 100px"></div>
+        </header>
+
+        <section class="content">
+          <form id="editProductForm">
+            <div class="edit-grid">
+              <div class="card left-col">
+                <h3>Thông tin chung</h3>
+
+                <div class="form-group">
+                  <label for="productName">Tên sản phẩm</label>
+                  <input
+                    type="text"
+                    id="productName"
+                    class="form-control"
+                    value="Rong biển cay giòn"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="productNameEn">Tên tiếng Anh (Subtitle)</label>
+                  <input
+                    type="text"
+                    id="productNameEn"
+                    class="form-control"
+                    value="Spicy Crispy Seaweed"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="productDesc">Mô tả sản phẩm</label>
+                  <textarea id="productDesc" class="form-control">
+Miếng rong biển nướng phủ gia vị cay nhẹ chuẩn Hàn Quốc, giòn tan nhưng không quá mặn, rất hợp khi ăn kèm đồ uống có gas.</textarea
+                  >
+                </div>
+
+                <div class="row-2">
+                  <div class="form-group">
+                    <label for="productPrice">Giá bán (VNĐ)</label>
+                    <input
+                      type="number"
+                      id="productPrice"
+                      class="form-control"
+                      value="35700"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="productStock">Tồn kho</label>
+                    <input
+                      type="number"
+                      id="productStock"
+                      class="form-control"
+                      value="180"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="right-col">
+                <div class="card" style="margin-bottom: 24px">
+                  <h3>Phân loại & Trạng thái</h3>
+
+                  <div class="form-group">
+                    <label for="productCategory">Danh mục</label>
+                    <select id="productCategory" class="form-control">
+                      <option value="salty" selected>Đồ mặn</option>
+                      <option value="sweet">Đồ ngọt</option>
+                      <option value="drink">Đồ uống</option>
+                      <option value="combo">Combo</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="productStatus">Trạng thái</label>
+                    <select id="productStatus" class="form-control">
+                      <option value="active" selected>Đang bán (Hiện)</option>
+                      <option value="hidden">Tạm ẩn</option>
+                      <option value="out_of_stock">Hết hàng</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <h3>Hình ảnh sản phẩm</h3>
+
+                  <!-- Multiple Image Upload Area -->
+                  <div class="multi-image-upload-section">
+                    <div
+                      class="upload-trigger"
+                      onclick="document.getElementById('productImages').click()"
+                    >
+                      <input
+                        type="file"
+                        id="productImages"
+                        accept="image/*"
+                        multiple
+                      />
+                      <div class="upload-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                      </div>
+                      <span class="upload-text">Chọn nhiều ảnh sản phẩm</span>
+                      <small class="upload-hint"
+                        >Hỗ trợ: JPG, PNG, WEBP (Tối đa 10 ảnh)</small
+                      >
+                    </div>
+
+                    <!-- Images Preview Grid -->
+                    <div id="imagesPreviewGrid" class="images-preview-grid">
+                      <!-- Sample existing image -->
+                      <div class="image-preview-item" data-image-id="1">
+                        <img
+                          src="../../assets/images/Image_Rong_Bien.jpeg"
+                          alt="Product Image 1"
+                        />
+                        <button
+                          type="button"
+                          class="btn-remove-image"
+                          title="Xóa ảnh"
+                        >
+                          <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <label class="thumbnail-badge">
+                          <input
+                            type="radio"
+                            name="mainThumbnail"
+                            value="1"
+                            checked
+                          />
+                          <span class="badge-icon">
+                            <i class="fa-solid fa-star"></i>
+                          </span>
+                          <span class="badge-text">Ảnh đại diện</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="window.location.href='./admin_product.html'"
+              >
+                Hủy bỏ
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-save"></i> Lưu thay đổi
+              </button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script src="../../assets/js/admin_product_edit.js"></script>
+  </body>
+</html>

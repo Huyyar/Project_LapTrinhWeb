@@ -18,7 +18,7 @@ public class AddCart extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.getProduct(id);
         if(product==null){
-            response.sendRedirect("/demo_war_exploded");
+            response.sendRedirect("home");
             return;
         }
         HttpSession session = request.getSession();
@@ -28,7 +28,8 @@ public class AddCart extends HttpServlet {
         }
         cart.addItem(product,qty);
         session.setAttribute("cart",cart);
-        response.sendRedirect("/demo_war_exploded");
+        String page = request.getParameter("page");
+        response.sendRedirect(page);
     }
 
     @Override

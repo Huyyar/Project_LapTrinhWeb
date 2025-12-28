@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
@@ -12,23 +13,46 @@ import java.util.List;
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
     private ProductService service =  new ProductService();
+    private int PAGE_SIZE = 6;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("pageTitle", "Trang chủ");
-        request.setAttribute("contentPage", "/WEB-INF/views/userpages/home.jsp");
-        request.setAttribute("pageCss", new String[]{
-                "assets/css/home.css",
-                "assets/css/product.css",
-                "assets/css/slideshow.css"
+        UserPageInfo info =  new UserPageInfo();
+        info.setTitle("Trang chủ");
+        info.setName("home");
+        info.setContent("/WEB-INF/views/userpages/home.jsp");
+        info.setCss(new String[]{
+                "user/home.css",
+                "product.css",
+                "slideshow.css",
+                "pagination.css"
         });
-
-        request.setAttribute("pageJs", new String[]{
-                "assets/js/home.js",
-                "assets/js/slideshow.js",
-                "assets/js/wishlist.js"
+        info.setJs(new String[]{
+                "home.js",
+                "slideshow.js",
+                "wishlist.js"
         });
-        List<Product> products = service.getFeaturedProducts();
+        request.setAttribute("info",info);
+        int totalProduct, totalPage;
+        totalProduct = service.getTotalFeaturedProduct();
+        totalPage = (int) Math.ceil((double) totalProduct / PAGE_SIZE);
+        request.setAttribute("totalPage", totalPage);
+        int currentPage = 1;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
+        if (currentPage > totalPage || totalPage < 0) {
+            currentPage = 1;
+        }
+        request.setAttribute("currentPage", currentPage);
+        int offset = (currentPage - 1) * PAGE_SIZE;
+        List<Product> products = service.getFeaturedProducts(offset, PAGE_SIZE);
         request.setAttribute("products", products);
+
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }
