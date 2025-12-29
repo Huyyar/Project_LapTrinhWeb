@@ -30,10 +30,10 @@ public class LoginController extends HttpServlet {
         User user = service.login(email, password);
         if(user!= null) {
             HttpSession session = request.getSession();
-           if(user.getRole().equalsIgnoreCase("admin")) {
+           if(user.isAdmin()) {
                System.out.println("user admin logged in");
                session.setAttribute("auth", user);
-               response.sendRedirect("dashboard");
+               response.sendRedirect("admin/dashboard");
            }else if(user.getRole().equalsIgnoreCase("user")) {
                session.setAttribute("auth", user) ;
                response.sendRedirect("home");

@@ -158,4 +158,7 @@ public class User {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+    public boolean isAdmin() {
+        return "admin".equalsIgnoreCase(this.getRole());
+    }
 }

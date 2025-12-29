@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
+import vn.edu.hcmuaf.fit.project_ltweb.utils.AppContextListener;
+
 public class ImageFile {
     private String name;
     private String url;
@@ -23,7 +25,8 @@ public class ImageFile {
     }
 
     public String getUrl() {
-        return url;
+        String cp = AppContextListener.contextPath;
+        return cp + "/" + url;
     }
 
     public void setUrl(String url) {
