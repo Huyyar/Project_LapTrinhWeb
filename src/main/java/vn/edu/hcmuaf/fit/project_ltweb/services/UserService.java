@@ -24,6 +24,7 @@ public class UserService {
     public User getUserByEmail(String email){
         return dao.getUserByEmail(email);
     }
+
     public User login(String email , String password){
         String hashedPassword = hashUtil.passwordHash(password);
         User user = dao.getUserByEmail(email);
@@ -39,6 +40,13 @@ public class UserService {
             System.out.println("Account is deactivated for email: " + email);
             return null;
         }
+    }
+    public User updateUserProfile(User u){
+        if(dao.updateUser(u)){
+            return dao.getUserById(u.getId());
+        }
+        System.out.println("Update failed for user id: " + u.getId());
+        return null;
     }
 
 }

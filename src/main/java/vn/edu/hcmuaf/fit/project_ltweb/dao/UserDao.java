@@ -53,8 +53,36 @@ public class UserDao {
 
         return -1;
     }
+    public User getUserById(int id ) {
+        String query = "select * from users where id = ? ";
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
 
-    public User getUserByEmail(String email) {
+                int idU = rs.getInt("id");
+                String emailU = rs.getString("email");
+                String password = rs.getString("password");
+                String fullname = rs.getString("fullname");
+                String phone = rs.getString("phone");
+                String gender = rs.getString("gender");
+                Date birthdate = rs.getDate("birthdate");
+
+                String avatar_url = rs.getString("avatar_url");
+                String role = rs.getString("role");
+                boolean active = rs.getBoolean("is_active");
+                Date createdAt = rs.getDate("created_at");
+                User u = new User(idU, emailU, password, fullname,phone,gender,birthdate, avatar_url, role, active, createdAt);
+                return u;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+        public User getUserByEmail(String email) {
         String query = "select * from users where email = ? ";
         try {
             Connection conn = DBConnection.getConnection();
@@ -67,11 +95,13 @@ public class UserDao {
                 String emailU = rs.getString("email");
                 String password = rs.getString("password");
                 String fullname = rs.getString("fullname");
+
                 String avatar_url = rs.getString("avatar_url");
                 String role = rs.getString("role");
                 boolean active = rs.getBoolean("is_active");
-                Date d = rs.getDate("created_at");
-                User u = new User(id, emailU, password, fullname, avatar_url, role, active, new Timestamp(d.getTime()));
+
+                Date createdAt = rs.getDate("created_at");
+                User u = new User(id,email, password, fullname, avatar_url, role, active, createdAt);
                 return u;
             }
 
@@ -84,19 +114,20 @@ public class UserDao {
         return null;
     }
 
-    public boolean updateUser(User u) {
-        String query = "UPDATE users SET fullname = ?, email = ? ,phone = ?,  birthdate = ? , gender = ?   WHERE email = ?";
+
+    public boolean updateUser(User u){
+        String query = "UPDATE users SET fullname = ?, email = ? ,phone = ?,  birthdate = ? , gender = ?   WHERE id = ?";
         try {
-            Connection conn = DBConnection.getConnection();
+            Connection conn =DBConnection.getConnection() ;
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, u.getFullname());
             ps.setString(2, u.getEmail());
             ps.setString(3, u.getPhone());
-            ps.setTimestamp(4, u.getBirthdate());
+            ps.setDate(4, u.getBirthdate());
             ps.setString(5, u.getGender());
-
-            int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated > 0;
+            ps.setInt(6, u.getId());
+            int i = ps.executeUpdate();
+            return i > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
