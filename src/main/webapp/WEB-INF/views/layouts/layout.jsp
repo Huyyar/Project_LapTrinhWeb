@@ -150,7 +150,7 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
-<script src="assets/js/auth.js"></script>
+
 <c:forEach items="${info.js}" var="js">
     <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
 </c:forEach>
