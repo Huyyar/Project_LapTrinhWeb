@@ -74,7 +74,7 @@
           <button type="submit" class="auth-submit">Đăng ký</button>
           <div class="auth-meta">
             <span>Đã có tài khoản?</span>
-            <a class="auth-link" href="${pageContext.request.contextPath}/register">Đăng nhập</a>
+            <a class="auth-link" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
           </div>
         </form>
       </section>
