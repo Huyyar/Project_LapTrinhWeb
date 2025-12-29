@@ -76,7 +76,7 @@
                         </button>
 
                         <div class="user-dropdown">
-                            <a href="${profilePath}">Profile</a>
+                            <a href="${pageContext.request.contextPath}/profile">Profile</a>
                             <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
                             <button id="logout-btn">Đăng xuất</button>
                         </div>

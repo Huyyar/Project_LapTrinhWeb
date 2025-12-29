@@ -34,8 +34,8 @@ public class UserDao {
 
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getPassword());
-            ps.setString(3,u.getFullname());
-            ps.setString(4,u.getAvatar_url());
+            ps.setString(3, u.getFullname());
+            ps.setString(4, u.getAvatar_url());
 
             int affectedRows = ps.executeUpdate();
 
@@ -59,7 +59,7 @@ public class UserDao {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1,email);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -67,11 +67,11 @@ public class UserDao {
                 String emailU = rs.getString("email");
                 String password = rs.getString("password");
                 String fullname = rs.getString("fullname");
-                String avatar_url =rs.getString("avatar_url");
+                String avatar_url = rs.getString("avatar_url");
                 String role = rs.getString("role");
                 boolean active = rs.getBoolean("is_active");
                 Date d = rs.getDate("created_at");
-                User u = new User(id, emailU, password, fullname,avatar_url, role, active, new Timestamp(d.getTime()));
+                User u = new User(id, emailU, password, fullname, avatar_url, role, active, new Timestamp(d.getTime()));
                 return u;
             }
 
@@ -84,8 +84,27 @@ public class UserDao {
         return null;
     }
 
+    public boolean updateUser(User u) {
+        String query = "UPDATE users SET fullname = ?, email = ? ,phone = ?,  birthdate = ? , gender = ?   WHERE email = ?";
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, u.getFullname());
+            ps.setString(2, u.getEmail());
+            ps.setString(3, u.getPhone());
+            ps.setTimestamp(4, u.getBirthdate());
+            ps.setString(5, u.getGender());
 
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }
+
 
 
 
