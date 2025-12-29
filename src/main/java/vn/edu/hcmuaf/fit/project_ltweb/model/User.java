@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.Objects;
 
 public class User {
     private int id;
@@ -8,11 +9,11 @@ public class User {
     private String fullname;
     private String phone;
     private String gender;
-    private Timestamp birthdate;
+    private Date birthdate;
     private String avatar_url;
     private String role;
     private boolean is_active;
-    private Timestamp created_at;
+    private Date created_at;
 
     public User() {}
 
@@ -23,7 +24,30 @@ public class User {
         this.avatar_url = avatar_url;
     }
 
-    public User(int id, String email, String password, String fullname, String avatar_url, String role, boolean is_active, Timestamp created_at) {
+    public User(int id, String email, String password, String fullname, String phone, String gender, Date birthdate, String avatar_url, String role, boolean is_active, Date created_at) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.avatar_url = avatar_url;
+        this.role = role;
+        this.is_active = is_active;
+        this.created_at = created_at;
+    }
+
+    public User(int id , String email, String fullname, String phone, Date birthdate, String gender) {
+        this.id = id;
+        this.email = email;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
+
+    public User(int id, String email, String password, String fullname, String avatar_url, String role, boolean is_active, Date created_at) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -82,11 +106,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Timestamp getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Timestamp birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -115,11 +139,23 @@ public class User {
         this.is_active = is_active;
     }
 
-    public Timestamp getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Timestamp created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
