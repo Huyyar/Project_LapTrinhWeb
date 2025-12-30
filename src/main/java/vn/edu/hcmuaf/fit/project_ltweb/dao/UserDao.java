@@ -95,13 +95,15 @@ public class UserDao {
                 String emailU = rs.getString("email");
                 String password = rs.getString("password");
                 String fullname = rs.getString("fullname");
-
+                String phone = rs.getString("phone");
+                String gender = rs.getString("gender");
+                Date birthdate = rs.getDate("birthdate");
                 String avatar_url = rs.getString("avatar_url");
                 String role = rs.getString("role");
                 boolean active = rs.getBoolean("is_active");
-
                 Date createdAt = rs.getDate("created_at");
-                User u = new User(id,email, password, fullname, avatar_url, role, active, createdAt);
+
+                User  u = new User(id, emailU, password, fullname,phone,gender,birthdate, avatar_url, role, active, createdAt);
                 return u;
             }
 

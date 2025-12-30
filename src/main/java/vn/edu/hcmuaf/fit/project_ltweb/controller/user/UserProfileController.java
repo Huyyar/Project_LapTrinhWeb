@@ -19,10 +19,6 @@ public class UserProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Lấy user từ session
-        User u = (User) request.getSession().getAttribute("auth");
-
-        // 2. Chuẩn bị PageInfo
         PageInfo info = new PageInfo();
         info.setName("Profile");
         info.setTitle("User - Profile");
@@ -33,14 +29,15 @@ public class UserProfileController extends HttpServlet {
         info.setJs(new String[]{
                 "user_profile.js"
         });
-
-        // 3. Set attribute
         request.setAttribute("info", info);
-        request.setAttribute("userNews", u);
         request.setAttribute("userContent",
                 "/WEB-INF/views/userpages/user_profile.jsp");
 
-        // 4. forward
+
+        User u = (User) request.getSession().getAttribute("auth");
+        request.setAttribute("auth", u);
+
+
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }
