@@ -41,7 +41,6 @@
 
                 </label>
                 <div class="form-actions">
-                  <button type="reset" class="btn-secondary">Hủy</button>
                   <button type="submit" class="btn-primary">
                     Lưu thay đổi
                   </button>
