@@ -10,7 +10,7 @@
             <div class="product-detail-images">
                 <div class="main-image-container">
                     <img id="mainImage"
-                         src="${pageContext.request.contextPath}/${product.image_url}"
+                         src="${product.image_url}"
                          alt="${product.name}" />
                 </div>
             </div>

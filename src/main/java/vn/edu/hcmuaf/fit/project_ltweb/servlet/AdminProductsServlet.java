@@ -5,10 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
+import vn.edu.hcmuaf.fit.project_ltweb.services.UserService;
 
 import java.io.IOException;
 import java.util.List;
