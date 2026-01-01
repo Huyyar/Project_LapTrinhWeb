@@ -30,6 +30,7 @@ public class AdminImageManageServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         PageInfo info = new PageInfo();
         info.setName("image-manager");
         info.setTitle("Admin - Image Manager");

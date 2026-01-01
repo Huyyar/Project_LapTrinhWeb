@@ -14,6 +14,12 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User auth = (User) request.getSession().getAttribute("auth");
+        if (auth != null) {
+            response.sendRedirect("home");
+            return;
+        }
+
         request.getRequestDispatcher("/WEB-INF/views/userpages/login.jsp").forward(request, response);
     }
 
@@ -30,10 +36,10 @@ public class LoginController extends HttpServlet {
         User user = service.login(email, password);
         if(user!= null) {
             HttpSession session = request.getSession();
-           if(user.getRole().equalsIgnoreCase("admin")) {
+           if(user.isAdmin()) {
                System.out.println("user admin logged in");
                session.setAttribute("auth", user);
-               response.sendRedirect("dashboard");
+               response.sendRedirect("admin/dashboard");
            }else if(user.getRole().equalsIgnoreCase("user")) {
                session.setAttribute("auth", user) ;
                response.sendRedirect("home");

@@ -80,9 +80,9 @@
                         </button>
 
                         <div class="user-dropdown">
-                            <a href="${profilePath}">Profile</a>
+                            <a href="${pageContext.request.contextPath}/profile">Profile</a>
                             <a href="${orderHistoryPath}">Lịch sử mua hàng</a>
-                            <button id="logout-btn">Đăng xuất</button>
+                            <a href="logout" id="logoutBtn">Đăng xuất</a>
                         </div>
 
                     </div>
@@ -150,7 +150,7 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
-
+<script src="${pageContext.request.contextPath}/assets/js/logout.js"></script>
 <c:forEach items="${info.js}" var="js">
     <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
 </c:forEach>

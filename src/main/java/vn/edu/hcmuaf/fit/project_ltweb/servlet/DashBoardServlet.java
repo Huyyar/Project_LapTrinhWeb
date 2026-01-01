@@ -14,6 +14,7 @@ public class DashBoardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         PageInfo info = new  PageInfo();
         info.setName("dashboard");
         info.setTitle("Admin - Dashboard");

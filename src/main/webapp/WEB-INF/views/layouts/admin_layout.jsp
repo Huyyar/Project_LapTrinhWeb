@@ -53,7 +53,7 @@
                 <i class="fa-solid fa-upload"></i>
                 <span>Quản lí ảnh</span>
             </a>
-            <a href="logout" class="nav-link" id="logout-btn" style="margin-top: auto; color: var(--danger);">
+            <a href="${pageContext.request.contextPath}/logout" class="nav-link" id="logoutBtn" style="margin-top: auto; color: var(--danger);">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>Đăng xuất</span>
             </a>
@@ -65,6 +65,7 @@
 <script src="https://releases.transloadit.com/uppy/v3.21.0/uppy.min.js"></script>
 <script src="https://releases.transloadit.com/uppy/locales/v3.0.0/vi_VN.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/admin/modals.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/logout.js"></script>
 <c:forEach items="${info.js}" var="js">
     <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
 </c:forEach>

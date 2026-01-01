@@ -42,7 +42,7 @@
                     <c:when test="${not empty products}">
                     <c:forEach var="p" items="${products}">
                     <tr>
-                        <td><img src="${pageContext.request.contextPath}/${p.image_url}" alt="${p.name}"
+                        <td><img src="${p.image_url}" alt="${p.name}"
                                  class="product-image"/></td>
                         <td>${p.name}</td>
                         <td>${p.category}</td>
@@ -101,7 +101,7 @@
                 <ul class="pagination">
                     <c:forEach var="p" begin="1" end="${totalPage}">
                         <li class="${p == currentPage ? 'active' : ''}">
-                            <a href="${pageContext.request.contextPath}/admin/products?page=${p}&search=${search}">
+                            <a href="${pageContext.request.contextPath}/admin/products?page=${p}${not empty search? "&search=" += search : ""}">
                                     ${p}
                             </a>
                         </li>
