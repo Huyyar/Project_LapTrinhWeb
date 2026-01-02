@@ -1,11 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@
 taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- Link CSS cho Modal -->
-<link
-  rel="stylesheet"
-  href="${pageContext.request.contextPath}/assets/css/user/user_address_modal.css"
-/>
+
 
 <section class="profile-content" aria-label="Địa chỉ giao hàng">
   <section class="panel profile-section is-active" data-section="address">
@@ -13,28 +9,83 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <h2>Địa chỉ giao hàng</h2>
       <p>Lưu nhiều địa chỉ để điền nhanh mỗi lần checkout.</p>
     </header>
+
     <div class="panel-body address-list">
-      <article class="address-card is-default">
-        <div>
-          <h3>Nhà riêng</h3>
-          <p>123 Đường ABC, Phường 7, Quận 3, TP.HCM</p>
-          <span class="badge">Mặc định</span>
-        </div>
-        <div class="address-actions">
-          <button type="button" class="link">Sửa</button>
-          <button type="button" class="link">Xóa</button>
-        </div>
-      </article>
-      <article class="address-card">
-        <div>
-          <h3>Văn phòng</h3>
-          <p>Tầng 5, Tòa nhà XYZ, Quận 1, TP.HCM</p>
-        </div>
-        <div class="address-actions">
-          <button type="button" class="link">Đặt làm mặc định</button>
-          <button type="button" class="link">Xóa</button>
-        </div>
-      </article>
+      <c:choose>
+        <c:when test="${empty addressGet}">
+          <!-- Không có địa chỉ -->
+          <div class="empty-state">
+            <p>Bạn chưa có địa chỉ nào. Hãy thêm địa chỉ giao hàng.</p>
+          </div>
+        </c:when>
+        <c:otherwise>
+          <!-- Có địa chỉ - Loop qua danh sách -->
+          <c:forEach items="${addressGet}" var="addr">
+            <article
+              class="address-card ${addr.defaultAddress ? 'is-default' : ''}"
+              data-address-id="${addr.id}"
+              data-recipient-name="${addr.recipientName}"
+              data-recipient-phone="${addr.recipientPhone}"
+              data-province="${addr.province}"
+              data-district="${addr.district}"
+              data-ward="${addr.ward}"
+              data-province-code="${addr.provinceCode}"
+              data-district-code="${addr.districtCode}"
+              data-ward-code="${addr.wardCode}"
+              data-address-detail="${addr.addressDetail}"
+              data-default-address="${addr.defaultAddress}"
+            >
+              <div>
+                <h3>${addr.recipientName}</h3>
+                <p>${addr.recipientPhone}</p>
+                <p>${addr.fullAddress}</p>
+                <c:if test="${addr.defaultAddress}">
+                  <span class="badge">Mặc định</span>
+                </c:if>
+              </div>
+              <div class="address-actions">
+                <c:choose>
+                  <c:when test="${addr.defaultAddress}">
+                    <!-- Địa chỉ mặc định: chỉ có Sửa và Xóa -->
+                    <button
+                      type="button"
+                      class="link btn-edit"
+                      data-id="${addr.id}"
+                    >
+                      Sửa
+                    </button>
+                    <button
+                      type="button"
+                      class="link btn-delete"
+                      data-id="${addr.id}"
+                    >
+                      Xóa
+                    </button>
+                  </c:when>
+                  <c:otherwise>
+                    <!-- Địa chỉ phụ: có Đặt mặc định và Xóa -->
+                    <button
+                      type="button"
+                      class="link btn-set-default"
+                      data-id="${addr.id}"
+                    >
+                      Đặt làm mặc định
+                    </button>
+                    <button
+                      type="button"
+                      class="link btn-delete"
+                      data-id="${addr.id}"
+                    >
+                      Xóa
+                    </button>
+                  </c:otherwise>
+                </c:choose>
+              </div>
+            </article>
+          </c:forEach>
+        </c:otherwise>
+      </c:choose>
+
       <button type="button" class="btn-outline">+ Thêm địa chỉ mới</button>
     </div>
   </section>
@@ -62,9 +113,12 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <div class="address-modal-body">
     <form
       id="addressForm"
-      action="${pageContext.request.contextPath}/address/add"
+      action="${pageContext.request.contextPath}/address"
       method="post"
     >
+      <input type="hidden" name="action" value="add" id="formAction" />
+      <!-- Thêm hidden input để controller biết là add hay update -->
+      <input type="hidden" name="addressId" id="addressId" value="" />
       <!-- Tên và Số điện thoại -->
       <div class="address-form-row">
         <div class="address-form-group">
@@ -162,12 +216,12 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="address-checkbox-group">
         <input
           type="checkbox"
-          id="isDefault"
-          name="isDefault"
+          id="defaultAddress"
+          name="defaultAddress"
           class="address-checkbox-input"
           value="true"
         />
-        <label for="isDefault" class="address-checkbox-label">
+        <label for="defaultAddress" class="address-checkbox-label">
           Đặt làm địa chỉ mặc định
         </label>
       </div>
@@ -193,5 +247,3 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </button>
   </footer>
 </div>
-
-<script src="${pageContext.request.contextPath}/assets/js/user/user_address.js"></script>

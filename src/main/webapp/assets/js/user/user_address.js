@@ -12,8 +12,8 @@
   // Khởi tạo modal khi DOM đã sẵn sàng
   document.addEventListener("DOMContentLoaded", function () {
     initAddressModal();
-    // Load danh sách tỉnh/thành ngay khi trang load
     loadProvinces();
+    initAddressActions();
   });
 
   function initAddressModal() {
@@ -33,6 +33,7 @@
     // Mở modal khi click "Thêm địa chỉ mới"
     addButton.addEventListener("click", function (e) {
       e.preventDefault();
+      resetFormForAdd();
       openModal();
     });
 
@@ -116,9 +117,44 @@
     setTimeout(() => {
       if (form) {
         form.reset();
+        resetFormForAdd();
         clearFormErrors();
       }
     }, 300);
+  }
+
+  /**
+   * Reset form về trạng thái thêm mới
+   */
+  function resetFormForAdd() {
+    const form = document.getElementById("addressForm");
+    if (form) {
+      form.reset();
+    }
+    
+    // Reset hidden inputs
+    document.getElementById("addressId").value = "";
+    document.getElementById("formAction").value = "add";
+    
+    // Reset title
+    const modalHeader = document.querySelector(".address-modal-header h2");
+    if (modalHeader) {
+      modalHeader.textContent = "Thêm địa chỉ mới";
+    }
+    
+    // Reset dropdowns
+    const districtSelect = document.getElementById("district");
+    const wardSelect = document.getElementById("ward");
+    if (districtSelect) {
+      districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
+      districtSelect.disabled = true;
+    }
+    if (wardSelect) {
+      wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
+      wardSelect.disabled = true;
+    }
+    
+    clearFormErrors();
   }
 
   /**
@@ -137,39 +173,8 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Đang xử lý...";
 
-    // Tạo FormData
-    const formData = new FormData(form);
 
-    // Gửi dữ liệu bằng fetch API
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Xử lý kết quả thành công
-        if (data.success) {
-          alert("Thêm địa chỉ thành công!");
-          closeModal();
-          // Reload trang hoặc cập nhật danh sách địa chỉ
-          location.reload();
-        } else {
-          alert(data.message || "Có lỗi xảy ra, vui lòng thử lại!");
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Hoàn tất";
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Có lỗi xảy ra, vui lòng thử lại!");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Hoàn tất";
-      });
+    form.submit();
   }
 
   /**
@@ -544,6 +549,139 @@
       });
 
       wardSelect.disabled = false;
+    }
+  }
+
+  /**
+   * Khởi tạo xử lý các button trong danh sách địa chỉ
+   */
+  function initAddressActions() {
+    const addressList = document.querySelector(".address-list");
+    if (!addressList) return;
+
+    // Event delegation - bắt sự kiện trên container cha
+    addressList.addEventListener("click", function (e) {
+      const target = e.target;
+
+      // XỬ LÝ NÚT XÓA
+      if (target.classList.contains("btn-delete")) {
+        const addressId = target.getAttribute("data-id");
+        handleDeleteAddress(addressId);
+      }
+
+      // XỬ LÝ NÚT ĐẶT MẶC ĐỊNH
+      if (target.classList.contains("btn-set-default")) {
+        const addressId = target.getAttribute("data-id");
+        handleSetDefault(addressId);
+      }
+
+      // XỬ LÝ NÚT SỬA
+      if (target.classList.contains("btn-edit")) {
+        const addressId = target.getAttribute("data-id");
+        handleEditAddress(addressId);
+      }
+    });
+  }
+
+  /**
+   * Xử lý XÓA địa chỉ
+   */
+  function handleDeleteAddress(addressId) {
+    // Confirm trước khi xóa
+    if (!confirm("Bạn có chắc muốn xóa địa chỉ này?")) {
+      return;
+    }
+
+    // Redirect đến URL xóa
+    const contextPath =
+      document.querySelector("body").dataset.contextPath || "";
+    window.location.href = `${contextPath}/address?action=delete&id=${addressId}`;
+  }
+
+  /**
+   * Xử lý ĐẶT MẶC ĐỊNH
+   */
+  function handleSetDefault(addressId) {
+    const contextPath =
+      document.querySelector("body").dataset.contextPath || "";
+    window.location.href = `${contextPath}/address?action=setDefault&id=${addressId}`;
+  }
+
+  /**
+   * Xử lý SỬA địa chỉ
+   */
+  async function handleEditAddress(addressId) {
+    try {
+      // Lấy thẻ article chứa data
+      const addressCard = document.querySelector(`[data-address-id="${addressId}"]`);
+      if (!addressCard) {
+        throw new Error("Không tìm thấy thông tin địa chỉ");
+      }
+      
+      // Lấy data từ data attributes
+      const addressData = {
+        id: addressCard.getAttribute("data-address-id"),
+        recipientName: addressCard.getAttribute("data-recipient-name"),
+        recipientPhone: addressCard.getAttribute("data-recipient-phone"),
+        province: addressCard.getAttribute("data-province"),
+        district: addressCard.getAttribute("data-district"),
+        ward: addressCard.getAttribute("data-ward"),
+        provinceCode: addressCard.getAttribute("data-province-code"),
+        districtCode: addressCard.getAttribute("data-district-code"),
+        wardCode: addressCard.getAttribute("data-ward-code"),
+        addressDetail: addressCard.getAttribute("data-address-detail"),
+        defaultAddress: addressCard.getAttribute("data-default-address") === "true"
+      };
+      
+      // Điền dữ liệu vào form
+      document.getElementById("addressId").value = addressData.id;
+      document.getElementById("formAction").value = "update";
+      document.getElementById("recipientName").value = addressData.recipientName;
+      document.getElementById("recipientPhone").value = addressData.recipientPhone;
+      document.getElementById("addressDetail").value = addressData.addressDetail;
+      document.getElementById("defaultAddress").checked = addressData.defaultAddress;
+      
+      // Thay đổi tiêu đề modal
+      const modalHeader = document.querySelector(".address-modal-header h2");
+      if (modalHeader) {
+        modalHeader.textContent = "Sửa địa chỉ";
+      }
+      
+      // Load tỉnh/thành phố trước
+      await loadProvinces();
+      
+      // Chọn tỉnh và load quận/huyện
+      const provinceSelect = document.getElementById("province");
+      if (provinceSelect && addressData.provinceCode) {
+        provinceSelect.value = addressData.provinceCode;
+        document.getElementById("provinceName").value = addressData.province;
+        
+        // Load quận/huyện
+        await loadDistricts(addressData.provinceCode);
+        
+        // Chọn quận/huyện và load phường/xã
+        const districtSelect = document.getElementById("district");
+        if (districtSelect && addressData.districtCode) {
+          districtSelect.value = addressData.districtCode;
+          document.getElementById("districtName").value = addressData.district;
+          
+          // Load phường/xã
+          await loadWards(addressData.districtCode);
+          
+          // Chọn phường/xã
+          const wardSelect = document.getElementById("ward");
+          if (wardSelect && addressData.wardCode) {
+            wardSelect.value = addressData.wardCode;
+            document.getElementById("wardName").value = addressData.ward;
+          }
+        }
+      }
+      
+      // Mở modal
+      openModal();
+    } catch (error) {
+      console.error("Lỗi khi tải thông tin địa chỉ:", error);
+      alert("Có lỗi xảy ra khi tải thông tin địa chỉ. Vui lòng thử lại.");
     }
   }
 })();

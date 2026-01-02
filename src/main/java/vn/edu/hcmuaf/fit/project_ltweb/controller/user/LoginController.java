@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
            if(user.getRole().equalsIgnoreCase("admin")) {
                System.out.println("user admin logged in");
                session.setAttribute("auth", user);
-               response.sendRedirect("dashboard");
+               response.sendRedirect("admin/dashboard");
            }else if(user.getRole().equalsIgnoreCase("user")) {
                session.setAttribute("auth", user) ;
                response.sendRedirect("home");
