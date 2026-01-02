@@ -19,38 +19,6 @@
         <div class="checkout-page-layout">
             <form class="checkout-form" method="post" action="create-order">
                 <section class="checkout-form-section">
-                    <div class="form-grid">
-                        <label class="form-field">
-                            <span>Họ và tên</span>
-                            <input
-                                    type="text"
-                                    name="full_name"
-                                    placeholder="Nguyễn Snack"
-                                    required
-                            />
-                        </label>
-                        <label class="form-field">
-                            <span>Số điện thoại</span>
-                            <input
-                                    type="tel"
-                                    name="phone"
-                                    placeholder="0123456789"
-                                    required
-                            />
-                        </label>
-                        <label class="form-field">
-                            <span>Email</span>
-                            <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="ban@example.com"
-                                    required
-                            />
-                        </label>
-                    </div>
-                </section>
-
-                <section class="checkout-form-section">
                     <header class="form-section-header">
                         <h2>Địa chỉ giao hàng</h2>
                         <p>
@@ -59,14 +27,14 @@
                     </header>
                     <div class="address-select-component">
                         <a
-                                href="user_address.html"
+                                href="${pageContext.request.contextPath}/address"
                                 class="selected-address change-address-btn"
                         >
                             <div class="address-info">
                     <span
                             class="address-label"
                             style="font-weight: 600; color: #222"
-                    >Nhà riêng (Mặc định)</span
+                    >Nguyễn Văn A 0383462037</span
                     >
                                 <span class="address-value" style="color: #555"
                                 >123 Đường ABC, Phường 7, Quận 3, TP.HCM</span
