@@ -28,7 +28,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/${css}">
     </c:forEach>
 </head>
-<body>
+
+<body data-context-path="${pageContext.request.contextPath}">
 <header class="navbar" id="navbar">
     <div class="container nav-inner">
         <a class="logo" href="index.html">
@@ -76,7 +77,6 @@
                     <div class="user-profile">
                         <button class="user-icon-btn" aria-label="Tài khoản người dùng">
                             <img src="${pageContext.request.contextPath}/${auth.avatar_url}" alt="User Avatar" class="user-avatar">
-
                         </button>
 
                         <div class="user-dropdown">
