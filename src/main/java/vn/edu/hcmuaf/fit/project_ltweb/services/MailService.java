@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class MailService {
 
-    private static final String FROM_EMAIL = "hothanhhai879@gmail.com";
-    private static final String PASSWORD = "pgufjsleddjnrokq";
+    private static final String FROM_EMAIL = "Aosid19999@gmail.com";
+    private static final String PASSWORD = "bcqiadbuhvddcuxw";
 
     public static void sendMail(String toEmail, String content) {
 
