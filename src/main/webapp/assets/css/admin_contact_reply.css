@@ -1,0 +1,87 @@
+.admin-contact-reply {
+    width: 997px;
+    margin: 32px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.admin-contact-reply h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.admin-contact-reply p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.admin-contact-reply p b {
+    color: #374151;
+}
+
+.message-box {
+    margin-top: 12px;
+    margin-bottom: 28px;
+    padding: 16px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.admin-contact-reply form {
+    margin-top: 24px;
+}
+
+.admin-contact-reply label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.admin-contact-reply textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    resize: vertical;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.admin-contact-reply textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.admin-contact-reply button {
+    background: #ff6b35;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.admin-contact-reply button:hover {
+    background: #1e40af;
+}
+
+.admin-contact-reply a {
+    margin-left: 16px;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin-contact-reply a:hover {
+    text-decoration: underline;
+}
