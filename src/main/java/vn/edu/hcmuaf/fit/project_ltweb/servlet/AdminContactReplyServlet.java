@@ -8,8 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_ltweb.dao.ContactDAO;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Contact;
 import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
+import vn.edu.hcmuaf.fit.project_ltweb.services.MailService;
 
 import java.io.IOException;
+
+import static vn.edu.hcmuaf.fit.project_ltweb.services.MailService.sendMail;
 
 @WebServlet("/admin/contact/reply")
 public class AdminContactReplyServlet extends HttpServlet {
@@ -38,4 +41,18 @@ public class AdminContactReplyServlet extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp")
                 .forward(req, resp);
     }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8");
+
+        String toEmail = req.getParameter("email");
+        String replyContent = req.getParameter("replyContent");
+
+        MailService.sendMail(toEmail, replyContent);
+
+        resp.sendRedirect(req.getContextPath() + "/admin/contacts");
+    }
+
+
 }
