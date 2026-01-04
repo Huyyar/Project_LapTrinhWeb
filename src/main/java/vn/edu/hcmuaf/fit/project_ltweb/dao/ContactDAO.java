@@ -52,4 +52,45 @@ public class ContactDAO {
 
         return list;
     }
+    public Contact findById(int id) {
+
+        String sql = "SELECT * FROM contacts WHERE id = ?";
+        Contact c = null;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                c = new Contact();
+                c.setId(rs.getInt("id"));
+                c.setFullName(rs.getString("full_name"));
+                c.setEmail(rs.getString("email"));
+                c.setMessage(rs.getString("message"));
+                c.setCreatedAt(rs.getTimestamp("created_at"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return c;
+    }
+    public void deleteById(int id) {
+        String sql = "DELETE FROM contacts WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate(); // ← DÒNG QUYẾT ĐỊNH XÓA DB
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
