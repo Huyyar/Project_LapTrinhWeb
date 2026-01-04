@@ -131,17 +131,17 @@
     if (form) {
       form.reset();
     }
-    
+
     // Reset hidden inputs
     document.getElementById("addressId").value = "";
     document.getElementById("formAction").value = "add";
-    
+
     // Reset title
     const modalHeader = document.querySelector(".address-modal-header h2");
     if (modalHeader) {
       modalHeader.textContent = "Thêm địa chỉ mới";
     }
-    
+
     // Reset dropdowns
     const districtSelect = document.getElementById("district");
     const wardSelect = document.getElementById("ward");
@@ -153,7 +153,7 @@
       wardSelect.innerHTML = '<option value="">Chọn Phường/Xã</option>';
       wardSelect.disabled = true;
     }
-    
+
     clearFormErrors();
   }
 
@@ -172,7 +172,6 @@
     // Disable submit button để tránh double-click
     submitBtn.disabled = true;
     submitBtn.textContent = "Đang xử lý...";
-
 
     form.submit();
   }
@@ -613,11 +612,13 @@
   async function handleEditAddress(addressId) {
     try {
       // Lấy thẻ article chứa data
-      const addressCard = document.querySelector(`[data-address-id="${addressId}"]`);
+      const addressCard = document.querySelector(
+        `[data-address-id="${addressId}"]`
+      );
       if (!addressCard) {
         throw new Error("Không tìm thấy thông tin địa chỉ");
       }
-      
+
       // Lấy data từ data attributes
       const addressData = {
         id: addressCard.getAttribute("data-address-id"),
@@ -630,44 +631,49 @@
         districtCode: addressCard.getAttribute("data-district-code"),
         wardCode: addressCard.getAttribute("data-ward-code"),
         addressDetail: addressCard.getAttribute("data-address-detail"),
-        defaultAddress: addressCard.getAttribute("data-default-address") === "true"
+        defaultAddress:
+          addressCard.getAttribute("data-default-address") === "true",
       };
-      
+
       // Điền dữ liệu vào form
       document.getElementById("addressId").value = addressData.id;
       document.getElementById("formAction").value = "update";
-      document.getElementById("recipientName").value = addressData.recipientName;
-      document.getElementById("recipientPhone").value = addressData.recipientPhone;
-      document.getElementById("addressDetail").value = addressData.addressDetail;
-      document.getElementById("defaultAddress").checked = addressData.defaultAddress;
-      
+      document.getElementById("recipientName").value =
+        addressData.recipientName;
+      document.getElementById("recipientPhone").value =
+        addressData.recipientPhone;
+      document.getElementById("addressDetail").value =
+        addressData.addressDetail;
+      document.getElementById("defaultAddress").checked =
+        addressData.defaultAddress;
+
       // Thay đổi tiêu đề modal
       const modalHeader = document.querySelector(".address-modal-header h2");
       if (modalHeader) {
         modalHeader.textContent = "Sửa địa chỉ";
       }
-      
+
       // Load tỉnh/thành phố trước
       await loadProvinces();
-      
+
       // Chọn tỉnh và load quận/huyện
       const provinceSelect = document.getElementById("province");
       if (provinceSelect && addressData.provinceCode) {
         provinceSelect.value = addressData.provinceCode;
         document.getElementById("provinceName").value = addressData.province;
-        
+
         // Load quận/huyện
         await loadDistricts(addressData.provinceCode);
-        
+
         // Chọn quận/huyện và load phường/xã
         const districtSelect = document.getElementById("district");
         if (districtSelect && addressData.districtCode) {
           districtSelect.value = addressData.districtCode;
           document.getElementById("districtName").value = addressData.district;
-          
+
           // Load phường/xã
           await loadWards(addressData.districtCode);
-          
+
           // Chọn phường/xã
           const wardSelect = document.getElementById("ward");
           if (wardSelect && addressData.wardCode) {
@@ -676,7 +682,7 @@
           }
         }
       }
-      
+
       // Mở modal
       openModal();
     } catch (error) {

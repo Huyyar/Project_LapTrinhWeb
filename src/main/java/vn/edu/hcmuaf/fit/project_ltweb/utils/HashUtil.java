@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.project_ltweb.untils;
+package vn.edu.hcmuaf.fit.project_ltweb.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
