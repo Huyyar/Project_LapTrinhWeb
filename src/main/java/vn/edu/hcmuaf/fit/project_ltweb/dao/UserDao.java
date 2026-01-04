@@ -117,7 +117,7 @@ public class UserDao {
     }
 
 
-    public boolean updateUser(User u){
+    public boolean updatePUser(User u){
         String query = "UPDATE users SET fullname = ?, email = ? ,phone = ?,  birthdate = ? , gender = ?   WHERE id = ?";
         try {
             Connection conn =DBConnection.getConnection() ;
@@ -135,6 +135,19 @@ public class UserDao {
         }
 
 
+    }
+    public boolean updatePassword(String newPassword,User u) {
+        String query = "Update users set password = ? where id = ? ";
+        try {
+            Connection conn = DBConnection.getConnection() ;
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, newPassword);
+            ps.setInt(2, u.getId());
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

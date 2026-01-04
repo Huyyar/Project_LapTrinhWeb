@@ -3,7 +3,6 @@ package vn.edu.hcmuaf.fit.project_ltweb.services;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ImageFile;
 import vn.edu.hcmuaf.fit.project_ltweb.utils.FileUtil;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

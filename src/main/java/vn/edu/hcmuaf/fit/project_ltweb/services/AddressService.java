@@ -1,10 +1,10 @@
 package vn.edu.hcmuaf.fit.project_ltweb.services;
 
-import vn.edu.hcmuaf.fit.project_ltweb.dao.AddressDao;
-import vn.edu.hcmuaf.fit.project_ltweb.model.Address;
-
 import java.sql.SQLException;
 import java.util.List;
+
+import vn.edu.hcmuaf.fit.project_ltweb.dao.AddressDao;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Address;
 
 public class AddressService {
     private AddressDao dao  = new AddressDao();
