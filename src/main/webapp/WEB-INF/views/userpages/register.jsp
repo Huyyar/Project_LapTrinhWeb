@@ -26,6 +26,11 @@
           <h1 id="signup-title">Tạo tài khoản</h1>
         </header>
         <form class="auth-form" action="register" method="post">
+          <c:if test="${not empty error}">
+            <div class="error-message" style="color: #ff4d4d; background: #ffe6e6; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 0.9em;">
+                ${error}
+            </div>
+          </c:if>
           <div class="auth-field">
             <label for="signup-name">Họ và tên</label>
             <input
