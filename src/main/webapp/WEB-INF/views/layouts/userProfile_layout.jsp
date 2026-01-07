@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="avatar-wrap">
                         <img
-                                src="../../assets/icons/icon_user.png"
+                                src="${auth.avatar_url}"
                                 alt="Ảnh đại diện"
                         />
                         <button type="button">Đổi ảnh</button>
