@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@
+        taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -26,8 +27,8 @@
           <h1 id="signup-title">Tạo tài khoản</h1>
         </header>
         <form class="auth-form" action="register" method="post">
-          <c:if test="${not empty error}">
-            <div class="error-message" style="color: #ff4d4d; background: #ffe6e6; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 0.9em;">
+          <c:if test="${not empty error and error ne ''}">
+            <div class="error-message">
                 ${error}
             </div>
           </c:if>

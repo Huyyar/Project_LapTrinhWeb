@@ -182,3 +182,20 @@ body.auth-minimal {
     align-items: stretch;
   }
 }
+
+
+/* error
+ */
+.error-message{
+  color: #ff4d4d;
+  background: #ffe6e6;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+}
+.error-message:empty {
+  display: none;
+  padding: 0;
+  margin: 0;
+}

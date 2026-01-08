@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@
+        taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -27,6 +27,11 @@
           <h1 id="login-title">Đăng nhập</h1>
         </header>
         <form class="auth-form" action="login" method="POST">
+          <c:if test="${not empty error and error ne ''}">
+            <div class="error-message">
+                ${error}
+            </div>
+          </c:if>
           <div class="auth-field">
             <label for="login-email">Email</label>
             <input
