@@ -28,7 +28,7 @@ public class ContactServlet extends HttpServlet {
 
         });
         info.setJs(new String[]{
-                "admin_contact.js"
+                "contact.js"
         });
         req.setAttribute("info", info);
         req.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp").forward(req, resp);
