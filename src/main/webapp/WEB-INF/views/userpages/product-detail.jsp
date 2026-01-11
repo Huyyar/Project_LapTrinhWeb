@@ -91,6 +91,65 @@
                     </a>
                 </div>
             </div>
+            <!-- comment -->
+            <div class = "product-detail-comment">
+                <div class="product-comments">
+                    <h3>Bình luận</h3>
+
+                    <c:forEach var="c" items="${comments}">
+                        <div class="comment-item">
+
+                            <!-- Avatar -->
+                            <div class="comment-avatar">
+                                <img src="${c.user.avatar_url != null
+                                    ? c.user.avatar_url
+                                    : pageContext.request.contextPath + '/assets/img/default-avatar.png'}">
+                            </div>
+
+                            <!-- Content -->
+                            <div class="comment-body">
+                                <div class="comment-header">
+                                    <strong>${c.user.fullname}</strong>
+                                    <span class="comment-date">
+                                        <fmt:formatDate value="${c.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                    </span>
+                                </div>
+                                <p>${c.content}</p>
+                            </div>
+
+                        </div>
+                    </c:forEach>
+                </div>
+
+
+
+                <c:choose>
+                    <c:when test="${empty sessionScope.auth}">
+                        <p class="login-warning">Vui lòng đăng nhập để bình luận.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="${pageContext.request.contextPath}/add-comment"
+                              method="post"
+                              class="comment-form">
+
+                            <input type="hidden" name="productId" value="${product.id}">
+
+                            <textarea name="content"
+                                      placeholder="Viết bình luận của bạn..."
+                                      required></textarea>
+
+                            <button type="submit">Gửi bình luận</button>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+
+
+
+
+
+
+            </div>
+
 
         </div>
     </div>
