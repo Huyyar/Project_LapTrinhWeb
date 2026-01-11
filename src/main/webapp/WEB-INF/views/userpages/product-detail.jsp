@@ -10,9 +10,26 @@
             <div class="product-detail-images">
                 <div class="main-image-container">
                     <img id="mainImage"
-                         src="${product.image_url}"
+                         src="<c:choose>
+                            <c:when test='${not empty productImages}'>
+                                <c:forEach var='img' items='${productImages}'>
+                                    <c:if test='${img.is_default}'>${img.image_url}</c:if>
+                                </c:forEach>
+                            </c:when>
+                                <c:otherwise>${product.image_url}</c:otherwise>
+                                </c:choose>"
                          alt="${product.name}" />
+
                 </div>
+                <div class="product-thumbnails">
+                    <c:forEach var="img" items="${productImages}">
+                        <img src="${img.image_url}"
+                             class="thumbnail ${img.is_default ? 'active' : ''}"
+                             onclick="changeMainImage(this, '${img.image_url}')">
+                    </c:forEach>
+                </div>
+
+
             </div>
 
             <!-- INFO -->
@@ -84,5 +101,11 @@
         const qty = document.getElementById("qtyInput").value;
         window.location.href =
             "${pageContext.request.contextPath}/add-cart?id=${product.id}&qty=" + qty;
+    }
+    function changeMainImage(thumbnail, imageUrl) {
+        document.getElementById("mainImage").src = imageUrl;
+        const thumbnails = document.querySelectorAll(".product-thumbnails .thumbnail");
+        thumbnails.forEach(img => img.classList.remove("active"));
+        thumbnail.classList.add("active");
     }
 </script>

@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.ProductImage;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
@@ -36,6 +37,8 @@ public class ProductDetailServlet extends HttpServlet {
             return;
         }
         request.setAttribute("product", product);
+        List<ProductImage> productImages = service.getProductImages(id);
+        request.setAttribute("productImages", productImages);
 
         UserPageInfo info =  new UserPageInfo();
         info.setTitle(product.getName());
