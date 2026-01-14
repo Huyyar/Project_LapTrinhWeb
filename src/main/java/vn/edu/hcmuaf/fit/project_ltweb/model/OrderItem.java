@@ -1,9 +1,13 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
+import vn.edu.hcmuaf.fit.project_ltweb.utils.AppContextListener;
+
 public class OrderItem {
     private int id;
     private int order_id;
     private int product_id;
+    private String product_name;
+    private String product_image_url;
     private double price;
     private int quantity;
 
@@ -55,5 +59,29 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public String getProduct_image_url() {
+        String url = "";
+        if(this.product_image_url.startsWith("http") || this.product_image_url.startsWith("data:")){
+            url =  this.product_image_url;
+        }else{
+            String cp =  AppContextListener.contextPath;
+            url = cp + "/" + this.product_image_url;
+        }
+
+        return url;
+    }
+
+    public void setProduct_image_url(String product_image_url) {
+        this.product_image_url = product_image_url;
     }
 }
