@@ -129,6 +129,7 @@ public class UserDao {
             ps.setString(5, u.getGender());
             ps.setInt(6, u.getId());
             int i = ps.executeUpdate();
+
             return i > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
