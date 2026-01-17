@@ -8,13 +8,19 @@
             <div class="section-title">
               <h2>Danh mục sản phẩm</h2>
               <p class="section-subtitle">
-                Lọc theo khẩu vị, tìm kiếm món yêu thích và săn ưu đãi đang diễn
-                ra.
+                <c:choose>
+                  <c:when test="${not empty searchKeyword}">
+                    Kết quả tìm kiếm cho: "<strong>${searchKeyword}</strong>"
+                  </c:when>
+                  <c:otherwise>
+                    Lọc theo khẩu vị, tìm kiếm món yêu thích và săn ưu đãi đang diễn ra.
+                  </c:otherwise>
+                </c:choose>
               </p>
             </div>
             <div class="search-bar">
               <span class="icon">🔍</span>
-              <input type="search" id="search" placeholder="Tìm kiếm ..." />
+              <input type="search" id="search" placeholder="Tìm kiếm ..." value="${searchKeyword}" />
             </div>
           </div>
 

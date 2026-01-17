@@ -151,6 +151,7 @@
     </div>
 </footer>
 <script src="${pageContext.request.contextPath}/assets/js/logout.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/nav-search.js"></script>
 <c:forEach items="${info.js}" var="js">
     <script src="${pageContext.request.contextPath}/assets/js/${js}"></script>
 </c:forEach>
