@@ -56,7 +56,7 @@ public class CreateOrder extends HttpServlet {
             orderItems.add(orderItem);
         }
         order.setOrder_items(orderItems);
-        order.setStatus("process");
+        order.setStatus("processing");
         service.createOrder(order);
         cart.delChosenItems();
         response.sendRedirect("order-complete?orderCode=" + order.getOrder_code() +

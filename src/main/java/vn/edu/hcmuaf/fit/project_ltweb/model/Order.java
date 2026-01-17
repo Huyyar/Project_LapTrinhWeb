@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Order {
@@ -17,6 +19,8 @@ public class Order {
     private double total_amount;
     private String status;
     private List<OrderItem> order_items;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
     public Order(String order_code, int user_id, String full_name, String phone, String email, int address_id, String shipping_method, double shipping_fee, String payment_method, String notes, double total_amount, String status) {
         this.order_code = order_code;
@@ -146,5 +150,40 @@ public class Order {
 
     public void setOrder_items(List<OrderItem> order_items) {
         this.order_items = order_items;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
+    }
+    public String getFormattedCreatedAt() {
+        if (this.created_at == null) return "";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return this.created_at.format(formatter);
+    }
+    public String getStatusStr() {
+        if (this.status == null) return "";
+        if (this.status.equals("processing")) {
+            return "Đang xử lý";
+        } else if (this.status.equals("delivering")) {
+            return "Đang giao";
+        } else if (this.status.equals("delivered")) {
+            return "Đã giao";
+        } else if (this.status.equals("cancelled")) {
+            return "Đã hủy";
+        } else {
+            return "";
+        }
     }
 }
