@@ -28,23 +28,31 @@ public class ProductsServlet extends HttpServlet {
         });
         info.setJs(new String[]{
                 "cart-drawer.js",
-                "wishlist.js"
+                "wishlist.js",
+                "product-sort.js"
         });
         request.setAttribute("info",info);
         
-     
+        // Lấy tham số tìm kiếm và sắp xếp
         String searchKeyword = request.getParameter("search");
-        List<Product> products;
+        String sortBy = request.getParameter("sort");
         
-        if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
-          
-            products = service.getPagedSearchProducts(0, Integer.MAX_VALUE, searchKeyword.trim());
-            request.setAttribute("searchKeyword", searchKeyword.trim());
-        } else {
-           
-            products = service.getProducts();
+     
+        if (sortBy == null || sortBy.trim().isEmpty()) {
+            sortBy = "featured";
         }
         
+
+        List<Product> products = service.getProductsWithSortAndSearch(
+            searchKeyword != null ? searchKeyword.trim() : null, 
+            sortBy
+        );
+        
+      
+        if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+            request.setAttribute("searchKeyword", searchKeyword.trim());
+        }
+        request.setAttribute("sortBy", sortBy);
         request.setAttribute("products", products);
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);

@@ -41,4 +41,8 @@ public class ProductService {
     public void updateProduct(Product product){
         dao.updateProduct(product);
     }
+
+    public List<Product> getProductsWithSortAndSearch(String search, String sortBy) {
+        return dao.getProductsWithSortAndSearch(search, sortBy);
+    }
 }
