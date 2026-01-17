@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.fit.project_ltweb.services;
 
 import vn.edu.hcmuaf.fit.project_ltweb.dao.ProductDao;
+import vn.edu.hcmuaf.fit.project_ltweb.dao.ProductImageDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.ProductImage;
 
 import java.util.List;
 
