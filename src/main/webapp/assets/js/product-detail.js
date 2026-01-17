@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainImage = document.getElementById("mainImage");
   const thumbnails = document.querySelectorAll(".thumbnail");
 
-  if (!mainImage || thumbnails.length === 0) {
+    if (!mainImage || thumbnails.length === 0) {
     return;
   }
 

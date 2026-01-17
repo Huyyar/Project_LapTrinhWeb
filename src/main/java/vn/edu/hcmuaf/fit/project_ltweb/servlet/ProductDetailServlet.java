@@ -3,8 +3,11 @@ package vn.edu.hcmuaf.fit.project_ltweb.servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Comment;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.ProductImage;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
+import vn.edu.hcmuaf.fit.project_ltweb.services.CommentService;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
@@ -36,6 +39,12 @@ public class ProductDetailServlet extends HttpServlet {
             return;
         }
         request.setAttribute("product", product);
+        List<ProductImage> productImages = service.getProductImages(id);
+        request.setAttribute("productImages", productImages);
+
+        CommentService commentService = new CommentService();
+        List<Comment> comments = commentService.getCommentsByProduct(id);
+        request.setAttribute("comments", comments);
 
         UserPageInfo info =  new UserPageInfo();
         info.setTitle(product.getName());

@@ -3,12 +3,16 @@ package vn.edu.hcmuaf.fit.project_ltweb.servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Order;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
+import vn.edu.hcmuaf.fit.project_ltweb.services.OrderService;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "OrderHistory", value = "/order-history")
 public class OrderHistory extends HttpServlet {
+    OrderService service =  new OrderService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserPageInfo info =  new UserPageInfo();
@@ -20,6 +24,10 @@ public class OrderHistory extends HttpServlet {
         info.setJs(new String[]{
         });
         request.setAttribute("info",info);
+        String status = request.getParameter("status");
+        List<Order> orders = service.getOrders(status);
+        request.setAttribute("orders",orders);
+        request.setAttribute("status",status);
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
     }

@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.dao.OrderItemDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Order;
 import vn.edu.hcmuaf.fit.project_ltweb.model.OrderItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
@@ -15,10 +16,22 @@ public class OrderService {
         List<OrderItem> items = order.getOrder_items();
         for(OrderItem orderItem : items){
             orderItem.setOrder_id(order_id);
-            addOrderItem(orderItem);
+            orderItemDao.addOrderItem(orderItem);
         }
     }
-    private void addOrderItem(OrderItem orderItem){
-        orderItemDao.addOrderItem(orderItem);
+    public List<Order> getOrders(String status){
+        List<Order> orders =   new ArrayList<>();
+        if(status != null) {
+            orders =  orderDao.getOrders(status);
+            for(Order order : orders){
+                order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
+            }
+        }else{
+            orders =  orderDao.getAllOrders();
+            for(Order order : orders){
+                order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
+            }
+        }
+        return  orders;
     }
 }
