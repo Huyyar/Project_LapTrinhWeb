@@ -1,11 +1,13 @@
 package vn.edu.hcmuaf.fit.project_ltweb.dao;
 
-import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
-import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 
 public class ProductDao {
     public List<Product> getProducts() {
@@ -263,5 +265,62 @@ public class ProductDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Product> getProductsWithSortAndSearch(String search, String sortBy) {
+        List<Product> products = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT p.*, c.name AS category_name FROM products p ");
+        sql.append("LEFT JOIN categories c ON p.category_id = c.id ");
+        
+        
+        if (search != null && !search.trim().isEmpty()) {
+            sql.append("WHERE p.name LIKE ? ");
+        }
+        
+       
+        switch (sortBy) {
+            case "price-asc":
+                sql.append("ORDER BY p.price ASC");
+                break;
+            case "price-desc":
+                sql.append("ORDER BY p.price DESC");
+                break;
+            case "updated-desc":
+                sql.append("ORDER BY p.id DESC");
+                break;
+            case "featured":
+            default:
+                sql.append("ORDER BY p.featured DESC, p.id DESC");
+                break;
+        }
+        
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+            
+          
+            if (search != null && !search.trim().isEmpty()) {
+                ps.setString(1, "%" + search + "%");
+            }
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setCategory_id(rs.getInt("category_id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setImage_url(rs.getString("image_url"));
+                    product.setInventory_qty(rs.getInt("inventory_qty"));
+                    product.setFeatured(rs.getBoolean("featured"));
+                    product.setIs_active(rs.getBoolean("is_active"));
+                    product.setCategory(rs.getString("category_name"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 }

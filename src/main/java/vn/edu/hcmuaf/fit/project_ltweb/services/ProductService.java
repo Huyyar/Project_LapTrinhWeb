@@ -44,6 +44,10 @@ public class ProductService {
         dao.updateProduct(product);
     }
 
+    public List<Product> getProductsWithSortAndSearch(String search, String sortBy) {
+        return dao.getProductsWithSortAndSearch(search, sortBy);
+    }
+
     private ProductImageDao imageDao = new ProductImageDao();
     public List<ProductImage> getProductImages(int productId) {
         return imageDao.getImagesByProductId(productId);

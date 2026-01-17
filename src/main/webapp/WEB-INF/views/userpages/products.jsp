@@ -42,10 +42,10 @@
               <label class="sort-select">
                 <span>Sắp xếp</span>
                 <select id="sort-select">
-                  <option value="featured">Nổi bật</option>
-                  <option value="price-asc">Giá tăng dần</option>
-                  <option value="price-desc">Giá giảm dần</option>
-                  <option value="updated-desc">Mới cập nhật</option>
+                  <option value="featured" ${sortBy == 'featured' ? 'selected' : ''}>Nổi bật</option>
+                  <option value="price-asc" ${sortBy == 'price-asc' ? 'selected' : ''}>Giá tăng dần</option>
+                  <option value="price-desc" ${sortBy == 'price-desc' ? 'selected' : ''}>Giá giảm dần</option>
+                  <option value="updated-desc" ${sortBy == 'updated-desc' ? 'selected' : ''}>Mới cập nhật</option>
                 </select>
               </label>
             </div>
