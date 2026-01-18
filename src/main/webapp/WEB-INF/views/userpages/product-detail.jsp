@@ -94,7 +94,7 @@
             <!-- comment -->
             <div class = "product-detail-comment">
                 <div class="product-comments">
-                    <h3>Bình luận</h3>
+                    <h3>Bình luận:</h3>
 
                     <c:forEach var="c" items="${comments}">
                         <div class="comment-item">
