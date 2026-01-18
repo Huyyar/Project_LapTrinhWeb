@@ -8,7 +8,9 @@ public class Comment {
     private User user; // chứa fullname + avatar
     private String content;
     private Timestamp createdAt;
-    private boolean is_active;
+    private boolean is_active; // Comment có bị xóa / ẩn không
+    private String status; // trạng thái duyệt
+    private Integer parentId;
 
     public Comment() {}
     public int getId() {
@@ -60,4 +62,19 @@ public class Comment {
     }
 
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
 }

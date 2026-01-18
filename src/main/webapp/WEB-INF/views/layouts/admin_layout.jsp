@@ -45,6 +45,11 @@
                 <i class="fa-solid fa-users"></i>
                 <span>Người dùng</span>
             </a>
+            <a href="comments" class="nav-link ${info.name == 'comments' ? 'active' : ''}">
+                <i class="fa-solid fa-comments"></i>
+                <span>Bình luận</span>
+            </a>
+
             <a href="contacts" class="nav-link ${info.name == 'contacts' ? 'active' : ''}">
                 <i class="fa-solid fa-envelope"></i>
                 <span>Liên Hệ</span>
