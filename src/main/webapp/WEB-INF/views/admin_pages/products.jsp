@@ -3,7 +3,6 @@
 <main class="main">
     <header class="topbar">
         <div class="header-group">
-            <button class="toggle" id="toggleBtn">☰</button>
             <h1>Quản Lý Sản Phẩm</h1>
         </div>
         <div class="top-actions">
