@@ -2,6 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<c:set var="mainImageUrl" value="${product.image_url}" />
+
+<c:if test="${not empty productImages}">
+    <c:forEach var="img" items="${productImages}">
+        <c:if test="${img.is_default}">
+            <c:set var="mainImageUrl" value="${img.image_url}" />
+        </c:if>
+    </c:forEach>
+</c:if>
+
 <div class="product-detail-page">
     <div class="product-detail-container">
         <div class="product-detail-grid">
@@ -10,15 +20,9 @@
             <div class="product-detail-images">
                 <div class="main-image-container">
                     <img id="mainImage"
-                         src="<c:choose>
-                            <c:when test='${not empty productImages}'>
-                                <c:forEach var='img' items='${productImages}'>
-                                    <c:if test='${img.is_default}'>${img.image_url}</c:if>
-                                </c:forEach>
-                            </c:when>
-                                <c:otherwise>${product.image_url}</c:otherwise>
-                                </c:choose>"
+                         src="${mainImageUrl}"
                          alt="${product.name}" />
+
 
                 </div>
                 <div class="product-thumbnails">
@@ -94,7 +98,7 @@
             <!-- comment -->
             <div class = "product-detail-comment">
                 <div class="product-comments">
-                    <h3>Bình luận</h3>
+                    <h3>Bình luận:</h3>
 
                     <c:forEach var="c" items="${comments}">
                         <div class="comment-item">

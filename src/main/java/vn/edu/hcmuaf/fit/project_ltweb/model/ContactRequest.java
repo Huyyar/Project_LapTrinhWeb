@@ -11,5 +11,4 @@ public class ContactRequest {
 
     public ContactRequest() {}
 
-    // Getters và Setters...
 }

@@ -609,7 +609,10 @@ img {
     font-size: 20px;
     margin-bottom: 20px;
     color: #222;
+    display: flex;
+    justify-content: center;
 }
+
 
 
 .product-comments {
