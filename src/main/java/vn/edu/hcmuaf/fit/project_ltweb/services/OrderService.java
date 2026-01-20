@@ -19,10 +19,14 @@ public class OrderService {
             orderItemDao.addOrderItem(orderItem);
         }
     }
-    public List<Order> getOrders(String status){
+    public List<Order> getOrders(String status, int userId){
         List<Order> orders =   new ArrayList<>();
-        if(status != null) {
-            orders =  orderDao.getOrders(status);
+        if(userId != -1) {
+            if(status == null){
+                orders =  orderDao.getUserOrders(userId);
+            }else{
+                orders =  orderDao.getUserOrdersByStatus(status, userId);
+            }
             for(Order order : orders){
                 order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
             }

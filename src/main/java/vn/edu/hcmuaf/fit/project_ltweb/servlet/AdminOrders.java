@@ -27,7 +27,7 @@ public class AdminOrders extends HttpServlet {
                 "admin/orders.js"
         });
         request.setAttribute("info",info);
-        List<Order> orders = service.getOrders(null);
+        List<Order> orders = service.getOrders(null, -1);
         request.setAttribute("orders",orders);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp").forward(request, response);

@@ -40,14 +40,49 @@ public class OrderDao {
         }
         return -1;
     }
-    public List<Order> getOrders(String status){
+    public List<Order> getUserOrders(int userId){
         List<Order> orders =  new ArrayList<>();
         OrderItemDao dao  = new OrderItemDao();
-        String sql = "SELECT * FROM orders WHERE status = ?";
+        String sql = "SELECT * FROM orders WHERE user_id = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
         ){
+            ps.setInt(1, userId);
+            ps.executeQuery();
+            ResultSet rs = ps.getResultSet();
+            while(rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setOrder_code(rs.getString("order_code"));
+                order.setUser_id(rs.getInt("user_id"));
+                order.setFull_name(rs.getString("full_name"));
+                order.setPhone(rs.getString("phone"));
+                order.setEmail(rs.getString("email"));
+                order.setAddress_id(rs.getInt("address_id"));
+                order.setShipping_method(rs.getString("shipping_method"));
+                order.setShipping_fee(rs.getDouble("shipping_fee"));
+                order.setPayment_method(rs.getString("payment_method"));
+                order.setNotes(rs.getString("notes"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+                order.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+    public List<Order> getUserOrdersByStatus(String status, int userId){
+        List<Order> orders =  new ArrayList<>();
+        OrderItemDao dao  = new OrderItemDao();
+        String sql = "SELECT * FROM orders WHERE status = ? AND user_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
             ps.setString(1, status);
+            ps.setInt(2, userId);
             ps.executeQuery();
             ResultSet rs = ps.getResultSet();
             while(rs.next()){

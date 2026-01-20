@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.cart.Cart;
 import vn.edu.hcmuaf.fit.project_ltweb.cart.CartItem;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Order;
 import vn.edu.hcmuaf.fit.project_ltweb.model.OrderItem;
+import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.services.OrderService;
 
 import java.io.IOException;
@@ -19,10 +20,12 @@ public class CreateOrder extends HttpServlet {
     OrderService service =  new OrderService();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user =  (User)session.getAttribute("auth");
         Order order =  new Order();
         String orderCode = generateShortUUID();
         order.setOrder_code(orderCode);
-        order.setUser_id(99);
+        order.setUser_id(user.getId());
         order.setFull_name(request.getParameter("full_name"));
         order.setPhone(request.getParameter("phone"));
         order.setEmail(request.getParameter("email"));
@@ -43,7 +46,7 @@ public class CreateOrder extends HttpServlet {
         order.setShipping_fee(shipping_fee);
         order.setPayment_method(request.getParameter("payment"));
         order.setNotes(request.getParameter("notes"));
-        HttpSession session = request.getSession();
+
         Cart cart = (Cart)session.getAttribute("cart");
         order.setTotal_amount(cart.getTotalPrice() + shipping_fee);
         List<OrderItem> orderItems = new ArrayList<>();
