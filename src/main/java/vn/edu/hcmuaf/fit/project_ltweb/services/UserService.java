@@ -4,6 +4,8 @@ import vn.edu.hcmuaf.fit.project_ltweb.dao.UserDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.utils.HashUtil;
 
+import java.util.UUID;
+
 public class UserService {
     UserDao dao = new UserDao();
     HashUtil hashUtil = new HashUtil();
@@ -13,15 +15,19 @@ public class UserService {
         if (dao.isUserExists(u.getEmail())) {
             return false;
         }
+        // 1. Tạo Token ngẫu nhiên
+        String token = UUID.randomUUID().toString();
+        u.setVerificationToken(token);
+
         String hashedPassword = hashUtil.passwordHash(u.getPassword());
         u.setPassword(hashedPassword);
         int res = dao.insertUser(u);
 
-        if (res > 0) {
-            return true;
-        }
-        return false;
+       return res > 0 ;
 
+    }
+    public boolean verifyAccount(String token) {
+        return dao.activateUser(token);
     }
 
     public User getUserByEmail(String email) {

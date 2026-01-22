@@ -1,0 +1,132 @@
+
+.notification-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.notification-icon.success {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 8px 24px rgba(240, 147, 251, 0.3);
+}
+
+.notification-icon.error {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 8px 24px rgba(250, 112, 154, 0.3);
+}
+
+.notification-content {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.notification-content h1 {
+    font-size: 1.85rem;
+    margin-bottom: 14px;
+    color: var(--auth-primary);
+    font-weight: 700;
+}
+
+.notification-content p {
+    font-size: 1.05rem;
+    color: var(--auth-muted);
+    line-height: 1.7;
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+.notification-action {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-btn {
+    display: inline-block;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 220px;
+}
+
+.notification-btn-primary {
+    background: var(--auth-primary);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(31, 41, 51, 0.2);
+}
+
+.notification-btn-primary:hover {
+    background: #111927;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(31, 41, 51, 0.35);
+}
+
+.notification-btn-secondary {
+    background: transparent;
+    color: var(--auth-primary);
+    border: 2px solid var(--auth-border);
+}
+
+.notification-btn-secondary:hover {
+    background: var(--auth-bg);
+    border-color: var(--auth-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(31, 41, 51, 0.1);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.notification-icon {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive design cho màn hình nhỏ */
+@media (max-width: 600px) {
+    .notification-action {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .notification-btn {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .notification-content p {
+        max-width: 95%;
+        font-size: 1rem;
+    }
+    
+    .notification-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .notification-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 42px;
+    }
+}
