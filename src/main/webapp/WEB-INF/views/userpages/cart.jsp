@@ -14,7 +14,7 @@
             <div class="cart-actions">
                 <button class="select ${sessionScope.cart.isChooseAll? "active" : ""}"
                         onClick="handleChooseAllItem()"
-                ><i class="fa-solid fa-check"></i></button>
+                ><i class="fa-solid fa-check"></i>Chọn tất cả</button>
                 <button onClick="handleDeleteChosenItems()"><i class="fa-regular fa-trash-can"></i></button>
             </div>
             <div class="items">

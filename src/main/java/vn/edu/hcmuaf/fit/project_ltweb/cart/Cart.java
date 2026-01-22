@@ -19,10 +19,11 @@ public class Cart implements Serializable {
             qty = 1;
         }
         if(!data.containsKey(product.getId())){
-            data.put(product.getId(), new CartItem(product, qty, product.getPrice(), false));
+            data.put(product.getId(), new CartItem(product, qty, product.getPrice(), true));
         }else{
             data.get(product.getId()).upQty(qty);
         }
+        checkIsChooseAll();
     }
     public void updateItem(Product product, int qty){
 

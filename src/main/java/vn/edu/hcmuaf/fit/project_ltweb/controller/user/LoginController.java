@@ -16,6 +16,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         User auth = (User) request.getSession().getAttribute("auth");
         if (auth != null) {
+
             response.sendRedirect("home");
             return;
         }
@@ -42,6 +43,11 @@ public class LoginController extends HttpServlet {
                response.sendRedirect("admin/dashboard");
            }else if(user.getRole().equalsIgnoreCase("user")) {
                session.setAttribute("auth", user) ;
+               if(session.getAttribute("prevPage") != null) {
+                   response.sendRedirect((String)session.getAttribute("prevPage"));
+                   return;
+               }
+
                response.sendRedirect("home");
            }
 
