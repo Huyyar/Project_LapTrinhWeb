@@ -14,7 +14,7 @@ public class User {
     private String role;
     private boolean is_active;
     private Date created_at;
-
+    private String verificationToken;
     public User() {}
 
     public User(String email, String password, String fullname, String avatar_url) {
@@ -134,6 +134,8 @@ public class User {
 
         return is_active;
     }
+    public String getVerificationToken() { return verificationToken; }
+    public void setVerificationToken(String verificationToken) { this.verificationToken = verificationToken; }
 
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;

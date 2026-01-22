@@ -23,8 +23,8 @@ public class UserDao {
 
     public int insertUser(User u) {
 
-        String query = "INSERT INTO users(email, password,fullname, avatar_url,role, is_active, created_at) " +
-                "VALUES(?, ?, ?,?,'user', true, CURRENT_TIMESTAMP())";
+        String query = "INSERT INTO users(email, password,fullname, avatar_url,role, is_active,verification_token, created_at) " +
+                "VALUES(?, ?, ?,?,'user', true,?, CURRENT_TIMESTAMP())";
 
 
         try (Connection conn = DBConnection.getConnection();
@@ -36,7 +36,7 @@ public class UserDao {
             ps.setString(2, u.getPassword());
             ps.setString(3, u.getFullname());
             ps.setString(4, u.getAvatar_url());
-
+            ps.setString(5, u.getVerificationToken());
             int affectedRows = ps.executeUpdate();
 
 
@@ -53,6 +53,18 @@ public class UserDao {
 
         return -1;
     }
+
+    //  hàm xác thực Token
+    public boolean activateUser(String token) {
+        String query = "UPDATE users SET is_active = true, verification_token = NULL WHERE verification_token = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, token);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) { e.printStackTrace(); }
+        return false;
+    }
+
     public User getUserById(int id ) {
         String query = "select * from users where id = ? ";
         try {
