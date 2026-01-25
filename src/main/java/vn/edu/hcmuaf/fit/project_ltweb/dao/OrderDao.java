@@ -141,4 +141,34 @@ public class OrderDao {
         }
         return orders;
     }
+    public Order getOrder(int id){
+        Order order = new Order();
+        String sql = "SELECT * FROM orders WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                order.setId(rs.getInt("id"));
+                order.setOrder_code(rs.getString("order_code"));
+                order.setUser_id(rs.getInt("user_id"));
+                order.setFull_name(rs.getString("full_name"));
+                order.setPhone(rs.getString("phone"));
+                order.setEmail(rs.getString("email"));
+                order.setAddress_id(rs.getInt("address_id"));
+                order.setShipping_method(rs.getString("shipping_method"));
+                order.setShipping_fee(rs.getDouble("shipping_fee"));
+                order.setPayment_method(rs.getString("payment_method"));
+                order.setNotes(rs.getString("notes"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+                order.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
+    }
 }

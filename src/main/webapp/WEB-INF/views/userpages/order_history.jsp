@@ -57,7 +57,10 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                                     <strong>${o.total_amount}₫</strong>
                                 </div>
                                 <div class="order-actions">
-                                    <a class="link-detail" href="order_detail.html">Xem chi tiết</a>
+                                    <form action="order-detail" method="POST">
+                                        <input type="hidden" name="orderId" value="${o.id}">
+                                        <button type="submit" class="link-detail" >Xem chi tiết</button>
+                                    </form>
                                     <c:choose>
                                         <c:when test="${o.status =='cancelled' || o.status == 'delivered'}">
                                             <button type="button" class="btn-reorder">Mua lại đơn hàng</button>

@@ -38,4 +38,9 @@ public class OrderService {
         }
         return  orders;
     }
+    public Order getOrder(int id){
+        Order order = orderDao.getOrder(id);
+        order.setOrder_items(orderItemDao.getOrderItems(id));
+        return order;
+    }
 }

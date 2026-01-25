@@ -102,11 +102,16 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
+.cart-actions .select{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
 .cart-actions button{
     border:none;
     background:none;
 }
-.cart-actions .select {
+.cart-actions .select-btn {
     height: 34px;
     width: 34px;
     background: var(--surface);
@@ -120,12 +125,12 @@
     justify-content: center;
 }
 
-.cart-actions .select:hover {
+.cart-actions .select-btn:hover {
     border: 3px solid var(--primary);
     color: var(--primary);
 }
 
-.cart-actions .select.active {
+.cart-actions .select-btn.active {
     height: 34px;
     width: 34px;
     background: var(--primary);
@@ -140,7 +145,7 @@
     justify-content: center;
 }
 
-.cart-actions .select.active:hover {
+.cart-actions .select-btn.active:hover {
     background: var(--primary-dark);
 }
 .cart-actions i{
