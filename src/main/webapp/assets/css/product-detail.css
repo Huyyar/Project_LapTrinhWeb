@@ -491,7 +491,7 @@ img {
 
 /* Comments Section */
 .product-comments {
-  padding: 32px 0 48px;
+  padding: 8px 0 8px;
   background: var(--surface-alt, #fff);
   color: var(--text);
 }
@@ -765,7 +765,36 @@ img {
     margin-top: 10px;
     font-size: 14px;
 }
+.comment-success {
+    color: #155724;
+    background: #d4edda;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
 
+.comment-error {
+    color: #721c24;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.comment-replies {
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+.comment-reply-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-left: 3px solid #0d6efd;
+    border-radius: 4px;
+    margin-top: 6px;
+}
 
 @media (max-width: 480px) {
   .fb-actions { margin-top: 6px; }

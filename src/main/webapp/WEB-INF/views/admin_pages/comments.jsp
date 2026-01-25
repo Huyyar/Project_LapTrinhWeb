@@ -43,7 +43,15 @@
                             : pageContext.request.contextPath + '/assets/img/default-avatar.png'}"
                          width="40">
                 </td>
-                <td>${c.content}</td>
+                <td>
+                        ${c.content}
+                    <c:if test="${c.parentId != null}">
+                        <div class="comment-reply-label">
+                            ↳ Trả lời
+                        </div>
+                    </c:if>
+                </td>
+
                 <td>#${c.productId}</td>
                 <td>
                     <fmt:formatDate value="${c.createdAt}"
@@ -52,12 +60,13 @@
 
                 <td>
                     <c:choose>
-                        <c:when test="${c.status == 'pending'}">
+                        <c:when test="${c.status == 'PENDING'}">
                             <span class="status-pending">Chờ duyệt</span>
                         </c:when>
-                        <c:when test="${c.status == 'approved'}">
+                        <c:when test="${c.status == 'APPROVED'}">
                             <span class="status-approved">Đã duyệt</span>
                         </c:when>
+
                         <c:otherwise>
                             <span class="status-hidden">Đã ẩn</span>
                         </c:otherwise>
@@ -65,11 +74,45 @@
                 </td>
 
                 <td class="actions">
-                    <button>Duyệt</button>
-                    <button>Trả lời</button>
-                    <button>Sửa</button>
-                    <button>Xóa</button>
+
+                    <!-- DUYỆT COMMENT -->
+                    <c:if test="${c.status == 'PENDING'}">
+                        <form method="post"
+                              action="${pageContext.request.contextPath}/admin/comments"
+                              style="display:inline">
+                            <input type="hidden" name="action" value="approve">
+                            <input type="hidden" name="commentId" value="${c.id}">
+                            <button type="submit">Duyệt</button>
+                        </form>
+                    </c:if>
+
+                    <!-- TRẢ LỜI COMMENT -->
+                    <form method="post"
+                          action="${pageContext.request.contextPath}/admin/comments"
+                          style="display:inline-block">
+                        <input type="hidden" name="action" value="reply">
+                        <input type="hidden" name="parentId" value="${c.id}">
+                        <input type="hidden" name="productId" value="${c.productId}">
+                        <textarea name="content"
+                                  placeholder="Trả lời comment..."
+                                  rows="2"></textarea>
+                        <button type="submit">Trả lời</button>
+                    </form>
+
+                    <!-- XÓA COMMENT -->
+                    <form method="post"
+                          action="${pageContext.request.contextPath}/admin/comments"
+                          style="display:inline">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="commentId" value="${c.id}">
+                        <button type="submit"
+                                onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                            Xóa
+                        </button>
+                    </form>
+
                 </td>
+
             </tr>
         </c:forEach>
         </tbody>

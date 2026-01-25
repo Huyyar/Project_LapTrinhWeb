@@ -98,6 +98,7 @@
             <!-- comment -->
             <div class = "product-detail-comment">
                 <div class="product-comments">
+
                     <h3>Bình luận:</h3>
 
                     <c:forEach var="c" items="${comments}">
@@ -119,10 +120,50 @@
                                     </span>
                                 </div>
                                 <p>${c.content}</p>
+                                <!-- ADMIN REPLY -->
+                                <c:if test="${not empty c.replies}">
+                                    <div class="comment-replies">
+                                        <c:forEach var="r" items="${c.replies}">
+                                            <div class="comment-reply-item">
+
+                                                <div class="comment-avatar">
+                                                    <img src="${r.user.avatar_url != null
+                                                        ? r.user.avatar_url
+                                                        : pageContext.request.contextPath + '/assets/img/default-avatar.png'}">
+                                                </div>
+
+                                                <div class="comment-body">
+                                                    <div class="comment-header">
+                                                        <strong>Admin</strong>
+                                                        <span class="comment-date">
+                                                            <fmt:formatDate value="${r.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                                        </span>
+                                                    </div>
+                                                    <p>${r.content}</p>
+                                                </div>
+
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </c:if>
+
                             </div>
 
                         </div>
                     </c:forEach>
+                    <!-- COMMENT MESSAGE -->
+                    <c:if test="${param.comment == 'success'}">
+                        <p class="comment-success">
+                            Bình luận đã được gửi và đang chờ quản trị viên duyệt.
+                        </p>
+                    </c:if>
+
+                    <c:if test="${param.error == 'empty'}">
+                        <p class="comment-error">
+                            Nội dung bình luận không được để trống.
+                        </p>
+                    </c:if>
+
                 </div>
 
 
@@ -140,7 +181,7 @@
 
                             <textarea name="content"
                                       placeholder="Viết bình luận của bạn..."
-                                      required></textarea>
+                                      ></textarea>
 
                             <button type="submit">Gửi bình luận</button>
                         </form>

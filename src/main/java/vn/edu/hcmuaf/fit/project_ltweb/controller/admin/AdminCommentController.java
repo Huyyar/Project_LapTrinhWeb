@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_ltweb.dao.CommentDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Comment;
+import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 
 
 import java.io.IOException;
@@ -47,5 +48,43 @@ public class AdminCommentController extends HttpServlet {
         ).forward(request, response);
 
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String action = request.getParameter("action");
+
+        if (action == null) {
+            response.sendRedirect(request.getContextPath() + "/admin/comments");
+            return;
+        }
+
+        switch (action) {
+
+            case "approve" -> {
+                int commentId = Integer.parseInt(request.getParameter("commentId"));
+                commentDao.approveComment(commentId);
+            }
+
+            case "delete" -> {
+                int commentId = Integer.parseInt(request.getParameter("commentId"));
+                commentDao.deleteComment(commentId);
+            }
+
+            case "reply" -> {
+                int parentId = Integer.parseInt(request.getParameter("parentId"));
+                int productId = Integer.parseInt(request.getParameter("productId"));
+                String content = request.getParameter("content");
+
+                User admin = (User) request.getSession().getAttribute("admin");
+                if (admin != null && content != null && !content.trim().isEmpty()) {
+                    commentDao.replyComment(parentId, productId, admin.getId(), content);
+                }
+            }
+        }
+
+        response.sendRedirect(request.getContextPath() + "/admin/comments");
+    }
+
 
 }
