@@ -186,4 +186,11 @@ public class Order {
             return "";
         }
     }
+    public double getSubtotal(){
+        double subtotal = 0;
+        for(OrderItem item : order_items){
+            subtotal += item.getTotalPrice();
+        }
+        return subtotal;
+    }
 }

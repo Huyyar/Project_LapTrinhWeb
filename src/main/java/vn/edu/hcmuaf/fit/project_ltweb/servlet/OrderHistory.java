@@ -14,6 +14,7 @@ import java.util.List;
 @WebServlet(name = "OrderHistory", value = "/order-history")
 public class OrderHistory extends HttpServlet {
     OrderService service =  new OrderService();
+    private int PAGE_SIZE = 3;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -29,13 +30,32 @@ public class OrderHistory extends HttpServlet {
         info.setTitle("Trang lịch sử đơn hàng");
         info.setContent("/WEB-INF/views/userpages/order_history.jsp");
         info.setCss(new String[]{
-                "user/order_history.css"
+                "user/order_history.css",
+                "pagination.css"
         });
         info.setJs(new String[]{
         });
         request.setAttribute("info",info);
         String status = request.getParameter("status");
-        List<Order> orders = service.getOrders(status, user.getId());
+        int totalOrder = service.getTotalUserOrder(status, user.getId());
+        int totalPage = (int) Math.ceil((double) totalOrder / PAGE_SIZE);
+        request.setAttribute("totalPage", totalPage);
+        int currentPage = 1;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
+        if (currentPage > totalPage || totalPage < 0) {
+            currentPage = 1;
+        }
+        request.setAttribute("currentPage", currentPage);
+        int offset = (currentPage - 1) * PAGE_SIZE;
+
+        List<Order> orders = service.getOrders(status, user.getId(), offset, PAGE_SIZE);
         request.setAttribute("orders",orders);
         request.setAttribute("status",status);
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")

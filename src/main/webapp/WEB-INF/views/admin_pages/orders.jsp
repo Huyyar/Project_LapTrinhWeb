@@ -64,7 +64,17 @@
 
                 </tbody>
               </table>
+                <ul class="pagination">
+                    <c:forEach var="p" begin="1" end="${totalPage}">
+                        <li class="${p == currentPage ? 'active' : ''}">
+                            <a href="${pageContext.request.contextPath}/admin/orders?page=${p}">
+                                    ${p}
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul>
             </div>
           </div>
         </section>
+
       </main>

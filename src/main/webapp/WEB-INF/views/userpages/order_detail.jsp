@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Orders - Admin</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../assets/css/order_detail.css" />
-  </head>
-  <body>
-    <div class="dialog">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<div class="dialog">
       <div class="dialog-content">
         <div class="dialog-header">
-          <h2>Chi tiết đơn hàng <span>SH20241101</span></h2>
+          <h2>Chi tiết đơn hàng <span>${order.order_code}</span></h2>
         </div>
         <div class="dialog-body">
           <div class="order-info">
@@ -23,19 +13,19 @@
               <div class="info-grid">
                 <div class="info-item">
                   <label>Họ tên:</label>
-                  <span>Nguyễn Văn A</span>
+                  <span>${order.full_name}</span>
                 </div>
                 <div class="info-item">
                   <label>Số điện thoại:</label>
-                  <span>0901234567</span>
+                  <span>${order.phone}</span>
                 </div>
                 <div class="info-item">
                   <label>Email:</label>
-                  <span>nguyenvana@email.com</span>
+                  <span>${order.email}</span>
                 </div>
                 <div class="info-item">
                   <label>Địa chỉ:</label>
-                  <span>123 Đường ABC, Quận 1, TP.HCM</span>
+                  <span>${order.address_id}</span>
                 </div>
               </div>
             </div>
@@ -51,34 +41,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Rong biển cay giòn</td>
-                    <td>2</td>
-                    <td>35.700 ₫</td>
-                    <td>71.400 ₫</td>
-                  </tr>
-                  <tr>
-                    <td>Bắp rang caramel</td>
-                    <td>1</td>
-                    <td>55.000 ₫</td>
-                    <td>55.000 ₫</td>
-                  </tr>
+                <c:forEach var="i" items="${order.order_items}">
+                    <tr>
+                        <td>${i.product_name}</td>
+                        <td>${i.quantity}</td>
+                        <td><fmt:formatNumber value="${i.price}" type="currency" currencySymbol="VNĐ"/></td>
+                        <td><fmt:formatNumber value="${i.totalPrice}" type="currency" currencySymbol="VNĐ"/></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
               </table>
 
               <div class="order-summary">
                 <div class="summary-item">
                   <span>Tạm tính:</span>
-                  <span></span>
+                  <span><fmt:formatNumber value="${order.subtotal}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
-                126.400 ₫
                 <div class="summary-item">
                   <span>Phí vận chuyển:</span>
-                  <span>15.000 ₫</span>
+                  <span><fmt:formatNumber value="${order.shipping_fee}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
                 <div class="summary-item total">
                   <span>Tổng cộng:</span>
-                  <span>141.400 ₫</span>
+                  <span><fmt:formatNumber value="${order.total_amount}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
               </div>
             </div>
@@ -86,5 +71,3 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
