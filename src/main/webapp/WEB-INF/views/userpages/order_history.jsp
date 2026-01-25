@@ -57,7 +57,7 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                                     <strong>${o.total_amount}₫</strong>
                                 </div>
                                 <div class="order-actions">
-                                    <form action="order-detail" method="POST">
+                                    <form action="order-detail" method="POST" target="_blank">
                                         <input type="hidden" name="orderId" value="${o.id}">
                                         <button type="submit" class="link-detail" >Xem chi tiết</button>
                                     </form>
@@ -79,6 +79,15 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                 </c:otherwise>
             </c:choose>
         </section>
+        <ul class="pagination">
+            <c:forEach var="p" begin="1" end="${totalPage}">
+                <li class="${p == currentPage ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/order-history?page=${p}">
+                            ${p}
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
 </main>
 

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="dialog">
       <div class="dialog-content">
         <div class="dialog-header">
@@ -44,8 +45,8 @@
                     <tr>
                         <td>${i.product_name}</td>
                         <td>${i.quantity}</td>
-                        <td>${i.price}₫</td>
-                        <td>${i.quantity * i.price}</td>
+                        <td><fmt:formatNumber value="${i.price}" type="currency" currencySymbol="VNĐ"/></td>
+                        <td><fmt:formatNumber value="${i.totalPrice}" type="currency" currencySymbol="VNĐ"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -54,15 +55,15 @@
               <div class="order-summary">
                 <div class="summary-item">
                   <span>Tạm tính:</span>
-                  <span>126.400 ₫</span>
+                  <span><fmt:formatNumber value="${order.subtotal}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
                 <div class="summary-item">
                   <span>Phí vận chuyển:</span>
-                  <span>${order.shipping_fee}₫</span>
+                  <span><fmt:formatNumber value="${order.shipping_fee}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
                 <div class="summary-item total">
                   <span>Tổng cộng:</span>
-                  <span>${o.total_amount}₫</span>
+                  <span><fmt:formatNumber value="${order.total_amount}" type="currency" currencySymbol="VNĐ"/></span>
                 </div>
               </div>
             </div>
