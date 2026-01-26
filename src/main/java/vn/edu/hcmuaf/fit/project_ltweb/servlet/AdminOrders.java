@@ -28,7 +28,12 @@ public class AdminOrders extends HttpServlet {
                 "admin/orders.js"
         });
         request.setAttribute("info",info);
-        int totalOrder = service.getTotalOrder();
+        String status = (String) request.getParameter("status");
+        if (status == null || status.isEmpty()) {
+            status = "all";
+        }
+        request.setAttribute("status", status);
+        int totalOrder = service.getTotalOrder(status);
         int totalPage = (int) Math.ceil((double) totalOrder / PAGE_SIZE);
         request.setAttribute("totalPage", totalPage);
         int currentPage = 1;
@@ -46,9 +51,8 @@ public class AdminOrders extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         int offset = (currentPage - 1) * PAGE_SIZE;
 
-        List<Order> orders = service.getAllOrders(offset, PAGE_SIZE);
+        List<Order> orders = service.getAllOrders(offset, PAGE_SIZE, status);
         request.setAttribute("orders",orders);
-
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp").forward(request, response);
     }
 }

@@ -6,8 +6,15 @@
                   <h1>Quản Lý Đơn Hàng</h1>
               </div>
               <div class="top-actions">
-                  <form action="products" style="display: flex; gap: 5px;">
-                      <input type="text" name="search" placeholder="Tìm kiếm đơn hàng..." value="${param.search}"/>
+                  <form action="orders" style="display: flex; gap: 5px;">
+                      <label for="order-status">Trạng thái đơn hàng:</label>
+                      <select name="status" id="order-status">
+                          <option value="all" ${empty status ? 'selected' : ''}>Tất cả đơn hàng</option>
+                          <option value="processing" ${status == 'processing' ? 'selected' : ''}>Đang xử lý</option>
+                          <option value="delivering" ${status == 'delivering' ? 'selected' : ''}>Đang giao hàng</option>
+                          <option value="delivered" ${status == 'delivered' ? 'selected' : ''}>Đã hoàn thành</option>
+                          <option value="cancelled" ${status == 'cancelled' ? 'selected' : ''}>Đã hủy</option>
+                      </select>
                       <button type="submit" class="btn primary">
                           <i class="fa-solid fa-magnifying-glass"></i> Tìm
                       </button>
@@ -45,12 +52,15 @@
                             </td>
                             <td>${o.formattedCreatedAt}</td>
                             <td>
-                                <button
-                                        class="btn order-detail-btn"
-                                        data-order-id="SH20241101"
-                                >
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
+                                <form action="${pageContext.request.contextPath}/order-detail" method="POST" target="_blank">
+                                    <input type="hidden" name="orderId" value="${o.id}">
+                                    <button
+                                            class="btn order-detail-btn"
+                                            type="submit"
+                                    >
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         </c:forEach>
@@ -67,7 +77,7 @@
                 <ul class="pagination">
                     <c:forEach var="p" begin="1" end="${totalPage}">
                         <li class="${p == currentPage ? 'active' : ''}">
-                            <a href="${pageContext.request.contextPath}/admin/orders?page=${p}">
+                            <a href="${pageContext.request.contextPath}/admin/orders?page=${p}${not empty status? "&status=" += status : ""}">
                                     ${p}
                             </a>
                         </li>
