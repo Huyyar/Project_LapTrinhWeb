@@ -9,6 +9,7 @@ public class Contact {
     private String email;
     private String message;
     private Timestamp createdAt;
+    private boolean is_replied; // đã phản hồi chưa
 
     public Contact() {}
 
@@ -57,5 +58,13 @@ public class Contact {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isIs_replied() {
+        return is_replied;
+    }
+
+    public void setIs_replied(boolean is_replied) {
+        this.is_replied = is_replied;
     }
 }

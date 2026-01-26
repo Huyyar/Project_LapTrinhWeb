@@ -46,10 +46,28 @@ public class AdminContactReplyServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
+        int id = Integer.parseInt(req.getParameter("id"));
         String toEmail = req.getParameter("email");
         String replyContent = req.getParameter("replyContent");
 
-        MailService.sendMail(toEmail, replyContent);
+        try {
+            // Gửi mail
+            MailService.sendMail(toEmail, replyContent);
+            System.out.println("Mail sent successfully to: " + toEmail);
+        } catch (Exception e) {
+            System.err.println("Error sending mail: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        try {
+            // Mark contact as replied
+            ContactDAO dao = new ContactDAO();
+            dao.markAsReplied(id);
+            System.out.println("Contact marked as replied, ID: " + id);
+        } catch (Exception e) {
+            System.err.println("Error marking contact as replied: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         resp.sendRedirect(req.getContextPath() + "/admin/contacts");
     }
