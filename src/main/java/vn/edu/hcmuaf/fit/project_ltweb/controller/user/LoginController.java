@@ -16,9 +16,14 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         User auth = (User) request.getSession().getAttribute("auth");
         if (auth != null) {
-
             response.sendRedirect("home");
             return;
+        }
+        
+        // Check if user was locked
+        String error = request.getParameter("error");
+        if ("locked".equals(error)) {
+            request.setAttribute("error", "Tài khoản của bạn đang bị khóa. Vui lòng liên hệ với quản trị viên để biết thêm chi tiết.");
         }
 
         request.getRequestDispatcher("/WEB-INF/views/userpages/login.jsp").forward(request, response);
@@ -36,6 +41,13 @@ public class LoginController extends HttpServlet {
         }
         User user = service.login(email, password);
         if(user!= null) {
+            // Check if account is locked
+            if ("ACCOUNT_LOCKED".equals(user.getPassword())) {
+                request.setAttribute("error", "Tài khoản của bạn đang bị khóa. Vui lòng liên hệ với quản trị viên để biết thêm chi tiết.");
+                request.getRequestDispatcher("/WEB-INF/views/userpages/login.jsp").forward(request, response);
+                return;
+            }
+            
             HttpSession session = request.getSession();
            if(user.isAdmin()) {
                System.out.println("user admin logged in");
@@ -52,12 +64,15 @@ public class LoginController extends HttpServlet {
            }
 
         }else {
-            request.setAttribute("error", "Email hoặc mật khẩu không đúng.");
+            // Check if user exists to provide appropriate error message
+            User checkUser = service.getUserByEmail(email);
+            if (checkUser == null) {
+                request.setAttribute("error", "Tài khoản không tồn tại.");
+            } else {
+                request.setAttribute("error", "Email hoặc mật khẩu không đúng.");
+            }
             request.getRequestDispatcher("/WEB-INF/views/userpages/login.jsp").forward(request, response);
             return;
         }
-
-
-
     }
 }

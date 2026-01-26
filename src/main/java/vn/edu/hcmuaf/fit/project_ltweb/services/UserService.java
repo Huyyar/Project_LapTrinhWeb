@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.dao.UserDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.utils.HashUtil;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -34,19 +35,31 @@ public class UserService {
         return dao.getUserByEmail(email);
     }
 
-    public User login(String email, String password) {
-        String hashedPassword = hashUtil.passwordHash(password);
-        User user = dao.getUserByEmail(email);
-        if (user.isIs_active() == true) {
+    public User getUserById(int id) {
+        return dao.getUserById(id);
+    }
 
-            if (user != null && user.getPassword().equals(hashedPassword)) {
-                return user;
-            } else {
-                System.out.println("Login failed for email: " + email);
-                return null;
-            }
+    public User login(String email, String password) {
+        User user = dao.getUserByEmail(email);
+        
+        // Check if user exists
+        if (user == null) {
+            System.out.println("User not found for email: " + email);
+            return null;
+        }
+        
+        // Check if user account is active
+        if (!user.isIs_active()) {
+            System.out.println("Account is locked for email: " + email);
+            user.setPassword("ACCOUNT_LOCKED"); // Mark as locked
+            return user;
+        }
+        
+        String hashedPassword = hashUtil.passwordHash(password);
+        if (user.getPassword().equals(hashedPassword)) {
+            return user;
         } else {
-            System.out.println("Account is deactivated for email: " + email);
+            System.out.println("Login failed for email: " + email);
             return null;
         }
     }
@@ -66,5 +79,41 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    // Get all users with pagination
+    public List<User> getAllUsers(int offset, int limit) {
+        return dao.getAllUsers(offset, limit);
+    }
+
+    // Get total number of users
+    public int getTotalUsers() {
+        return dao.getTotalUsers();
+    }
+
+    // Search users
+    public List<User> searchUsers(String search, int offset, int limit) {
+        return dao.searchUsers(search, offset, limit);
+    }
+
+    // Get total search users
+    public int getTotalSearchUsers(String search) {
+        return dao.getTotalSearchUsers(search);
+    }
+
+    // Lock/Unlock user
+    public boolean lockUser(int userId, boolean isLock) {
+        return dao.lockUser(userId, isLock);
+    }
+
+    // Delete user
+    public boolean deleteUser(int userId) {
+        return dao.deleteUser(userId);
+    }
+
+    // Update user password by admin
+    public boolean changeUserPassword(int userId, String newPassword) {
+        String passwordHash = hashUtil.passwordHash(newPassword);
+        return dao.updateUserPasswordByAdmin(userId, passwordHash);
     }
 }
