@@ -11,15 +11,10 @@ import java.io.IOException;
 @WebServlet("/admin/delete-image")
 public class DeleteImage extends HttpServlet {
     private ImageManagerService service;
-    @Override
-    public void init() throws ServletException {
-        String root = getServletContext().getRealPath("/");
-        this.service = new ImageManagerService(root);
+    public void init() { this.service = new ImageManagerService(getServletContext().getRealPath("/")); }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        service.deleteImage(req.getParameter("name"));
+        resp.sendRedirect("image-manager");
     }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name =  request.getParameter("name");
-        service.deleteImage(name);
-        response.sendRedirect("image-manager");
-    }
-    }
+}

@@ -1,12 +1,9 @@
-/* Modal Base */
 .modal-overlay {
-    display: none;
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.5);
-    z-index: 1000;
+    z-index: 999;
 }
-
 
 .modal {
     position: fixed;
@@ -15,12 +12,10 @@
     transform: translate(-50%, -50%);
     width: min(640px, calc(100% - 32px));
     background: var(--surface);
-    border: 1px solid var(--border);
     border-radius: 12px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    display:  none;
+    z-index: 1000;
 }
+
 
 .modal-header {
     display: flex;

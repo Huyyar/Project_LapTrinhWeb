@@ -1,46 +1,36 @@
 package vn.edu.hcmuaf.fit.project_ltweb.ajax;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ImageFile;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ImageManagerService;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin/ajax/uploaded-images")
-@MultipartConfig
 public class UploadedImagesAjax extends HttpServlet {
     private ImageManagerService service;
 
     @Override
     public void init() throws ServletException {
-        String root = getServletContext().getRealPath("/");
-        this.service = new ImageManagerService(root);
+        this.service = new ImageManagerService(getServletContext().getRealPath("/"));
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws
-            ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ImageFile> images = new ArrayList<>();
         String[] names = request.getParameterValues("names");
+
         if (names != null) {
             for (String name : names) {
-                ImageFile image = service.getImage(name);
-                images.add(image);
-
+                ImageFile img = service.getImage(name);
+                if (img != null) images.add(img);
             }
         }
+
         request.setAttribute("uploadedImages", images);
-        System.out.println("Tổng số lượng ảnh hợp lệ gửi sang JSP: " + images.size());
-        request.getRequestDispatcher("/WEB-INF/views/partials/uploaded_list.jsp")
-                .forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/partials/uploaded_list.jsp").forward(request, response);
     }
 }
-

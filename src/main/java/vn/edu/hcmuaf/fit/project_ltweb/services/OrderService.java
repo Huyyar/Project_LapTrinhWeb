@@ -40,12 +40,22 @@ public class OrderService {
             }
         return  orders;
     }
-    public int getTotalOrder(){
-        return orderDao.getTotalOrder();
+    public int getTotalOrder(String status){
+        int total = 0;
+        if(status.equals("all")){
+            total = orderDao.getTotalOrder();
+        }else{
+            total = orderDao.getTotalOrderByStatus(status);
+        }
+        return total;
     }
-    public List<Order> getAllOrders(int offset, int pageSize){
+    public List<Order> getAllOrders(int offset, int pageSize, String status){
         List<Order> orders =   new ArrayList<>();
-        orders =  orderDao.getAllOrders(offset, pageSize);
+        if(status.equals("all")){
+            orders =  orderDao.getAllOrder(offset, pageSize);
+        }else{
+            orders =  orderDao.getAllOrderByStatus(offset, pageSize, status);
+        }
         for(Order order : orders){
             order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
         }
