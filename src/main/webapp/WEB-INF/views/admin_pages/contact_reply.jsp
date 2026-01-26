@@ -27,6 +27,7 @@
 
     <form action="${pageContext.request.contextPath}/admin/contact/reply"
           method="post">
+        <input type="hidden" name="id" value="${contact.id}">
         <input type="hidden" name="email" value="${contact.email}">
 
         <label>Phản hồi của admin:</label>

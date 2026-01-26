@@ -76,7 +76,7 @@ public class AdminCommentController extends HttpServlet {
                 int productId = Integer.parseInt(request.getParameter("productId"));
                 String content = request.getParameter("content");
 
-                User admin = (User) request.getSession().getAttribute("admin");
+                User admin = (User) request.getSession().getAttribute("auth");
                 if (admin != null && content != null && !content.trim().isEmpty()) {
                     commentDao.replyComment(parentId, productId, admin.getId(), content);
                 }
