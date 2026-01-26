@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Comment {
     private int id;
@@ -11,6 +13,8 @@ public class Comment {
     private boolean is_active; // Comment có bị xóa / ẩn không
     private String status; // trạng thái duyệt
     private Integer parentId;
+    private List<Comment> replies = new ArrayList<>();
+
 
     public Comment() {}
     public int getId() {
@@ -77,4 +81,11 @@ public class Comment {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+    public List<Comment> getReplies() {
+        return replies;
+    }
+    public void setReplies(List<Comment> replies) {
+        this.replies = replies;
+    }
+
 }

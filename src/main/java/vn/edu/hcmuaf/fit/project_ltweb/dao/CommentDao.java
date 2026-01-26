@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CommentDao {
     public List<Comment> getCommentsByProduct(int productId) {
@@ -166,6 +168,68 @@ public class CommentDao {
             e.printStackTrace();
         }
     }
+    public List<Comment> getCommentsWithRepliesByProduct(int productId) {
+        List<Comment> result = new ArrayList<>();
+
+        String sql = """
+        SELECT c.id, c.product_id, c.content, c.created_at, c.status, c.is_active, c.parent_id,
+               u.id AS user_id, u.fullname, u.avatar_url
+        FROM comments c
+        JOIN users u ON c.user_id = u.id
+        WHERE c.product_id = ?
+          AND c.status = 'APPROVED'
+          AND c.is_active = 1
+        ORDER BY c.created_at ASC
+    """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+
+            // Map tạm: id -> comment
+            Map<Integer, Comment> map = new HashMap<>();
+
+            while (rs.next()) {
+                Comment c = new Comment();
+                c.setId(rs.getInt("id"));
+                c.setProductId(rs.getInt("product_id"));
+                c.setContent(rs.getString("content"));
+                c.setCreatedAt(rs.getTimestamp("created_at"));
+                c.setStatus(rs.getString("status"));
+                c.setIs_active(rs.getBoolean("is_active"));
+                c.setParentId((Integer) rs.getObject("parent_id"));
+
+                User u = new User();
+                u.setId(rs.getInt("user_id"));
+                u.setFullname(rs.getString("fullname"));
+                u.setAvatar_url(rs.getString("avatar_url"));
+                c.setUser(u);
+
+                map.put(c.getId(), c);
+            }
+
+            // Gắn reply vào comment cha
+            for (Comment c : map.values()) {
+                if (c.getParentId() == null) {
+                    result.add(c);
+                } else {
+                    Comment parent = map.get(c.getParentId());
+                    if (parent != null) {
+                        parent.getReplies().add(c);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
 
 
 

@@ -1,7 +1,7 @@
 /* ===== ADMIN COMMENT MANAGEMENT ===== */
 
 table {
-    width: 100%;
+    width: 97%;
     border-collapse: collapse;
     background-color: #fff;
 }
@@ -50,7 +50,25 @@ td img {
     border-radius: 4px;
     cursor: pointer;
 }
-
+.topbar{
+    align-items: center;
+    justify-content: space-between;
+    padding: 37px 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: block;
+    font-size: 2em;
+    margin: 0;
+}
+.main_comment{
+    flex: 1;
+}
+.table_content{
+    background: var(--surface);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 24px;
+}
 .actions button:hover {
     opacity: 0.85;
 }
