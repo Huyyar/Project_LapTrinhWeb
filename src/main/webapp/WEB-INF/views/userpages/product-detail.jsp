@@ -121,31 +121,28 @@
                                 </div>
                                 <p>${c.content}</p>
                                 <!-- ADMIN REPLY -->
+
+                                <!-- ADMIN REPLY -->
                                 <c:if test="${not empty c.replies}">
                                     <div class="comment-replies">
                                         <c:forEach var="r" items="${c.replies}">
-                                            <div class="comment-reply-item">
+                                            <div class="comment-reply">
 
-                                                <div class="comment-avatar">
-                                                    <img src="${r.user.avatar_url != null
-                                                        ? r.user.avatar_url
-                                                        : pageContext.request.contextPath + '/assets/img/default-avatar.png'}">
+                                                <div class="reply-header">
+                                                    <span class="admin-badge">Quản trị viên</span>
+                                                    <span class="comment-date">
+                                                        <fmt:formatDate value="${r.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                                    </span>
                                                 </div>
 
-                                                <div class="comment-body">
-                                                    <div class="comment-header">
-                                                        <strong>Admin</strong>
-                                                        <span class="comment-date">
-                                                            <fmt:formatDate value="${r.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
-                                                        </span>
-                                                    </div>
-                                                    <p>${r.content}</p>
-                                                </div>
+                                                <p class="reply-content">${r.content}</p>
 
                                             </div>
                                         </c:forEach>
                                     </div>
                                 </c:if>
+
+
 
                             </div>
 
@@ -156,6 +153,16 @@
                         <p class="comment-success">
                             Bình luận đã được gửi và đang chờ quản trị viên duyệt.
                         </p>
+                        <script>
+                            // Reload page sau 3 giây để lấy comment đã được duyệt
+                            setTimeout(function() {
+                                // Xóa comment parameter khỏi URL, giữ lại id
+                                const url = new URL(window.location);
+                                url.searchParams.delete('comment');
+                                window.history.replaceState({}, document.title, url.toString());
+                                location.reload();
+                            }, 3000);
+                        </script>
                     </c:if>
 
                     <c:if test="${param.error == 'empty'}">

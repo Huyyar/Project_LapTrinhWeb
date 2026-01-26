@@ -15,4 +15,12 @@ public class CommentService {
     public void addComment(int productId, int userId, String content) {
         dao.addComment(productId, userId, content);
     }
+
+    public List<Comment> getCommentsWithRepliesByProduct(int productId) {
+        return dao.getCommentsWithRepliesByProduct(productId);
+    }
+    public List<Comment> getRepliesByCommentId(int parentId) {
+        return dao.findRepliesByParentId(parentId);
+    }
+
 }

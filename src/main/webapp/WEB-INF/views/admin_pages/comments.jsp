@@ -38,10 +38,7 @@
                 <td>${c.id}</td>
                 <td>
                     <strong>${c.user.fullname}</strong><br>
-                    <img src="${c.user.avatar_url != null
-                        ? c.user.avatar_url
-                            : pageContext.request.contextPath + '/assets/img/default-avatar.png'}"
-                         width="40">
+                    
                 </td>
                 <td>
                         ${c.content}
@@ -52,7 +49,7 @@
                     </c:if>
                 </td>
 
-                <td>#${c.productId}</td>
+                <td>${c.productName}</td>
                 <td>
                     <fmt:formatDate value="${c.createdAt}"
                                     pattern="dd/MM/yyyy HH:mm"/>
@@ -82,22 +79,31 @@
                               style="display:inline">
                             <input type="hidden" name="action" value="approve">
                             <input type="hidden" name="commentId" value="${c.id}">
-                            <button type="submit">Duyệt</button>
+                            <button type="submit" id="d-comment">Duyệt</button>
                         </form>
                     </c:if>
 
-                    <!-- TRẢ LỜI COMMENT -->
-                    <form method="post"
-                          action="${pageContext.request.contextPath}/admin/comments"
-                          style="display:inline-block">
-                        <input type="hidden" name="action" value="reply">
-                        <input type="hidden" name="parentId" value="${c.id}">
-                        <input type="hidden" name="productId" value="${c.productId}">
-                        <textarea name="content"
-                                  placeholder="Trả lời comment..."
-                                  rows="2"></textarea>
-                        <button type="submit">Trả lời</button>
-                    </form>
+                    <!-- TRẢ LỜI COMMENT (CHỈ COMMENT GỐC) -->
+                    <c:if test="${c.parentId == null}">
+                        <form method="post"
+                              action="${pageContext.request.contextPath}/admin/comments"
+                              style="margin-top:6px">
+
+                            <input type="hidden" name="action" value="reply">
+                            <input type="hidden" name="parentId" value="${c.id}">
+                            <input type="hidden" name="productId" value="${c.productId}">
+
+                            <div class ="send_ph">
+                                <textarea name="content"
+                                          placeholder="Trả lời comment..."
+                                          rows="4"
+                                          style="width:80%"
+                                          required></textarea>
+
+                                <button type="submit">Gửi</button>
+                            </div>
+                        </form>
+                    </c:if>
 
                     <!-- XÓA COMMENT -->
                     <form method="post"
@@ -112,6 +118,7 @@
                     </form>
 
                 </td>
+
 
             </tr>
         </c:forEach>

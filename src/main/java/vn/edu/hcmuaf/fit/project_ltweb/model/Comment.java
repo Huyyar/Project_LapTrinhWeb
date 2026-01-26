@@ -7,6 +7,7 @@ import java.util.List;
 public class Comment {
     private int id;
     private int productId;
+    private String productName; // tên sản phẩm
     private User user; // chứa fullname + avatar
     private String content;
     private Timestamp createdAt;
@@ -31,6 +32,14 @@ public class Comment {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public User getUser() {

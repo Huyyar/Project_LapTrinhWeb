@@ -81,14 +81,25 @@ td img {
 .actions button:nth-child(2) {
     background-color: #2196f3;
     color: #fff;
+    margin-top: 24px;
+    margin-left: 10px;
 }
 
 .actions button:nth-child(3) {
-    background-color: #ff9800;
+    background-color: #e32437;
     color: #fff;
+    margin-top: 5px;
+
+}
+#d-comment{
+    background: #ff9800;
 }
 
 .actions button:nth-child(4) {
     background-color: #f44336;
     color: #fff;
+}
+.send_ph{
+    display: flex;
+    justify-content: space-between;
 }
