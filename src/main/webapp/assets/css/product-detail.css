@@ -491,7 +491,7 @@ img {
 
 /* Comments Section */
 .product-comments {
-  padding: 32px 0 48px;
+  padding: 8px 0 8px;
   background: var(--surface-alt, #fff);
   color: var(--text);
 }
@@ -609,7 +609,10 @@ img {
     font-size: 20px;
     margin-bottom: 20px;
     color: #222;
+    display: flex;
+    justify-content: center;
 }
+
 
 
 .product-comments {
@@ -760,6 +763,63 @@ img {
 
 .comment-login-hint {
     margin-top: 10px;
+    font-size: 14px;
+}
+.comment-success {
+    color: #155724;
+    background: #d4edda;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.comment-error {
+    color: #721c24;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.comment-replies {
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+.comment-reply-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-left: 3px solid #0d6efd;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+.comment-replies {
+    margin-top: 8px;
+}
+
+.comment-reply {
+    margin-left: 50px;
+    padding: 10px;
+    background: #f5f7fa;
+    border-left: 4px solid #0d6efd;
+    border-radius: 4px;
+}
+
+.admin-badge {
+    color: #0d6efd;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.reply-header {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.reply-content {
+    margin: 0;
     font-size: 14px;
 }
 

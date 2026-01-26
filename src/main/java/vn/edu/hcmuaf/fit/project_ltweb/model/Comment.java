@@ -1,14 +1,21 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Comment {
     private int id;
     private int productId;
+    private String productName; // tên sản phẩm
     private User user; // chứa fullname + avatar
     private String content;
     private Timestamp createdAt;
-    private boolean is_active;
+    private boolean is_active; // Comment có bị xóa / ẩn không
+    private String status; // trạng thái duyệt
+    private Integer parentId;
+    private List<Comment> replies = new ArrayList<>();
+
 
     public Comment() {}
     public int getId() {
@@ -25,6 +32,14 @@ public class Comment {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public User getUser() {
@@ -59,5 +74,27 @@ public class Comment {
         this.is_active = is_active;
     }
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+    public List<Comment> getReplies() {
+        return replies;
+    }
+    public void setReplies(List<Comment> replies) {
+        this.replies = replies;
+    }
 
 }

@@ -2,6 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<c:set var="mainImageUrl" value="${product.image_url}" />
+
+<c:if test="${not empty productImages}">
+    <c:forEach var="img" items="${productImages}">
+        <c:if test="${img.is_default}">
+            <c:set var="mainImageUrl" value="${img.image_url}" />
+        </c:if>
+    </c:forEach>
+</c:if>
+
 <div class="product-detail-page">
     <div class="product-detail-container">
         <div class="product-detail-grid">
@@ -10,15 +20,9 @@
             <div class="product-detail-images">
                 <div class="main-image-container">
                     <img id="mainImage"
-                         src="<c:choose>
-                            <c:when test='${not empty productImages}'>
-                                <c:forEach var='img' items='${productImages}'>
-                                    <c:if test='${img.is_default}'>${img.image_url}</c:if>
-                                </c:forEach>
-                            </c:when>
-                                <c:otherwise>${product.image_url}</c:otherwise>
-                                </c:choose>"
+                         src="${mainImageUrl}"
                          alt="${product.name}" />
+
 
                 </div>
                 <div class="product-thumbnails">
@@ -94,7 +98,8 @@
             <!-- comment -->
             <div class = "product-detail-comment">
                 <div class="product-comments">
-                    <h3>Bình luận</h3>
+
+                    <h3>Bình luận:</h3>
 
                     <c:forEach var="c" items="${comments}">
                         <div class="comment-item">
@@ -115,10 +120,57 @@
                                     </span>
                                 </div>
                                 <p>${c.content}</p>
+                                <!-- ADMIN REPLY -->
+
+                                <!-- ADMIN REPLY -->
+                                <c:if test="${not empty c.replies}">
+                                    <div class="comment-replies">
+                                        <c:forEach var="r" items="${c.replies}">
+                                            <div class="comment-reply">
+
+                                                <div class="reply-header">
+                                                    <span class="admin-badge">Quản trị viên</span>
+                                                    <span class="comment-date">
+                                                        <fmt:formatDate value="${r.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                                    </span>
+                                                </div>
+
+                                                <p class="reply-content">${r.content}</p>
+
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </c:if>
+
+
+
                             </div>
 
                         </div>
                     </c:forEach>
+                    <!-- COMMENT MESSAGE -->
+                    <c:if test="${param.comment == 'success'}">
+                        <p class="comment-success">
+                            Bình luận đã được gửi và đang chờ quản trị viên duyệt.
+                        </p>
+                        <script>
+                            // Reload page sau 3 giây để lấy comment đã được duyệt
+                            setTimeout(function() {
+                                // Xóa comment parameter khỏi URL, giữ lại id
+                                const url = new URL(window.location);
+                                url.searchParams.delete('comment');
+                                window.history.replaceState({}, document.title, url.toString());
+                                location.reload();
+                            }, 3000);
+                        </script>
+                    </c:if>
+
+                    <c:if test="${param.error == 'empty'}">
+                        <p class="comment-error">
+                            Nội dung bình luận không được để trống.
+                        </p>
+                    </c:if>
+
                 </div>
 
 
@@ -136,7 +188,7 @@
 
                             <textarea name="content"
                                       placeholder="Viết bình luận của bạn..."
-                                      required></textarea>
+                                      ></textarea>
 
                             <button type="submit">Gửi bình luận</button>
                         </form>

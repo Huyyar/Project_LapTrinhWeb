@@ -44,6 +44,12 @@ public class ProductDetailServlet extends HttpServlet {
 
         CommentService commentService = new CommentService();
         List<Comment> comments = commentService.getCommentsByProduct(id);
+
+        for (Comment c : comments) {
+            c.setReplies(
+                    commentService.getRepliesByCommentId(c.getId())
+            );
+        }
         request.setAttribute("comments", comments);
 
         UserPageInfo info =  new UserPageInfo();

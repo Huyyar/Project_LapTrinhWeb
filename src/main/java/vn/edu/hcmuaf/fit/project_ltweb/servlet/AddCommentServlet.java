@@ -29,13 +29,24 @@ public class AddCommentServlet extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("productId"));
         String content = request.getParameter("content");
 
+        if (content == null || content.trim().isEmpty()) {
+            response.sendRedirect(
+                    request.getContextPath() + "/product-detail?id=" + productId + "&error=empty"
+            );
+            return;
+        }
+
+
         // 3. Gọi service
         service.addComment(productId, user.getId(), content);
 
         // 4. Quay lại trang chi tiết sản phẩm
         response.sendRedirect(
-                request.getContextPath() + "/product-detail?id=" + productId
+                request.getContextPath()
+                        + "/product-detail?id=" + productId
+                        + "&comment=success"
         );
+
     }
 
 }

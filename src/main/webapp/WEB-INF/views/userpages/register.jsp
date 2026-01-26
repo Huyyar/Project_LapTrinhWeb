@@ -60,8 +60,8 @@
               name="password"
               type="password"
               autocomplete="new-password"
-              placeholder="Tối thiểu 6 ký tự"
-              minlength="6"
+              placeholder="Tối thiểu 8 ký tự"
+              minlength="8"
               required
             />
           </div>

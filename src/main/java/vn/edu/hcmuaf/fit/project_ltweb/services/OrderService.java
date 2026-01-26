@@ -19,19 +19,51 @@ public class OrderService {
             orderItemDao.addOrderItem(orderItem);
         }
     }
-    public List<Order> getOrders(String status){
-        List<Order> orders =   new ArrayList<>();
-        if(status != null) {
-            orders =  orderDao.getOrders(status);
-            for(Order order : orders){
-                order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
-            }
+    public int getTotalUserOrder(String status, int userId){
+        int total = 0;
+        if(status == null){
+            total = orderDao.getTotalUserOrder(userId);
         }else{
-            orders =  orderDao.getAllOrders();
+            total = orderDao.getTotalUserOrderByStatus(status, userId);
+        }
+            return total;
+    }
+    public List<Order> getOrders(String status, int userId, int offset, int pageSize){
+        List<Order> orders =   new ArrayList<>();
+            if(status == null){
+                orders =  orderDao.getUserOrders(userId, offset, pageSize);
+            }else{
+                orders =  orderDao.getUserOrdersByStatus(status, userId, offset, pageSize);
+            }
             for(Order order : orders){
                 order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
             }
+        return  orders;
+    }
+    public int getTotalOrder(String status){
+        int total = 0;
+        if(status.equals("all")){
+            total = orderDao.getTotalOrder();
+        }else{
+            total = orderDao.getTotalOrderByStatus(status);
+        }
+        return total;
+    }
+    public List<Order> getAllOrders(int offset, int pageSize, String status){
+        List<Order> orders =   new ArrayList<>();
+        if(status.equals("all")){
+            orders =  orderDao.getAllOrder(offset, pageSize);
+        }else{
+            orders =  orderDao.getAllOrderByStatus(offset, pageSize, status);
+        }
+        for(Order order : orders){
+            order.setOrder_items(orderItemDao.getOrderItems(order.getId()));
         }
         return  orders;
+    }
+    public Order getOrder(int id){
+        Order order = orderDao.getOrder(id);
+        order.setOrder_items(orderItemDao.getOrderItems(id));
+        return order;
     }
 }

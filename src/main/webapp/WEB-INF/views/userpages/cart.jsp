@@ -12,9 +12,15 @@
         </div>
         <section class="content">
             <div class="cart-actions">
-                <button class="select ${sessionScope.cart.isChooseAll? "active" : ""}"
-                        onClick="handleChooseAllItem()"
-                ><i class="fa-solid fa-check"></i></button>
+                <div class="select">
+                    <button class="select-btn ${sessionScope.cart.isChooseAll? "active" : ""}"
+                            onClick="handleChooseAllItem()"
+                    ><i class="fa-solid fa-check"></i></button>
+                    <span>Chọn tất cả</span>
+                </div>
+
+
+
                 <button onClick="handleDeleteChosenItems()"><i class="fa-regular fa-trash-can"></i></button>
             </div>
             <div class="items">

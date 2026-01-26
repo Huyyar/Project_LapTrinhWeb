@@ -40,16 +40,49 @@ public class OrderDao {
         }
         return -1;
     }
-    public List<Order> getOrders(String status){
+    public int getTotalUserOrder(int userId){
+        String sql = "SELECT COUNT(*) FROM orders WHERE user_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1, userId);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    public int getTotalUserOrderByStatus(String status, int userId){
+        String sql = "SELECT COUNT(*) FROM orders WHERE user_id = ? AND status = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1, userId);
+            ps.setString(2, status);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    public List<Order> getUserOrders(int userId, int offset, int pageSize){
         List<Order> orders =  new ArrayList<>();
-        OrderItemDao dao  = new OrderItemDao();
-        String sql = "SELECT * FROM orders WHERE status = ?";
+        String sql = "SELECT * FROM orders WHERE user_id = ? LIMIT ? OFFSET ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
         ){
-            ps.setString(1, status);
-            ps.executeQuery();
-            ResultSet rs = ps.getResultSet();
+            ps.setInt(1, userId);
+            ps.setInt(2, pageSize);
+            ps.setInt(3, offset);
+            ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
@@ -74,14 +107,18 @@ public class OrderDao {
         }
         return orders;
     }
-    public List<Order> getAllOrders(){
+    public List<Order> getUserOrdersByStatus(String status, int userId, int offset, int pageSize){
         List<Order> orders =  new ArrayList<>();
-        OrderItemDao dao  = new OrderItemDao();
-        String sql = "SELECT * FROM orders";
+        String sql = "SELECT * FROM orders WHERE status = ? AND user_id = ? LIMIT ? OFFSET ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery();
         ){
+            ps.setString(1, status);
+            ps.setInt(2, userId);
+            ps.setInt(4, offset);
+            ps.setInt(3, pageSize);
+
+            ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
@@ -105,5 +142,134 @@ public class OrderDao {
             throw new RuntimeException(e);
         }
         return orders;
+    }
+    public int getTotalOrder(){
+        String sql = "SELECT COUNT(*) FROM orders";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+        ){
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    public int getTotalOrderByStatus(String status){
+        String sql = "SELECT COUNT(*) FROM orders WHERE status = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+
+        ){
+            ps.setString(1, status);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    public List<Order> getAllOrder(int offset, int pageSize){
+        List<Order> orders =  new ArrayList<>();
+        OrderItemDao dao  = new OrderItemDao();
+        String sql = "SELECT * FROM orders LIMIT ? OFFSET ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1, pageSize);
+            ps.setInt(2, offset);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setOrder_code(rs.getString("order_code"));
+                order.setUser_id(rs.getInt("user_id"));
+                order.setFull_name(rs.getString("full_name"));
+                order.setPhone(rs.getString("phone"));
+                order.setEmail(rs.getString("email"));
+                order.setAddress_id(rs.getInt("address_id"));
+                order.setShipping_method(rs.getString("shipping_method"));
+                order.setShipping_fee(rs.getDouble("shipping_fee"));
+                order.setPayment_method(rs.getString("payment_method"));
+                order.setNotes(rs.getString("notes"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+                order.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+    public List<Order> getAllOrderByStatus(int offset, int pageSize, String status){
+        List<Order> orders =  new ArrayList<>();
+        OrderItemDao dao  = new OrderItemDao();
+        String sql = "SELECT * FROM orders WHERE status = ? LIMIT ? OFFSET ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setString(1, status);
+            ps.setInt(2, pageSize);
+            ps.setInt(3, offset);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setOrder_code(rs.getString("order_code"));
+                order.setUser_id(rs.getInt("user_id"));
+                order.setFull_name(rs.getString("full_name"));
+                order.setPhone(rs.getString("phone"));
+                order.setEmail(rs.getString("email"));
+                order.setAddress_id(rs.getInt("address_id"));
+                order.setShipping_method(rs.getString("shipping_method"));
+                order.setShipping_fee(rs.getDouble("shipping_fee"));
+                order.setPayment_method(rs.getString("payment_method"));
+                order.setNotes(rs.getString("notes"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+                order.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+    public Order getOrder(int id){
+        Order order = new Order();
+        String sql = "SELECT * FROM orders WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+        ){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                order.setId(rs.getInt("id"));
+                order.setOrder_code(rs.getString("order_code"));
+                order.setUser_id(rs.getInt("user_id"));
+                order.setFull_name(rs.getString("full_name"));
+                order.setPhone(rs.getString("phone"));
+                order.setEmail(rs.getString("email"));
+                order.setAddress_id(rs.getInt("address_id"));
+                order.setShipping_method(rs.getString("shipping_method"));
+                order.setShipping_fee(rs.getDouble("shipping_fee"));
+                order.setPayment_method(rs.getString("payment_method"));
+                order.setNotes(rs.getString("notes"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+                order.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
     }
 }

@@ -84,4 +84,7 @@ public class OrderItem {
     public void setProduct_image_url(String product_image_url) {
         this.product_image_url = product_image_url;
     }
+    public double getTotalPrice(){
+        return price *  quantity;
+    }
 }

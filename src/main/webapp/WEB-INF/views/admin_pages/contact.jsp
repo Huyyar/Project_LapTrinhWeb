@@ -23,6 +23,7 @@
                         <th>Email</th>
                         <th>Nội dung</th>
                         <th>Ngày gửi</th>
+                        <th>Trạng thái</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
@@ -36,6 +37,16 @@
                             <td>
                                 <fmt:formatDate value="${c.createdAt}"
                                                 pattern="dd/MM/yyyy HH:mm"/>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${c.is_replied}">
+                                        <span style="color: green; font-weight: bold;">✓ Đã phản hồi</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span style="color: orange; font-weight: bold;">⧗ Chưa phản hồi</span>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
                                 <!-- LINK SANG TRANG TRẢ LỜI -->
