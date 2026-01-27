@@ -6,6 +6,29 @@
 <script src="${pageContext.request.contextPath}/assets/js/admin/admin_slideshow.js" defer></script>
 
 <main class="main">
+    <%-- Thông báo thành công/lỗi --%>
+    <c:if test="${not empty param.success}">
+        <div class="alert alert-success">
+            <i class="fa-solid fa-circle-check"></i>
+            <c:choose>
+                <c:when test="${param.success == 'add'}">Thêm slide thành công!</c:when>
+                <c:when test="${param.success == 'update'}">Cập nhật slide thành công!</c:when>
+                <c:when test="${param.success == 'delete'}">Xóa slide thành công!</c:when>
+            </c:choose>
+        </div>
+    </c:if>
+    <c:if test="${not empty param.error}">
+        <div class="alert alert-error">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <c:choose>
+                <c:when test="${param.error == 'add_failed'}">Thêm slide thất bại!</c:when>
+                <c:when test="${param.error == 'update_failed'}">Cập nhật slide thất bại!</c:when>
+                <c:when test="${param.error == 'delete_failed'}">Xóa slide thất bại!</c:when>
+                <c:otherwise>Có lỗi xảy ra. Vui lòng thử lại!</c:otherwise>
+            </c:choose>
+        </div>
+    </c:if>
+    
     <header class="topbar">
         <div class="header-group">
             <h1>Quản Lý Slideshow</h1>
@@ -39,7 +62,7 @@
                             <c:forEach var="slide" items="${slides}">
                                 <tr>
                                     <td>
-                                        <img src="${slide.image_url}" alt="${slide.title}" class="slide-preview"/>
+                                        <img src="${slide.imageUrl}" alt="${slide.title}" class="slide-preview"/>
                                     </td>
                                     <td>${slide.title}</td>
                                     <td>
@@ -55,9 +78,9 @@
                                                 data-id="${slide.id}"
                                                 data-title="${slide.title}"
                                                 data-description="${slide.description}"
-                                                data-imageUrl="${slide.image_url}"
+                                                data-imageUrl="${slide.imageUrl}"
                                                 data-priority="${slide.priority}"
-                                                data-active="${slide.active}"
+                                                data-active="${slide.active ? '1' : '0'}"
                                                 onClick="openEditSlideModal(this)">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
@@ -121,9 +144,6 @@
                 <label class="full">
                     <span>URL Hình ảnh</span>
                     <input type="text" name="image_url" placeholder="/assets/images/slide1.jpg" required/>
-                    <div id="addImagePreview" class="image-preview-container">
-                        <img src="" alt="Preview" class="image-preview"/>
-                    </div>
                 </label>
 
                 <label>
@@ -157,7 +177,6 @@
         <form id="editSlideForm" action="${pageContext.request.contextPath}/admin/update-slide" method="post">
             <div class="form-grid">
                 <input type="hidden" name="id"/>
-
                 <label class="full">
                     <span>Tiêu đề Slide</span>
                     <input type="text" name="title" placeholder="Nhập tiêu đề slide" required/>
@@ -171,9 +190,7 @@
                 <label class="full">
                     <span>URL Hình ảnh</span>
                     <input type="text" name="image_url" placeholder="/assets/images/slide1.jpg" required/>
-                    <div id="editImagePreview" class="image-preview-container">
-                        <img src="" alt="Preview" class="image-preview"/>
-                    </div>
+
                 </label>
 
                 <label>

@@ -25,7 +25,13 @@ function openEditSlideModal(button) {
   if (titleInput) titleInput.value = dataset.title || "";
   if (descriptionTextarea)
     descriptionTextarea.value = dataset.description || "";
-  if (imageUrlInput) imageUrlInput.value = dataset.imageurl || "";
+  if (imageUrlInput) {
+    imageUrlInput.value = dataset.imageurl || "";
+    // Trigger preview for existing image
+    if (dataset.imageurl) {
+      previewSlideImage(imageUrlInput, "editImagePreview");
+    }
+  }
   if (priorityInput) priorityInput.value = dataset.priority || "0";
   if (activeSelect) activeSelect.value = dataset.active || "1";
 

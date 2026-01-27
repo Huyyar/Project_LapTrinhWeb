@@ -1,7 +1,7 @@
 /* CSS Variables */
 :root {
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
+  --primary: #ff6b35;
+  --primary-dark: #e85a25;
   --success: #10b981;
   --danger: #ef4444;
   --border-color: #e0e0e0;
@@ -10,6 +10,45 @@
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
   --surface: #ffffff;
+}
+
+/* Alert Messages */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.alert i {
+  font-size: 1.2rem;
+}
+
+.alert-success {
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success);
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.alert-error {
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
+  border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Slide Preview Image */
@@ -124,7 +163,7 @@
 }
 
 .modal-actions .btn:not(.primary) {
-  background: var(--bg-secondary, #f3f4f6);
+  background: var(--primary);
   color: var(--text-primary, #1f2937);
 }
 
@@ -149,11 +188,16 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
-  background: var(--bg-secondary, #f3f4f6);
+  background: transparent;
+  color: var(--text-primary, #1f2937);
 }
 
 .btn:hover {
   background: var(--bg-hover, #e5e7eb);
+}
+
+.btn i {
+  font-size: 1rem;
 }
 
 .btn.text-danger {
