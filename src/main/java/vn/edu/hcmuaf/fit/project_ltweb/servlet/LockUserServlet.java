@@ -19,8 +19,21 @@ public class LockUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int userId = Integer.parseInt(request.getParameter("userId"));
+            String userIdStr = request.getParameter("userId");
+            System.out.println("[LockUser] Received userId: '" + userIdStr + "'");
+            
+            // Check if userId is null or empty BEFORE parsing
+            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+                System.out.println("[LockUser] ERROR: userId is null or empty");
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("User ID is missing");
+                return;
+            }
+            
+            int userId = Integer.parseInt(userIdStr);
             String action = request.getParameter("action");
+            
+            System.out.println("[LockUser] Parsed userId: " + userId + ", action: " + action);
 
             boolean isLock = "lock".equals(action);
             
@@ -34,8 +47,10 @@ public class LockUserServlet extends HttpServlet {
                 response.getWriter().write("Failed to update user status");
             }
         } catch (NumberFormatException e) {
+            String userIdStr = request.getParameter("userId");
+            System.err.println("[LockUser] NumberFormatException - userId='" + userIdStr + "'");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Invalid user ID");
+            response.getWriter().write("Invalid user ID: " + userIdStr);
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

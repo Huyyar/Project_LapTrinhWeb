@@ -17,9 +17,34 @@ public class ChangeUserPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int userId = Integer.parseInt(request.getParameter("userId"));
+            // Debug: Print ALL parameters
+            System.out.println("[ChangePassword] ======= REQUEST DEBUG =======");
+            System.out.println("[ChangePassword] Content-Type: " + request.getContentType());
+            System.out.println("[ChangePassword] All parameters received:");
+            java.util.Enumeration<String> paramNames = request.getParameterNames();
+            while (paramNames.hasMoreElements()) {
+                String name = paramNames.nextElement();
+                String value = request.getParameter(name);
+                System.out.println("[ChangePassword]   " + name + " = '" + value + "'");
+            }
+            System.out.println("[ChangePassword] ======= END DEBUG =======");
+            
+            String userIdStr = request.getParameter("userId");
+            System.out.println("[ChangePassword] Received userId: '" + userIdStr + "'");
+            
+            // Check if userId is null or empty BEFORE parsing
+            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+                System.out.println("[ChangePassword] ERROR: userId is null or empty");
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("User ID is missing");
+                return;
+            }
+            
+            int userId = Integer.parseInt(userIdStr);
             String newPassword = request.getParameter("newPassword");
             String confirmPassword = request.getParameter("confirmPassword");
+            
+            System.out.println("[ChangePassword] Parsed userId: " + userId);
 
             // Validate password match
             if (!newPassword.equals(confirmPassword)) {
@@ -43,8 +68,10 @@ public class ChangeUserPasswordServlet extends HttpServlet {
                 response.getWriter().write("Failed to update password");
             }
         } catch (NumberFormatException e) {
+            String userIdStr = request.getParameter("userId");
+            System.err.println("[ChangePassword] NumberFormatException - userId='" + userIdStr + "'");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Invalid user ID");
+            response.getWriter().write("Invalid user ID: " + userIdStr);
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

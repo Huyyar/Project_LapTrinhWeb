@@ -55,20 +55,21 @@
                             </span>
                         </td>
                         <td class="actions">
-                            <button class="btn btn-sm btn-edit" 
+                            <button type="button" class="btn btn-sm btn-edit" 
                                     data-user-id="${u.id}"
                                     data-email="${u.email}"
                                     data-password="${u.password}"
-                                    onclick="openChangePasswordModal(this.dataset.userId, this.dataset.email, this.dataset.password)"
-                                    title="Đổi mật khẩu">
-                                <i class="fa-solid fa-key"></i> Đổi MK
+                                    onclick="openChangePasswordModal(this)"
+                                    title="Đổi mật khẩu"
+                                    data-debug="user-id: ${u.id}">
+                                <i class="fa-solid fa-key"></i> Đổi MK (${u.id})
                             </button>
                             <c:if test="${u.role != 'admin'}">
-                                <button class="btn btn-sm btn-lock" 
+                                <button type="button" class="btn btn-sm btn-lock" 
                                         data-user-id="${u.id}"
                                         data-email="${u.email}"
                                         data-active="${u.isIs_active() ? 'true' : 'false'}"
-                                        onclick="lockUser(this.dataset.userId, this.dataset.email, this.dataset.active === 'true')"
+                                        onclick="lockUser(this)"
                                         title="Khóa/Mở khóa người dùng">
                                     <i class="fa-solid fa-lock"></i> ${u.isIs_active() ? 'Khóa' : 'Mở khóa'}
                                 </button>
