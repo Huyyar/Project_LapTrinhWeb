@@ -29,6 +29,7 @@
                     <tr>
                         <th>Ảnh</th>
                         <th>Tên ảnh</th>
+                        <th>Url</th>
                         <th>Kích thước</th>
                         <th>Hành động</th>
                     </tr>
@@ -38,13 +39,15 @@
                     <c:when test="${not empty images}">
                     <c:forEach var="i" items="${images}">
                     <tr>
-                        <td><img src="${i.url}" alt="${i.url}"
+                        <td><img src="${i.fullPath}" alt="${i.fullPath}"
                                  class="product-image"/></td>
                         <td>${i.name}</td>
+                        <td>${i.url}</td>
                         <td>${i.size} kb</td>
                         <td>
                             <button class="btn"
                                     data-name="${i.name}"
+                                    data-url="${i.fullPath}"
                                     onClick="openRenameImageModal(this)">
                                 <i class="fa-solid fa-pen-to-square"></i></button>
                             <form action="delete-image" method="POST" style="display: inline;"
@@ -102,6 +105,7 @@
     </div>
     <div class="modal-body">
         <form action="rename-image" id="rename-image" method="post">
+            <img src="" alt="" id="imageInModal">
             <span id="imageNameInModal" class="name-in-form"></span>
             <div class="form-flex">
                 <label for="">

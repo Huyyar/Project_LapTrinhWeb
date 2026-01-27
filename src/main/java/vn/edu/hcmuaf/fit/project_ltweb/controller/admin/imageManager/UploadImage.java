@@ -19,16 +19,25 @@ public class UploadImage extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Thiết lập trả về JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
         try {
             Part part = request.getPart("file");
             String name = request.getParameter("name");
 
-            service.uploadImage(part, name);
+            // Lưu file và lấy tên thực tế (đã xử lý trùng abc(1).jpg)
+            String savedName = service.uploadImage(part, name);
 
-            response.setContentType("application/json");
-            response.getWriter().write(new Gson().toJson(new String[]{name}));
+            // Tạo một Map hoặc Object để Gson biến thành JSON {}
+            java.util.Map<String, String> data = new java.util.HashMap<>();
+            data.put("fileName", savedName);
+
+            response.getWriter().write(new com.google.gson.Gson().toJson(data));
+            response.getWriter().flush();
         } catch (Exception e) {
-            response.sendError(500, e.getMessage());
+            response.setStatus(500);
+            response.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");
         }
-    }
-}
+    }}

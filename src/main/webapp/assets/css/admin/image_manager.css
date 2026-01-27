@@ -42,3 +42,12 @@ input:focus {
     border-color: var(--primary); /* Màu cam */
     box-shadow: 0 0 5px rgba(255, 136, 0, 0.2);
 }
+#imageInModal {
+    display: block;
+    max-width: 200px; /* Hoặc kích thước bạn muốn */
+    max-height: 200px;
+    margin: 10px auto;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}

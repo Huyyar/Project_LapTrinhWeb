@@ -26,7 +26,9 @@ public class UploadedImagesAjax extends HttpServlet {
         if (names != null) {
             for (String name : names) {
                 ImageFile img = service.getImage(name);
-                if (img != null) images.add(img);
+                if (img != null) {
+                    images.add(img);
+                }
             }
         }
 

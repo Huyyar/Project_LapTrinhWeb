@@ -5,7 +5,7 @@
 <c:if test="${not empty uploadedImages}">
     <c:forEach items="${uploadedImages}" var="i">
         <li>
-            <img src="${i.url}" alt="">
+            <img src="${i.fullPath}" alt="">
             <span>${i.name}</span>
             <span>${i.size}</span>
             <button class="btn btn-copy"

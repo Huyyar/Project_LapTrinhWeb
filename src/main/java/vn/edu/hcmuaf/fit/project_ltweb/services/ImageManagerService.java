@@ -17,8 +17,10 @@ public class ImageManagerService {
         this.deployPath = FileUtil.getDeployPath(root);
     }
 
-    public void uploadImage(Part part, String name) throws IOException {
-        FileUtil.saveDualFile(part, name, srcPath, deployPath);
+    public String uploadImage(Part part, String name) throws IOException {
+        String finalName = FileUtil.checkName(srcPath, name);
+        FileUtil.saveDualFile(part, finalName, srcPath, deployPath);
+        return finalName;
     }
 
     public List<ImageFile> getPagedSearchImages(int offset, int pageSize, String search) {
