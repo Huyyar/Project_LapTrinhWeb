@@ -19,7 +19,19 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int userId = Integer.parseInt(request.getParameter("userId"));
+            String userIdStr = request.getParameter("userId");
+            System.out.println("[DeleteUser] Received userId: '" + userIdStr + "'");
+            
+            // Check if userId is null or empty BEFORE parsing
+            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+                System.out.println("[DeleteUser] ERROR: userId is null or empty");
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("User ID is missing");
+                return;
+            }
+            
+            int userId = Integer.parseInt(userIdStr);
+            System.out.println("[DeleteUser] Parsed userId: " + userId);
 
             if (service.deleteUser(userId)) {
                 // If deleted user is currently logged in, invalidate their session
@@ -37,8 +49,10 @@ public class DeleteUserServlet extends HttpServlet {
                 response.getWriter().write("Failed to delete user");
             }
         } catch (NumberFormatException e) {
+            String userIdStr = request.getParameter("userId");
+            System.err.println("[DeleteUser] NumberFormatException - userId='" + userIdStr + "'");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Invalid user ID");
+            response.getWriter().write("Invalid user ID: " + userIdStr);
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
