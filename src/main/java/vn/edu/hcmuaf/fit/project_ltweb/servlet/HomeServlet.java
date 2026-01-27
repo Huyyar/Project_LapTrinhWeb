@@ -4,15 +4,18 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Slide;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
+import vn.edu.hcmuaf.fit.project_ltweb.services.SlideService;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
-    private ProductService service =  new ProductService();
+    private ProductService service = new ProductService();
+    private SlideService slideService = new SlideService();
     private int PAGE_SIZE = 6;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +55,10 @@ public class HomeServlet extends HttpServlet {
         int offset = (currentPage - 1) * PAGE_SIZE;
         List<Product> products = service.getFeaturedProducts(offset, PAGE_SIZE);
         request.setAttribute("products", products);
+        
+        // Get active slides for homepage slideshow
+        List<Slide> slides = slideService.getActiveSlides();
+        request.setAttribute("slides", slides);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);

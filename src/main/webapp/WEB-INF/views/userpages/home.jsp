@@ -3,47 +3,38 @@
 <main>
     <section class="hero" id="home">
         <div class="hero-slideshow">
-            <div class="hero-slide is-active">
-                <img
-                        src="assets/images/slideshow_halloween.jpg"
-                        alt="Bàn tiệc Halloween "
-                />
-                <div class="hero-slide-content">
-                    <span class="hero-slide-chip">Halloween 2025</span>
-                    <h3>Đại tiệc snack đêm Halloween</h3>
-                    <p>
-                        Cho kẹo hay bị ghẹo - Một đêm Halloween tuyệt vời với nhiều loại
-                        kẹo.
-                    </p>
-                </div>
-            </div>
-
-            <div class="hero-slide" data-hero-slide>
-                <img
-                        src="assets/images/slideshow_drinks.jpg"
-                        alt="Các loại nước uống"
-                />
-                <div class="hero-slide-content">
-                    <span class="hero-slide-chip">SnackHub Drinks</span>
-                    <h3>Thưởng thức nhiều loại nước uống khác nhau</h3>
-                    <p>Đánh thức vị giác với hương vị đa dạng .</p>
-                </div>
-            </div>
-
-            <div class="hero-slide" data-hero-slide>
-                <img
-                        src="assets/images/slideshow_mochi.jpg"
-                        alt="Sản phẩm mochi matcha mới của SnackHub"
-                />
-                <div class="hero-slide-content">
-                    <span class="hero-slide-chip">Ra mắt tuần này</span>
-                    <h3>Mochi lava thơm tan</h3>
-                    <p>
-                        Lớp vỏ mềm thủ công ôm lấy nhân matcha Uji tan chảy, giới hạn
-                        cho mùa lễ hội.
-                    </p>
-                </div>
-            </div>
+            <c:choose>
+                <c:when test="${not empty slides}">
+                    <c:forEach var="slide" items="${slides}" varStatus="status">
+                        <div class="hero-slide ${status.first ? 'is-active' : ''}" data-hero-slide>
+                            <img
+                                src="${slide.imageUrl}"
+                                alt="${slide.title}"
+                            />
+                            <div class="hero-slide-content">
+                                <span class="hero-slide-chip">${slide.title}</span>
+                                <c:if test="${not empty slide.description}">
+                                    <h3>${slide.description}</h3>
+                                </c:if>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <!-- Fallback slide nếu không có dữ liệu -->
+                    <div class="hero-slide is-active">
+                        <img
+                            src="assets/images/slideshow_halloween.jpg"
+                            alt="Chào mừng đến SnackHub"
+                        />
+                        <div class="hero-slide-content">
+                            <span class="hero-slide-chip">SnackHub</span>
+                            <h3>Chào mừng đến với SnackHub</h3>
+                            <p>Khám phá thế giới snack đa dạng của chúng tôi</p>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
             <button
                     class="hero-slide-nav prev"

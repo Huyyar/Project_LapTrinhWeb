@@ -1,33 +1,41 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
 public class Slide {
-    private int id;
+    private long id;
     private String imageUrl;
     private String title;
     private String description;
     private boolean active ;
     private int priority;
-    private String link ;
+
+
+    public Slide(String imageUrl, String title, String description, boolean active, int priority) {
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.description = description;
+        this.active = active;
+        this.priority = priority;
+    }
 
     public Slide() {
     }
 
-    public Slide(int id, String imageUrl, String title, String description, boolean active, int priority, String link) {
+    public Slide(long id, String imageUrl, String title, String description, boolean active, int priority) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
         this.active = active;
         this.priority = priority;
-        this.link = link;
+
     }
 
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
+    public Slide(int priority, boolean active, String description, String title, String imageUrl) {
+        this.priority = priority;
+        this.active = active;
+        this.description = description;
+        this.title = title;
+        this.imageUrl = imageUrl;
     }
 
     public boolean isActive() {
@@ -46,14 +54,7 @@ public class Slide {
         this.priority = priority;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public String getImageUrl() {
         return imageUrl;
     }
@@ -76,6 +77,14 @@ public class Slide {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 
