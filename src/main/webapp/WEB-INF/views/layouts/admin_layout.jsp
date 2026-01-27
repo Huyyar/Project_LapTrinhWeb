@@ -33,6 +33,10 @@
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Dashboard</span>
             </a>
+            <a href="slideshow" class="nav-link ${info.name == 'slideshow' ? 'active' : ''}">
+                <i class="fa-solid fa-images"></i>
+                <span>Slideshow</span>
+            </a>
             <a href="products" class="nav-link ${info.name == 'products' ? 'active' : ''}">
                 <i class="fa-solid fa-box-open"></i>
                 <span>Sản phẩm</span>
