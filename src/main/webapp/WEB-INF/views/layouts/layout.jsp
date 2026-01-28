@@ -32,7 +32,7 @@
 <body data-context-path="${pageContext.request.contextPath}">
 <header class="navbar" id="navbar">
     <div class="container nav-inner">
-        <a class="logo" href="index.html">
+        <a class="logo" href="${pageContext.request.contextPath}/home">
             <span class="logo-icon">🍿</span>
             <span>SnackHub</span>
         </a>

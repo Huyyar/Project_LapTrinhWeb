@@ -65,7 +65,7 @@ function updateCartCount() {
 function calculateTotals() {
   const subtotal = cartData.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
   const total = subtotal + shipping;
@@ -75,12 +75,7 @@ function calculateTotals() {
 
 // Format currency
 function formatCurrency(amount) {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  })
-    .format(amount)
-    .replace("₫", "₫");
+  return new Intl.NumberFormat("vi-VN").format(amount) + " đ";
 }
 
 // Render cart items
@@ -120,7 +115,7 @@ function renderCartItems() {
         </div>
       </div>
     </div>
-  `
+  `,
     )
     .join("");
 
