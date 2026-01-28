@@ -8,6 +8,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "AddCart", value = "/add-cart")
 public class AddCart extends HttpServlet {
@@ -37,6 +38,18 @@ public class AddCart extends HttpServlet {
         }
         cart.addItem(product,qty);
         session.setAttribute("cart",cart);
+        
+        // Kiểm tra nếu là AJAX request
+        String ajaxRequest = request.getParameter("ajax");
+        if("true".equals(ajaxRequest)) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out = response.getWriter();
+            out.print("{\"success\": true, \"message\": \"Đã thêm " + qty + " sản phẩm vào giỏ hàng\", \"totalQty\": " + cart.getTotalQty() + "}");
+            out.flush();
+            return;
+        }
+        
         String page = request.getParameter("page");
         response.sendRedirect(page);
     }
