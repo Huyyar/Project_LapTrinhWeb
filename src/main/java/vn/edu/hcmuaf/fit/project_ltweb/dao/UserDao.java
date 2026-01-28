@@ -29,7 +29,7 @@ public class UserDao {
     public int insertUser(User u) {
 
         String query = "INSERT INTO users(email, password,fullname, avatar_url,role, is_active,verification_token, created_at) " +
-                "VALUES(?, ?, ?,?,'user', true,?, CURRENT_TIMESTAMP())";
+                "VALUES(?, ?, ?,?,'user', false,?, CURRENT_TIMESTAMP())";
 
 
         try (Connection conn = DBConnection.getConnection();
@@ -322,6 +322,21 @@ public class UserDao {
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    // Cập nhật OTP mới cho user (dùng cho chức năng gửi lại OTP)
+    public boolean updateOtp(String email, String newOtp) {
+        String query = "UPDATE users SET verification_token = ? WHERE email = ?";
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, newOtp);
+            ps.setString(2, email);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Lỗi cập nhật OTP: " + e.getMessage());
+            return false;
         }
     }
 }
