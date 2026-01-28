@@ -6,10 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import vn.edu.hcmuaf.fit.project_ltweb.model.AdminPageInfo;
-import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
-import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
-import vn.edu.hcmuaf.fit.project_ltweb.model.User;
+import vn.edu.hcmuaf.fit.project_ltweb.model.*;
+import vn.edu.hcmuaf.fit.project_ltweb.services.CategoryService;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 import vn.edu.hcmuaf.fit.project_ltweb.services.UserService;
 
@@ -19,6 +17,7 @@ import java.util.List;
 @WebServlet("/admin/products")
 public class AdminProductsServlet extends HttpServlet {
     private ProductService service =  new ProductService();
+    private CategoryService catService = new CategoryService();
     private int PAGE_SIZE = 5;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +34,9 @@ public class AdminProductsServlet extends HttpServlet {
                 "admin/products.js"
         });
         request.setAttribute("info",info);
+
+        List<Category> categories = catService.getCategories();
+        request.setAttribute("categories",categories);
 
         int totalProduct, totalPage;
         String search = request.getParameter("search");

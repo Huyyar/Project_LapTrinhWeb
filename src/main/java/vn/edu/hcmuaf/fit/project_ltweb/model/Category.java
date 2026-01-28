@@ -3,15 +3,13 @@ package vn.edu.hcmuaf.fit.project_ltweb.model;
 public class Category {
     private int id;
     private String name;
-    private String icon;
     private int display_order;
 
     public Category() {}
 
-    public Category(int id, String name, String icon, int display_order) {
+    public Category(int id, String name, int display_order) {
         this.id = id;
         this.name = name;
-        this.icon = icon;
         this.display_order = display_order;
     }
 
@@ -20,8 +18,6 @@ public class Category {
     public void setId(int id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public String getIcon() { return icon; }
-    public void setIcon(String icon) { this.icon = icon; }
     public int getDisplay_order() { return display_order; }
     public void setDisplay_order(int display_order) { this.display_order = display_order; }
 }
