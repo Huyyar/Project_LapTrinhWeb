@@ -41,6 +41,10 @@
                 <i class="fa-solid fa-box-open"></i>
                 <span>Sản phẩm</span>
             </a>
+            <a href="categories" class="nav-link ${info.name == 'categories' ? 'active' : ''}">
+                <i class="fa-solid fa-list"></i>
+                <span>Danh mục</span>
+            </a>
             <a href="orders" class="nav-link ${info.name == 'orders' ? 'active' : ''}">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>Đơn hàng</span>

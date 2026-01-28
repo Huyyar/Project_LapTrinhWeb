@@ -157,15 +157,16 @@
                 <label>
                     Danh mục
                     <select required name="category">
-                        <option value="1">Bánh tráng</option>
-                        <option value="2">Trái cây sấy</option>
-                        <option value="3">Bánh</option>
-                        <option value="4">Nước</option>
-                        <option value="5">Khô các loại</option>
-                        <option value="6">Mứt</option>
-                        <option value="7">Kẹo</option>
-                        <option value="8">Đậu-hạt dinh dưỡng</option>
-                        <option value="9">Trà-nước giải nhiệt</option>
+                        <c:choose>
+                            <c:when test="${not empty categories}">
+                                <c:forEach var="c" items="${categories}">
+                                <option value="${c.id}">${c.name}</option>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <span>Không có danh mục nào</span>
+                            </c:otherwise>
+                        </c:choose>
                     </select>
 
                 </label>
@@ -225,15 +226,16 @@
                 <label>
                     Danh mục
                     <select required name="category">
-                        <option value="1">Bánh tráng</option>
-                        <option value="2">Trái cây sấy</option>
-                        <option value="3">Bánh</option>
-                        <option value="4">Nước</option>
-                        <option value="5">Khô các loại</option>
-                        <option value="6">Mứt</option>
-                        <option value="7">Kẹo</option>
-                        <option value="8">Đậu-hạt dinh dưỡng</option>
-                        <option value="9">Trà-nước giải nhiệt</option>
+                        <c:choose>
+                            <c:when test="${not empty categories}">
+                                <c:forEach var="c" items="${categories}">
+                                    <option value="${c.id}">${c.name}</option>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <span>Không có danh mục nào</span>
+                            </c:otherwise>
+                        </c:choose>
                     </select>
 
                 </label>
