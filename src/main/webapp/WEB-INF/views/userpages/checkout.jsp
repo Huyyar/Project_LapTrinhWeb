@@ -159,7 +159,7 @@
                             <c:forEach var="ci" items="${sessionScope.cart.chosenItems}">
                                 <div class="item">
                                     <div class="left">
-                                        <img src="${ci.product.image_url}" alt="${ci.product.name}"/>
+                                        <img src="${ci.product.imgPath}" alt="${ci.product.name}"/>
                                         <span class="name">${ci.product.name}</span>
                                     </div>
                                     <div class="right">

@@ -70,22 +70,21 @@ public class OrderItem {
     }
 
     public String getProduct_image_url() {
+        return this.product_image_url;
+    }
+    public String getProduct_imgPath() {
         if (this.product_image_url == null || this.product_image_url.trim().isEmpty()) {
             return AppContextListener.contextPath + "/assets/images/no-image.png";
         }
 
-        String url = "";
         if (this.product_image_url.startsWith("http") || this.product_image_url.startsWith("data:")) {
-            url = this.product_image_url;
+            return this.product_image_url;
         } else {
             String cp = AppContextListener.contextPath;
             String path = this.product_image_url.startsWith("/") ? this.product_image_url : "/" + this.product_image_url;
-            url = cp + path;
+            return cp + path;
         }
-
-        return url;
     }
-
     public void setProduct_image_url(String product_image_url) {
         this.product_image_url = product_image_url;
     }

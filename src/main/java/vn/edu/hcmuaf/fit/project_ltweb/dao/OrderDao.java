@@ -343,4 +343,25 @@ public class OrderDao {
         }
         return 0;
     }
+    public void cancelOrder(int id){
+        String sql = "UPDATE orders SET status = 'cancelled' WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateOrderStatus(int id, String status){
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(2, id);
+            ps.setString(1, status);
+            int rs = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

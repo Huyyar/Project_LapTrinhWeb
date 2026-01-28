@@ -41,7 +41,7 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                                 <c:forEach var="i" items="${o.order_items}">
                                     <li>
                                         <div class="left">
-                                            <img src="${i.product_image_url}" alt="${i.product_name}"/>
+                                            <img src="${i.product_imgPath}" alt="${i.product_name}"/>
                                             <span class="item-name">${i.product_name}</span>
                                         </div>
                                         <div class="right">
@@ -63,10 +63,16 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                                     </form>
                                     <c:choose>
                                         <c:when test="${o.status =='cancelled' || o.status == 'delivered'}">
-                                            <button type="button" class="btn-reorder">Mua lại đơn hàng</button>
+                                            <form action="re-order" method="POST">
+                                                <input type="hidden" name="orderId" value="${o.id}">
+                                                <button type="submit" class="btn-reorder">Mua lại đơn hàng</button>
+                                            </form>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="btn-reorder">Hủy đơn hàng</button>
+                                            <form action="cancel-order" method="POST">
+                                                <input type="hidden" name="orderId" value="${o.id}">
+                                                <button type="submit" class="btn-reorder">Hủy đơn hàng</button>
+                                            </form>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

@@ -33,7 +33,7 @@
                                         class="fa-solid fa-check"></i>
                                 </button>
                                 <div class="product"><img
-                                        src="${ci.product.image_url}" alt="Yogurt"/>
+                                        src="${ci.product.imgPath}" alt="Yogurt"/>
                                     <div class="info"><span class="name">${ci.product.name}</span> <span
                                             class="price">${ci.product.price}</span></div>
                                 </div>

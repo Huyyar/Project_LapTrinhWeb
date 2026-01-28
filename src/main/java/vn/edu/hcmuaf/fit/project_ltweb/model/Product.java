@@ -72,6 +72,9 @@ public class Product {
     }
     public String getImgPath() {
         String url = "";
+        if (this.image_url == null || this.image_url.trim().isEmpty()) {
+            return AppContextListener.contextPath + "/assets/images/no-image.png";
+        }
         if(this.image_url.startsWith("http") || this.image_url.startsWith("data:")){
             url =  this.image_url;
         }else{

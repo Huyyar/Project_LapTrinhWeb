@@ -76,8 +76,18 @@
                                       Xem chi tiết
                                   </a>
 
+                                  <c:choose>
+                                      <c:when test="${p.is_active && p.inventory_qty > 0}">
+                                          <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                              <i class="fa-solid fa-ban"></i>
+                                              Đã hết hàng
+                                          </button>
+                                      </c:otherwise>
+                                  </c:choose>
 
-                                  <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
                               </div>
                           </article>
                       </c:forEach>
