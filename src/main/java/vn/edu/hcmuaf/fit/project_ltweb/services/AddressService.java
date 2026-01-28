@@ -31,4 +31,9 @@ public class AddressService {
     public Address getById(int addressId) {
         return dao.getById(addressId);
     }
+    
+    
+    public Address getDefaultAddress(int userId) {
+        return dao.getDefaultAddress(userId);
+    }
 }

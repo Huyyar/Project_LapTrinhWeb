@@ -5,48 +5,43 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import vn.edu.hcmuaf.fit.project_ltweb.model.*;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
+import vn.edu.hcmuaf.fit.project_ltweb.model.PageInfo;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.services.CategoryService;
-import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
-import vn.edu.hcmuaf.fit.project_ltweb.services.UserService;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/admin/products")
-public class AdminProductsServlet extends HttpServlet {
-    private ProductService service =  new ProductService();
-    private CategoryService catService = new CategoryService();
+@WebServlet("/admin/categories")
+public class AdminCategories extends HttpServlet {
+    private CategoryService service = new CategoryService();
     private int PAGE_SIZE = 5;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PageInfo info = new  PageInfo();
-        info.setName("products");
-        info.setTitle("Admin - Products");
-        info.setContent("/WEB-INF/views/admin_pages/products.jsp");
+        info.setName("categories");
+        info.setTitle("Admin - Categories");
+        info.setContent("/WEB-INF/views/admin_pages/categories.jsp");
         info.setCss(new String[]{
                 "pagination.css",
-                "admin/admin_product.css"
         });
         info.setJs(new String[]{
-                "admin/products.js"
         });
         request.setAttribute("info",info);
 
-        List<Category> categories = catService.getCategories();
-        request.setAttribute("categories",categories);
-
-        int totalProduct, totalPage;
+        int totalCat, totalPage;
         String search = request.getParameter("search");
         if(search == null){
             search="";
         }
         request.setAttribute("search", search);
-        totalProduct = service.getTotalSearchProducts(search);
-        request.setAttribute("totalProduct", totalProduct);
-        totalPage = (int) Math.ceil((double) totalProduct / PAGE_SIZE);
+        totalCat = service.getTotalCat(search);
+        request.setAttribute("totalCategory",totalCat);
+
+        totalPage = (int) Math.ceil((double) totalCat / PAGE_SIZE);
         request.setAttribute("totalPage", totalPage);
         int currentPage = 1;
         String pageParam = request.getParameter("page");
@@ -62,11 +57,11 @@ public class AdminProductsServlet extends HttpServlet {
         }
         request.setAttribute("currentPage", currentPage);
         int offset = (currentPage - 1) * PAGE_SIZE;
-        List<Product> products = service.getPagedSearchProducts(offset, PAGE_SIZE, search);
-        request.setAttribute("products", products);
+
+        List<Category> categories = service.getPagedCategories(offset, PAGE_SIZE, search);
+        request.setAttribute("categories",categories);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp").forward(request, response);
 
     }
 }
-

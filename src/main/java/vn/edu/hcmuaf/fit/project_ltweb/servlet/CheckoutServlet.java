@@ -1,17 +1,23 @@
 package vn.edu.hcmuaf.fit.project_ltweb.servlet;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.project_ltweb.cart.Cart;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Address;
 import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
-
-import java.io.IOException;
-import java.net.URLEncoder;
+import vn.edu.hcmuaf.fit.project_ltweb.services.AddressService;
 
 @WebServlet(name = "CheckoutServlet", value = "/checkout")
 public class CheckoutServlet extends HttpServlet {
+    private AddressService addressService = new AddressService();
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession  session = request.getSession();
@@ -32,6 +38,10 @@ public class CheckoutServlet extends HttpServlet {
                     .forward(request, response);
             return;
         }
+        
+        // Get default address for user
+        Address defaultAddress = addressService.getDefaultAddress(user.getId());
+        request.setAttribute("defaultAddress", defaultAddress);
 
         UserPageInfo info =  new UserPageInfo();
         info.setTitle("Trang checkout");
