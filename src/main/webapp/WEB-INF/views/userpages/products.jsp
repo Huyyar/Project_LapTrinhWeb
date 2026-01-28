@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
  <div class="product">
       <div class="content">
         <div class="container">
@@ -72,18 +71,23 @@
                               </div>
                               <div class="card-actions">
                                   <a class="btn btn-outline"
-                                     href="product-detail?id=${p.id}">
+                                     href="product-detail?id=${p.id}"
+                                     target="_blank">
                                       Xem chi tiết
                                   </a>
 
                                   <c:choose>
-                                      <c:when test="${empty sessionScope.auth}">
-                                          <a href="login" class="btn btn-primary">Thêm vào giỏ</a>
+                                      <c:when test="${p.is_active && p.inventory_qty > 0}">
+                                          <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
                                       </c:when>
                                       <c:otherwise>
-                                          <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
+                                          <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                              <i class="fa-solid fa-ban"></i>
+                                              Đã hết hàng
+                                          </button>
                                       </c:otherwise>
                                   </c:choose>
+
                               </div>
                           </article>
                       </c:forEach>

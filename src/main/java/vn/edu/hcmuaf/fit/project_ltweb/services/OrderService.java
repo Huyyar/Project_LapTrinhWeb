@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.project_ltweb.services;
 
 import vn.edu.hcmuaf.fit.project_ltweb.dao.OrderDao;
 import vn.edu.hcmuaf.fit.project_ltweb.dao.OrderItemDao;
+import vn.edu.hcmuaf.fit.project_ltweb.dao.ProductDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Order;
 import vn.edu.hcmuaf.fit.project_ltweb.model.OrderItem;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class OrderService {
     OrderDao  orderDao = new OrderDao();
     OrderItemDao  orderItemDao = new OrderItemDao();
+    ProductDao pDao =  new ProductDao();
     public void createOrder(Order order){
         int order_id = orderDao.createOrder(order);
         List<OrderItem> items = order.getOrder_items();
@@ -66,4 +68,14 @@ public class OrderService {
         order.setOrder_items(orderItemDao.getOrderItems(id));
         return order;
     }
+    public void cancelOrder(int id){
+        orderDao.cancelOrder(id);
+    }
+    public List<OrderItem> getOrderItems(int id){
+        return orderItemDao.getOrderItems(id);
+    }
+    public void updateOrderStatus(int id, String status){
+        orderDao.updateOrderStatus(id, status);
+    }
+
 }
