@@ -2,13 +2,16 @@ package vn.edu.hcmuaf.fit.project_ltweb.services;
 
 import java.util.List;
 
+import vn.edu.hcmuaf.fit.project_ltweb.dao.CategoryDao;
 import vn.edu.hcmuaf.fit.project_ltweb.dao.ProductDao;
 import vn.edu.hcmuaf.fit.project_ltweb.dao.ProductImageDao;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.model.ProductImage;
 
 public class ProductService {
     private ProductDao dao = new ProductDao();
+    private CategoryDao categoryDao = new CategoryDao();
 
     public List<Product> getProducts() {
         return dao.getProducts();
@@ -50,6 +53,18 @@ public class ProductService {
 
     public List<Product> getProductsWithSortAndSearch(String search, String sortBy, int offset,  int pageSize) {
         return dao.getProductsWithSortAndSearch(search, sortBy, offset, pageSize);
+    }
+
+    public List<Product> getProductsWithCategory(String categoryName, String sortBy, int offset, int pageSize) {
+        return dao.getProductsWithCategory(categoryName, sortBy, offset, pageSize);
+    }
+
+    public int getTotalProductsByCategory(String categoryName) {
+        return dao.getTotalProductsByCategory(categoryName);
+    }
+
+    public List<Category> getAllCategories() {
+        return categoryDao.getAllCategories();
     }
 
     private ProductImageDao imageDao = new ProductImageDao();

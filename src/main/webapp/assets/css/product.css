@@ -153,6 +153,7 @@ img {
   border: 1px solid rgba(31, 41, 51, 0.05);
   box-shadow: 0 12px 30px rgba(31, 41, 51, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
 }
 
 .content .container .product-grid .product-card:hover {
@@ -253,6 +254,7 @@ img {
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 0.8rem;
+    opacity: 0.5;
 }
 
 .content .container .product-grid .product-content {
@@ -280,6 +282,11 @@ img {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.92rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content .container .product-grid .product-price {
