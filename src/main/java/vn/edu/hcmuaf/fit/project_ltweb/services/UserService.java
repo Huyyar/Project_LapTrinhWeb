@@ -1,11 +1,11 @@
 package vn.edu.hcmuaf.fit.project_ltweb.services;
 
+import java.util.List;
+import java.util.UUID;
+
 import vn.edu.hcmuaf.fit.project_ltweb.dao.UserDao;
 import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 import vn.edu.hcmuaf.fit.project_ltweb.utils.HashUtil;
-
-import java.util.List;
-import java.util.UUID;
 
 public class UserService {
     UserDao dao = new UserDao();
@@ -16,9 +16,9 @@ public class UserService {
         if (dao.isUserExists(u.getEmail())) {
             return false;
         }
-        // 1. Tạo Token ngẫu nhiên
-        String token = UUID.randomUUID().toString();
-        u.setVerificationToken(token);
+        // 1. Tạo mã OTP 6 số ngẫu nhiên thay vì UUID
+        String otp = String.valueOf((int)((Math.random() * (999999 - 100000)) + 100000));
+        u.setVerificationToken(otp);
 
         String hashedPassword = hashUtil.passwordHash(u.getPassword());
         u.setPassword(hashedPassword);
@@ -115,5 +115,10 @@ public class UserService {
     public boolean changeUserPassword(int userId, String newPassword) {
         String passwordHash = hashUtil.passwordHash(newPassword);
         return dao.updateUserPasswordByAdmin(userId, passwordHash);
+    }
+
+    // Cập nhật OTP mới cho user 
+    public boolean updateOtp(String email, String newOtp) {
+        return dao.updateOtp(email, newOtp);
     }
 }

@@ -68,24 +68,16 @@ public class RegisterController extends HttpServlet {
 // ĐĂNG KÍ TÀI KHOẢN
         boolean isRegistered = service.registerUser(user);
         if(isRegistered) {
-            // Tạo đường link xác nhận
-            // Link có dạng: http://localhost:8080/project_war/verify?token=abc-123...
-            String scheme = request.getScheme();             // http
-            String serverName = request.getServerName();     // localhost
-            int serverPort = request.getServerPort();       // 8080
-            String contextPath = request.getContextPath();   // /project_war
-            String verifyLink = scheme + "://" + serverName + ":" + serverPort + contextPath + "/verify?token=" + user.getVerificationToken();
-
-            // Gửi mail thông qua MailService
-            String content = "Chào " + user.getFullname() + ",\n\nVui lòng nhấn vào link sau để kích hoạt tài khoản: " + verifyLink;
+            // 1. Gửi OTP qua mail
+            String content = "Mã xác thực (OTP) của bạn là: " + user.getVerificationToken() +
+                    "\nMã này dùng để kích hoạt tài khoản tại SnackHub.";
             MailService.sendMail(user.getEmail(), content);
-            
-            // Chuyển hướng đến trang thông báo chờ xác nhận email
-            request.setAttribute("title", "Kiểm tra email của bạn");
-            request.setAttribute("message", "Đăng ký thành công! Chúng tôi đã gửi một email xác nhận đến " + user.getEmail() + ". Vui lòng kiểm tra hộp thư và nhấn vào liên kết để kích hoạt tài khoản.");
-            request.setAttribute("btnLink", "login");
-            request.setAttribute("btnText", "Đến trang đăng nhập");
-            request.getRequestDispatcher("/WEB-INF/views/userpages/notification.jsp").forward(request, response);
+
+            // 2. Lưu email vào session để dùng ở trang Verify
+            request.getSession().setAttribute("emailVerify", user.getEmail());
+
+            // 3. Chuyển đến trang nhập OTP
+            response.sendRedirect("verify");
         } else {
             request.setAttribute("error", "Email đã được sử dụng.");
             request.getRequestDispatcher("/WEB-INF/views/userpages/register.jsp").forward(request, response);
