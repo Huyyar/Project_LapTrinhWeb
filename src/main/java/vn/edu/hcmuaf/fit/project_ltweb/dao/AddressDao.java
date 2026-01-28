@@ -130,4 +130,32 @@ public void addAddress(Address address) {
         }
         return address;
     }
+   
+    public Address getDefaultAddress(int userId) {
+        Address address = null;
+        String query = "SELECT * FROM addresses WHERE user_id = ? AND is_default = TRUE LIMIT 1";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                address = new Address();
+                address.setId(rs.getInt("id"));
+                address.setUserId(rs.getInt("user_id"));
+                address.setRecipientName(rs.getString("recipient_name"));
+                address.setRecipientPhone(rs.getString("recipient_phone"));
+                address.setProvince(rs.getString("province"));
+                address.setDistrict(rs.getString("district"));
+                address.setWard(rs.getString("ward"));
+                address.setProvinceCode(rs.getString("province_code"));
+                address.setDistrictCode(rs.getString("district_code"));
+                address.setWardCode(rs.getString("ward_code"));
+                address.setAddressDetail(rs.getString("address_detail"));
+                address.setDefaultAddress(rs.getBoolean("is_default"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return address;
+    }
 }
