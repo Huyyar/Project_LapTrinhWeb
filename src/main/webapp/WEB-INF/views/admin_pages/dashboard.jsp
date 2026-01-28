@@ -89,7 +89,7 @@
                             <td>
                               ${order.full_name}<br />
                               <small>
-                                <fmt:formatDate value="${order.created_at}" pattern="dd/MM/yyyy"/>
+                                      ${order.formattedCreatedAt}
                               </small>
                             </td>
                             <td>${dashboardService.getOrderItemCount(order.id)} sản phẩm</td>
