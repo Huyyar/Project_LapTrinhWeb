@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 
 public class ProductDao {
@@ -428,4 +429,5 @@ public class ProductDao {
             e.printStackTrace();
         }
         return 0;
-    }}
+    }
+}

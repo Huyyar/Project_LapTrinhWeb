@@ -35,4 +35,13 @@ public class CategoryService {
         }
         return dao.getTotalCatBySearch(search);
     }
+    public void addCategory(Category cat){
+        dao.addCategory(cat);
+    }
+    public void updateCategory(Category cat){
+        dao.updateCategory(cat);
+    }
+    public void deleteCategory(int id){
+        dao.deleteCategory(id);
+    }
 }

@@ -13,7 +13,7 @@
                 </button>
             </form>
             <button class="btn primary"
-                    onClick="openModal('addProductModal')">Thêm danh mục
+                    onClick="openModal('addCategoryModal')">Thêm danh mục
             </button>
         </div>
     </header>
@@ -42,13 +42,22 @@
                         <td>${c.name}</td>
                         <td>${c.totalProduct}</td>
                         <td>
-                            <button class="btn">
+                            <button class="btn"
+                                    data-id="${c.id}"
+                                    data-name="${c.name}"
+                                    data-displayOrder="${c.display_order}"
+                                    onClick="openEditCategoryModal(this)"
+                            >
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
 
-                            <button type="submit" class="btn text-danger">
-                            <i class="fa-solid fa-trash"></i>
-                            </button></td>
+                            <form action="delete-category" method="POST" style="display: inline;"
+                                  onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm ${p.name} không?');">
+                                <input type="hidden" name="id" value="${c.id}">
+                                <button type="submit" class="btn text-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form></td>
                     </tr>
                     </c:forEach>
                     </c:when>
@@ -96,3 +105,56 @@
         </div>
     </section>
 </main>
+<div class="modal" id="addCategoryModal" hidden aria-hidden="true" role="dialog" aria-labelledby="addProductTitle">
+    <div class="modal-header">
+        <h3>Thêm danh mục</h3>
+        <button class="btn" data-close-modal aria-label="Đóng">✕</button>
+    </div>
+    <div class="modal-body">
+        <form action="add-category" method="post">
+            <div class="form-grid">
+                <label class="full">
+                    Tên sản phẩm
+                    <input type="text" name="name"
+                           placeholder="Nhập tên danh mục" required/>
+                </label>
+                <label class="full">Số thứ tự hiển thị
+                    <input type="number" name="display_order"
+                           placeholder="vd:1" required/>
+                </label>
+
+            </div>
+            <div class="modal-actions">
+                <button class="btn" data-close-modal type="button">Hủy</button>
+                <button class="btn primary" type="submit">Thêm danh mục</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="editCategoryModal" hidden aria-hidden="true" role="dialog" aria-labelledby="addProductTitle">
+    <div class="modal-header">
+        <h3>Thêm sản phẩm</h3>
+        <button class="btn" data-close-modal aria-label="Đóng">✕</button>
+    </div>
+    <div class="modal-body">
+        <form id="editCategoryForm" action="update-category" method="post">
+            <div class="form-grid">
+                <input type="hidden" name="id">
+                <label class="full">
+                    Tên danh mục
+                    <input type="text" name="name"
+                           placeholder="Nhập tên danh mục" required/>
+                </label>
+                <label class="full">
+                    Số thứ tự hiển thị
+                    <input type="number" name="display_order"
+                           placeholder="vd:1" required/>
+                </label>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" data-close-modal type="button">Hủy</button>
+                <button class="btn primary" type="submit">Lưu danh mục</button>
+            </div>
+        </form>
+    </div>
+</div>

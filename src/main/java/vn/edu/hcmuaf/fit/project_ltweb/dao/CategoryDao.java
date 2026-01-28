@@ -146,4 +146,39 @@ public class CategoryDao {
         }
         return 0;
     }
+    public void addCategory(Category cat){
+        String sql = "INSERT INTO categories(name, display_order) VALUES (?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, cat.getName());
+            ps.setInt(2, cat.getDisplay_order());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateCategory(Category cat){
+        String sql = "UPDATE categories SET name = ?, display_order = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, cat.getName());
+            ps.setInt(2, cat.getDisplay_order());
+            ps.setInt(3, cat.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void deleteCategory(int id){
+        String sql = "DELETE FROM categories WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     }
