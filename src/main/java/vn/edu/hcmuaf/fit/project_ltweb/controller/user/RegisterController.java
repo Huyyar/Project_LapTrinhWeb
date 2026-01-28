@@ -55,6 +55,7 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("error",
                     "Mật khẩu phải ≥ 8 ký tự, có chữ hoa, chữ thường và số");
             request.getRequestDispatcher("/WEB-INF/views/userpages/register.jsp").forward(request, response);
+            return ;
         }
 
         // Kiểm tra mật khẩu xác nhận

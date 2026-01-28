@@ -26,25 +26,43 @@
                         </p>
                     </header>
                     <div class="address-select-component">
-                        <a
-                                href="${pageContext.request.contextPath}/address"
-                                class="selected-address change-address-btn"
-                        >
-                            <div class="address-info">
-                    <span
-                            class="address-label"
-                            style="font-weight: 600; color: #222"
-                    >Nguyễn Văn A 0383462037</span
-                    >
-                                <span class="address-value" style="color: #555"
-                                >123 Đường ABC, Phường 7, Quận 3, TP.HCM</span
+                        <c:choose>
+                            <c:when test="${not empty defaultAddress}">
+                                <a
+                                    href="${pageContext.request.contextPath}/address"
+                                    class="selected-address change-address-btn"
                                 >
-                            </div>
-                            <i
-                                    class="fa-solid fa-chevron-right"
-                                    style="margin-left: auto; font-size: 1.1em; color: #ff7a00"
-                            ></i>
-                        </a>
+                                    <div class="address-info">
+                                        <span class="address-label" style="font-weight: 600; color: #222">
+                                            ${defaultAddress.recipientName} ${defaultAddress.recipientPhone}
+                                        </span>
+                                        <span class="address-value" style="color: #555">
+                                            ${defaultAddress.addressDetail}, ${defaultAddress.ward}, ${defaultAddress.district}, ${defaultAddress.province}
+                                        </span>
+                                    </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right"
+                                        style="margin-left: auto; font-size: 1.1em; color: #ff7a00"
+                                    ></i>
+                                </a>
+                                <input type="hidden" name="address_id" value="${defaultAddress.id}" />
+                            </c:when>
+                            <c:otherwise>
+                                <div class="no-address-message" style="padding: 1.5rem; background: #fff3cd; border-radius: 8px; text-align: center;">
+                                    <p style="margin: 0 0 1rem 0; color: #856404;">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                        Bạn chưa có địa chỉ giao hàng
+                                    </p>
+                                    <a 
+                                        href="${pageContext.request.contextPath}/address" 
+                                        class="btn primary"
+                                        style="display: inline-block; padding: 0.75rem 1.5rem; background: #ff7a00; color: white; text-decoration: none; border-radius: 6px;"
+                                    >
+                                        <i class="fa-solid fa-plus"></i> Thêm địa chỉ mới
+                                    </a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </section>
 

@@ -1,8 +1,13 @@
 package vn.edu.hcmuaf.fit.project_ltweb.dao;
 
-import vn.edu.hcmuaf.fit.project_ltweb.model.User;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import java.sql.*;
+import vn.edu.hcmuaf.fit.project_ltweb.model.User;
 
 public class UserDao {
     public boolean isUserExists(String email) {
@@ -197,6 +202,22 @@ public class UserDao {
     // Get total number of users
     public int getTotalUsers() {
         String query = "SELECT COUNT(*) as total FROM users";
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    
+   
+    public int getUsersRegisteredToday() {
+        String query = "SELECT COUNT(*) as total FROM users WHERE DATE(created_at) = CURDATE()";
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(query);

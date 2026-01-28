@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       <main class="main">
         <header class="topbar">
@@ -18,10 +19,12 @@
 
             <div class="stats-grid">
               <div class="stat-card">
-                <div class="stat-icon revenue">$</div>
+                <div class="stat-icon revenue">💰</div>
                 <div class="stat-content">
                   <h3>Doanh thu tuần</h3>
-                  <div class="stat-value">690.450đ</div>
+                  <div class="stat-value">
+                    <fmt:formatNumber value="${stats.weeklyRevenue}" pattern="#,###"/>đ
+                  </div>
                   <div class="stat-change positive">+12.5%</div>
                 </div>
               </div>
@@ -30,8 +33,13 @@
                 <div class="stat-icon orders">🛒</div>
                 <div class="stat-content">
                   <h3>Đơn chờ xử lý</h3>
-                  <div class="stat-value">1</div>
-                  <div class="stat-note">Cần xử lý ngay</div>
+                  <div class="stat-value">${stats.pendingOrders}</div>
+                  <div class="stat-note">
+                    <c:choose>
+                      <c:when test="${stats.pendingOrders > 0}">Cần xử lý ngay</c:when>
+                      <c:otherwise>Không có đơn chờ</c:otherwise>
+                    </c:choose>
+                  </div>
                 </div>
               </div>
 
@@ -39,8 +47,8 @@
                 <div class="stat-icon products">📦</div>
                 <div class="stat-content">
                   <h3>Sản phẩm ẩn</h3>
-                  <div class="stat-value">4</div>
-                  <div class="stat-note">Trên 12 sản phẩm</div>
+                  <div class="stat-value">${stats.hiddenProducts}</div>
+                  <div class="stat-note">Trên ${stats.totalProducts} sản phẩm</div>
                 </div>
               </div>
 
@@ -48,9 +56,9 @@
                 <div class="stat-icon users">👥</div>
                 <div class="stat-content">
                   <h3>Số Người dùng</h3>
-                  <div class="stat-value">9</div>
+                  <div class="stat-value">${stats.totalUsers}</div>
                   <div class="stat-note">
-                    Có 5 người dùng tạo tài khoản hôm nay
+                    Có ${stats.newUsersToday} người dùng tạo tài khoản hôm nay
                   </div>
                 </div>
               </div>
@@ -73,30 +81,53 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>SH20241101</td>
-                      <td>Nguyễn Văn A<br /><small>2/11/2024</small></td>
-                      <td>2 sản phẩm</td>
-                      <td>207.400đ</td>
-                      <td><span class="badge pending">Chờ xử lý</span></td>
-                      <td><button class="btn btn-link">Chi tiết</button></td>
-                    </tr>
-                    <tr>
-                      <td>SH20241102</td>
-                      <td>Trần Thị B<br /><small>1/11/2024</small></td>
-                      <td>1 sản phẩm</td>
-                      <td>219.800đ</td>
-                      <td><span class="badge confirmed">Đã xác nhận</span></td>
-                      <td><button class="btn btn-link">Chi tiết</button></td>
-                    </tr>
-                    <tr>
-                      <td>SH20241103</td>
-                      <td>Lê Văn C<br /><small>31/10/2024</small></td>
-                      <td>3 sản phẩm</td>
-                      <td>256.170đ</td>
-                      <td><span class="badge shipping">Đang giao</span></td>
-                      <td><button class="btn btn-link">Chi tiết</button></td>
-                    </tr>
+                    <c:choose>
+                      <c:when test="${not empty recentOrders}">
+                        <c:forEach var="order" items="${recentOrders}">
+                          <tr>
+                            <td>${order.order_code}</td>
+                            <td>
+                              ${order.full_name}<br />
+                              <small>
+                                <fmt:formatDate value="${order.created_at}" pattern="dd/MM/yyyy"/>
+                              </small>
+                            </td>
+                            <td>${dashboardService.getOrderItemCount(order.id)} sản phẩm</td>
+                            <td><fmt:formatNumber value="${order.total_amount}" pattern="#,###"/>đ</td>
+                            <td>
+                              <c:choose>
+                                <c:when test="${order.status == 'pending'}">
+                                  <span class="badge pending">Chờ xử lý</span>
+                                </c:when>
+                                <c:when test="${order.status == 'confirmed'}">
+                                  <span class="badge confirmed">Đã xác nhận</span>
+                                </c:when>
+                                <c:when test="${order.status == 'shipping'}">
+                                  <span class="badge shipping">Đang giao</span>
+                                </c:when>
+                                <c:when test="${order.status == 'delivered'}">
+                                  <span class="badge delivered">Đã giao</span>
+                                </c:when>
+                                <c:when test="${order.status == 'cancelled'}">
+                                  <span class="badge cancelled">Đã hủy</span>
+                                </c:when>
+                                <c:otherwise>
+                                  <span class="badge">${order.status}</span>
+                                </c:otherwise>
+                              </c:choose>
+                            </td>
+                            <td>
+                              <a href="${pageContext.request.contextPath}/admin/order-detail?id=${order.id}" class="btn btn-link">Chi tiết</a>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </c:when>
+                      <c:otherwise>
+                        <tr>
+                          <td colspan="6" style="text-align: center;">Chưa có đơn hàng nào</td>
+                        </tr>
+                      </c:otherwise>
+                    </c:choose>
                   </tbody>
                 </table>
               </div>
