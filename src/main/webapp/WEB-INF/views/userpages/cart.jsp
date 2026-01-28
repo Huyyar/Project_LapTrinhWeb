@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 <main class="cart-page">
     <div class="container">
         <header><h1>Giỏ hàng của bạn</h1>
@@ -35,7 +36,7 @@
                                 <div class="product"><img
                                         src="${ci.product.imgPath}" alt="Yogurt"/>
                                     <div class="info"><span class="name">${ci.product.name}</span> <span
-                                            class="price">${ci.product.price}</span></div>
+                                            class="price">${fn:formatPriceCompact(ci.product.price)}</span></div>
                                 </div>
                                 <div class="quantity">
                                     <div class="quantity-container">
@@ -60,7 +61,7 @@
             </div>
             <footer>
                 <span>
-                    Thành tiền: ${not empty sessionScope.cart.totalPrice? sessionScope.cart.totalPrice : 0}đ
+                    Thành tiền: ${fn:formatPriceCompact(not empty sessionScope.cart.totalPrice? sessionScope.cart.totalPrice : 0)}
                 </span>
                 <a class="btn" href="checkout"> Thanh
                     toán </a>

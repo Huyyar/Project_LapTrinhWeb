@@ -346,10 +346,10 @@
           data.id
         }</span></div>
         <div class="order-meta-row"><span class="label">Ngày đặt</span><span class="value">${formatDate(
-          data.placedAt
+          data.placedAt,
         )}</span></div>
         <div class="order-meta-row"><span class="label">Cập nhật</span><span class="value">${formatDate(
-          data.updatedAt
+          data.updatedAt,
         )}</span></div>
       `;
     }
@@ -375,13 +375,13 @@
       const total = subtotal + shipping;
       totalsEl.innerHTML = `
         <div class="order-total-row muted"><span>Tạm tính</span><span>${formatCurrency(
-          subtotal
+          subtotal,
         )}</span></div>
         <div class="order-total-row muted"><span>Phí vận chuyển</span><span>${formatCurrency(
-          shipping
+          shipping,
         )}</span></div>
         <div class="order-total-row emphasis"><span>Tổng cộng</span><span>${formatCurrency(
-          total
+          total,
         )}</span></div>
       `;
     }
@@ -407,7 +407,7 @@
         `;
       });
       timelineEl.innerHTML = `<div class="order-timeline">${items.join(
-        ""
+        "",
       )}</div>`;
     }
 
@@ -425,8 +425,8 @@
           act.tone === "primary"
             ? "primary"
             : act.tone === "danger"
-            ? "danger"
-            : ""
+              ? "danger"
+              : ""
         }`;
         btn.innerHTML = `<i class="fa-solid ${act.icon}"></i><span>${act.label}</span>`;
         btn.dataset.action = act.key;
@@ -472,7 +472,7 @@
     }
 
     function formatCurrency(v) {
-      return `${Number(v || 0).toLocaleString("vi-VN")}₫`;
+      return `${Number(v || 0).toLocaleString("vi-VN")} đ`;
     }
 
     function formatDate(iso) {

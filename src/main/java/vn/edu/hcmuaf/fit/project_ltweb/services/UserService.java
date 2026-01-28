@@ -11,6 +11,24 @@ public class UserService {
     UserDao dao = new UserDao();
     HashUtil hashUtil = new HashUtil();
 
+    // Kiểm tra email đã tồn tại
+    public boolean isUserExists(String email) {
+        return dao.isUserExists(email);
+    }
+
+    // Tạo user mới sau khi xác thực OTP thành công
+    public boolean createVerifiedUser(User u) {
+        // Hash mật khẩu
+        String hashedPassword = hashUtil.passwordHash(u.getPassword());
+        u.setPassword(hashedPassword);
+        
+        // Xóa verification token và set is_active = true
+        u.setVerificationToken(null);
+        
+        // Insert vào DB
+        int res = dao.insertVerifiedUser(u);
+        return res > 0;
+    }
 
     public boolean registerUser(User u) {
         if (dao.isUserExists(u.getEmail())) {

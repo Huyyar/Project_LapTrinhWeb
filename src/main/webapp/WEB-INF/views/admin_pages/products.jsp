@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 <main class="main">
     <header class="topbar">
         <div class="header-group">
@@ -45,7 +46,7 @@
                                  class="product-image"/></td>
                         <td>${p.name}</td>
                         <td>${p.category}</td>
-                        <td>${p.price}₫</td>
+                        <td>${fn:formatPriceCompact(p.price)}</td>
                         <td>${p.inventory_qty}</td>
                         <td>
                             <span class="badge ${p.is_active ? 'active' : 'inactive'}">
@@ -53,7 +54,7 @@
                             </span>
                         </td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/product-detail" method="get" target="_blank" style="display: inline;">
+                            <form action="${pageContext.request.contextPath}/product-detail" method="get" style="display: inline;">
                                 <input type="hidden" name="id" value="${p.id}">
                                 <button class="btn" type="submit"><i class="fa-solid fa-eye"></i></button>
                             </form>

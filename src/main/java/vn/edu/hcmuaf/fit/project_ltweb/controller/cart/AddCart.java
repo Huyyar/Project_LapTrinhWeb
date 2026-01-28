@@ -13,6 +13,15 @@ import java.io.IOException;
 public class AddCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        
+       
+        if(session.getAttribute("auth") == null) {
+            
+            response.sendRedirect("login");
+            return;
+        }
+        
         int id  = Integer.parseInt(request.getParameter("id"));
         int qty  = Integer.parseInt(request.getParameter("qty"));
         ProductService ps = new ProductService();
@@ -21,7 +30,7 @@ public class AddCart extends HttpServlet {
             response.sendRedirect("home");
             return;
         }
-        HttpSession session = request.getSession();
+        
         Cart cart = (Cart) session.getAttribute("cart");
         if(cart==null){
                 cart = new Cart();

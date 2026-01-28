@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.project_ltweb.controller.user;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -65,23 +66,30 @@ public class RegisterController extends HttpServlet {
 
             return;
         }
-// ĐĂNG KÍ TÀI KHOẢN
-        boolean isRegistered = service.registerUser(user);
-        if(isRegistered) {
-            // 1. Gửi OTP qua mail
-            String content = "Mã xác thực (OTP) của bạn là: " + user.getVerificationToken() +
-                    "\nMã này dùng để kích hoạt tài khoản tại SnackHub.";
-            MailService.sendMail(user.getEmail(), content);
-
-            // 2. Lưu email vào session để dùng ở trang Verify
-            request.getSession().setAttribute("emailVerify", user.getEmail());
-
-            // 3. Chuyển đến trang nhập OTP
-            response.sendRedirect("verify");
-        } else {
+        
+        // Kiểm tra email đã tồn tại chưa
+        if(service.isUserExists(email)) {
             request.setAttribute("error", "Email đã được sử dụng.");
             request.getRequestDispatcher("/WEB-INF/views/userpages/register.jsp").forward(request, response);
+            return;
         }
+        
+        // Tạo mã OTP 6 số ngẫu nhiên
+        SecureRandom random = new SecureRandom();
+        String otp = String.format("%06d", random.nextInt(1_000_000));
+        user.setVerificationToken(otp);
+        
+        // Lưu thông tin user tạm vào session
+        request.getSession().setAttribute("pendingUser", user);
+        request.getSession().setAttribute("emailVerify", email);
+        
+        // Gửi OTP qua email
+        String content = "Mã xác thực (OTP) của bạn là: " + otp +
+                "\n\nMã này dùng để kích hoạt tài khoản tại SnackHub.";
+        MailService.sendMail(email, content);
+        
+        // Chuyển đến trang nhập OTP
+        response.sendRedirect("verify");
 
 
     }

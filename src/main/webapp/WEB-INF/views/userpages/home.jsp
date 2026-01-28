@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 <main>
     <section class="hero" id="home">
         <div class="hero-slideshow">
@@ -94,17 +95,23 @@
                                     <h3>${p.name}</h3>
                                     <p class="product-description">${p.description}</p>
                                     <div class="product-price">
-                                        <span class="product-price-current">${p.price}₫</span>
+                                        <span class="product-price-current">${fn:formatPrice(p.price)}</span>
                                     </div>
                                 </div>
                                 <div class="card-actions">
                                     <a
                                             class="btn btn-outline"
                                             href="product-detail?id=${p.id}"
-                                            target="_blank"
                                     >Xem chi tiết</a
                                     >
-                                    <a href="add-cart?id=${p.id}&qty=1&page=home" class="btn btn-primary">Thêm vào giỏ</a>
+                                    <c:choose>
+                                        <c:when test="${empty sessionScope.auth}">
+                                            <a href="login" class="btn btn-primary">Thêm vào giỏ</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="add-cart?id=${p.id}&qty=1&page=home" class="btn btn-primary">Thêm vào giỏ</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </article>
                         </c:forEach>
