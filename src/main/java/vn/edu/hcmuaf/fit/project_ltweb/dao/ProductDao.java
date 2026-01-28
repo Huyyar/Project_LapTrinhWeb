@@ -165,6 +165,23 @@ public class ProductDao {
         }
         return 0;
     }
+    
+    /**
+     * Get count of hidden products for dashboard
+     */
+    public int getHiddenProductsCount() {
+        String sql = "SELECT COUNT(*) FROM products WHERE is_active = false";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public List<Product> getPagedProducts(int offset, int pageSize) {
         List<Product> products = new ArrayList<>();
