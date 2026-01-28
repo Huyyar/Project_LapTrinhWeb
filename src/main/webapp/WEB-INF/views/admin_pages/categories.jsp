@@ -6,8 +6,8 @@
             <h1>Quản Lý Sản Phẩm</h1>
         </div>
         <div class="top-actions">
-            <form action="products" style="display: flex; gap: 5px;">
-                <input type="text" name="search" placeholder="Tìm kiếm danh mục..." value="${param.search}"/>
+            <form action="categories" style="display: flex; gap: 5px;">
+                <input type="text" name="search" placeholder="Tìm kiếm danh mục..." value="${search}"/>
                 <button type="submit" class="btn primary">
                     <i class="fa-solid fa-magnifying-glass"></i> Tìm
                 </button>
@@ -40,7 +40,7 @@
                     <tr>
                         <td>${c.display_order}</td>
                         <td>${c.name}</td>
-                        <td>1</td>
+                        <td>${c.totalProduct}</td>
                         <td>
                             <button class="btn">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -70,7 +70,7 @@
                         </c:if>
                         <c:if test="${currentPage != 1}">
                             <li>
-                                <a href="${pageContext.request.contextPath}/admin/products?page=1${not empty search? "&search=" += search : ""}">
+                                <a href="${pageContext.request.contextPath}/admin/categories?page=1${not empty search? "&search=" += search : ""}">
                                     Quay lại trang đầu
                                 </a>
                             </li>
@@ -78,14 +78,14 @@
 
                         <c:forEach var="p" begin="${beginPage}" end="${endPage}">
                             <li class="${p == currentPage ? 'active' : ''}">
-                                <a href="${pageContext.request.contextPath}/admin/products?page=${p}${not empty search? "&search=" += search : ""}">
+                                <a href="${pageContext.request.contextPath}/admin/categories?page=${p}${not empty search? "&search=" += search : ""}">
                                         ${p}
                                 </a>
                             </li>
                         </c:forEach>
                         <c:if test="${currentPage != totalPage}">
                             <li>
-                                <a href="${pageContext.request.contextPath}/admin/products?page=${totalPage}${not empty search? "&search=" += search : ""}">
+                                <a href="${pageContext.request.contextPath}/admin/categories?page=${totalPage}${not empty search? "&search=" += search : ""}">
                                     Về trang cuối(${totalPage})
                                 </a>
                             </li>

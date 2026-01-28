@@ -331,4 +331,21 @@ public class ProductDao {
             e.printStackTrace();
         }
         return products;
-    }}
+    }
+    public int getTotalProductByCategory(int cat_id){
+        String sql = "SELECT COUNT(*) FROM products WHERE category_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, cat_id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+}
+

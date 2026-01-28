@@ -4,6 +4,7 @@ public class Category {
     private int id;
     private String name;
     private int display_order;
+    private int totalProduct;
 
     public Category() {}
 
@@ -20,4 +21,12 @@ public class Category {
     public void setName(String name) { this.name = name; }
     public int getDisplay_order() { return display_order; }
     public void setDisplay_order(int display_order) { this.display_order = display_order; }
+
+    public int getTotalProduct() {
+        return totalProduct;
+    }
+
+    public void setTotalProduct(int totalProduct) {
+        this.totalProduct = totalProduct;
+    }
 }

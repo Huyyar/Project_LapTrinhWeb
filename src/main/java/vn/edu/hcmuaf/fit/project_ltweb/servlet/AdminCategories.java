@@ -32,9 +32,33 @@ public class AdminCategories extends HttpServlet {
         });
         request.setAttribute("info",info);
 
-        int total = service.getTotalCat();
-        request.setAttribute("totalCategory",total);
-        List<Category> categories = service.getCategories();
+        int totalCat, totalPage;
+        String search = request.getParameter("search");
+        if(search == null){
+            search="";
+        }
+        request.setAttribute("search", search);
+        totalCat = service.getTotalCat(search);
+        request.setAttribute("totalCategory",totalCat);
+
+        totalPage = (int) Math.ceil((double) totalCat / PAGE_SIZE);
+        request.setAttribute("totalPage", totalPage);
+        int currentPage = 1;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
+        if (currentPage > totalPage || totalPage < 0) {
+            currentPage = 1;
+        }
+        request.setAttribute("currentPage", currentPage);
+        int offset = (currentPage - 1) * PAGE_SIZE;
+
+        List<Category> categories = service.getPagedCategories(offset, PAGE_SIZE, search);
         request.setAttribute("categories",categories);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp").forward(request, response);
