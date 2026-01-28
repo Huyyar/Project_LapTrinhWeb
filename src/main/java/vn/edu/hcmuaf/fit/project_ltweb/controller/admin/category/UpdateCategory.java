@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.project_ltweb.controller.admin.products;
+package vn.edu.hcmuaf.fit.project_ltweb.controller.admin.category;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

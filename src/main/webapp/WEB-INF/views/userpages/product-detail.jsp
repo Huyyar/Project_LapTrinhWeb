@@ -8,7 +8,7 @@
 <c:if test="${not empty productImages}">
     <c:forEach var="img" items="${productImages}">
         <c:if test="${img.is_default}">
-            <c:set var="mainImageUrl" value="${img.image_url}" />
+            <c:set var="mainImageUrl" value="${img.imgPath}" />
         </c:if>
     </c:forEach>
 </c:if>
@@ -28,9 +28,9 @@
                 </div>
                 <div class="product-thumbnails">
                     <c:forEach var="img" items="${productImages}">
-                        <img src="${img.image_url}"
+                        <img src="${img.imgPath}"
                              class="thumbnail ${img.is_default ? 'active' : ''}"
-                             onclick="changeMainImage(this, '${img.image_url}')">
+                             onclick="changeMainImage(this, '${img.imgPath}')">
                     </c:forEach>
                 </div>
 
