@@ -67,6 +67,9 @@
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span>Đăng xuất</span>
             </a>
+            <a href="${pageContext.request.contextPath}/home" class="nav-link">
+                <i class="fa-solid fa-house-chimney"></i> <span>Về trang chủ</span>
+            </a>
         </nav>
     </aside>
     <jsp:include page="${info.content}"/>

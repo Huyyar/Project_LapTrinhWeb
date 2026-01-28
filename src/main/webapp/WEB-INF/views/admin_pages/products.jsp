@@ -97,15 +97,39 @@
                     </c:otherwise>
                     </c:choose>
                 </table>
-                <ul class="pagination">
-                    <c:forEach var="p" begin="1" end="${totalPage}">
-                        <li class="${p == currentPage ? 'active' : ''}">
-                            <a href="${pageContext.request.contextPath}/admin/products?page=${p}${not empty search? "&search=" += search : ""}">
-                                    ${p}
-                            </a>
-                        </li>
-                    </c:forEach>
-                </ul>
+                <c:if test="${totalPage > 0}">
+                    <ul class="pagination">
+                        <c:set var="maxVisible" value="5" />
+                        <c:set var="half" value="2" /> <c:set var="beginPage" value="${currentPage - half > 1 ? currentPage - half : 1}" />
+                        <c:set var="endPage" value="${beginPage + maxVisible - 1 > totalPage ? totalPage : beginPage + maxVisible - 1}" />
+
+                        <c:if test="${endPage - beginPage < maxVisible - 1 && totalPage > maxVisible}">
+                            <c:set var="beginPage" value="${endPage - maxVisible + 1 > 1 ? endPage - maxVisible + 1 : 1}" />
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/products?page=1${not empty search? "&search=" += search : ""}">
+                                    Quay lại trang đầu
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach var="p" begin="${beginPage}" end="${endPage}">
+                            <li class="${p == currentPage ? 'active' : ''}">
+                                <a href="${pageContext.request.contextPath}/admin/products?page=${p}${not empty search? "&search=" += search : ""}">
+                                        ${p}
+                                </a>
+                            </li>
+                        </c:forEach>
+                        <c:if test="${currentPage != totalPage}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/products?page=${totalPage}${not empty search? "&search=" += search : ""}">
+                                    Về trang cuối(${totalPage})
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </c:if>
             </div>
         </div>
     </section>
