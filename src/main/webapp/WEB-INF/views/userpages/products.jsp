@@ -26,17 +26,12 @@
 
           <div class="product-controls">
             <div class="filter-chips">
-              <button type="button" class="chip">
+              <button type="button" class="chip" onclick="filterByCategory('')">
                 <span class="chip-icon">✨</span>Tất cả</button
-              ><button type="button" class="chip">
-                <span class="chip-icon">🍗</span>Đồ mặn</button
-              ><button type="button" class="chip">
-                <span class="chip-icon">🍰</span>Đồ ngọt</button
-              ><button type="button" class="chip">
-                <span class="chip-icon">🥤</span>Đồ uống</button
-              ><button type="button" class="chip">
-                <span class="chip-icon">🧧</span>Phiên bản giới hạn
-              </button>
+              ><c:forEach var="cat" items="${categories}">
+              <button type="button" class="chip" onclick="filterByCategory('${cat.name}')">
+                <span class="chip-icon">🏷️</span>${cat.name}</button
+              ></c:forEach>
             </div>
             <div class="product-actions">
               <label class="sort-select">
@@ -56,16 +51,6 @@
                   <c:when test="${not empty products}">
                       <c:forEach var="p" items="${products}">
                           <article class="product-card" data-product-id=${p.id}>
-                              <div class="product-head">
-                                  <button
-                                          class="wishlist-icon"
-                                          onclick="toggleProductWishlist(1)"
-                                          title="Thêm vào yêu thích"
-                                  >
-                                      <i class="fa-regular fa-heart"></i>
-                                      <i class="fa-solid fa-heart"></i>
-                                  </button>
-                              </div>
 
                               <div class="product-image">
                                   <img

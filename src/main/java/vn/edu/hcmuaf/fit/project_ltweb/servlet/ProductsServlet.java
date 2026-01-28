@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.project_ltweb.model.Category;
 import vn.edu.hcmuaf.fit.project_ltweb.model.Product;
 import vn.edu.hcmuaf.fit.project_ltweb.model.UserPageInfo;
 import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
@@ -15,7 +16,7 @@ import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 @WebServlet(name = "ProductsServlet", value = "/products")
 public class ProductsServlet extends HttpServlet {
     private ProductService service = new ProductService();
-    private int PAGE_SIZE = 6;
+    private int PAGE_SIZE = 12;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,18 +36,33 @@ public class ProductsServlet extends HttpServlet {
         });
         request.setAttribute("info", info);
 
-        // Lấy tham số tìm kiếm và sắp xếp
+        // Lấy tham số tìm kiếm, sắp xếp và lọc category
         String searchKeyword = request.getParameter("search");
         String sortBy = request.getParameter("sort");
-
+        String categoryFilter = request.getParameter("category");
 
         if (sortBy == null || sortBy.trim().isEmpty()) {
             sortBy = "featured";
         }
+
+        // Lấy tất cả categories để hiển thị ở UI
+        List<Category> categories = service.getAllCategories();
+        request.setAttribute("categories", categories);
+
         int totalProduct, totalPage;
-        totalProduct = service.getTotalProducts(searchKeyword);
+        
+        // Lấy tổng số sản phẩm dựa trên filter
+        if (categoryFilter != null && !categoryFilter.trim().isEmpty()) {
+            totalProduct = service.getTotalProductsByCategory(categoryFilter);
+        } else if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+            totalProduct = service.getTotalProducts(searchKeyword);
+        } else {
+            totalProduct = service.getTotalProducts(null);
+        }
+
         totalPage = (int) Math.ceil((double) totalProduct / PAGE_SIZE);
         request.setAttribute("totalPage", totalPage);
+
         int currentPage = 1;
         String pageParam = request.getParameter("page");
         if (pageParam != null) {
@@ -62,13 +78,19 @@ public class ProductsServlet extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         int offset = (currentPage - 1) * PAGE_SIZE;
 
-        List<Product> products = service.getProductsWithSortAndSearch(
-                searchKeyword != null ? searchKeyword.trim() : null,
-                sortBy,
-                offset,
-                PAGE_SIZE
-        );
-
+        // Lấy sản phẩm dựa trên filter category hoặc tìm kiếm
+        List<Product> products;
+        if (categoryFilter != null && !categoryFilter.trim().isEmpty()) {
+            products = service.getProductsWithCategory(categoryFilter, sortBy, offset, PAGE_SIZE);
+            request.setAttribute("categoryFilter", categoryFilter);
+        } else {
+            products = service.getProductsWithSortAndSearch(
+                    searchKeyword != null ? searchKeyword.trim() : null,
+                    sortBy,
+                    offset,
+                    PAGE_SIZE
+            );
+        }
 
         if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
             request.setAttribute("searchKeyword", searchKeyword.trim());
