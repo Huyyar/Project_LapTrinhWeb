@@ -83,11 +83,23 @@
 
                 <!-- ACTION -->
                 <div class="product-detail-actions">
-                    <button class="btn btn-primary" onclick="addToCart()">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        Thêm vào giỏ hàng
-                    </button>
-                </div>
+                <c:choose>
+                    <c:when test="${product.is_active && product.inventory_qty > 0}">
+                            <button class="btn btn-primary" onclick="addToCart()">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                Thêm vào giỏ hàng
+                            </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                            <i class="fa-solid fa-ban"></i>
+                            Đã hết hàng
+                        </button>
+                    </c:otherwise>
+                </c:choose>
+                        </div>
+
+
 
                 <!-- BACK -->
                 <div class="product-detail-links">

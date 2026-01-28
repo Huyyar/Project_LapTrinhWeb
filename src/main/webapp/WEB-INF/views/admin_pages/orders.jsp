@@ -52,15 +52,27 @@
                             </td>
                             <td>${o.formattedCreatedAt}</td>
                             <td>
-                                <form action="${pageContext.request.contextPath}/order-detail" method="POST" target="_blank">
-                                    <input type="hidden" name="orderId" value="${o.id}">
-                                    <button
-                                            class="btn order-detail-btn"
-                                            type="submit"
-                                    >
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                </form>
+                                <div style="display: flex; gap: 5px; align-items: center;">
+                                    <form action="${pageContext.request.contextPath}/order-detail" method="POST" target="_blank">
+                                        <input type="hidden" name="orderId" value="${o.id}">
+                                        <button class="btn order-detail-btn" type="submit" title="Xem chi tiết">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </form>
+
+                                    <form action="${pageContext.request.contextPath}/admin/update-order-status" method="POST" onsubmit="return confirm('Xác nhận thay đổi trạng thái đơn hàng?')">
+                                        <input type="hidden" name="orderId" value="${o.id}">
+                                        <select name="newStatus" style="padding: 4px; border-radius: 4px; border: 1px solid #ccc;">
+                                            <option value="processing" ${o.status == 'processing' ? 'selected' : ''}>Đang xử lý</option>
+                                            <option value="delivering" ${o.status == 'delivering' ? 'selected' : ''}>Đang giao</option>
+                                            <option value="delivered" ${o.status == 'delivered' ? 'selected' : ''}>Hoàn thành</option>
+                                            <option value="cancelled" ${o.status == 'cancelled' ? 'selected' : ''}>Hủy đơn</option>
+                                        </select>
+                                        <button type="submit" class="btn primary" style="padding: 5px 10px;">
+                                            <i class="fa-solid fa-floppy-disk"></i> Lưu
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         </c:forEach>

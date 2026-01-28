@@ -22,6 +22,9 @@ public class CreateOrder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user =  (User)session.getAttribute("auth");
+        if(user == null){
+            response.sendRedirect("home");
+        }
         Order order =  new Order();
         String orderCode = generateShortUUID();
         order.setOrder_code(orderCode);
