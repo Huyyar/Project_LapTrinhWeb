@@ -19,8 +19,8 @@ public class Address {
     private String wardCode;       // Mã phường (VD: "26734")
 
 
-    private String addressDetail;  // Số nhà, tên đường, tòa nhà...
-    private boolean defaultAddress;     // Địa chỉ mặc định
+    private String addressDetail;
+    private boolean defaultAddress;
 
     public Address() {
     }
