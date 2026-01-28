@@ -27,8 +27,10 @@ public class AdminCategories extends HttpServlet {
         info.setContent("/WEB-INF/views/admin_pages/categories.jsp");
         info.setCss(new String[]{
                 "pagination.css",
+                "admin/admin_product.css"
         });
         info.setJs(new String[]{
+                "admin/categories.js"
         });
         request.setAttribute("info",info);
 
