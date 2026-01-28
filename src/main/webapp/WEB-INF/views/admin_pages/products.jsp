@@ -54,7 +54,7 @@
                             </span>
                         </td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/product-detail" method="get" target="_blank" style="display: inline;">
+                            <form action="${pageContext.request.contextPath}/product-detail" method="get" style="display: inline;">
                                 <input type="hidden" name="id" value="${p.id}">
                                 <button class="btn" type="submit"><i class="fa-solid fa-eye"></i></button>
                             </form>

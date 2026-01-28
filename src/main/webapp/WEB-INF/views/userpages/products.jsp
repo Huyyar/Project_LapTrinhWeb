@@ -72,8 +72,7 @@
                               </div>
                               <div class="card-actions">
                                   <a class="btn btn-outline"
-                                     href="product-detail?id=${p.id}"
-                                     target="_blank">
+                                     href="product-detail?id=${p.id}">
                                       Xem chi tiết
                                   </a>
 

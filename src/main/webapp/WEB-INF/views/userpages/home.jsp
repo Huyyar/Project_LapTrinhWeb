@@ -102,7 +102,6 @@
                                     <a
                                             class="btn btn-outline"
                                             href="product-detail?id=${p.id}"
-                                            target="_blank"
                                     >Xem chi tiết</a
                                     >
                                     <a href="add-cart?id=${p.id}&qty=1&page=home" class="btn btn-primary">Thêm vào giỏ</a>
