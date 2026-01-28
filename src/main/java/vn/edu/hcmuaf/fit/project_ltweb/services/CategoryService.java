@@ -13,7 +13,7 @@ public class CategoryService {
     public List<Category> getCategories(){
         List<Category> list =  dao.getCategories();
         for(Category c : list){
-            c.setTotalProduct(pDao.getTotalProductByCategory(c.getId()));
+            c.setTotalProduct(pDao.getTotalProductsByCategory(c.getName()));
         }
         return list;
     }
@@ -25,7 +25,7 @@ public class CategoryService {
             list = dao.getPagedCategoriesBySearch(offset, pageSize, search);
         }
         for(Category c : list){
-            c.setTotalProduct(pDao.getTotalProductByCategory(c.getId()));
+            c.setTotalProduct(pDao.getTotalProductsByCategory(c.getName()));
         }
         return list;
     }
