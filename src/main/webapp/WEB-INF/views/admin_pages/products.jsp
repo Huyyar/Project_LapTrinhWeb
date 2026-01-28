@@ -41,7 +41,7 @@
                     <c:when test="${not empty products}">
                     <c:forEach var="p" items="${products}">
                     <tr>
-                        <td><img src="${p.image_url}" alt="${p.name}"
+                        <td><img src="${p.imgPath}" alt="${p.name}"
                                  class="product-image"/></td>
                         <td>${p.name}</td>
                         <td>${p.category}</td>
@@ -287,7 +287,7 @@
 
                 <label class="full">
                     <span>URL Hình ảnh sản phẩm</span>
-                    <input type="url" name="image_url" id="addImageUrl" required>
+                    <input type="text" name="image_url" id="addImageUrl" required>
                 </label>
 
             </div>
