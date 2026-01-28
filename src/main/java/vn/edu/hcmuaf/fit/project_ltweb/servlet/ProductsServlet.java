@@ -14,10 +14,12 @@ import vn.edu.hcmuaf.fit.project_ltweb.services.ProductService;
 
 @WebServlet(name = "ProductsServlet", value = "/products")
 public class ProductsServlet extends HttpServlet {
-    private ProductService service =  new ProductService();
+    private ProductService service = new ProductService();
+    private int PAGE_SIZE = 6;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserPageInfo info =  new UserPageInfo();
+        UserPageInfo info = new UserPageInfo();
         info.setTitle("Trang sản phẩm");
         info.setName("products");
         info.setContent("/WEB-INF/views/userpages/products.jsp");
@@ -31,24 +33,43 @@ public class ProductsServlet extends HttpServlet {
                 "wishlist.js",
                 "product-sort.js"
         });
-        request.setAttribute("info",info);
-        
+        request.setAttribute("info", info);
+
         // Lấy tham số tìm kiếm và sắp xếp
         String searchKeyword = request.getParameter("search");
         String sortBy = request.getParameter("sort");
-        
-     
+
+
         if (sortBy == null || sortBy.trim().isEmpty()) {
             sortBy = "featured";
         }
-        
+        int totalProduct, totalPage;
+        totalProduct = service.getTotalProducts(searchKeyword);
+        totalPage = (int) Math.ceil((double) totalProduct / PAGE_SIZE);
+        request.setAttribute("totalPage", totalPage);
+        int currentPage = 1;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null) {
+            try {
+                currentPage = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                currentPage = 1;
+            }
+        }
+        if (currentPage > totalPage || totalPage < 0) {
+            currentPage = 1;
+        }
+        request.setAttribute("currentPage", currentPage);
+        int offset = (currentPage - 1) * PAGE_SIZE;
 
         List<Product> products = service.getProductsWithSortAndSearch(
-            searchKeyword != null ? searchKeyword.trim() : null, 
-            sortBy
+                searchKeyword != null ? searchKeyword.trim() : null,
+                sortBy,
+                offset,
+                PAGE_SIZE
         );
-        
-      
+
+
         if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
             request.setAttribute("searchKeyword", searchKeyword.trim());
         }
@@ -56,7 +77,8 @@ public class ProductsServlet extends HttpServlet {
         request.setAttribute("products", products);
         request.getRequestDispatcher("/WEB-INF/views/layouts/layout.jsp")
                 .forward(request, response);
-}
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

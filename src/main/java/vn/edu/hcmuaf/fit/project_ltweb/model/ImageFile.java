@@ -24,9 +24,12 @@ public class ImageFile {
         this.name = name;
     }
 
-    public String getUrl() {
+    public String getUrl(){
+        return url;
+    }
+    public String getFullPath() {
         String cp = AppContextListener.contextPath;
-        return cp + "/" + url;
+        return cp + url;
     }
 
     public void setUrl(String url) {

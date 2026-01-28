@@ -82,6 +82,9 @@
                         <div class="user-dropdown">
                             <a href="${pageContext.request.contextPath}/profile">Profile</a>
                             <a href="${pageContext.request.contextPath}/order-history">Lịch sử mua hàng</a>
+                    <c:if test="${sessionScope.auth.isAdmin()}">
+                        <a href="${pageContext.request.contextPath}/admin/dashboard">Quản trị viên</a>
+                    </c:if>
                             <a href="logout" id="logoutBtn">Đăng xuất</a>
                         </div>
 

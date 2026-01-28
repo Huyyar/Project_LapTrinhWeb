@@ -284,41 +284,50 @@ public class ProductDao {
         }
     }
 
-    public List<Product> getProductsWithSortAndSearch(String search, String sortBy) {
+    public List<Product> getProductsWithSortAndSearch(String search, String sortBy, int offset, int pageSize) {
         List<Product> products = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT p.*, c.name AS category_name FROM products p ");
         sql.append("LEFT JOIN categories c ON p.category_id = c.id ");
-        
-        
-        if (search != null && !search.trim().isEmpty()) {
+
+        boolean hasSearch = (search != null && !search.trim().isEmpty());
+        if (hasSearch) {
             sql.append("WHERE p.name LIKE ? ");
         }
-        
-       
+
+        sql.append("ORDER BY ");
+        if (sortBy == null) sortBy = "featured";
+
         switch (sortBy) {
             case "price-asc":
-                sql.append("ORDER BY p.price ASC");
+                sql.append("p.price ASC ");
                 break;
             case "price-desc":
-                sql.append("ORDER BY p.price DESC");
+                sql.append("p.price DESC ");
                 break;
             case "updated-desc":
-                sql.append("ORDER BY p.id DESC");
+                sql.append("p.id DESC ");
                 break;
             case "featured":
             default:
-                sql.append("ORDER BY p.featured DESC, p.id DESC");
+                sql.append("p.featured DESC, p.id DESC ");
                 break;
         }
-        
+
+        sql.append("LIMIT ? OFFSET ?");
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
-            
-          
-            if (search != null && !search.trim().isEmpty()) {
-                ps.setString(1, "%" + search + "%");
+
+            int paramIndex = 1;
+
+            if (hasSearch) {
+                ps.setString(paramIndex++, "%" + search + "%");
             }
-            
+
+            ps.setInt(paramIndex++, pageSize);
+            ps.setInt(paramIndex++, offset);
+
+
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Product product = new Product();
@@ -339,5 +348,4 @@ public class ProductDao {
             e.printStackTrace();
         }
         return products;
-    }
-}
+    }}
