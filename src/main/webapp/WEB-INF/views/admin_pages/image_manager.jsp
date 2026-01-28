@@ -29,6 +29,7 @@
                     <tr>
                         <th>Ảnh</th>
                         <th>Tên ảnh</th>
+                        <th>Url</th>
                         <th>Kích thước</th>
                         <th>Hành động</th>
                     </tr>
@@ -38,13 +39,15 @@
                     <c:when test="${not empty images}">
                     <c:forEach var="i" items="${images}">
                     <tr>
-                        <td><img src="${i.url}" alt="${i.url}"
+                        <td><img src="${i.fullPath}" alt="${i.fullPath}"
                                  class="product-image"/></td>
                         <td>${i.name}</td>
+                        <td>${i.url}</td>
                         <td>${i.size} kb</td>
                         <td>
                             <button class="btn"
                                     data-name="${i.name}"
+                                    data-url="${i.fullPath}"
                                     onClick="openRenameImageModal(this)">
                                 <i class="fa-solid fa-pen-to-square"></i></button>
                             <form action="delete-image" method="POST" style="display: inline;"
@@ -70,16 +73,39 @@
                     </c:otherwise>
                     </c:choose>
                 </table>
-                <ul class="pagination">
-                    <c:forEach var="p" begin="1" end="${totalPage}">
-                        <li class="${p == currentPage ? 'active' : ''}">
-                            <a href="${pageContext.request.contextPath}/admin/image-manager?page=${p}${not empty search? "&search=" += search : ""}">
-                                    ${p}
-                            </a>
-                        </li>
-                    </c:forEach>
-                </ul>
+                <c:if test="${totalPage > 0}">
+                    <ul class="pagination">
+                        <c:set var="maxVisible" value="5" />
+                        <c:set var="half" value="2" /> <c:set var="beginPage" value="${currentPage - half > 1 ? currentPage - half : 1}" />
+                        <c:set var="endPage" value="${beginPage + maxVisible - 1 > totalPage ? totalPage : beginPage + maxVisible - 1}" />
 
+                        <c:if test="${endPage - beginPage < maxVisible - 1 && totalPage > maxVisible}">
+                            <c:set var="beginPage" value="${endPage - maxVisible + 1 > 1 ? endPage - maxVisible + 1 : 1}" />
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/image-manager?page=1${not empty search? "&search=" += search : ""}">
+                                    Quay lại trang đầu
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach var="p" begin="${beginPage}" end="${endPage}">
+                            <li class="${p == currentPage ? 'active' : ''}">
+                                <a href="${pageContext.request.contextPath}/admin/image-manager?page=${p}${not empty search? "&search=" += search : ""}">
+                                        ${p}
+                                </a>
+                            </li>
+                        </c:forEach>
+                        <c:if test="${currentPage != totalPage}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/image-manager?page=${totalPage}${not empty search? "&search=" += search : ""}">
+                                    Về trang cuối(${totalPage})
+                                </a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </c:if>
             </div>
         </div>
     </section>
@@ -102,6 +128,7 @@
     </div>
     <div class="modal-body">
         <form action="rename-image" id="rename-image" method="post">
+            <img src="" alt="" id="imageInModal">
             <span id="imageNameInModal" class="name-in-form"></span>
             <div class="form-flex">
                 <label for="">

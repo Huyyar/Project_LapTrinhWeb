@@ -103,10 +103,39 @@
               </c:choose>
 
           </div>
-          <div class="pagination">
-            <button type="button" class="page-button active">1</button
-            ><button type="button" class="page-button">2</button>
-          </div>
+            <c:if test="${totalPage > 0}">
+                <ul class="pagination">
+                    <c:set var="maxVisible" value="5" />
+                    <c:set var="half" value="2" /> <c:set var="beginPage" value="${currentPage - half > 1 ? currentPage - half : 1}" />
+                    <c:set var="endPage" value="${beginPage + maxVisible - 1 > totalPage ? totalPage : beginPage + maxVisible - 1}" />
+
+                    <c:if test="${endPage - beginPage < maxVisible - 1 && totalPage > maxVisible}">
+                        <c:set var="beginPage" value="${endPage - maxVisible + 1 > 1 ? endPage - maxVisible + 1 : 1}" />
+                    </c:if>
+                    <c:if test="${currentPage != 1}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/products?page=1${not empty sortBy ? '&sort=' += sortBy : ''}${not empty searchKeyword ? '&search=' += searchKeyword : ''}">
+                                Quay lại trang đầu
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="p" begin="${beginPage}" end="${endPage}">
+                        <li class="${p == currentPage ? 'active' : ''}">
+                            <a href="${pageContext.request.contextPath}/products?page=${p}${not empty sortBy ? '&sort=' += sortBy : ''}${not empty searchKeyword ? '&search=' += searchKeyword : ''}">
+                                    ${p}
+                            </a>
+                        </li>
+                    </c:forEach>
+                    <c:if test="${currentPage != totalPage}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/products?page=${totalPage}${not empty sortBy ? '&sort=' += sortBy : ''}${not empty searchKeyword ? '&search=' += searchKeyword : ''}">
+                                Về trang cuối(${totalPage})
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </c:if>
         </div>
       </div>
     </div>

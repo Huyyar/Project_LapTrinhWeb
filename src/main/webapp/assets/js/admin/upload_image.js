@@ -33,28 +33,37 @@ document.addEventListener('DOMContentLoaded', () => {
         bundle: false,
     });
 
-    uppy.on('complete', result => {
-        if (!result.successful.length) return;
+    uppy.on('complete', (result) => {
+        if (!result.successful || result.successful.length === 0) return;
 
-        // Tạo mảng chứa tất cả tên file
-        const formData = new FormData();
+        const params = new URLSearchParams();
+
         result.successful.forEach(file => {
-            const name = file.response.body; // server trả về ["file1.jpg"] (chuỗi JSON)
-            console.log("Server trả về:", name); // in ra từng response
-            formData.append("names", name);
-        });
-        fetch('ajax/uploaded-images', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (!response.ok) throw new Error("Lỗi Server");
-            return response.text();
-        }).then(html => {
-            const listUl = document.getElementById('uploaded-list');
-            if (listUl) {
-                listUl.innerHTML = html;
+            // file.response.body bây giờ là Object { fileName: "abc.jpg" }
+            if (file.response && file.response.body && file.response.body.fileName) {
+                const nameFromServer = file.response.body.fileName;
+                console.log("Đã nhận tên file từ Object:", nameFromServer);
+                params.append("names", nameFromServer);
             }
-        }).catch(err => console.error(err));
-    });
+        });
 
+        // Chỉ gọi Ajax nếu có tên file hợp lệ
+        if (params.has("names")) {
+            fetch('ajax/uploaded-images', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            })
+                .then(res => res.text())
+                .then(html => {
+                    const listUl = document.getElementById('uploaded-list');
+                    if (listUl) {
+                        listUl.innerHTML = html;
+                    }
+                })
+                .catch(err => console.error("Lỗi fetch list:", err));
+        }
+    });
 });

@@ -84,4 +84,27 @@ public class FileUtil {
         }
         return count;
     }
+    public static String checkName(String path, String img) {
+        String nameOnly = img;
+        String extension = "";
+        int lastDotIndex = img.lastIndexOf(".");
+
+        if (lastDotIndex != -1) {
+            nameOnly = img.substring(0, lastDotIndex);
+            extension = img.substring(lastDotIndex);
+        }
+        File dir = new File(path);
+        if (!dir.exists()) return img;
+        String finalName = img;
+        int count = 1;
+        File checkFile = new File(dir, finalName);
+
+        while (checkFile.exists()) {
+            finalName = nameOnly + "(" + count + ")" + extension;
+            checkFile = new File(dir, finalName);
+            count++;
+        }
+
+        return finalName;
+    }
 }

@@ -25,8 +25,12 @@ public class ProductService {
 
         return dao.getFeaturedProducts(offset, pageSize);
     }
-    public int getTotalProducts(){
-        return dao.getTotalProducts();
+    public int getTotalProducts(String search){
+        if(search == null){
+            return dao.getTotalProducts();
+        }else{
+            return dao.getTotalSearchProducts(search);
+        }
     }
     public int getTotalSearchProducts(String search){
         return dao.getTotalSearchProducts(search);
@@ -44,8 +48,8 @@ public class ProductService {
         dao.updateProduct(product);
     }
 
-    public List<Product> getProductsWithSortAndSearch(String search, String sortBy) {
-        return dao.getProductsWithSortAndSearch(search, sortBy);
+    public List<Product> getProductsWithSortAndSearch(String search, String sortBy, int offset,  int pageSize) {
+        return dao.getProductsWithSortAndSearch(search, sortBy, offset, pageSize);
     }
 
     private ProductImageDao imageDao = new ProductImageDao();
