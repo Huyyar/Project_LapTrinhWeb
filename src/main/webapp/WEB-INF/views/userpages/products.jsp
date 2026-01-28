@@ -76,8 +76,14 @@
                                       Xem chi tiết
                                   </a>
 
-
-                                  <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
+                                  <c:choose>
+                                      <c:when test="${empty sessionScope.auth}">
+                                          <a href="login" class="btn btn-primary">Thêm vào giỏ</a>
+                                      </c:when>
+                                      <c:otherwise>
+                                          <a href="add-cart?id=${p.id}&qty=1&page=products" class="btn btn-primary">Thêm vào giỏ</a>
+                                      </c:otherwise>
+                                  </c:choose>
                               </div>
                           </article>
                       </c:forEach>

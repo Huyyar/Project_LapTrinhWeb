@@ -187,10 +187,10 @@ img {
 }
 
 .product-detail-page .product-quantity {
-    margin-top: 32px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
 }
 
 .product-detail-page .product-quantity label {
@@ -200,40 +200,39 @@ img {
   margin-right: 16px;
   font-size: 1rem;
 }
-#qtyInput{
-    border-radius: 10px;
-    padding: 10px 16px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    border: 2px solid var(--border);
-    width: 80px;
+#qtyInput {
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  border: 2px solid var(--border);
+  width: 80px;
 }
 
 .product-detail-page .product-thumbnails {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
 }
 
 .product-detail-page .product-thumbnails .thumbnail {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.2s ease;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .product-thumbnails .thumbnail:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .product-thumbnails .thumbnail.active {
-    border-color: #ff6b35;
+  border-color: #ff6b35;
 }
-
 
 .quantity-input {
   display: inline-flex;
@@ -607,233 +606,229 @@ img {
 
 /*commnent*/
 .product-detail-comment {
-    grid-column: 1 / -1;
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 1px solid #eee;
+  grid-column: 1 / -1;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
 }
-
 
 .product-comments h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #222;
-    display: flex;
-    justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #222;
+  display: flex;
+  justify-content: center;
 }
-
-
 
 .product-comments {
-    margin-bottom: 30px;
-    border-radius: 12px;
+  margin-bottom: 30px;
+  border-radius: 12px;
 }
-
 
 .comment-item {
-    padding: 15px 18px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    background: #f9f9f9;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
-
 
 .comment-item strong {
-    font-size: 15px;
-    color: #333;
+  font-size: 15px;
+  color: #333;
 }
-
 
 .comment-date {
-    font-size: 12px;
-    color: #999;
-    margin-left: 10px;
+  font-size: 12px;
+  color: #999;
+  margin-left: 10px;
 }
 
-
 .comment-item p {
-    margin-top: 8px;
-    line-height: 1.5;
-    color: #444;
+  margin-top: 8px;
+  line-height: 1.5;
+  color: #444;
 }
 
 /*comment form*/
 .product-detail-comment form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .product-detail-comment input[type="text"],
 .product-detail-comment textarea {
-    width: 100%;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.2s;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
 }
 
 .product-detail-comment input:focus,
 .product-detail-comment textarea:focus {
-    border-color: #0d6efd;
+  border-color: #0d6efd;
 }
 
 .product-detail-comment textarea {
-    resize: vertical;
-    min-height: 100px;
+  resize: vertical;
+  min-height: 100px;
 }
 
 .product-detail-comment button {
-    background: #ff6b35;
-    color: #fff;
-    border: none;
-    padding: 10px 22px;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.25s;
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.25s;
 }
 
 .product-detail-comment button:hover {
-    background: #084298;
+  background: #084298;
 }
 .comment-item {
-    display: flex;
-    gap: 15px;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 12px;
-    margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  margin-bottom: 15px;
 }
 
 .comment-avatar img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Body */
 .comment-body {
-    flex: 1;
+  flex: 1;
 }
 
 .comment-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .comment-header strong {
-    font-size: 15px;
-    color: #222;
+  font-size: 15px;
+  color: #222;
 }
 
 .comment-date {
-    font-size: 12px;
-    color: #888;
+  font-size: 12px;
+  color: #888;
 }
 
 .comment-body p {
-    margin-top: 6px;
-    line-height: 1.5;
-    color: #444;
+  margin-top: 6px;
+  line-height: 1.5;
+  color: #444;
 }
 
 .comment-form textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    resize: vertical;
-    min-height: 90px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: vertical;
+  min-height: 90px;
+  margin-bottom: 10px;
 }
 
 .comment-form button {
-    background: #ff6b35;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 8px;
-    cursor: pointer;
+  background: #ff6b35;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .comment-form button:hover {
-    background: #d94e19;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+  background: #d94e19;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
 }
 
 .comment-login-hint {
-    margin-top: 10px;
-    font-size: 14px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 .comment-success {
-    color: #155724;
-    background: #d4edda;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+  color: #155724;
+  background: #d4edda;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .comment-error {
-    color: #721c24;
-    background: #f8d7da;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+  color: #721c24;
+  background: #f8d7da;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .comment-replies {
-    margin-left: 60px;
-    margin-top: 10px;
+  margin-left: 60px;
+  margin-top: 10px;
 }
 
 .comment-reply-item {
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    background: #f8f9fa;
-    border-left: 3px solid #0d6efd;
-    border-radius: 4px;
-    margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-left: 3px solid #0d6efd;
+  border-radius: 4px;
+  margin-top: 6px;
 }
 .comment-replies {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .comment-reply {
-    margin-left: 50px;
-    padding: 10px;
-    background: #f5f7fa;
-    border-left: 4px solid #0d6efd;
-    border-radius: 4px;
+  margin-left: 50px;
+  padding: 10px;
+  background: #f5f7fa;
+  border-left: 4px solid #0d6efd;
+  border-radius: 4px;
 }
 
 .admin-badge {
-    color: #0d6efd;
-    font-weight: bold;
-    margin-right: 8px;
+  color: #0d6efd;
+  font-weight: bold;
+  margin-right: 8px;
 }
 
 .reply-header {
-    font-size: 13px;
-    margin-bottom: 4px;
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 
 .reply-content {
-    margin: 0;
-    font-size: 14px;
+  margin: 0;
+  font-size: 14px;
 }
 
-
 @media (max-width: 480px) {
-  .fb-actions { margin-top: 6px; }
-  .fb-comment-input { min-height: 40px; }
+  .fb-actions {
+    margin-top: 6px;
+  }
+  .fb-comment-input {
+    min-height: 40px;
+  }
 }
