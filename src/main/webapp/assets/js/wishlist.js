@@ -84,7 +84,7 @@ function createWishlistCard(item) {
         ${
           hasDiscount
             ? `<span class="price-original">${formatPrice(
-                item.originalPrice
+                item.originalPrice,
               )}</span>`
             : ""
         }
@@ -174,7 +174,7 @@ function clearWishlist() {
 
     showNotification(
       "Đã xóa tất cả sản phẩm khỏi danh sách yêu thích",
-      "success"
+      "success",
     );
 
     updateStats();
@@ -206,7 +206,7 @@ function addAllToCart() {
 
   showNotification(
     `Đã thêm ${wishlist.length} sản phẩm vào giỏ hàng!`,
-    "success"
+    "success",
   );
 
   // Update cart count if exists
@@ -251,7 +251,7 @@ function updateStats() {
   if (totalValueElement) {
     const totalValue = wishlist.reduce(
       (sum, item) => sum + (item.price || 0),
-      0
+      0,
     );
     totalValueElement.textContent = formatPrice(totalValue);
   }
@@ -282,8 +282,8 @@ function updateCartCount() {
 
 // Format price with currency
 function formatPrice(price) {
-  if (!price && price !== 0) return "0₫";
-  return new Intl.NumberFormat("vi-VN").format(price) + "₫";
+  if (!price && price !== 0) return "0 đ";
+  return new Intl.NumberFormat("vi-VN").format(price) + " đ";
 }
 
 // Show notification

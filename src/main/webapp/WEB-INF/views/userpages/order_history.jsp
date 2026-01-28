@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 <main class="order-history-page">
     <div class="container">
         <header>
@@ -46,7 +47,7 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                                         </div>
                                         <div class="right">
                                             <span class="item-qty">x${i.quantity}</span>
-                                            <span class="item-price">${i.price}₫</span>
+                                            <span class="item-price">${fn:formatPriceCompact(i.price)}</span>
                                         </div>
                                     </li>
                                 </c:forEach>
@@ -54,7 +55,7 @@ ${status == "cancelled" ? "is-active" : ""}">Đã hủy</a>
                             <footer class="order-card-footer">
                                 <div class="order-total">
                                     <span>Tổng thanh toán</span>
-                                    <strong>${o.total_amount}₫</strong>
+                                    <strong>${fn:formatPriceCompact(o.total_amount)}</strong>
                                 </div>
                                 <div class="order-actions">
                                     <form action="order-detail" method="POST" target="_blank">

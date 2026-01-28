@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 <main class="checkout-page">
     <div class="container">
         <header>
@@ -164,7 +165,7 @@
                                     </div>
                                     <div class="right">
                                         <span class="quantity">x${ci.qty}</span>
-                                        <span class="price">${ci.price}đ</span>
+                                        <span class="price">${fn:formatPriceCompact(ci.price)}</span>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -173,15 +174,15 @@
                         <dl class="summary-totals">
                             <div class="checkout-summary-row">
                                 <dt>Tạm tính</dt>
-                                <dd>${sessionScope.cart.totalPrice}₫</dd>
+                                <dd>${fn:formatPriceCompact(sessionScope.cart.totalPrice)}</dd>
                             </div>
                             <div class="checkout-summary-row">
                                 <dt>Phí vận chuyển</dt>
-                                <dd>15000₫</dd>
+                                <dd>${fn:formatPriceCompact(15000)}</dd>
                             </div>
                             <div class="checkout-summary-row checkout-summary-total">
                                 <dt>Tổng cộng</dt>
-                                <dd><strong>${sessionScope.cart.totalPrice + 15000}₫</strong></dd>
+                                <dd><strong>${fn:formatPriceCompact(sessionScope.cart.totalPrice + 15000)}</strong></dd>
                             </div>
                         </dl>
                     </c:when>

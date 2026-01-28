@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://project.hcmuaf.edu.vn/functions" %>
 
 <c:set var="mainImageUrl" value="${product.image_url}" />
 
@@ -46,7 +47,7 @@
 
                 <!-- PRICE -->
                 <div class="product-detail-price">
-                    <fmt:formatNumber value="${product.price}" type="number" /> ₫
+                    ${fn:formatPrice(product.price)}
                 </div>
 
                 <!-- STOCK STATUS -->
