@@ -59,6 +59,34 @@ public class UserDao {
         return -1;
     }
 
+    // Insert user đã xác thực OTP với is_active = true
+    public int insertVerifiedUser(User u) {
+        String query = "INSERT INTO users(email, password, fullname, avatar_url, role, is_active, created_at) " +
+                "VALUES(?, ?, ?, ?, 'user', true, CURRENT_TIMESTAMP())";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, u.getEmail());
+            ps.setString(2, u.getPassword());
+            ps.setString(3, u.getFullname());
+            ps.setString(4, u.getAvatar_url());
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getInt(1); // Trả về ID vừa được tạo
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi insertVerifiedUser: " + e.getMessage());
+        }
+
+        return -1;
+    }
+
     //  hàm xác thực Token
     public boolean activateUser(String token) {
         String query = "UPDATE users SET is_active = true, verification_token = NULL WHERE verification_token = ?";

@@ -210,6 +210,12 @@
 
 <script>
     function addToCart() {
+        // Kiểm tra đăng nhập
+        <c:if test="${empty sessionScope.auth}">
+            window.location.href = "${pageContext.request.contextPath}/login";
+            return;
+        </c:if>
+        
         const qty = document.getElementById("qtyInput").value;
         window.location.href =
             "${pageContext.request.contextPath}/add-cart?id=${product.id}&qty=" + qty;
