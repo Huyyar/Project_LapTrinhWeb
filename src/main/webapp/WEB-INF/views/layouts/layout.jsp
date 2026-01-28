@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/authorize.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/toast.css" />
 
     <c:forEach items="${info.css}" var="css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/${css}">
@@ -153,6 +154,7 @@
         <button class="link-button" type="button">Lên đầu trang</button>
     </div>
 </footer>
+<script src="${pageContext.request.contextPath}/assets/js/toast.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/logout.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/nav-search.js"></script>
 <c:forEach items="${info.js}" var="js">

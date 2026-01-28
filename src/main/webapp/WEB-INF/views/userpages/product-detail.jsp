@@ -229,9 +229,12 @@
         </c:if>
         
         const qty = document.getElementById("qtyInput").value;
-        window.location.href =
-            "${pageContext.request.contextPath}/add-cart?id=${product.id}&qty=" + qty;
+        const contextPath = "${pageContext.request.contextPath}";
+        
+        // Sử dụng hàm addToCartAjax từ toast.js
+        addToCartAjax(${product.id}, qty, contextPath);
     }
+    
     function changeMainImage(thumbnail, imageUrl) {
         document.getElementById("mainImage").src = imageUrl;
         const thumbnails = document.querySelectorAll(".product-thumbnails .thumbnail");

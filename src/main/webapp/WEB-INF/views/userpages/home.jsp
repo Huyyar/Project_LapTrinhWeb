@@ -109,7 +109,7 @@
                                             <a href="login" class="btn btn-primary">Thêm vào giỏ</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="add-cart?id=${p.id}&qty=1&page=home" class="btn btn-primary">Thêm vào giỏ</a>
+                                            <button type="button" onclick="event.preventDefault(); addToCartAjax(${p.id}, 1, '${pageContext.request.contextPath}');" class="btn btn-primary">Thêm vào giỏ</button>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
