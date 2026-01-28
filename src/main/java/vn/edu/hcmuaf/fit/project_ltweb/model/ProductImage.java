@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.project_ltweb.model;
 
+import vn.edu.hcmuaf.fit.project_ltweb.utils.AppContextListener;
+
 public class ProductImage {
     private int id; 
     private int product_id;
@@ -38,7 +40,17 @@ public class ProductImage {
     public String getImage_url() {
         return image_url;
     }
+    public String getImgPath() {
+        String url = "";
+        if(this.image_url.startsWith("http") || this.image_url.startsWith("data:")){
+            url =  this.image_url;
+        }else{
+            String cp =  AppContextListener.contextPath;
+            url = cp + this.image_url;
+        }
 
+        return url;
+    }
     public void setImage_url(String image_url) {
         this.image_url = image_url;
     }

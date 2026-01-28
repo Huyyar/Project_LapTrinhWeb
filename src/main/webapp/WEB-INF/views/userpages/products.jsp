@@ -54,7 +54,7 @@
 
                               <div class="product-image">
                                   <img
-                                          src="${p.image_url}"
+                                          src="${p.imgPath}"
                                           alt="${p.name}"
                                           loading="lazy"
                                   />
