@@ -331,4 +331,84 @@ public class ProductDao {
             e.printStackTrace();
         }
         return products;
+    }
+
+    public List<Product> getProductsWithCategory(String categoryName, String sortBy, int offset, int pageSize) {
+        List<Product> products = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT p.*, c.name AS category_name FROM products p ");
+        sql.append("LEFT JOIN categories c ON p.category_id = c.id ");
+
+        boolean hasCategory = (categoryName != null && !categoryName.trim().isEmpty());
+        if (hasCategory) {
+            sql.append("WHERE c.name = ? ");
+        }
+
+        sql.append("ORDER BY ");
+        if (sortBy == null) sortBy = "featured";
+
+        switch (sortBy) {
+            case "price-asc":
+                sql.append("p.price ASC ");
+                break;
+            case "price-desc":
+                sql.append("p.price DESC ");
+                break;
+            case "updated-desc":
+                sql.append("p.id DESC ");
+                break;
+            case "featured":
+            default:
+                sql.append("p.featured DESC, p.id DESC ");
+                break;
+        }
+
+        sql.append("LIMIT ? OFFSET ?");
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            if (hasCategory) {
+                ps.setString(paramIndex++, categoryName);
+            }
+
+            ps.setInt(paramIndex++, pageSize);
+            ps.setInt(paramIndex++, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setCategory_id(rs.getInt("category_id"));
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setImage_url(rs.getString("image_url"));
+                    product.setInventory_qty(rs.getInt("inventory_qty"));
+                    product.setFeatured(rs.getBoolean("featured"));
+                    product.setIs_active(rs.getBoolean("is_active"));
+                    product.setCategory(rs.getString("category_name"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public int getTotalProductsByCategory(String categoryName) {
+        String sql = "SELECT COUNT(*) FROM products p LEFT JOIN categories c ON p.category_id = c.id WHERE c.name = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+            ps.setString(1, categoryName);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }}
