@@ -73,7 +73,17 @@ public class ProductImageDao {
         }
         return null;
     }
+    public void deleteAllImagesByProductId(int product_id) {
+        String sql = "DELETE FROM product_images WHERE product_id = ?";
 
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setInt(1, product_id);
+            ps.executeUpdate();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
