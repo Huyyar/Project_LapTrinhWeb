@@ -63,6 +63,9 @@ public class AdminProductsServlet extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         int offset = (currentPage - 1) * PAGE_SIZE;
         List<Product> products = service.getPagedSearchProducts(offset, PAGE_SIZE, search);
+        for(Product p : products){
+            p.setImages(service.getProductImages(p.getId()));
+        }
         request.setAttribute("products", products);
 
         request.getRequestDispatcher("/WEB-INF/views/layouts/admin_layout.jsp").forward(request, response);

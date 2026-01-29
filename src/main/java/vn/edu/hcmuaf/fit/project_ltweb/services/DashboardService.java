@@ -25,7 +25,7 @@ public class DashboardService {
         stats.put("weeklyRevenue", weeklyRevenue);
         
         // Pending orders count
-        int pendingOrders = orderDao.getTotalOrderByStatus("pending");
+        int pendingOrders = orderDao.getTotalOrderByStatus("processing");
         stats.put("pendingOrders", pendingOrders);
         
         // Hidden products count and total products

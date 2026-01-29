@@ -2,6 +2,8 @@ package vn.edu.hcmuaf.fit.project_ltweb.model;
 
 import vn.edu.hcmuaf.fit.project_ltweb.utils.AppContextListener;
 
+import java.util.List;
+
 public class Product {
     private int id;
     private int category_id;
@@ -13,6 +15,7 @@ public class Product {
     private String category;
     private boolean featured;
     private boolean is_active;
+    private List<ProductImage> images;
     public Product() {
     }
 
@@ -119,5 +122,11 @@ public class Product {
 
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
+    }
+    public void setImages(List<ProductImage> images){
+        this.images = images;
+    }
+    public List<ProductImage> getImages(){
+        return this.images;
     }
 }
